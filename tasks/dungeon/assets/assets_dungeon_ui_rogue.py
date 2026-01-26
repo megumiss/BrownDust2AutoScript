@@ -1,0 +1,94 @@
+from module.base.button import Button, ButtonWrapper
+
+# This file was auto-generated, do not modify it manually. To generate:
+# ``` python -m dev_tools.button_extract ```
+
+DIVERGENT_GOTO_SIMULATED = ButtonWrapper(
+    name='DIVERGENT_GOTO_SIMULATED',
+    share=Button(
+        file='./assets/share/dungeon/ui_rogue/DIVERGENT_GOTO_SIMULATED.png',
+        area=(595, 224, 611, 244),
+        search=(575, 204, 631, 264),
+        color=(51, 50, 69),
+        button=(595, 224, 611, 244),
+    ),
+)
+DIVERGENT_UNIVERSE_LOADED = ButtonWrapper(
+    name='DIVERGENT_UNIVERSE_LOADED',
+    share=Button(
+        file='./assets/share/dungeon/ui_rogue/DIVERGENT_UNIVERSE_LOADED.png',
+        area=(893, 608, 911, 628),
+        search=(873, 588, 931, 648),
+        color=(103, 102, 102),
+        button=(893, 608, 911, 628),
+    ),
+)
+DIVERGENT_UNIVERSE_SAVE_UNAVAILABLE = ButtonWrapper(
+    name='DIVERGENT_UNIVERSE_SAVE_UNAVAILABLE',
+    share=Button(
+        file='./assets/share/dungeon/ui_rogue/DIVERGENT_UNIVERSE_SAVE_UNAVAILABLE.png',
+        area=(454, 183, 490, 218),
+        search=(435, 171, 502, 292),
+        color=(80, 24, 29),
+        button=(454, 183, 490, 218),
+    ),
+)
+LAST_TELEPORT = ButtonWrapper(
+    name='LAST_TELEPORT',
+    share=Button(
+        file='./assets/share/dungeon/ui_rogue/LAST_TELEPORT.png',
+        area=(1018, 579, 1038, 599),
+        search=(998, 559, 1058, 619),
+        color=(84, 83, 85),
+        button=(1018, 579, 1038, 599),
+    ),
+)
+SIMULATED_UNIVERSE_LOADED_CLASSIC = ButtonWrapper(
+    name='SIMULATED_UNIVERSE_LOADED_CLASSIC',
+    share=Button(
+        file='./assets/share/dungeon/ui_rogue/SIMULATED_UNIVERSE_LOADED_CLASSIC.png',
+        area=(507, 501, 547, 541),
+        search=(465, 172, 588, 656),
+        color=(157, 155, 157),
+        button=(507, 501, 547, 541),
+    ),
+)
+SURVIVAL_INDEX_BUILD_LOADED = ButtonWrapper(
+    name='SURVIVAL_INDEX_BUILD_LOADED',
+    share=Button(
+        file='./assets/share/dungeon/ui_rogue/SURVIVAL_INDEX_BUILD_LOADED.png',
+        area=(464, 179, 490, 202),
+        search=(444, 159, 510, 222),
+        color=(157, 156, 157),
+        button=(464, 179, 490, 202),
+    ),
+)
+SURVIVAL_INDEX_OE_LOADED = ButtonWrapper(
+    name='SURVIVAL_INDEX_OE_LOADED',
+    share=[
+        Button(
+            file='./assets/share/dungeon/ui_rogue/SURVIVAL_INDEX_OE_LOADED.png',
+            area=(460, 238, 480, 268),
+            search=(455, 208, 485, 338),
+            color=(221, 192, 131),
+            button=(460, 238, 480, 268),
+        ),
+        Button(
+            file='./assets/share/dungeon/ui_rogue/SURVIVAL_INDEX_OE_LOADED.2.png',
+            area=(460, 238, 480, 268),
+            search=(455, 208, 485, 338),
+            color=(198, 161, 100),
+            button=(460, 238, 480, 268),
+        ),
+    ],
+)
+SURVIVAL_INDEX_SU_LOADED = ButtonWrapper(
+    name='SURVIVAL_INDEX_SU_LOADED',
+    share=Button(
+        file='./assets/share/dungeon/ui_rogue/SURVIVAL_INDEX_SU_LOADED.png',
+        area=(451, 286, 476, 302),
+        search=(449, 263, 489, 356),
+        color=(142, 150, 197),
+        button=(451, 286, 476, 302),
+    ),
+)

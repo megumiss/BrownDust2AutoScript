@@ -1,0 +1,33 @@
+# --------------------
+# Define default values
+# --------------------
+
+# ==================== Alas ====================
+
+Alas:
+  Emulator:
+    ScreenshotMethod: scrcpy
+
+# ==================== Daily ====================
+
+Dungeon:
+  Scheduler:
+    Enable: true
+DailyQuest:
+  Scheduler:
+    Enable: true
+BattlePass:
+  Scheduler:
+    Enable: true
+Assignment:
+  Scheduler:
+    Enable: true
+Freebies:
+  Scheduler:
+    Enable: true
+
+# ==================== Weekly ====================
+
+Weekly:
+  DungeonSupport:
+    Use: do_not_use

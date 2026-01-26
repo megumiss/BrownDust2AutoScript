@@ -1,0 +1,1780 @@
+{
+  "Menu": {
+    "Alas": {
+      "name": "SRC",
+      "help": ""
+    },
+    "Daily": {
+      "name": "Diario",
+      "help": ""
+    },
+    "Weekly": {
+      "name": "Semanario",
+      "help": ""
+    },
+    "Tool": {
+      "name": "útiles",
+      "help": ""
+    }
+  },
+  "Task": {
+    "Alas": {
+      "name": "Ajustes de SRC",
+      "help": ""
+    },
+    "Restart": {
+      "name": "Gestión de errores",
+      "help": ""
+    },
+    "Dungeon": {
+      "name": "Mazmorra",
+      "help": ""
+    },
+    "Ornament": {
+      "name": "Ornamentos",
+      "help": "Se deben cumplir los siguientes requisitos:\n1. Borre manualmente Universo Diferenciado una vez esta semana y tenga un archivo guardado.\n2. Ingrese a la mazmorra una vez en el dispositivo actual para guardar el equipo de la mazmorra."
+    },
+    "DailyQuest": {
+      "name": "Misión diaria",
+      "help": ""
+    },
+    "BattlePass": {
+      "name": "Honor anónimo",
+      "help": ""
+    },
+    "Assignment": {
+      "name": "Encargos",
+      "help": ""
+    },
+    "DataUpdate": {
+      "name": "Actualizar panel",
+      "help": ""
+    },
+    "Freebies": {
+      "name": "Freebies",
+      "help": ""
+    },
+    "Weekly": {
+      "name": "Ecos de la guerra",
+      "help": ""
+    },
+    "Rogue": {
+      "name": "Universo Simulado",
+      "help": ""
+    },
+    "Daemon": {
+      "name": "Clic de diálogo",
+      "help": ""
+    },
+    "PlannerScan": {
+      "name": "Planificador de personajes",
+      "help": ""
+    }
+  },
+  "Scheduler": {
+    "_info": {
+      "name": "Planificador",
+      "help": ""
+    },
+    "Enable": {
+      "name": "Activar tarea",
+      "help": "Añadir tarea al Planificador.",
+      "True": "Activado",
+      "False": "Falso"
+    },
+    "NextRun": {
+      "name": "Siguiente ejecución",
+      "help": "Se actualiza automáticamente a la siguiente vez que hay que ejecutar la tarea, normalmente no se modifica manualmente.\nSin embargo, puedes forzar la ejecución dejando este campo en blanco."
+    },
+    "Command": {
+      "name": "Comando",
+      "help": ""
+    },
+    "ServerUpdate": {
+      "name": "Actualización de servidor",
+      "help": "Conjunto de horas a las que se actualiza el servidor (se resetea). Se convierte automáticamente a la zona horaria, y no es necesario modificarlo manualmente."
+    }
+  },
+  "Emulator": {
+    "_info": {
+      "name": "Ajustes de emulador",
+      "help": ""
+    },
+    "Serial": {
+      "name": "Serial",
+      "help": "Los serial de emuladores comunes pueden ser consultados aquí:\nUsa \"auto\" para detectar automáticamente el emulador, pero si hay varios ejecutando a la vez o no se puede detectar de forma automática, \"auto\" no podrá ser usado y tendrás que ajustarlo manualmente.\nSerial comunes de algunos emuladores:\n- BlueStacks 127.0.0.1:5555\n- BlueStacks4 Hyper-V usa \"bluestacks4-hyperv\", \"bluestacks4-hyperv-2\" para multi-instancia, etc...\n- BlueStacks5 Hyper-V usa \"bluestacks5-hyperv\", \"bluestacks5-hyperv-1\" para multi-instancia, etc...\n- NoxPlayer 127.0.0.1:62001\n- NoxPlayer64bit 127.0.0.1:59865\n- MuMuPlayer/MuMuPlayer X 127.0.0.1:7555\n- MuMuPlayer12 127.0.0.1:16384\n- MemuPlayer 127.0.0.1:21503\n- LDPlayer emulator-5554 or 127.0.0.1:5555\n- WSA usa \"wsa-0\" para ejecutar el juego en segundo plano, que será cerrado/controlado por software externo.\nSi hay varias instancias ejecutándose a la vez, se usará la predeterminada para la primera y las demás se reajustarán.\nAbre console.bat y ejecuta `adb devices` para encontrarlas o usa la guía oficial del emulador."
+    },
+    "GameClient": {
+      "name": "Cliente del juego",
+      "help": "Al usar la nube, automáticamente se pondrá en cola para iniciar sesión. El juego en la nube está disponible solo en CN",
+      "android": "Cliente Android",
+      "cloud_android": "Cliente de juego en la nube para Android"
+    },
+    "PackageName": {
+      "name": "Región del juego",
+      "help": "No es posible detectar regiones que no sean de China, por tanto, ajústalo manualmente si se da la situación.",
+      "auto": "Detectar automaticamente",
+      "CN-Official": "[CN]-Oficial",
+      "CN-Bilibili": "[CN]-Bilibili",
+      "OVERSEA-America": "[OVERSEA]-America",
+      "OVERSEA-Asia": "[OVERSEA]-Asia",
+      "OVERSEA-Europe": "[OVERSEA]-Europa",
+      "OVERSEA-TWHKMO": "[OVERSEA]-TW,HK,MO"
+    },
+    "GameLanguage": {
+      "name": "Idioma dentro del juego",
+      "help": "En la actualidad, solo funcionan el Chino simplificado y el inglés.",
+      "auto": "Detectar automaticamente",
+      "cn": "Chino simplificado",
+      "en": "Inglés"
+    },
+    "ScreenshotMethod": {
+      "name": "Método de captura",
+      "help": "Cuando seleccionas detectar auto, se ejecutará una prueba para determinar el método más rápido.\nNormalmente, el orden es: DroidCast_raw >> aScreenCap_nc > ADB_nc >>> aScreenCap > uiautomator2 ~= ADB.\nEjecuta Herramientas - Prueba de rendimiento para encontrar el método más rápido.",
+      "auto": "Detectar auto. el más rápido",
+      "ADB": "ADB ",
+      "ADB_nc": "ADB_nc",
+      "uiautomator2": "uiautomator2",
+      "aScreenCap": "aScreenCap",
+      "aScreenCap_nc": "aScreenCap_nc",
+      "DroidCast": "DroidCast",
+      "DroidCast_raw": "DroidCast_raw",
+      "scrcpy": "scrcpy",
+      "nemu_ipc": "nemu_ipc",
+      "ldopengl": "ldopengl"
+    },
+    "ControlMethod": {
+      "name": "Método de control",
+      "help": "Velocidad: MaaTouch = minitouch >>> uiautomator2 ~= ADB\nMaaTouch es el recomendado.",
+      "minitouch": "minitouch",
+      "MaaTouch": "MaaTouch"
+    },
+    "CloudPriorQueue": {
+      "name": "Utilice monedas pagadas para hacer cola rápidamente en los juegos en la nube",
+      "help": ""
+    },
+    "AdbRestart": {
+      "name": "Intentar reiniciar el ADB cuando no se encuentre ninguno.",
+      "help": ""
+    }
+  },
+  "EmulatorInfo": {
+    "_info": {
+      "name": "Ajustes de emulador",
+      "help": "Los siguientes ajustes son rellenados de manera automática de acuerdo al \"Serial\", si no lo entiendes, por favor no los modifiques."
+    },
+    "Emulator": {
+      "name": "Tipo de emulador",
+      "help": "",
+      "auto": "Detectar automáticamente",
+      "NoxPlayer": "Nox Player",
+      "NoxPlayer64": "Nox Player 64bit",
+      "BlueStacks4": "BlueStacks 4",
+      "BlueStacks5": "BlueStacks 5",
+      "BlueStacks4HyperV": "BlueStacks 4 Hyper-V",
+      "BlueStacks5HyperV": "BlueStacks 5 Hyper-V",
+      "LDPlayer3": "LD Player 3",
+      "LDPlayer4": "LD Player 4",
+      "LDPlayer9": "LD Player 9",
+      "MuMuPlayer": "MuMu Player",
+      "MuMuPlayerX": "MuMu Player X",
+      "MuMuPlayer12": "MuMu Player 12",
+      "MEmuPlayer": "MEmu Player"
+    },
+    "name": {
+      "name": "Nombre de la instancia del emulador",
+      "help": ""
+    },
+    "path": {
+      "name": "Ruta de instalación del emulador",
+      "help": ""
+    }
+  },
+  "Error": {
+    "_info": {
+      "name": "Ajustes de depuración",
+      "help": ""
+    },
+    "Restart": {
+      "name": "Reiniciar el juego cuando haya un error",
+      "help": "",
+      "game": "Reiniciar juego",
+      "game_emulator": "Reiniciar emulador y el juego"
+    },
+    "SaveError": {
+      "name": "Guardar errores",
+      "help": "Graba los errores y los guarda automáticamente en la carpeta de logs para que puedas compartirlos fácilmente."
+    },
+    "ScreenshotLength": {
+      "name": "Tomar capturas de pantalla",
+      "help": "Número de capturas de pantalla tomadas cuando ocurra un error"
+    },
+    "OnePushConfig": {
+      "name": "Configuración para notificar errores",
+      "help": "Cuando SRC no puede manejar un error, envía un mensaje automáticamente. Puedes leer más información sobre este ajuste aquí:\nhttps://github.com/LmeSzinc/AzurLaneAutoScript/wiki/Onepush-configuration-%5BEN%5D"
+    }
+  },
+  "Optimization": {
+    "_info": {
+      "name": "Ajustes de optimización",
+      "help": ""
+    },
+    "ScreenshotInterval": {
+      "name": "Tomar capturas cada X segundos",
+      "help": "El intervalo mínimo entre 2 capturas, limitarlo a 0.1 ~ 0.3, puede ayudar a reducir el consumo de CPU."
+    },
+    "CombatScreenshotInterval": {
+      "name": "Tomar capturas cada X segundos en combate",
+      "help": "El intervalo mínimo entre 2 capturas, limitarlo a 0.1 ~ 1.0, puede ayudar a reducir el consumo de CPU."
+    },
+    "WhenTaskQueueEmpty": {
+      "name": "Cuando no haya tareas",
+      "help": "Cerrar Honkai: Star Rail cuando no haya tareas puede ayudar a reducir el consumo de CPU.",
+      "stay_there": "Quedarse en el sitio",
+      "goto_main": "Ir al lugar principal",
+      "close_game": "Cerrar el juego",
+      "close_emulator": "Cerrar el emulador"
+    }
+  },
+  "Dungeon": {
+    "_info": {
+      "name": "Ajustes de Mazmorra",
+      "help": "Combate continuamente hasta agotar la energía (poder trazacaminos)"
+    },
+    "Name": {
+      "name": "Nombre de la Mazmorra",
+      "help": "Ajustes predeterminados de las mazmorras",
+      "Cavern_of_Corrosion_Path_of_Hidden_Salvation": "Artefactos: Salvado & Eremita (Senda de la salvación oculta)",
+      "Cavern_of_Corrosion_Path_of_Thundersurge": "Artefactos: Guerrera celestial & Capitán (Senda del estruendo)",
+      "Cavern_of_Corrosion_Path_of_Aria": "Artefactos: Heroe & Poetisa (Senda de la canción)",
+      "Cavern_of_Corrosion_Path_of_Uncertainty": "Artefactos: Calvario & Eruditos (Senda de la incertidumbre)",
+      "Cavern_of_Corrosion_Path_of_Cavalier": "Artefactos: Caballería & Intrepida (Senda del caballero)",
+      "Cavern_of_Corrosion_Path_of_Dreamdive": "Artefactos: Agua muerta & Relojero (Senda de los sueños)",
+      "Cavern_of_Corrosion_Path_of_Darkness": "Artefactos: Gran duque & DoT set (Senda de la oscuridad)",
+      "Cavern_of_Corrosion_Path_of_Elixir_Seekers": "Artefactos: Discípula & Mensajero (Senda de los elixires)",
+      "Cavern_of_Corrosion_Path_of_Conflagration": "Artefactos: Fuego set & Imaginario set (Senda de la conflagración)",
+      "Cavern_of_Corrosion_Path_of_Holy_Hymn": "Artefactos: DEF set & Rayo set (Senda del himno sagrado)",
+      "Cavern_of_Corrosion_Path_of_Providence": "Artefactos: Guardia & Cuántico set (Senda de la providencia)",
+      "Cavern_of_Corrosion_Path_of_Drifting": "Artefactos: Cicatrización set & Pistolera (Senda de la deriva)",
+      "Cavern_of_Corrosion_Path_of_Jabbing_Punch": "Artefactos: Físico set & Ladrón (Senda de los puños rápidos)",
+      "Cavern_of_Corrosion_Path_of_Gelid_Wind": "Artefactos: Hielo set & Viento set (Senda del viento gelido)",
+      "Calyx_Golden_Memories_Amphoreus": "Material: EXP de personaje (Flor de los recuerdos, Amphoreus)",
+      "Calyx_Golden_Memories_Penacony": "Material: EXP de personaje (Flor de los recuerdos, Colonipenal)",
+      "Calyx_Golden_Memories_The_Xianzhou_Luofu": "Material: EXP de personaje (Flor de los recuerdos, El Luofu de Xianzhou)",
+      "Calyx_Golden_Memories_Jarilo_VI": "Material: EXP de personaje (Flor de los recuerdos, Jarilo-VI)",
+      "Calyx_Golden_Aether_Amphoreus": "Material: EXP de conos de luz (Flor de eter, Amphoreus)",
+      "Calyx_Golden_Aether_Penacony": "Material: EXP de conos de luz (Flor de eter, Colonipenal)",
+      "Calyx_Golden_Aether_The_Xianzhou_Luofu": "Material: EXP de conos de luz (Flor de eter, El Luofu de Xianzhou)",
+      "Calyx_Golden_Aether_Jarilo_VI": "Material: EXP de conos de luz (Flor de eter, Jarilo-VI)",
+      "Calyx_Golden_Treasures_Amphoreus": "Material: Créditos (Flor de tesoros, Amphoreus)",
+      "Calyx_Golden_Treasures_Penacony": "Material: Créditos (Flor de tesoros, Colonipenal)",
+      "Calyx_Golden_Treasures_The_Xianzhou_Luofu": "Material: Créditos (Flor de tesoros, El Luofu de Xianzhou)",
+      "Calyx_Golden_Treasures_Jarilo_VI": "Material: Créditos (Flor de tesoros, Jarilo-VI)",
+      "Calyx_Crimson_Destruction_Herta_StorageZone": "Rastros: Destrucción (Zona de almacenamiento)",
+      "Calyx_Crimson_Destruction_Luofu_ScalegorgeWaterscape": "Rastros: Destrucción (Desfiladero de Escamas)",
+      "Calyx_Crimson_Preservation_Herta_SupplyZone": "Rastros: Conservación (Zona de suministros)",
+      "Calyx_Crimson_Preservation_Penacony_ClockStudiosThemePark": "Rastros: Conservación (Parque temático de los Estudios Reloj)",
+      "Calyx_Crimson_The_Hunt_Jarilo_OutlyingSnowPlains": "Rastros: Cacería (Llanuras nevadas de las afueras)",
+      "Calyx_Crimson_The_Hunt_Penacony_SoulGladScorchsandAuditionVenue": "Rastros: Cacería (Recinto de las Audiciones FelizAlma en la Arena Ardiente)",
+      "Calyx_Crimson_Abundance_Jarilo_BackwaterPass": "Rastros: Abundancia (Paso del Remanso)",
+      "Calyx_Crimson_Abundance_Luofu_FyxestrollGarden": "Rastros: Abundancia (Jardín del Sosiego)",
+      "Calyx_Crimson_Erudition_Jarilo_RivetTown": "Rastros: Erudición (Villarremache)",
+      "Calyx_Crimson_Erudition_Penacony_PenaconyGrandTheater": "Rastros: Erudición (Gran Teatro de Colonipenal)",
+      "Calyx_Crimson_Harmony_Jarilo_RobotSettlement": "Rastros: Armonía (Asentamiento robot)",
+      "Calyx_Crimson_Harmony_Penacony_TheReverieDreamscape": "Rastros: Armonía (Hotel Fantasía (paisaje onírico))",
+      "Calyx_Crimson_Nihility_Jarilo_GreatMine": "Rastros: Nihilidad (Mina principal)",
+      "Calyx_Crimson_Nihility_Luofu_AlchemyCommission": "Rastros: Nihilidad (Comisión de Alquimia)",
+      "Calyx_Crimson_Remembrance_Amphoreus_StrifeRuinsCastrumKremnos": "Rastros: Reminiscencia (Castrum Kremnos, Ruinas del Conflicto)",
+      "Stagnant_Shadow_Spike": "Ascension: Físico (Natasha / Clara / Luka / Sushang)",
+      "Stagnant_Shadow_Perdition": "Ascension: Físico (Hanya / Argenti)",
+      "Stagnant_Shadow_Duty": "Ascension: Físico (Boothill / Robin / Yunli)",
+      "Stagnant_Shadow_Deepsheaf": "Ascension: Físico (Fainón / Hysilens / Dan Heng - Permansor Terrae)",
+      "Stagnant_Shadow_Blaze": "Ascension: Fuego (Himeko / Asta / Hook)",
+      "Stagnant_Shadow_Scorch": "Ascension: Fuego (Guinaifen / Topaz y Conti / Fugue)",
+      "Stagnant_Shadow_Ire": "Ascension: Fuego (Luciérnaga / Gallagher / Jiaoqiu / Lingsha)",
+      "Stagnant_Shadow_Ashes": "Ascension: Fuego (La Dalia)",
+      "Stagnant_Shadow_Rime": "Ascension: Hielo (Siete de Marzo / Herta / Gepard / Pela)",
+      "Stagnant_Shadow_Icicle": "Ascension: Hielo (Yanqing / Jingliu / Ruan Mei)",
+      "Stagnant_Shadow_Nectar": "Ascension: Hielo (Misha / Sra. Herta)",
+      "Stagnant_Shadow_Sirens": "Ascension: Hielo (Cirene / Larganoche)",
+      "Stagnant_Shadow_Fulmination": "Ascension: Rayo (Arlan / Serval / Tingyun / Bailu)",
+      "Stagnant_Shadow_Doom": "Ascension: Rayo (Kafka / Jing Yuan / Acheron)",
+      "Stagnant_Shadow_Mechwolf": "Ascension: Rayo (Moze / Aglaea)",
+      "Stagnant_Shadow_Gust": "Ascension: Viento (Dan Heng / Bronya / Sampo)",
+      "Stagnant_Shadow_Celestial": "Ascension: Viento (Blade / Huohuo / Cisne Negro)",
+      "Stagnant_Shadow_Gloam": "Ascension: Viento (Feixiao / Anaxa / Hyacine / Saber)",
+      "Stagnant_Shadow_Cinders": "Ascension: Viento (Céridra)",
+      "Stagnant_Shadow_Quanta": "Ascension: Cuántico (Silver Wolf / Seele / Qingque)",
+      "Stagnant_Shadow_Abomination": "Ascension: Cuántico (Lynx / Fu Xuan / Xueyi)",
+      "Stagnant_Shadow_Roast": "Ascension: Cuántico (Jade / Sparkle)",
+      "Stagnant_Shadow_Gelidmoon": "Ascension: Cuántico (Tribbie / Castorice / Cífer / Archer)",
+      "Stagnant_Shadow_Mirage": "Ascension: Imaginario (Welt / Luocha / Yukong)",
+      "Stagnant_Shadow_Puppetry": "Ascension: Imaginario (Dan Heng - Imbibitor Lunae / Aventurino / Dr. Ratio)",
+      "Stagnant_Shadow_Timbre": "Ascension: Imaginario (Sunday / Rappa)",
+      "Stagnant_Shadow_Sloggyre": "Ascension: Imaginario (Midei)"
+    },
+    "NameAtDoubleCalyx": {
+      "name": "En los eventos de x2 de Cáliz",
+      "help": "Se volverán a los ajustes predeterminados una vez se acaben los intentos del evento",
+      "Calyx_Golden_Memories_Amphoreus": "Material: EXP de personaje (Flor de los recuerdos, Amphoreus)",
+      "Calyx_Golden_Memories_Penacony": "Material: EXP de personaje (Flor de los recuerdos, Colonipenal)",
+      "Calyx_Golden_Memories_The_Xianzhou_Luofu": "Material: EXP de personaje (Flor de los recuerdos, El Luofu de Xianzhou)",
+      "Calyx_Golden_Memories_Jarilo_VI": "Material: EXP de personaje (Flor de los recuerdos, Jarilo-VI)",
+      "Calyx_Golden_Aether_Amphoreus": "Material: EXP de conos de luz (Flor de eter, Amphoreus)",
+      "Calyx_Golden_Aether_Penacony": "Material: EXP de conos de luz (Flor de eter, Colonipenal)",
+      "Calyx_Golden_Aether_The_Xianzhou_Luofu": "Material: EXP de conos de luz (Flor de eter, El Luofu de Xianzhou)",
+      "Calyx_Golden_Aether_Jarilo_VI": "Material: EXP de conos de luz (Flor de eter, Jarilo-VI)",
+      "Calyx_Golden_Treasures_Amphoreus": "Material: Créditos (Flor de tesoros, Amphoreus)",
+      "Calyx_Golden_Treasures_Penacony": "Material: Créditos (Flor de tesoros, Colonipenal)",
+      "Calyx_Golden_Treasures_The_Xianzhou_Luofu": "Material: Créditos (Flor de tesoros, El Luofu de Xianzhou)",
+      "Calyx_Golden_Treasures_Jarilo_VI": "Material: Créditos (Flor de tesoros, Jarilo-VI)",
+      "Calyx_Crimson_Destruction_Herta_StorageZone": "Rastros: Destrucción (Zona de almacenamiento)",
+      "Calyx_Crimson_Destruction_Luofu_ScalegorgeWaterscape": "Rastros: Destrucción (Desfiladero de Escamas)",
+      "Calyx_Crimson_Preservation_Herta_SupplyZone": "Rastros: Conservación (Zona de suministros)",
+      "Calyx_Crimson_Preservation_Penacony_ClockStudiosThemePark": "Rastros: Conservación (Parque temático de los Estudios Reloj)",
+      "Calyx_Crimson_The_Hunt_Jarilo_OutlyingSnowPlains": "Rastros: Cacería (Llanuras nevadas de las afueras)",
+      "Calyx_Crimson_The_Hunt_Penacony_SoulGladScorchsandAuditionVenue": "Rastros: Cacería (Recinto de las Audiciones FelizAlma en la Arena Ardiente)",
+      "Calyx_Crimson_Abundance_Jarilo_BackwaterPass": "Rastros: Abundancia (Paso del Remanso)",
+      "Calyx_Crimson_Abundance_Luofu_FyxestrollGarden": "Rastros: Abundancia (Jardín del Sosiego)",
+      "Calyx_Crimson_Erudition_Jarilo_RivetTown": "Rastros: Erudición (Villarremache)",
+      "Calyx_Crimson_Erudition_Penacony_PenaconyGrandTheater": "Rastros: Erudición (Gran Teatro de Colonipenal)",
+      "Calyx_Crimson_Harmony_Jarilo_RobotSettlement": "Rastros: Armonía (Asentamiento robot)",
+      "Calyx_Crimson_Harmony_Penacony_TheReverieDreamscape": "Rastros: Armonía (Hotel Fantasía (paisaje onírico))",
+      "Calyx_Crimson_Nihility_Jarilo_GreatMine": "Rastros: Nihilidad (Mina principal)",
+      "Calyx_Crimson_Nihility_Luofu_AlchemyCommission": "Rastros: Nihilidad (Comisión de Alquimia)",
+      "Calyx_Crimson_Remembrance_Amphoreus_StrifeRuinsCastrumKremnos": "Rastros: Reminiscencia (Castrum Kremnos, Ruinas del Conflicto)"
+    },
+    "NameAtDoubleRelic": {
+      "name": "En los eventos de x2 de Caverna de la corrosión",
+      "help": "Se volverán a los ajustes predeterminados una vez se acaben los intentos del evento",
+      "Cavern_of_Corrosion_Path_of_Hidden_Salvation": "Artefactos: Salvado & Eremita (Senda de la salvación oculta)",
+      "Cavern_of_Corrosion_Path_of_Thundersurge": "Artefactos: Guerrera celestial & Capitán (Senda del estruendo)",
+      "Cavern_of_Corrosion_Path_of_Aria": "Artefactos: Heroe & Poetisa (Senda de la canción)",
+      "Cavern_of_Corrosion_Path_of_Uncertainty": "Artefactos: Calvario & Eruditos (Senda de la incertidumbre)",
+      "Cavern_of_Corrosion_Path_of_Cavalier": "Artefactos: Caballería & Intrepida (Senda del caballero)",
+      "Cavern_of_Corrosion_Path_of_Dreamdive": "Artefactos: Agua muerta & Relojero (Senda de los sueños)",
+      "Cavern_of_Corrosion_Path_of_Darkness": "Artefactos: Gran duque & DoT set (Senda de la oscuridad)",
+      "Cavern_of_Corrosion_Path_of_Elixir_Seekers": "Artefactos: Discípula & Mensajero (Senda de los elixires)",
+      "Cavern_of_Corrosion_Path_of_Conflagration": "Artefactos: Fuego set & Imaginario set (Senda de la conflagración)",
+      "Cavern_of_Corrosion_Path_of_Holy_Hymn": "Artefactos: DEF set & Rayo set (Senda del himno sagrado)",
+      "Cavern_of_Corrosion_Path_of_Providence": "Artefactos: Guardia & Cuántico set (Senda de la providencia)",
+      "Cavern_of_Corrosion_Path_of_Drifting": "Artefactos: Cicatrización set & Pistolera (Senda de la deriva)",
+      "Cavern_of_Corrosion_Path_of_Jabbing_Punch": "Artefactos: Físico set & Ladrón (Senda de los puños rápidos)",
+      "Cavern_of_Corrosion_Path_of_Gelid_Wind": "Artefactos: Hielo set & Viento set (Senda del viento gelido)"
+    },
+    "Team": {
+      "name": "Equipo de mazmorra",
+      "help": "",
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4",
+      "5": "5",
+      "6": "6",
+      "7": "7",
+      "8": "8",
+      "9": "9",
+      "10": "10",
+      "11": "11",
+      "12": "12"
+    }
+  },
+  "TrailblazePower": {
+    "_info": {
+      "name": "Ajustes de Poder Trazacaminos",
+      "help": ""
+    },
+    "ExtractReservedTrailblazePower": {
+      "name": "Extraer reserva de poder de trazacaminos",
+      "help": ""
+    },
+    "UseFuel": {
+      "name": "Usar combustible",
+      "help": ""
+    },
+    "FuelOnlyPlanner": {
+      "name": "Usar combustible solo en el planificador de personajes",
+      "help": ""
+    },
+    "FuelReserve": {
+      "name": "Reserva X Combustible",
+      "help": ""
+    }
+  },
+  "DungeonSupport": {
+    "_info": {
+      "name": "Ajustes de Apoyo",
+      "help": ""
+    },
+    "Use": {
+      "name": "Usar Apoyo de amigo",
+      "help": "",
+      "always_use": "Siempre",
+      "when_daily": "Solo cuando lo requiera una misión",
+      "do_not_use": "Nunca"
+    },
+    "Character": {
+      "name": "Personaje de apoyo",
+      "help": "Selecciona qué personaje de apoyo de un amigo se usará. Si no se encuentra, se seleccionará al predeterminado.\nEl personaje de apoyo no debe ser el mismo que el personaje del equipo, se recomienda priorizar a los amigos.",
+      "FirstCharacter": "Primer personaje",
+      "TheDahlia": "[3.8] La Dalia",
+      "Cyrene": "[3.7] Cirene",
+      "Evernight": "[3.6] Larganoche",
+      "DanHengPermansorTerrae": "[3.6] Dan Heng - Permansor Terrae",
+      "Hysilens": "[3.5] Hysilens",
+      "Cerydra": "[3.5] Ceridra",
+      "Phainon": "[3.4] Fainón",
+      "Saber": "[3.4] Saber",
+      "Archer": "[3.4] Archer",
+      "Hyacine": "[3.3] Hyacine",
+      "Cipher": "[3.3] Cífer",
+      "Castorice": "[3.2] Castorice",
+      "Anaxa": "[3.2] Anaxa",
+      "Tribbie": "[3.1] Tribbie",
+      "Mydei": "[3.1] Midei",
+      "TheHerta": "[3.0] Sra. Herta",
+      "Aglaea": "[3.0] Aglaea",
+      "Sunday": "[2.7] Sunday",
+      "Fugue": "[2.7] Fugue",
+      "Rappa": "[2.6] Rappa",
+      "Feixiao": "[2.5] Feixiao",
+      "Lingsha": "[2.5] Lingsha",
+      "Moze": "[2.5] Moze",
+      "Yunli": "[2.4] Yunli",
+      "March7thTheHunt": "[2.4] Siete de Marzo: Cacería",
+      "Jiaoqiu": "[2.4] Jiaoqiu",
+      "Firefly": "[2.3] Luciernaga",
+      "Jade": "[2.3] Jade",
+      "Robin": "[2.2] Robin",
+      "Boothill": "[2.2] Boothill",
+      "Acheron": "[2.1] Acheron",
+      "Aventurine": "[2.1] Aventurino",
+      "Gallagher": "[2.1] Gallagher",
+      "BlackSwan": "[2.0] Cisne Negro",
+      "Sparkle": "[2.0] Sparkle",
+      "Misha": "[2.0] Misha",
+      "RuanMei": "[1.6] Ruan Mei",
+      "DrRatio": "[1.6] Dr. Ratio",
+      "Xueyi": "[1.6] Xueyi",
+      "Huohuo": "[1.5] Huohuo",
+      "Argenti": "[1.5] Argenti",
+      "Hanya": "[1.5] Hanya",
+      "Jingliu": "[1.4] Jingliu",
+      "TopazNumby": "[1.4] Topaz y Conti",
+      "Guinaifen": "[1.4] Guinaifen",
+      "DanHengImbibitorLunae": "[1.3] Dan Heng - Imbibitor Lunae",
+      "FuXuan": "[1.3] Fu Xuan",
+      "Lynx": "[1.3] Lynx",
+      "Blade": "[1.2] Blade",
+      "Kafka": "[1.2] Kafka",
+      "Luka": "[1.2] Luka",
+      "SilverWolf": "[1.1] Silver Wolf",
+      "Luocha": "[1.1] Luocha",
+      "Yukong": "[1.1] Yukong",
+      "Seele": "[1.0] Seele",
+      "JingYuan": "[1.0] Jing Yuan",
+      "TrailblazerDestruction": "Trailblazer: Destrucción",
+      "TrailblazerPreservation": "Trailblazer: Conservación",
+      "TrailblazerHarmony": "Trailblazer: Armonía",
+      "TrailblazerRemembrance": "Trailblazer (Reminiscencia)",
+      "Himeko": "Himeko",
+      "Welt": "Welt",
+      "Gepard": "Gepard",
+      "Bronya": "Bronya",
+      "Clara": "Clara",
+      "Yanqing": "Yanqing",
+      "Bailu": "Bailu",
+      "March7thPreservation": "Siete de Marzo (Conservación)",
+      "DanHeng": "Dan Heng",
+      "Asta": "Asta",
+      "Serval": "Serval",
+      "Herta": "Herta",
+      "Qingque": "Qingque",
+      "Sushang": "Sushang",
+      "Hook": "Hook",
+      "Arlan": "Arlan",
+      "Sampo": "Sampo",
+      "Tingyun": "Tingyun",
+      "Pela": "Pela",
+      "Natasha": "Natasha"
+    }
+  },
+  "DungeonStorage": {
+    "_info": {
+      "name": "Mazmorra",
+      "help": ""
+    },
+    "TrailblazePower": {
+      "name": "Poder",
+      "help": ""
+    },
+    "Reserved": {
+      "name": "Trailblaze Poder Reservada",
+      "help": ""
+    },
+    "Fuel": {
+      "name": "Combustible",
+      "help": ""
+    },
+    "Immersifier": {
+      "name": "Inmersor",
+      "help": ""
+    },
+    "DungeonDouble": {
+      "name": "Mazmorra x2",
+      "help": ""
+    },
+    "EchoOfWar": {
+      "name": "Ecos.",
+      "help": ""
+    },
+    "SimulatedUniverse": {
+      "name": "Univ.Sim.",
+      "help": ""
+    },
+    "Relic": {
+      "name": "Artefacto",
+      "help": ""
+    }
+  },
+  "Freebies": {
+    "_info": {
+      "name": "Configuración de recompensas de obsequios",
+      "help": ""
+    },
+    "SupportReward": {
+      "name": "Recibir recompensas de apoyo",
+      "help": ""
+    },
+    "MailReward": {
+      "name": "Recibir recompensas por correo",
+      "help": ""
+    },
+    "RedemptionCode": {
+      "name": "Canjear códigos de programa especial de versiones",
+      "help": "Obtenga automáticamente el código de canje, no es necesario que complete el código de canje específico"
+    },
+    "UsedCode": {
+      "name": "Freebies.UsedCode.name",
+      "help": "Freebies.UsedCode.help"
+    }
+  },
+  "Planner": {
+    "_info": {
+      "name": "Progreso del planificador de personajes",
+      "help": "Se prioriza el planificador de personajes. Una vez completado, se ejecutará la \"Ajustes de Mazmorra\"."
+    },
+    "PlannerOverall": {
+      "name": "Plan.",
+      "help": "Progreso general del planificador de personajes"
+    },
+    "Item_Credit": {
+      "name": "Credito",
+      "help": ""
+    },
+    "Item_Trailblaze_EXP": {
+      "name": "EXP trazacaminos",
+      "help": ""
+    },
+    "Item_Traveler_Guide": {
+      "name": "EXP de personaje",
+      "help": ""
+    },
+    "Item_Refined_Aether": {
+      "name": "EXP de conos de luz",
+      "help": ""
+    },
+    "Item_Lost_Crystal": {
+      "name": "Cristal perdido",
+      "help": ""
+    },
+    "Item_Broken_Teeth_of_Iron_Wolf": {
+      "name": "Ascension: Físico (Natasha / Clara / Luka / Sushang)",
+      "help": ""
+    },
+    "Item_Endotherm_Chitin": {
+      "name": "Ascension: Fuego (Himeko / Asta / Hook)",
+      "help": ""
+    },
+    "Item_Horn_of_Snow": {
+      "name": "Ascension: Hielo (Siete de Marzo / Herta / Gepard / Pela)",
+      "help": ""
+    },
+    "Item_Lightning_Crown_of_the_Past_Shadow": {
+      "name": "Ascension: Rayo (Arlan / Serval / Tingyun / Bailu)",
+      "help": ""
+    },
+    "Item_Storm_Eye": {
+      "name": "Ascension: Viento (Dan Heng / Bronya / Sampo)",
+      "help": ""
+    },
+    "Item_Void_Cast_Iron": {
+      "name": "Ascension: Cuántico (Silver Wolf / Seele / Qingque)",
+      "help": ""
+    },
+    "Item_Golden_Crown_of_the_Past_Shadow": {
+      "name": "Ascension: Imaginario (Welt / Luocha / Yukong)",
+      "help": ""
+    },
+    "Item_Netherworld_Token": {
+      "name": "Ascension: Físico (Hanya / Argenti)",
+      "help": ""
+    },
+    "Item_Searing_Steel_Blade": {
+      "name": "Ascension: Fuego (Guinaifen / Topaz y Conti / Fugue)",
+      "help": ""
+    },
+    "Item_Gelid_Chitin": {
+      "name": "Ascension: Hielo (Yanqing / Jingliu / Ruan Mei)",
+      "help": ""
+    },
+    "Item_Shape_Shifter_Lightning_Staff": {
+      "name": "Ascension: Rayo (Kafka / Jing Yuan / Acheron)",
+      "help": ""
+    },
+    "Item_Ascendant_Debris": {
+      "name": "Ascension: Viento (Blade / Huohuo / Cisne Negro)",
+      "help": ""
+    },
+    "Item_Nail_of_the_Ape": {
+      "name": "Ascension: Cuántico (Lynx / Fu Xuan / Xueyi)",
+      "help": ""
+    },
+    "Item_Suppressing_Edict": {
+      "name": "Ascension: Imaginario (Dan Heng - Imbibitor Lunae / Aventurino / Dr. Ratio)",
+      "help": ""
+    },
+    "Item_IPC_Work_Permit": {
+      "name": "Ascension: Físico (Boothill / Robin / Yunli)",
+      "help": ""
+    },
+    "Item_Raging_Heart": {
+      "name": "Ascension: Fuego (Luciérnaga / Gallagher / Jiaoqiu / Lingsha)",
+      "help": ""
+    },
+    "Item_Dream_Fridge": {
+      "name": "Ascension: Hielo (Misha / Sra. Herta)",
+      "help": ""
+    },
+    "Item_Nail_of_the_Beast_Coffin": {
+      "name": "Ascension: Rayo (Moze / Aglaea)",
+      "help": ""
+    },
+    "Item_A_Glass_of_the_Besotted_Era": {
+      "name": "Ascension: Viento (Feixiao / Anaxa / Hyacine / Saber)",
+      "help": ""
+    },
+    "Item_Dream_Flamer": {
+      "name": "Ascension: Cuántico (Jade / Sparkle)",
+      "help": ""
+    },
+    "Item_Chordal_Mirage": {
+      "name": "Ascension: Imaginario (Sunday / Rappa)",
+      "help": ""
+    },
+    "Item_Invasive_Clot": {
+      "name": "Ascension: Físico (Fainón / Hysilens / Dan Heng - Permansor Terrae)",
+      "help": ""
+    },
+    "Item_Radiant_Prominence": {
+      "name": "Ascension: Fuego (La Dalia)",
+      "help": ""
+    },
+    "Item_Sea_Siren_Torn_Fin": {
+      "name": "Ascension: Hielo (Cirene / Larganoche)",
+      "help": ""
+    },
+    "Item_Charred_Bud_of_Twilight": {
+      "name": "Ascension: Viento (Céridra)",
+      "help": ""
+    },
+    "Item_Darkveil_Moonlight": {
+      "name": "Ascension: Cuántico (Tribbie / Castorice / Cífer / Archer)",
+      "help": ""
+    },
+    "Item_Harbinger_of_Strife": {
+      "name": "Ascension: Imaginario (Midei)",
+      "help": ""
+    },
+    "Item_Worldbreaker_Blade": {
+      "name": "Rastros: Destrucción (Zona de almacenamiento)",
+      "help": ""
+    },
+    "Item_Arrow_of_the_Starchaser": {
+      "name": "Rastros: Cacería (Llanuras nevadas de las afueras)",
+      "help": ""
+    },
+    "Item_Key_of_Wisdom": {
+      "name": "Rastros: Erudición (Villarremache)",
+      "help": ""
+    },
+    "Item_Safeguard_of_Amber": {
+      "name": "Rastros: Conservación (Zona de suministros)",
+      "help": ""
+    },
+    "Item_Obsidian_of_Obsession": {
+      "name": "Rastros: Nihilidad (Mina principal)",
+      "help": ""
+    },
+    "Item_Stellaris_Symphony": {
+      "name": "Rastros: Armonía (Asentamiento robot)",
+      "help": ""
+    },
+    "Item_Flower_of_Eternity": {
+      "name": "Rastros: Abundancia (Paso del Remanso)",
+      "help": ""
+    },
+    "Item_Moon_Rage_Fang": {
+      "name": "Rastros: Destrucción (Desfiladero de Escamas)",
+      "help": ""
+    },
+    "Item_Countertemporal_Shot": {
+      "name": "Rastros: Cacería (Recinto de las Audiciones FelizAlma en la Arena Ardiente)",
+      "help": ""
+    },
+    "Item_Exquisite_Colored_Draft": {
+      "name": "Rastros: Erudición (Gran Teatro de Colonipenal)",
+      "help": ""
+    },
+    "Item_Divine_Amber": {
+      "name": "Rastros: Conservación (Parque temático de los Estudios Reloj)",
+      "help": ""
+    },
+    "Item_Heaven_Incinerator": {
+      "name": "Rastros: Nihilidad (Comisión de Alquimia)",
+      "help": ""
+    },
+    "Item_Heavenly_Melody": {
+      "name": "Rastros: Armonía (Hotel Fantasía (paisaje onírico))",
+      "help": ""
+    },
+    "Item_Myriad_Fruit": {
+      "name": "Rastros: Abundancia (Jardín del Sosiego)",
+      "help": ""
+    },
+    "Item_Flower_of_Alaya": {
+      "name": "Rastros: Reminiscencia (Castrum Kremnos, Ruinas del Conflicto)",
+      "help": ""
+    },
+    "Item_Tracks_of_Destiny": {
+      "name": "Huellas del destino",
+      "help": ""
+    },
+    "Item_Destroyer_Final_Road": {
+      "name": "El principio de la Destrucción (Estación Espacial Herta)",
+      "help": ""
+    },
+    "Item_Guardian_Lament": {
+      "name": "El fin del Hielo Eterno (Jarilo-VI)",
+      "help": ""
+    },
+    "Item_Regret_of_Infinite_Ochema": {
+      "name": "Semilla divina (El Luofu de Xianzhou)",
+      "help": ""
+    },
+    "Item_Past_Evils_of_the_Borehole_Planet_Disaster": {
+      "name": "Pesadilla del planeta devorado (Estación Espacial Herta)",
+      "help": ""
+    },
+    "Item_Lost_Echo_of_the_Shared_Wish": {
+      "name": "Tributo del sueño ceniciento (Colonipenal)",
+      "help": ""
+    },
+    "Item_Auspice_Sliver": {
+      "name": "Campo de batalla de la bestia interior (El Luofu de Xianzhou)",
+      "help": ""
+    },
+    "Item_Daythunder_Anamnesis": {
+      "name": "Una mirada al crepúsculo (Amphoreus)",
+      "help": ""
+    },
+    "Item_Vanquished_Flow_Reticence": {
+      "name": "Tumba oxidada del cadáver de hierro (Amphoreus)",
+      "help": ""
+    },
+    "Item_Squirming_Core": {
+      "name": "Núcleo serpenteante",
+      "help": ""
+    },
+    "Item_Conqueror_Will": {
+      "name": "Voluntad de conquista",
+      "help": ""
+    },
+    "Item_Silvermane_Medal": {
+      "name": "Medalla del guardia",
+      "help": ""
+    },
+    "Item_Ancient_Engine": {
+      "name": "Motor antiguo",
+      "help": ""
+    },
+    "Item_Immortal_Lumintwig": {
+      "name": "Rama gloriosa inmortal",
+      "help": ""
+    },
+    "Item_Artifex_Gyreheart": {
+      "name": "Corazón armonioso mecánico",
+      "help": ""
+    },
+    "Item_Dream_Making_Engine": {
+      "name": "Motor creasueños",
+      "help": ""
+    },
+    "Item_Shards_of_Desires": {
+      "name": "Fragmento de deseos",
+      "help": ""
+    },
+    "Item_Glory_Aspersed_Torso": {
+      "name": "Torso bautizado de gloria",
+      "help": ""
+    },
+    "Item_Eternal_Lament": {
+      "name": "Lamento eterno",
+      "help": ""
+    }
+  },
+  "PlannerTarget": {
+    "_info": {
+      "name": "Planner Target",
+      "help": ""
+    },
+    "Enable": {
+      "name": "Enable Planner",
+      "help": ""
+    },
+    "LastScan": {
+      "name": "Last Scan Time",
+      "help": ""
+    },
+    "Character": {
+      "name": "Character",
+      "help": "",
+      "_none_": "None",
+      "TheDahlia": "[3.8] La Dalia",
+      "Cyrene": "[3.7] Cirene",
+      "Evernight": "[3.6] Larganoche",
+      "DanHengPermansorTerrae": "[3.6] Dan Heng - Permansor Terrae",
+      "Hysilens": "[3.5] Hysilens",
+      "Cerydra": "[3.5] Ceridra",
+      "Phainon": "[3.4] Fainón",
+      "Saber": "[3.4] Saber",
+      "Archer": "[3.4] Archer",
+      "Hyacine": "[3.3] Hyacine",
+      "Cipher": "[3.3] Cífer",
+      "Castorice": "[3.2] Castorice",
+      "Anaxa": "[3.2] Anaxa",
+      "Tribbie": "[3.1] Tribbie",
+      "Mydei": "[3.1] Midei",
+      "TheHerta": "[3.0] Sra. Herta",
+      "Aglaea": "[3.0] Aglaea",
+      "Sunday": "[2.7] Sunday",
+      "Fugue": "[2.7] Fugue",
+      "Rappa": "[2.6] Rappa",
+      "Feixiao": "[2.5] Feixiao",
+      "Lingsha": "[2.5] Lingsha",
+      "Moze": "[2.5] Moze",
+      "Yunli": "[2.4] Yunli",
+      "March7thTheHunt": "[2.4] Siete de Marzo: Cacería",
+      "Jiaoqiu": "[2.4] Jiaoqiu",
+      "Firefly": "[2.3] Luciernaga",
+      "Jade": "[2.3] Jade",
+      "Robin": "[2.2] Robin",
+      "Boothill": "[2.2] Boothill",
+      "Acheron": "[2.1] Acheron",
+      "Aventurine": "[2.1] Aventurino",
+      "Gallagher": "[2.1] Gallagher",
+      "BlackSwan": "[2.0] Cisne Negro",
+      "Sparkle": "[2.0] Sparkle",
+      "Misha": "[2.0] Misha",
+      "RuanMei": "[1.6] Ruan Mei",
+      "DrRatio": "[1.6] Dr. Ratio",
+      "Xueyi": "[1.6] Xueyi",
+      "Huohuo": "[1.5] Huohuo",
+      "Argenti": "[1.5] Argenti",
+      "Hanya": "[1.5] Hanya",
+      "Jingliu": "[1.4] Jingliu",
+      "TopazNumby": "[1.4] Topaz y Conti",
+      "Guinaifen": "[1.4] Guinaifen",
+      "DanHengImbibitorLunae": "[1.3] Dan Heng - Imbibitor Lunae",
+      "FuXuan": "[1.3] Fu Xuan",
+      "Lynx": "[1.3] Lynx",
+      "Blade": "[1.2] Blade",
+      "Kafka": "[1.2] Kafka",
+      "Luka": "[1.2] Luka",
+      "SilverWolf": "[1.1] Silver Wolf",
+      "Luocha": "[1.1] Luocha",
+      "Yukong": "[1.1] Yukong",
+      "Seele": "[1.0] Seele",
+      "JingYuan": "[1.0] Jing Yuan",
+      "TrailblazerDestruction": "Trailblazer: Destrucción",
+      "TrailblazerPreservation": "Trailblazer: Conservación",
+      "TrailblazerHarmony": "Trailblazer: Armonía",
+      "TrailblazerRemembrance": "Trailblazer (Reminiscencia)",
+      "Himeko": "Himeko",
+      "Welt": "Welt",
+      "Gepard": "Gepard",
+      "Bronya": "Bronya",
+      "Clara": "Clara",
+      "Yanqing": "Yanqing",
+      "Bailu": "Bailu",
+      "March7thPreservation": "Siete de Marzo (Conservación)",
+      "DanHeng": "Dan Heng",
+      "Asta": "Asta",
+      "Serval": "Serval",
+      "Herta": "Herta",
+      "Qingque": "Qingque",
+      "Sushang": "Sushang",
+      "Hook": "Hook",
+      "Arlan": "Arlan",
+      "Sampo": "Sampo",
+      "Tingyun": "Tingyun",
+      "Pela": "Pela",
+      "Natasha": "Natasha"
+    },
+    "Cone": {
+      "name": "Cone",
+      "help": "",
+      "_none_": "None",
+      "This_Love_Forever": "[3.7] Cirene | 5* Amor eterno como este momento",
+      "Though_Worlds_Apart": "[3.6] Dan Heng - Permansor Terrae | 5* A traves de montañas y ríos",
+      "Never_Forget_Her_Flame": "[3.8] La Dalia | 5* No olvides su fuego",
+      "To_Evernight_Stars": "[3.6] Larganoche | 5* A la estrella de la larga noche",
+      "Epoch_Etched_in_Golden_Blood": "[3.5] Ceridra | 5* Era grabada en sangre dorada",
+      "Why_Does_the_Ocean_Sing": "[3.5] Hysilens | 5* Por que canta el oceano",
+      "Thus_Burns_the_Dawn": "[3.4] Fainón | 5* Que arda el alba",
+      "Lies_Dance_on_the_Breeze": "[3.3] Cífer | 5* Mentiras que vuelan en el viento",
+      "Long_May_Rainbows_Adorn_the_Sky": "[3.3] Hyacine | 5* Que el arcoíris siempre este en el cielo",
+      "Life_Should_Be_Cast_to_Flames": "[3.2] Anaxa | 5* La vida en llamas",
+      "Make_Farewells_More_Beautiful": "[3.2] Castorice | 5* Despedidas más bellas",
+      "Flame_of_Blood_Blaze_My_Path": "[3.1] Midei | 5* Sangre y fuego, abran camino",
+      "If_Time_Were_a_Flower": "[3.1] Tribbie | 5* Si el tiempo fuera una flor",
+      "Into_the_Unreachable_Veil": "[3.0] Sra. Herta | 5* Hacia lo inescrutable",
+      "Time_Woven_Into_Gold": "[3.0] Aglaea | 5* Tiempo urdido en oro",
+      "Long_Road_Leads_Home": "[2.7] Fugue | 5* El largo camino a casa",
+      "A_Grounded_Ascent": "[2.7] Sunday | 5* De vuelta a la tierra",
+      "Ninjutsu_Inscription_Dazzling_Evilbreaker": "[2.6] Rappa | 5* Pergamino ninja: Azote deslumbrante del mal",
+      "Scent_Alone_Stays_True": "[2.5] Lingsha | 5* Solo la fragancia perdura",
+      "I_Venture_Forth_to_Hunt": "[2.5] Feixiao | 5* Me voy de caza",
+      "Dance_at_Sunset": "[2.4] Yunli | 5* Danza crepuscular",
+      "Those_Many_Springs": "[2.4] Jiaoqiu | 5* Esas incontables primaveras",
+      "Yet_Hope_Is_Priceless": "[2.3] Jade | 5* La esperanza no tiene precio",
+      "Sailing_Towards_a_Second_Life": "[2.2] Boothill | 5* Hacia una segunda vida",
+      "Flowing_Nightglow": "[2.2] Robin | 5* Luces de la noche",
+      "Whereabouts_Should_Dreams_Rest": "[2.3] Luciernaga | 5* A donde regresan los sueños",
+      "Along_the_Passing_Shore": "[2.1] Acheron | 5* En las orillas transitorias",
+      "Inherently_Unjust_Destiny": "[2.1] Aventurino | 5* El destino nunca es justo",
+      "Reforged_Remembrance": "[2.0] Cisne Negro | 5* Recuerdos reconstruidos",
+      "Earthly_Escapade": "[2.0] Sparkle | 5* Mundo de juegos",
+      "Baptism_of_Pure_Thought": "[1.6] Dr. Ratio | 5* El bautismo del pensamiento puro",
+      "Past_Self_in_Mirror": "[1.6] Ruan Mei | 5* Mi pasado en el espejo",
+      "An_Instant_Before_A_Gaze": "[1.5] Argenti | 5* Instante grabado a fuego",
+      "Night_of_Fright": "[1.5] Huohuo | 5* Noche terrorífica",
+      "Worrisome_Blissful": "[1.4] Topaz y Conti | 5* Preocupaciones y felicidad",
+      "Brighter_Than_the_Sun": "[1.3] Dan Heng - Imbibitor Lunae | 5* Más brillante que el sol",
+      "I_Shall_Be_My_Own_Sword": "[1.4] Jingliu | 5* Yo sere mi propia espada",
+      "She_Already_Shut_Her_Eyes": "[1.3] Fu Xuan | 5* Ya ha cerrado los ojos",
+      "Before_Dawn": "[1.0] Jing Yuan | 5* Antes del amanecer",
+      "The_Unreachable_Side": "[1.2] Blade | 5* Orilla inalcanzable",
+      "Echoes_of_the_Coffin": "[1.1] Luocha | 5* Ecos del ataúd",
+      "Incessant_Rain": "[1.1] Silver Wolf | 5* Lluvia incesante",
+      "Patience_Is_All_You_Need": "[1.2] Kafka | 5* Solo hay que esperar",
+      "In_the_Night": "[1.0] Seele | 5* En la noche",
+      "Memory_Curtain_Never_Falls": "5* Sobre los recuerdos nunca cae el telón",
+      "Eternal_Calculus": "5* Cálculo interminable",
+      "Solitary_Healing": "5* Sanación solitaria",
+      "Texture_of_Memories": "5* La textura de los recuerdos",
+      "Cruising_in_the_Stellar_Sea": "5* Crucero estelar",
+      "On_the_Fall_of_an_Aeon": "5* Sobre la caída de un Eón",
+      "The_Hell_Where_Ideals_Burn": "5* Infierno donde arden los ideales",
+      "A_Thankless_Coronation": "5* Coronación sin agradecimiento",
+      "Time_Waits_for_No_One": "5* El tiempo no espera",
+      "Sleep_Like_the_Dead": "5* Dormir como un tronco",
+      "Moment_of_Victory": "5* El momento de la victoria",
+      "In_the_Name_of_the_World": "5* En nombre del mundo",
+      "But_the_Battle_Isn_t_Over": "5* La batalla no ha terminado",
+      "Something_Irreplaceable": "5* Algo insustituible",
+      "Night_on_the_Milky_Way": "5* Noche en la Vía Láctea",
+      "Fly_Into_a_Pink_Tomorrow": "4* Volando hacia un mañana rosado",
+      "The_Forever_Victual": "4* Viandas sin fin",
+      "The_Great_Cosmic_Enterprise": "4* El gran negocio cósmico",
+      "Ninja_Record_Sound_Hunt": "4* Grabación ninja: Cacería del Sonido",
+      "For_Tomorrow_Journey": "4* Para el viaje de mañana",
+      "Hey_Over_Here": "4* Ey, estoy aquí",
+      "Before_the_Tutorial_Mission_Starts": "4* Antes de que comience la misión del tutorial",
+      "See_You_at_the_End": "4* Nos vemos al final",
+      "Holiday_Thermae_Escapade": "4* Vacaciones en las termas",
+      "A_Dream_Scented_in_Wheat": "4* Sueños de trigo fragante",
+      "A_Trail_of_Bygone_Blood": "4* Sangre del pasado",
+      "The_Flower_Remembers": "4* Las flores nunca olvidan",
+      "In_Pursuit_of_the_Wind": "4* Al perseguir el viento",
+      "Unto_Tomorrow_Morrow": "4* Hasta pasado mañana",
+      "The_Story_Next_Page": "4* La siguiente página de la historia",
+      "Journey_Forever_Peaceful": "4* Que tu viaje sea siempre pacífico",
+      "Sweat_Now_Cry_Less": "4* Más sudor y menos lágrimas",
+      "Geniuse_Greetings": "4* Saludo entre genios",
+      "Victory_In_a_Blink": "4* Victoria disputada",
+      "Dream_Montage": "4* Montaje de sueños",
+      "Shadowed_by_Night": "4* La sombra de la noche",
+      "Poised_to_Bloom": "4* Juventud por florecer",
+      "After_the_Charmony_Fall": "4* Tras el silencio de La Armonía",
+      "Boundless_Choreo": "4* Tango ilimitado",
+      "Concert_for_Two": "4* Concierto para dos",
+      "Indelible_Promise": "4* Promesa grabada",
+      "It_Showtime": "4* Arriba el telón",
+      "The_Day_The_Cosmos_Fell": "4* Día del colapso cósmico",
+      "Destiny_Threads_Forewoven": "4* Los hilos del destino",
+      "Flames_Afar": "4* Lejos del fuego",
+      "Final_Victor": "4* Ganador final",
+      "Dreamville_Adventure": "4* Aventuras en Villa Ensueño",
+      "What_Is_Real": "4* Cuestión de verdad",
+      "Today_Is_Another_Peaceful_Day": "4* Hoy es otro día tranquilo",
+      "Nowhere_to_Run": "4* Sin escapatoria",
+      "Carve_the_Moon_Weave_the_Clouds": "4* Esculpir la luna y tejer las nubes",
+      "Return_to_Darkness": "4* Regreso a la oscuridad",
+      "This_Is_Me": "4* ¡Así soy yo!",
+      "We_Will_Meet_Again": "4* Volveremos a encontrarnos",
+      "Warmth_Shortens_Cold_Nights": "4* Las noches cálidas no duran",
+      "The_Seriousness_of_Breakfast": "4* La solemnidad del desayuno",
+      "Woof_Walk_Time": "4* ¡Guau! ¡Hora de pasear!",
+      "Past_and_Future": "4* El pasado y el futuro",
+      "River_Flows_in_Spring": "4* El río nace en primavera",
+      "We_Are_Wildfire": "4* Somos Llamarada",
+      "Fermata": "4* Calderón",
+      "Quid_Pro_Quo": "4* Intercambio equivalente",
+      "Geniuse_Repose": "4* El reposo de los genios",
+      "Under_the_Blue_Sky": "4* Bajo el cielo azul",
+      "Dance_Dance_Dance": "4* ¡A bailar!",
+      "Subscribe_for_More": "4* ¡Suscríbanse a mi canal!",
+      "Trend_of_the_Universal_Market": "4* Tendencias del mercado universal",
+      "Resolution_Shines_As_Pearls_of_Sweat": "4* Determinación reluciente",
+      "Perfect_Timing": "4* El momento oportuno",
+      "Make_the_World_Clamor": "4* Que el mundo clame",
+      "A_Secret_Vow": "4* Juramento secreto",
+      "Planetary_Rendezvous": "4* Encuentro planetario",
+      "Swordplay": "4* Juego de espadas",
+      "Landau_Choice": "4* La elección de Landau",
+      "Eyes_of_the_Prey": "4* Visión de presa",
+      "Shared_Feeling": "4* Sentimiento compartido",
+      "The_Birth_of_the_Self": "4* El nacimiento del yo",
+      "The_Moles_Welcome_You": "4* Los Topos te dan la bienvenida",
+      "Memories_of_the_Past": "4* Imagen en el recuerdo",
+      "Only_Silence_Remains": "4* Solo queda silencio",
+      "Day_One_of_My_New_Life": "4* El primer día del resto de mi vida",
+      "Good_Night_and_Sleep_Well": "4* Buenas noches, que duermas bien",
+      "Post_Op_Conversation": "4* Conversación en el postoperatorio",
+      "Reminiscence": "3* Retrospección",
+      "Shadowburn": "3* Imágenes quemadas",
+      "Sagacity": "3* Sagacidad",
+      "Mediation": "3* Mediación",
+      "Hidden_Shadow": "3* Sombra oculta",
+      "Pioneering": "3* Colonización",
+      "Mutual_Demise": "3* Final mutuo",
+      "Multiplication": "3* Multiplicación",
+      "Adversarial": "3* Antagonista",
+      "Passkey": "3* Llave maestra",
+      "Meshing_Cogs": "3* Rueda mecánica",
+      "Loop": "3* Bucle",
+      "Defense": "3* Blindaje",
+      "Shattered_Home": "3* Hogar destrozado",
+      "Fine_Fruit": "3* Fruto excelente",
+      "Darting_Arrow": "3* Flecha voladora",
+      "Data_Bank": "3* Archivos",
+      "Chorus": "3* Coro",
+      "Void": "3* Vacío",
+      "Amber": "3* Ámbar",
+      "Collapsing_Sky": "3* Colapso celeste",
+      "Cornucopia": "3* Cornucopia",
+      "Arrows": "3* Flechas"
+    },
+    "Relic": {
+      "name": "Artefacto",
+      "help": "",
+      "_none_": "None",
+      "Cavern_of_Corrosion_Path_of_Hidden_Salvation": "Artefactos: Salvado & Eremita (Senda de la salvación oculta)",
+      "Cavern_of_Corrosion_Path_of_Thundersurge": "Artefactos: Guerrera celestial & Capitán (Senda del estruendo)",
+      "Cavern_of_Corrosion_Path_of_Aria": "Artefactos: Heroe & Poetisa (Senda de la canción)",
+      "Cavern_of_Corrosion_Path_of_Uncertainty": "Artefactos: Calvario & Eruditos (Senda de la incertidumbre)",
+      "Cavern_of_Corrosion_Path_of_Cavalier": "Artefactos: Caballería & Intrepida (Senda del caballero)",
+      "Cavern_of_Corrosion_Path_of_Dreamdive": "Artefactos: Agua muerta & Relojero (Senda de los sueños)",
+      "Cavern_of_Corrosion_Path_of_Darkness": "Artefactos: Gran duque & DoT set (Senda de la oscuridad)",
+      "Cavern_of_Corrosion_Path_of_Elixir_Seekers": "Artefactos: Discípula & Mensajero (Senda de los elixires)",
+      "Cavern_of_Corrosion_Path_of_Conflagration": "Artefactos: Fuego set & Imaginario set (Senda de la conflagración)",
+      "Cavern_of_Corrosion_Path_of_Holy_Hymn": "Artefactos: DEF set & Rayo set (Senda del himno sagrado)",
+      "Cavern_of_Corrosion_Path_of_Providence": "Artefactos: Guardia & Cuántico set (Senda de la providencia)",
+      "Cavern_of_Corrosion_Path_of_Drifting": "Artefactos: Cicatrización set & Pistolera (Senda de la deriva)",
+      "Cavern_of_Corrosion_Path_of_Jabbing_Punch": "Artefactos: Físico set & Ladrón (Senda de los puños rápidos)",
+      "Cavern_of_Corrosion_Path_of_Gelid_Wind": "Artefactos: Hielo set & Viento set (Senda del viento gelido)"
+    },
+    "Ornament": {
+      "name": "Ornamento",
+      "help": "",
+      "_none_": "None",
+      "Divergent_Universe_Within_the_West_Wind": "Ornamentos: Amphoreus & Tengoku (Entre el cefiro)",
+      "Divergent_Universe_Moonlit_Blood": "Ornamentos: Paraíso & Embriagado (Rubor de la luna)",
+      "Divergent_Universe_Unceasing_Strife": "Ornamentos: Osario sereno & Árbol gigante (Conflicto interminable)",
+      "Divergent_Universe_Famished_Worker": "Ornamentos: Bajo el mar & Platanolandia (Obrero famelico)",
+      "Divergent_Universe_Eternal_Comedy": "Ornamentos: Lobos raudos & Linterna (Comedia eterna)",
+      "Divergent_Universe_To_Sweet_Dreams": "Ornamentos: Sigonia & Izumo (Hasta los dulces sueños)",
+      "Divergent_Universe_Pouring_Blades": "Ornamentos: Glamoth & Colonipenal (Lluvia de espadas)",
+      "Divergent_Universe_Fruit_of_Evil": "Ornamentos: Arena rutilante & Quilla (Fruta del desastre)",
+      "Divergent_Universe_Permafrost": "Ornamentos: Belobog & Salsotto (Permafrost)",
+      "Divergent_Universe_Gentle_Words": "Ornamentos: Entidad comercial & Diferenciador (Palabras amables)",
+      "Divergent_Universe_Smelted_Heart": "Ornamentos: Forajidos & Vonwacq (Corazón de fundición)",
+      "Divergent_Universe_Untoppled_Walls": "Ornamentos: Espacios & Eternos Flota (Muros inquebrantables)"
+    },
+    "LevelTarget": {
+      "name": "Target Level",
+      "help": "",
+      "max": "Character lv80, Cone lv80, All skill MAX",
+      "699": "Character lv80, Cone lv80, attack lv6, skill lv9, ultimate lv9, talent lv9",
+      "custom": "Custom"
+    },
+    "CharacterLevel": {
+      "name": "Character Level",
+      "help": "",
+      "80": "80",
+      "70": "70",
+      "60": "60",
+      "50": "50",
+      "40": "40",
+      "20": "20"
+    },
+    "ConeLevel": {
+      "name": "Cone Level",
+      "help": "",
+      "80": "80",
+      "70": "70",
+      "60": "60",
+      "50": "50",
+      "40": "40",
+      "20": "20"
+    },
+    "AttackLevel": {
+      "name": "Attack Level",
+      "help": "",
+      "6": "6",
+      "5": "5",
+      "4": "4",
+      "3": "3",
+      "2": "2",
+      "1": "1"
+    },
+    "SkillLevel": {
+      "name": "Skill Level",
+      "help": "",
+      "10": "10",
+      "9": "9",
+      "8": "8",
+      "7": "7",
+      "6": "6",
+      "5": "5",
+      "4": "4",
+      "3": "3",
+      "2": "2",
+      "1": "1"
+    },
+    "UltimateLevel": {
+      "name": "Ultimate Level",
+      "help": "",
+      "10": "10",
+      "9": "9",
+      "8": "8",
+      "7": "7",
+      "6": "6",
+      "5": "5",
+      "4": "4",
+      "3": "3",
+      "2": "2",
+      "1": "1"
+    },
+    "TalentLevel": {
+      "name": "Talent Level",
+      "help": "",
+      "10": "10",
+      "9": "9",
+      "8": "8",
+      "7": "7",
+      "6": "6",
+      "5": "5",
+      "4": "4",
+      "3": "3",
+      "2": "2",
+      "1": "1"
+    },
+    "MemoSkillLevel": {
+      "name": "Memo Skill Level",
+      "help": "",
+      "6": "6",
+      "5": "5",
+      "4": "4",
+      "3": "3",
+      "2": "2",
+      "1": "1"
+    },
+    "MemoTalentLevel": {
+      "name": "Memo Talent Level",
+      "help": "",
+      "6": "6",
+      "5": "5",
+      "4": "4",
+      "3": "3",
+      "2": "2",
+      "1": "1"
+    }
+  },
+  "Weekly": {
+    "_info": {
+      "name": "Ajustes de Ecos de la guerra",
+      "help": ""
+    },
+    "Name": {
+      "name": "Nombre de la Mazmorra",
+      "help": "",
+      "Echo_of_War_Rusted_Crypt_of_the_Iron_Carcass": "Tumba oxidada del cadáver de hierro (Amphoreus)",
+      "Echo_of_War_Glance_of_Twilight": "Una mirada al crepúsculo (Amphoreus)",
+      "Echo_of_War_Inner_Beast_Battlefield": "Campo de batalla de la bestia interior (El Luofu de Xianzhou)",
+      "Echo_of_War_Salutations_of_Ashen_Dreams": "Tributo del sueño ceniciento (Colonipenal)",
+      "Echo_of_War_Borehole_Planet_Past_Nightmares": "Pesadilla del planeta devorado (Estación Espacial Herta)",
+      "Echo_of_War_Divine_Seed": "Semilla divina (El Luofu de Xianzhou)",
+      "Echo_of_War_End_of_the_Eternal_Freeze": "El fin del Hielo Eterno (Jarilo-VI)",
+      "Echo_of_War_Destruction_Beginning": "El principio de la Destrucción (Estación Espacial Herta)"
+    },
+    "Team": {
+      "name": "Equipo de mazmorra",
+      "help": "",
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4",
+      "5": "5",
+      "6": "6",
+      "7": "7",
+      "8": "8",
+      "9": "9"
+    }
+  },
+  "DailyStorage": {
+    "_info": {
+      "name": "Misión Diaria",
+      "help": ""
+    },
+    "DailyActivity": {
+      "name": "Actividad",
+      "help": ""
+    },
+    "DailyQuest": {
+      "name": "Misión Diaria",
+      "help": ""
+    }
+  },
+  "BattlePassStorage": {
+    "_info": {
+      "name": "Misión de Honor",
+      "help": ""
+    },
+    "BattlePassLevel": {
+      "name": "Honor",
+      "help": ""
+    },
+    "BattlePassWeeklyQuest": {
+      "name": "Misión de Honor",
+      "help": ""
+    },
+    "BattlePassSimulatedUniverse": {
+      "name": "Completa el Universo Simulado 1 vez",
+      "help": ""
+    },
+    "BattlePassQuestCalyx": {
+      "name": "Completa Cáliz 20 vez",
+      "help": ""
+    },
+    "BattlePassQuestEchoOfWar": {
+      "name": "Completa Ecos de la guerra 2 vez",
+      "help": ""
+    },
+    "BattlePassQuestCredits": {
+      "name": "Consume 300 000 créditos",
+      "help": ""
+    },
+    "BattlePassQuestSynthesizeConsumables": {
+      "name": "Sintetiza consumibles 10 veces",
+      "help": ""
+    },
+    "BattlePassQuestStagnantShadow": {
+      "name": "Completa Sombra paralizada 3 veces",
+      "help": ""
+    },
+    "BattlePassQuestCavernOfCorrosion": {
+      "name": "Completa Caverna de la corrosión 8 veces",
+      "help": ""
+    },
+    "BattlePassQuestTrailblazePower": {
+      "name": "Consume un total de 100 pts. de Poder trazacaminos (máx. 1400 pts.)",
+      "help": ""
+    }
+  },
+  "Assignment": {
+    "_info": {
+      "name": "Ajustes de Encargos",
+      "help": "Reclama recompensas y hace nuevos encargos.\nSi no se alcanza el límite de encargos tras ello, se realizarán nuevos encargos siguiendo la prioridad de los ajustes (EXP/Créditos → Materiales de personaje → Materiales de síntesis)"
+    },
+    "ClaimAll": {
+      "name": "Redespaciar Tareas Encargos",
+      "help": "Si la cantidad de envíos encargos no alcanza el límite máximo, complete el formulario con las preferencias de tarea a continuación"
+    },
+    "Name_1": {
+      "name": "Preferencia de Encargo 1",
+      "help": "",
+      "Tranquility_of_Vimala_bhumi": "Jirones de pensamientos (Limpieza y purificación)",
+      "A_Startling_Night_Terror": "Componente del acumulador de sueños (Pesadilla aterradora)",
+      "Fire_Lord_Inflames_Blades_of_War": "Componente artificial mecánico (Prendan los fuelles, fundan las armas)",
+      "Root_Out_the_Turpitude": "Brote verde inmortal (La raíz del mal)",
+      "Born_to_Obey": "Componente antiguo (Creados para obedecer)",
+      "Winter_Soldiers": "Pin del guardia (Los guerreros del invierno)",
+      "Destruction_of_the_Destroyer": "Instinto del ladrón (La destrucción del destructor)",
+      "Nine_Billion_Names": "Núcleo apagado (Nueve mil millones de nombres)",
+      "Akashic_Records": "Material de EXP de conos de luz (Los Registros de Akasha)",
+      "Nameless_Land_Nameless_People": "Material de EXP de personaje (Lugar anónimo, personas anónimas)",
+      "The_Invisible_Hand": "Crédito (La mano invisible)",
+      "Scalpel_and_Screwdriver": "Engranaje oxidado & Muela vieja (Bisturí y destornillador)",
+      "The_Wages_of_Humanity": "Cosecha tan alta como una persona & Extracto de hierbas medicinales (La paga de la humanidad)",
+      "Legend_of_the_Puppet_Master": "Componentes mecánicos abandonados & Unidad de ábaco de jade (La leyenda del titiritero)",
+      "The_Land_of_Gold": "Ingredientes básicos & Arroz proteico (Tierra de oportunidades)",
+      "Spring_of_Life": "Agua sólida & Partícula virtual (La fuente de la vida)",
+      "Fragments_of_Illusory_Dreams": "Tranquilidad & Sueños rotos (Fragmentos de sueños ilusorios)",
+      "The_Blossom_in_the_Storm": "Líquido gaseoso & Semilla (Flores en la tormenta)",
+      "Abandoned_and_Insulted": "Flogisto & Metal (Abandonado e insultado)",
+      "Record_of_Expeditions": "Carne pisoteada del miedo (Diario de expedición)",
+      "Creationism_and_Beyond": "Augurio etéreo (Creacionismo y más allá)",
+      "Work_and_Days": "Pluma del despertar & Rama del pensamiento (Trabajo y tiempo)"
+    },
+    "Name_2": {
+      "name": "Preferencia de Encargo 2",
+      "help": "",
+      "Tranquility_of_Vimala_bhumi": "Jirones de pensamientos (Limpieza y purificación)",
+      "A_Startling_Night_Terror": "Componente del acumulador de sueños (Pesadilla aterradora)",
+      "Fire_Lord_Inflames_Blades_of_War": "Componente artificial mecánico (Prendan los fuelles, fundan las armas)",
+      "Root_Out_the_Turpitude": "Brote verde inmortal (La raíz del mal)",
+      "Born_to_Obey": "Componente antiguo (Creados para obedecer)",
+      "Winter_Soldiers": "Pin del guardia (Los guerreros del invierno)",
+      "Destruction_of_the_Destroyer": "Instinto del ladrón (La destrucción del destructor)",
+      "Nine_Billion_Names": "Núcleo apagado (Nueve mil millones de nombres)",
+      "Akashic_Records": "Material de EXP de conos de luz (Los Registros de Akasha)",
+      "Nameless_Land_Nameless_People": "Material de EXP de personaje (Lugar anónimo, personas anónimas)",
+      "The_Invisible_Hand": "Crédito (La mano invisible)",
+      "Scalpel_and_Screwdriver": "Engranaje oxidado & Muela vieja (Bisturí y destornillador)",
+      "The_Wages_of_Humanity": "Cosecha tan alta como una persona & Extracto de hierbas medicinales (La paga de la humanidad)",
+      "Legend_of_the_Puppet_Master": "Componentes mecánicos abandonados & Unidad de ábaco de jade (La leyenda del titiritero)",
+      "The_Land_of_Gold": "Ingredientes básicos & Arroz proteico (Tierra de oportunidades)",
+      "Spring_of_Life": "Agua sólida & Partícula virtual (La fuente de la vida)",
+      "Fragments_of_Illusory_Dreams": "Tranquilidad & Sueños rotos (Fragmentos de sueños ilusorios)",
+      "The_Blossom_in_the_Storm": "Líquido gaseoso & Semilla (Flores en la tormenta)",
+      "Abandoned_and_Insulted": "Flogisto & Metal (Abandonado e insultado)",
+      "Record_of_Expeditions": "Carne pisoteada del miedo (Diario de expedición)",
+      "Creationism_and_Beyond": "Augurio etéreo (Creacionismo y más allá)",
+      "Work_and_Days": "Pluma del despertar & Rama del pensamiento (Trabajo y tiempo)"
+    },
+    "Name_3": {
+      "name": "Preferencia de Encargo 3",
+      "help": "",
+      "Tranquility_of_Vimala_bhumi": "Jirones de pensamientos (Limpieza y purificación)",
+      "A_Startling_Night_Terror": "Componente del acumulador de sueños (Pesadilla aterradora)",
+      "Fire_Lord_Inflames_Blades_of_War": "Componente artificial mecánico (Prendan los fuelles, fundan las armas)",
+      "Root_Out_the_Turpitude": "Brote verde inmortal (La raíz del mal)",
+      "Born_to_Obey": "Componente antiguo (Creados para obedecer)",
+      "Winter_Soldiers": "Pin del guardia (Los guerreros del invierno)",
+      "Destruction_of_the_Destroyer": "Instinto del ladrón (La destrucción del destructor)",
+      "Nine_Billion_Names": "Núcleo apagado (Nueve mil millones de nombres)",
+      "Akashic_Records": "Material de EXP de conos de luz (Los Registros de Akasha)",
+      "Nameless_Land_Nameless_People": "Material de EXP de personaje (Lugar anónimo, personas anónimas)",
+      "The_Invisible_Hand": "Crédito (La mano invisible)",
+      "Scalpel_and_Screwdriver": "Engranaje oxidado & Muela vieja (Bisturí y destornillador)",
+      "The_Wages_of_Humanity": "Cosecha tan alta como una persona & Extracto de hierbas medicinales (La paga de la humanidad)",
+      "Legend_of_the_Puppet_Master": "Componentes mecánicos abandonados & Unidad de ábaco de jade (La leyenda del titiritero)",
+      "The_Land_of_Gold": "Ingredientes básicos & Arroz proteico (Tierra de oportunidades)",
+      "Spring_of_Life": "Agua sólida & Partícula virtual (La fuente de la vida)",
+      "Fragments_of_Illusory_Dreams": "Tranquilidad & Sueños rotos (Fragmentos de sueños ilusorios)",
+      "The_Blossom_in_the_Storm": "Líquido gaseoso & Semilla (Flores en la tormenta)",
+      "Abandoned_and_Insulted": "Flogisto & Metal (Abandonado e insultado)",
+      "Record_of_Expeditions": "Carne pisoteada del miedo (Diario de expedición)",
+      "Creationism_and_Beyond": "Augurio etéreo (Creacionismo y más allá)",
+      "Work_and_Days": "Pluma del despertar & Rama del pensamiento (Trabajo y tiempo)"
+    },
+    "Name_4": {
+      "name": "Preferencia de Encargo 4",
+      "help": "",
+      "Tranquility_of_Vimala_bhumi": "Jirones de pensamientos (Limpieza y purificación)",
+      "A_Startling_Night_Terror": "Componente del acumulador de sueños (Pesadilla aterradora)",
+      "Fire_Lord_Inflames_Blades_of_War": "Componente artificial mecánico (Prendan los fuelles, fundan las armas)",
+      "Root_Out_the_Turpitude": "Brote verde inmortal (La raíz del mal)",
+      "Born_to_Obey": "Componente antiguo (Creados para obedecer)",
+      "Winter_Soldiers": "Pin del guardia (Los guerreros del invierno)",
+      "Destruction_of_the_Destroyer": "Instinto del ladrón (La destrucción del destructor)",
+      "Nine_Billion_Names": "Núcleo apagado (Nueve mil millones de nombres)",
+      "Akashic_Records": "Material de EXP de conos de luz (Los Registros de Akasha)",
+      "Nameless_Land_Nameless_People": "Material de EXP de personaje (Lugar anónimo, personas anónimas)",
+      "The_Invisible_Hand": "Crédito (La mano invisible)",
+      "Scalpel_and_Screwdriver": "Engranaje oxidado & Muela vieja (Bisturí y destornillador)",
+      "The_Wages_of_Humanity": "Cosecha tan alta como una persona & Extracto de hierbas medicinales (La paga de la humanidad)",
+      "Legend_of_the_Puppet_Master": "Componentes mecánicos abandonados & Unidad de ábaco de jade (La leyenda del titiritero)",
+      "The_Land_of_Gold": "Ingredientes básicos & Arroz proteico (Tierra de oportunidades)",
+      "Spring_of_Life": "Agua sólida & Partícula virtual (La fuente de la vida)",
+      "Fragments_of_Illusory_Dreams": "Tranquilidad & Sueños rotos (Fragmentos de sueños ilusorios)",
+      "The_Blossom_in_the_Storm": "Líquido gaseoso & Semilla (Flores en la tormenta)",
+      "Abandoned_and_Insulted": "Flogisto & Metal (Abandonado e insultado)",
+      "Record_of_Expeditions": "Carne pisoteada del miedo (Diario de expedición)",
+      "Creationism_and_Beyond": "Augurio etéreo (Creacionismo y más allá)",
+      "Work_and_Days": "Pluma del despertar & Rama del pensamiento (Trabajo y tiempo)"
+    },
+    "Duration": {
+      "name": "Duración del encargo",
+      "help": "",
+      "4": "4 horas",
+      "8": "8 horas",
+      "12": "12 horas",
+      "20": "20 horas"
+    },
+    "Event": {
+      "name": "Assignment.Event.name",
+      "help": ""
+    },
+    "Assignment": {
+      "name": "Encargo",
+      "help": ""
+    }
+  },
+  "ItemStorage": {
+    "_info": {
+      "name": "Panel",
+      "help": ""
+    },
+    "Credit": {
+      "name": "Crédito",
+      "help": ""
+    },
+    "StallerJade": {
+      "name": "Jade",
+      "help": ""
+    }
+  },
+  "CloudStorage": {
+    "_info": {
+      "name": "Nube de HSR",
+      "help": ""
+    },
+    "CloudRemainSeasonPass": {
+      "name": "Pase de Temporada Permanece X día(s)",
+      "help": ""
+    },
+    "CloudRemainPaid": {
+      "name": "Tiempo restante pagado X minuto(s)",
+      "help": ""
+    },
+    "CloudRemainFree": {
+      "name": "Tiempo libre restante X minuto(s)",
+      "help": ""
+    }
+  },
+  "RogueWorld": {
+    "_info": {
+      "name": "Ajustes de Universo Simulado",
+      "help": ""
+    },
+    "World": {
+      "name": "Mundo",
+      "help": "",
+      "Simulated_Universe_World_3": "Mundo 3",
+      "Simulated_Universe_World_4": "Mundo 4",
+      "Simulated_Universe_World_5": "Mundo 5",
+      "Simulated_Universe_World_6": "Mundo 6",
+      "Simulated_Universe_World_8": "Mundo 8"
+    },
+    "Path": {
+      "name": "Vía",
+      "help": "",
+      "Preservation": "Conservación",
+      "Remembrance": "Reminiscencia",
+      "Nihility": "Nihilidad",
+      "Abundance": "Abundancia",
+      "The_Hunt": "Cacería",
+      "Destruction": "Destrucción",
+      "Elation": "Exultación",
+      "Propagation": "Propagación",
+      "Erudition": "Erudición"
+    },
+    "Bonus": {
+      "name": "Bendiciones",
+      "help": "",
+      "Blessing Universe": "Cosmos de Bendición (Elige una bendición)",
+      "Miracle Universe": "Cosmos milagroso (Elige un objeto raro)",
+      "Fragmented Universe": "Fragmented Universe (Claim some Cosmic Fragments)"
+    },
+    "DomainStrategy": {
+      "name": "Estrategia de dominio",
+      "help": "Prefiero Batalla: Adecuado para configuraciones normales, tiempo de eliminación más prolongado\\Prefiero Evento: Requiere configuraciones eficientes, tiempo de eliminación más corto",
+      "combat": "Prefiero Batalla",
+      "occurrence": "Prefiero Evento"
+    },
+    "UseImmersifier": {
+      "name": "Reclamar de planars mediante inmersor",
+      "help": ""
+    },
+    "DoubleEvent": {
+      "name": "Participa en doble planar evento",
+      "help": ""
+    },
+    "WeeklyFarming": {
+      "name": "Granja 100 élites semanalmente",
+      "help": ""
+    },
+    "UseStamina": {
+      "name": "Reclamar de planars mediante poder trazacaminos",
+      "help": "Prioriza el poder trazacaminos para cultivar planar ornaments, teniendo prioridad solo sobre el planificador de personajes."
+    },
+    "SimulatedUniverseFarm": {
+      "name": "Progreso de élites derrotadas",
+      "help": ""
+    },
+    "Team": {
+      "name": "Equipo de Universo Simulado",
+      "help": ""
+    }
+  },
+  "RogueBlessing": {
+    "_info": {
+      "name": "Blessing Settings",
+      "help": ""
+    },
+    "PresetBlessingFilter": {
+      "name": "Preset Blessing Filter",
+      "help": "",
+      "preset": "preset",
+      "custom": "custom"
+    },
+    "CustomBlessingFilter": {
+      "name": "Custom Blessing Filter",
+      "help": "Only takes effect when \"Preset Blessing Filter\" is \"custom\""
+    },
+    "PresetCurioFilter": {
+      "name": "Preset Curio Filter",
+      "help": "",
+      "preset": "preset",
+      "custom": "custom"
+    },
+    "CustomCurioFilter": {
+      "name": "Custom Curio Filter",
+      "help": "Only takes effect when \"Preset Curio Filter\" is \"custom\""
+    },
+    "PresetResonanceFilter": {
+      "name": "Preset Resonance Filter",
+      "help": "",
+      "preset": "preset",
+      "custom": "custom"
+    },
+    "CustomResonanceFilter": {
+      "name": "Custom Resonance Filter",
+      "help": "Only takes effect when \"Preset Resonance Filter\" is \"custom\""
+    },
+    "SelectionStrategy": {
+      "name": "Index Locked",
+      "help": "",
+      "follow-presets": "Don't affect choice",
+      "unrecorded-first": "Select first",
+      "before-random": "Select only when nothing satisfy the filter"
+    }
+  },
+  "RogueDebug": {
+    "_info": {
+      "name": "Configuración de desarrollo",
+      "help": ""
+    },
+    "DebugMode": {
+      "name": "Modo de desarrollo",
+      "help": "Sin condiciones de parada, sin manejo de errores, deténgase cuando encuentre un error. Informe el error de acuerdo con el documento: https://github.com/LmeSzinc/StarRailCopilot/wiki/RogueMap_cn"
+    }
+  },
+  "Ornament": {
+    "_info": {
+      "name": "Ajustes de ornamentos extracción",
+      "help": ""
+    },
+    "Dungeon": {
+      "name": "Nombre de la Mazmorra",
+      "help": "",
+      "Divergent_Universe_Within_the_West_Wind": "Ornamentos: Amphoreus & Tengoku (Entre el cefiro)",
+      "Divergent_Universe_Moonlit_Blood": "Ornamentos: Paraíso & Embriagado (Rubor de la luna)",
+      "Divergent_Universe_Unceasing_Strife": "Ornamentos: Osario sereno & Árbol gigante (Conflicto interminable)",
+      "Divergent_Universe_Famished_Worker": "Ornamentos: Bajo el mar & Platanolandia (Obrero famelico)",
+      "Divergent_Universe_Eternal_Comedy": "Ornamentos: Lobos raudos & Linterna (Comedia eterna)",
+      "Divergent_Universe_To_Sweet_Dreams": "Ornamentos: Sigonia & Izumo (Hasta los dulces sueños)",
+      "Divergent_Universe_Pouring_Blades": "Ornamentos: Glamoth & Colonipenal (Lluvia de espadas)",
+      "Divergent_Universe_Fruit_of_Evil": "Ornamentos: Arena rutilante & Quilla (Fruta del desastre)",
+      "Divergent_Universe_Permafrost": "Ornamentos: Belobog & Salsotto (Permafrost)",
+      "Divergent_Universe_Gentle_Words": "Ornamentos: Entidad comercial & Diferenciador (Palabras amables)",
+      "Divergent_Universe_Smelted_Heart": "Ornamentos: Forajidos & Vonwacq (Corazón de fundición)",
+      "Divergent_Universe_Untoppled_Walls": "Ornamentos: Espacios & Eternos Flota (Muros inquebrantables)"
+    },
+    "Team": {
+      "name": "Equipo de mazmorra",
+      "help": "El equipo especificado debe usar el nombre predeterminado; no se permiten nombres de equipo personalizados.",
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4",
+      "5": "5",
+      "6": "6",
+      "7": "7",
+      "8": "8",
+      "9": "9",
+      "10": "10",
+      "11": "11",
+      "12": "12"
+    },
+    "UseImmersifier": {
+      "name": "Reclamar de planars mediante inmersor",
+      "help": "",
+      "True": "Activado"
+    },
+    "DoubleEvent": {
+      "name": "Participa en doble planar evento",
+      "help": "",
+      "True": "Activado"
+    },
+    "UseStamina": {
+      "name": "Reclamar de planars mediante poder trazacaminos",
+      "help": "Prioriza el poder trazacaminos para cultivar planar ornamentos, teniendo prioridad sobre el planificador de personajes y el universo simulado."
+    }
+  },
+  "Daemon": {
+    "_info": {
+      "name": "Clic de diálogo",
+      "help": "Las herramientas necesitan detener el programador y luego ejecutarlo de forma independiente"
+    },
+    "Enable": {
+      "name": "Clic de diálogo",
+      "help": "Monitorear el juego, hacer clic automáticamente en el diálogo, chatear por teléfono y bendecir en el universo simulado (sigue la configuración de tareas del universo simulado)",
+      "True": "Activado"
+    },
+    "AimClicker": {
+      "name": "Haz clic en Objetos y enemigos apuntados",
+      "help": "",
+      "item_enemy": "Haz clic en elementos y enemigos",
+      "item": "Haz clic solo en elementos",
+      "enemy": "Haz clic solo en enemigos",
+      "do_not_click": "No hacer clic"
+    }
+  },
+  "PlannerScan": {
+    "_info": {
+      "name": "Escanear resultados del planificador de caracteres",
+      "help": "Las herramientas deben detener el programador y luego ejecutarse de forma independiente\nAntes de usarlo, establezca el objetivo del planificador en el planificador del juego, calcule los resultados y comience a escanear desde la página de resultados. Para uso detallado, consulte: https://github .com/LmeSzinc/StarRailCopilot/wiki/Planner_en"
+    },
+    "ResultAdd": {
+      "name": "Acumular múltiples resultados de escaneo",
+      "help": "Activar cuando se planifican varios personajes, generará varios personajes todos juntos\nDesactivar cuando se planifica un personaje, el objetivo de planificación se actualizará en cada escaneo"
+    }
+  },
+  "Gui": {
+    "Aside": {
+      "Install": "Instalar",
+      "Home": "Inicio",
+      "Develop": "Desarrollo",
+      "Performance": "Rendimiento",
+      "Setting": "Ajustes",
+      "AddAlas": "Añadir"
+    },
+    "Button": {
+      "Start": "Iniciar",
+      "Stop": "Detener",
+      "ScrollON": "Autodeslizamiento ON",
+      "ScrollOFF": "Autodeslizamiento OFF",
+      "ClearLog": "Borrar log",
+      "Setting": "Ajustes",
+      "CheckUpdate": "Comprobar actualización",
+      "ClickToUpdate": "Click para actualizar",
+      "RetryUpdate": "Reintentar actualización",
+      "CancelUpdate": "Cancelar actualización"
+    },
+    "Toast": {
+      "DisableTranslateMode": "Click aquí para deshabilitar el modo traducido",
+      "ConfigSaved": "Configuración guardada",
+      "AlasIsRunning": "El planificador ya se está ejecutando",
+      "ClickToUpdate": "Nueva actualización disponible, haz click aquí para actualizar"
+    },
+    "Status": {
+      "Running": "En ejecución",
+      "Inactive": "Inactivo",
+      "Warning": "¡Advertencia!",
+      "Updating": "Esperando actualización"
+    },
+    "MenuAlas": {
+      "Overview": "Vista general",
+      "Log": "Logs"
+    },
+    "MenuDevelop": {
+      "HomePage": "Inicio",
+      "Translate": "Traducir",
+      "Update": "Actualizador",
+      "Remote": "Acceso remoto",
+      "Utils": "Utilidades"
+    },
+    "Overview": {
+      "Scheduler": "Planificador",
+      "Log": "Log",
+      "Running": "En ejecución",
+      "Pending": "Pendiente",
+      "Waiting": "En espera",
+      "NoTask": "Sin tarea"
+    },
+    "Dashboard": {
+      "NoData": "sin datos",
+      "TimeError": "error de tiempo",
+      "JustNow": "justo ahora",
+      "MinutesAgo": "hace {time}m",
+      "HoursAgo": "hace {time}h",
+      "DaysAgo": "hace {time}d",
+      "LongTimeAgo": "hace mucho tiempo",
+      "EtaDays": "ETA {time}d"
+    },
+    "AddAlas": {
+      "PopupTitle": "Añadir nueva configuración",
+      "NewName": "Nuevo nombre",
+      "CopyFrom": "Copiar configuración existente",
+      "Confirm": "Añadir",
+      "FileExist": "Ya existe uan configuración con ese nombre, elige otro por favor.",
+      "InvalidChar": "El nombre de la configuración no puede tener los siguientes caracteres: .\\/:*?\"<>|",
+      "InvalidPrefixTemplate": "El nombre de la configuración no puede empezar por 'template'"
+    },
+    "Update": {
+      "UpToDate": "Última versión",
+      "HaveUpdate": "Nueva versión disponible",
+      "UpdateStart": "Empezar actualización",
+      "UpdateWait": "Esperando a que SRC complete todas las tareas",
+      "UpdateRun": "Actualizando",
+      "UpdateSuccess": "Actualización exitosa, reiniciando...",
+      "UpdateFailed": "La actualización ha fallado. Puedes ver más detalles en ./log/*_gui.txt",
+      "UpdateChecking": "Comprobando actualizaciones",
+      "UpdateCancel": "Actualización cancelada, reiniciando SRC",
+      "UpdateFinish": "Actualización exitosa, reinicia manualmente por favor",
+      "Local": "Local",
+      "Upstream": "Remoto",
+      "Author": "Autor",
+      "Time": "Hora del commit",
+      "Message": "Mensaje del commit",
+      "DisabledWarn": "El módulo actualizador está deshabilitado. Reinicia manualmente para la actualización.",
+      "DetailedHistory": "Historial de commmits detallado"
+    },
+    "Remote": {
+      "Running": "Acceso remoto ON",
+      "NotRunning": "No se está ejecutando, servidor desconectado u offline.",
+      "NotEnable": "Deshabilitado. Establece la contraseña para webui en deploy.yaml y activa el acceso remoto.",
+      "EntryPoint": "Punto de entrada:",
+      "ConfigureHint": "Tutorial de configuración:",
+      "SSHNotInstall": "No existe el comando SSH en tu sistema. Por favor, sigue el tutorial e instala uno."
+    },
+    "Text": {
+      "InvalidFeedBack": "Formato inválido. Ejemplo: {0}",
+      "Clear": "Limpiar"
+    }
+  }
+}
