@@ -2,7 +2,7 @@
 
 <div align="center">
 
-<img alt="LOGO" src="./webapp/buildResources/icon.png" width="256" height="256" />
+<img alt="LOGO" src="./webapp/buildResources/icon.png" width="128" height="128" />
 
 # BrownDust2AutoScript 开发中，尚不支持任何功能，也不确定是否会一直开发下去
 
