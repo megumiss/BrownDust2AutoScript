@@ -1,9 +1,31 @@
 **| [English](README_en.md) | 简体中文 | [Español](README_es.md) | [日本語](README_ja.md) |**
 
+<div align="center">
 
-# BrownDust2AutoScript 开发中，尚不支持任何功能，不确定是否会开发下去
+<img alt="LOGO" src="./webapp/buildResources/icon.png" width="256" height="256" />
 
-BrownDust2 auto script，棕色尘埃2脚本，基于下一代Alas框架。
+# BrownDust2AutoScript 开发中，尚不支持任何功能，也不确定是否会一直开发下去
+
+
+棕色尘埃2 自动日常脚本，支持 PC/模拟器 客户端。基于下一代 [Alas框架](https://github.com/LmeSzinc/StarRailCopilot)  
+BrownDust2 automatic daily script, supporting PC/Emulator clients. Based on [New Alas](https://github.com/LmeSzinc/StarRailCopilot)
+
+**如果觉得有帮助，请帮我点个 ⭐ Star 支持一下！**  
+*If you find it helpful, please give it a ⭐ Star to support!*
+
+<p align="center">
+  <img alt="Python" src="https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white">
+  <img alt="platform" src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux-blueviolet">
+  <img alt="license" src="https://img.shields.io/github/license/megumiss/BrownDust2AutoScript">
+  <br/>
+  <img alt="commit" src="https://img.shields.io/github/commit-activity/m/megumiss/BrownDust2AutoScript">
+  <img alt="stars" src="https://img.shields.io/github/stars/megumiss/BrownDust2AutoScript?style=social">
+</p>
+
+</div>
+
+---
+
 
 ![gui](https://raw.githubusercontent.com/wiki/LmeSzinc/StarRailCopilot/README.assets/gui_cn.png)
 
