@@ -79,11 +79,11 @@ Deploy:
     # [Default] false
     StartOcrServer: false
     # Port of ocr server runs by GUI
-    # [Default] 22268
-    OcrServerPort: 22268
+    # [Default] 12278
+    OcrServerPort: 12278
     # Address of ocr server for alas instance to connect
-    # [Default] 127.0.0.1:22268
-    OcrClientAddress: 127.0.0.1:22268
+    # [Default] 127.0.0.1:12278
+    OcrClientAddress: 127.0.0.1:12278
 
   Update:
     # Use auto update and builtin updater feature
@@ -128,8 +128,8 @@ Deploy:
     WebuiHost: 0.0.0.0
     # --port. Port to listen
     # You will be able to access webui via `http://{host}:{port}`
-    # [In most cases] Default to 22367
-    WebuiPort: 22367
+    # [In most cases] Default to 12283
+    WebuiPort: 12283
     # Language to use on web ui
     # 'zh-CN' for Chinese simplified
     # 'en-US' for English

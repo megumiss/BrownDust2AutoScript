@@ -14,22 +14,22 @@ class ExecutionError(Exception):
 
 class ConfigModel:
     # Git
-    Repository: str = "https://github.com/LmeSzinc/AzurLaneAutoScript"
-    Branch: str = "master"
-    GitExecutable: str = "./toolkit/Git/mingw64/bin/git.exe"
+    Repository: str = 'https://github.com/LmeSzinc/AzurLaneAutoScript'
+    Branch: str = 'master'
+    GitExecutable: str = './toolkit/Git/mingw64/bin/git.exe'
     GitProxy: Optional[str] = None
     SSLVerify: bool = False
     AutoUpdate: bool = True
     KeepLocalChanges: bool = False
 
     # Python
-    PythonExecutable: str = "./toolkit/python.exe"
+    PythonExecutable: str = './toolkit/python.exe'
     PypiMirror: Optional[str] = None
     InstallDependencies: bool = True
-    RequirementsFile: str = "requirements.txt"
+    RequirementsFile: str = 'requirements.txt'
 
     # Adb
-    AdbExecutable: str = "./toolkit/Lib/site-packages/adbutils/binaries/adb.exe"
+    AdbExecutable: str = './toolkit/Lib/site-packages/adbutils/binaries/adb.exe'
     ReplaceAdb: bool = True
     AutoConnect: bool = True
     InstallUiautomator2: bool = True
@@ -37,13 +37,13 @@ class ConfigModel:
     # Ocr
     UseOcrServer: bool = False
     StartOcrServer: bool = False
-    OcrServerPort: int = 22268
-    OcrClientAddress: str = "127.0.0.1:22268"
+    OcrServerPort: int = 12278
+    OcrClientAddress: str = '127.0.0.1:12278'
 
     # Update
     EnableReload: bool = True
     CheckUpdateInterval: int = 5
-    AutoRestartTime: str = "03:50"
+    AutoRestartTime: str = '03:50'
 
     # Misc
     DiscordRichPresence: bool = False
@@ -55,12 +55,12 @@ class ConfigModel:
     SSHExecutable: Optional[str] = None
 
     # Webui
-    WebuiHost: str = "0.0.0.0"
-    WebuiPort: int = 22367
+    WebuiHost: str = '0.0.0.0'
+    WebuiPort: int = 12283
     WebuiSSLKey: Optional[str] = None
     WebuiSSLCert: Optional[str] = None
-    Language: str = "en-US"
-    Theme: str = "default"
+    Language: str = 'en-US'
+    Theme: str = 'default'
     DpiScaling: bool = True
     Password: Optional[str] = None
     CDN: Union[str, bool] = False
@@ -86,15 +86,15 @@ class DeployConfig(ConfigModel):
         self.show_config()
 
     def show_config(self):
-        logger.hr("Show deploy config", 1)
+        logger.hr('Show deploy config', 1)
         for k, v in self.config.items():
-            if k in ("Password", "SSHUser"):
+            if k in ('Password', 'SSHUser'):
                 continue
             if self.config_template.get(k) == v:
                 continue
-            logger.info(f"{k}: {v}")
+            logger.info(f'{k}: {v}')
 
-        logger.info(f"Rest of the configs are the same as default")
+        logger.info(f'Rest of the configs are the same as default')
 
     def read(self):
         """
@@ -138,19 +138,11 @@ class DeployConfig(ConfigModel):
         if os.path.isabs(path):
             return path
 
-        return (
-            os.path.abspath(os.path.join(self.root_filepath, path))
-            .replace(r"\\", "/")
-            .replace("\\", "/")
-        )
+        return os.path.abspath(os.path.join(self.root_filepath, path)).replace(r'\\', '/').replace('\\', '/')
 
     @cached_property
     def root_filepath(self):
-        return (
-            os.path.abspath(os.path.join(os.path.dirname(__file__), "../../"))
-            .replace(r"\\", "/")
-            .replace("\\", "/")
-        )
+        return os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')).replace(r'\\', '/').replace('\\', '/')
 
     @cached_property
     def adb(self) -> str:
@@ -179,7 +171,7 @@ class DeployConfig(ConfigModel):
         # if os.path.exists(exe):
         #     return exe
 
-        current = sys.executable.replace("\\", "/")
+        current = sys.executable.replace('\\', '/')
         # logger.warning(f'PythonExecutable: {exe} does not exist, use current python instead: {current}')
         return current
 
@@ -201,21 +193,21 @@ class DeployConfig(ConfigModel):
             bool: If success.
                 Terminate installation if failed to execute and not allow_failure.
         """
-        command = command.replace(r"\\", "/").replace("\\", "/").replace('"', '"')
+        command = command.replace(r'\\', '/').replace('\\', '/').replace('"', '"')
         if not output:
             command = command + ' >nul 2>nul'
         logger.info(command)
         error_code = os.system(command)
         if error_code:
             if allow_failure:
-                logger.info(f"[ allowed failure ], error_code: {error_code}")
+                logger.info(f'[ allowed failure ], error_code: {error_code}')
                 return False
             else:
-                logger.info(f"[ failure ], error_code: {error_code}")
+                logger.info(f'[ failure ], error_code: {error_code}')
                 self.show_error(command)
                 raise ExecutionError
         else:
-            logger.info(f"[ success ]")
+            logger.info(f'[ success ]')
             return True
 
     def subprocess_execute(self, cmd, timeout=10):
@@ -239,12 +231,9 @@ class DeployConfig(ConfigModel):
         return stdout.decode()
 
     def show_error(self, command=None):
-        logger.hr("Update failed", 0)
+        logger.hr('Update failed', 0)
         self.show_config()
-        logger.info("")
-        logger.info(f"Last command: {command}")
-        logger.info(
-            "Please check your deploy settings in config/deploy.yaml "
-            "and re-open Alas.exe"
-        )
-        logger.info("Take the screenshot of entire window if you need help")
+        logger.info('')
+        logger.info(f'Last command: {command}')
+        logger.info('Please check your deploy settings in config/deploy.yaml and re-open Alas.exe')
+        logger.info('Take the screenshot of entire window if you need help')

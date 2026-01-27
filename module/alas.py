@@ -97,7 +97,7 @@ class AzurLaneAutoScript:
         except GameBugError as e:
             logger.warning(e)
             self.save_error_log()
-            logger.warning('An error has occurred in Star Rail game client, Src is unable to handle')
+            logger.warning('An error has occurred in BrownDust2 game client, Src is unable to handle')
             logger.warning(f'Restarting {self.device.package} to fix it')
             self.config.task_call('Restart')
             self.device.sleep(10)

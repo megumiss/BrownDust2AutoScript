@@ -1240,8 +1240,8 @@ class Connection(ConnectionAttr):
 
         # Auto package detection
         if len(packages) == 0:
-            logger.critical(f'No Star Rail package found, '
-                            f'please confirm Star Rail has been installed on device "{self.serial}"')
+            logger.critical(f'No BrownDust2 package found, '
+                            f'please confirm BrownDust2 has been installed on device "{self.serial}"')
             raise RequestHumanTakeover
         if len(packages) == 1:
             logger.info('Auto package detection found only one package, using it')
@@ -1281,6 +1281,6 @@ class Connection(ConnectionAttr):
                             self.package, before=self.config.Emulator_PackageName)
                     return
             logger.critical(
-                f'Multiple Star Rail packages found, auto package detection cannot decide which to choose, '
+                f'Multiple BrownDust2 packages found, auto package detection cannot decide which to choose, '
                 'please copy one of the available devices listed above to Alas.Emulator.PackageName')
             raise RequestHumanTakeover

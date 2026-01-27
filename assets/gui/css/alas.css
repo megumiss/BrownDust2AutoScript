@@ -306,6 +306,7 @@ pre.rich-traceback-code {
 
 #pywebio-scope-header_status {
     padding-top: 3px;
+    padding-left: 18px;
     margin-top: auto;
     margin-bottom: auto;
 }

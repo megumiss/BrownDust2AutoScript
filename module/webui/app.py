@@ -1183,6 +1183,20 @@ class AlasGUI(Frame):
     def run(self) -> None:
         # setup gui
         set_env(title='BD2AS', output_animation=False)
+
+        icon_path = '/static/gui/icon/favicon.ico'
+        run_js(f"""
+            var links = document.querySelectorAll("link[rel~='icon']");
+            links.forEach(function(l) {{
+                l.parentNode.removeChild(l);
+            }});
+
+            var newLink = document.createElement('link');
+            newLink.rel = 'icon';
+            newLink.href = '{icon_path}';
+            document.getElementsByTagName('head')[0].appendChild(newLink);
+        """)
+
         add_css(filepath_css('alas'))
         if self.is_mobile:
             add_css(filepath_css('alas-mobile'))
@@ -1371,7 +1385,7 @@ def app():
     app = asgi_app(
         applications=[index],
         cdn=cdn,
-        static_dir=None,
+        static_dir='./assets',
         debug=True,
         on_startup=[
             startup,
