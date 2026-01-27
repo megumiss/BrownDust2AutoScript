@@ -7,7 +7,9 @@ import module.config.server as server
 from module.exception import ScriptError
 
 # ord('．') = 65294
-REGEX_PUNCTUATION = re.compile(r'[ ,.．\'"“”，。、…:：;；!！?？·・•●〇°*※\-—–－/\\|丨\n\t()\[\]（）「」『』【】《》［］]')
+REGEX_PUNCTUATION = re.compile(
+    r'[ ,.．\'"“”，。、…:：;；!！?？·・•●〇°*※\-—–－/\\|丨\n\t()\[\]（）「」『』【】《》［］]'
+)
 
 
 def parse_name(n):
@@ -173,8 +175,7 @@ class Keyword:
             name = str(name)
         instance: Keyword
         for instance in cls.instances.values():
-            for keyword in instance._keywords_to_find(
-                    lang=lang, ignore_punctuation=ignore_punctuation):
+            for keyword in instance._keywords_to_find(lang=lang, ignore_punctuation=ignore_punctuation):
                 if cls._compare(name, keyword):
                     return instance
 
@@ -211,8 +212,7 @@ class Keyword:
             name = str(name)
         instance: Keyword
         for instance in cls.instances.values():
-            for keyword in instance._keywords_to_find(
-                    lang=lang, ignore_punctuation=ignore_punctuation):
+            for keyword in instance._keywords_to_find(lang=lang, ignore_punctuation=ignore_punctuation):
                 if keyword.startswith(name):
                     return instance
 
@@ -246,9 +246,11 @@ class KeywordDigitCounter(Keyword):
     A fake Keyword class to filter digit counters in ocr results
     OcrResultButton.match_keyword will be a str
     """
+
     @classmethod
     def find(cls, name, lang: str = None, ignore_punctuation=True):
         from module.ocr.ocr import DigitCounter
+
         if DigitCounter.is_format_matched(name):
             return name
         else:

@@ -125,9 +125,11 @@ class Fuel(StaminaStatus):
         slider = Slider(main=self, slider=RESERVED_SLIDER)
         slider.set(count, total)
         self.ui_ensure_index(
-            count, letter=Digit(OCR_EXTRACT_RESERVED_TRAILBLAZE_POWER_COUNT, lang=server.lang),
-            next_button=RESERVED_PLUS, prev_button=RESERVED_MINUS,
-            skip_first_screenshot=True
+            count,
+            letter=Digit(OCR_EXTRACT_RESERVED_TRAILBLAZE_POWER_COUNT, lang=server.lang),
+            next_button=RESERVED_PLUS,
+            prev_button=RESERVED_MINUS,
+            skip_first_screenshot=True,
         )
 
     def set_fuel_count(self, count):
@@ -135,9 +137,11 @@ class Fuel(StaminaStatus):
         # Can only use 5 fuel at one time
         slider.set(count, 5)
         self.ui_ensure_index(
-            count, letter=Digit(OCR_FUEL_COUNT, lang=server.lang),
-            next_button=FUEL_PLUS, prev_button=FUEL_MINUS,
-            skip_first_screenshot=True
+            count,
+            letter=Digit(OCR_FUEL_COUNT, lang=server.lang),
+            next_button=FUEL_PLUS,
+            prev_button=FUEL_MINUS,
+            skip_first_screenshot=True,
         )
 
     def use_fuel(self, current, skip_first_screenshot=True):
@@ -156,10 +160,10 @@ class Fuel(StaminaStatus):
         limit = self.config.stored.TrailblazePower.FIXED_TOTAL
         use = (limit - current) // self.fuel_trailblaze_power
         if use == 0:
-            logger.info(f"Current trailblaze power is near {limit}, no need to use fuel")
+            logger.info(f'Current trailblaze power is near {limit}, no need to use fuel')
             return False
 
-        logger.info("Use Fuel")
+        logger.info('Use Fuel')
 
         STAMINA_ICON.load_search(ICON_SEARCH.area)
         timeout = Timer(1, count=3)
@@ -178,7 +182,7 @@ class Fuel(StaminaStatus):
                 if self.appear(FUEL_SELECTED) or self.appear(FUEL):
                     has_fuel = True
                 if not has_fuel and timeout.reached():
-                    logger.info("No fuel found")
+                    logger.info('No fuel found')
                     self._fuel_cancel()
                     return False
             if self.appear_then_click(FUEL):
@@ -198,7 +202,7 @@ class Fuel(StaminaStatus):
         use = min(use, available_count)
         logger.info(f'Having {count} fuel, reserve {reserve} fuel, going to use {use} fuel')
         if use <= 0:
-            logger.info("Fuel remain is under the reserve threshold, stop using fuel")
+            logger.info('Fuel remain is under the reserve threshold, stop using fuel')
             self._fuel_cancel()
             return False
 

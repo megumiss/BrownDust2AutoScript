@@ -10,13 +10,7 @@ from tasks.base.ui import UI
 
 
 class Slider:
-    def __init__(
-            self,
-            main: UI,
-            slider: ButtonWrapper,
-            parameters: dict = None,
-            background=5
-    ):
+    def __init__(self, main: UI, slider: ButtonWrapper, parameters: dict = None, background=5):
         """
         Args:
             main:
@@ -76,7 +70,7 @@ class Slider:
         # Ignore non-continuous peaks, which may be the letter to the right of slider
         try:
             right = np.where(diff >= 3)[0][0]
-            peaks = peaks[:right + 1]
+            peaks = peaks[: right + 1]
         except IndexError:
             pass
 
@@ -151,9 +145,7 @@ class Slider:
         right = max(min(self.area[2], right), self.area[0] + 1)
         # Click the right half
         left = int((left + right) / 2)
-        button = ClickButton(
-            (left, self.area[1], right, self.area[3]),
-            name=f'Slider_{value}_{total}')
+        button = ClickButton((left, self.area[1], right, self.area[3]), name=f'Slider_{value}_{total}')
         # Pad click area to search
         pad = 15
         detect = (right - pad, self.area[1], right + pad, self.area[3])

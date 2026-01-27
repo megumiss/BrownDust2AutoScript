@@ -89,9 +89,9 @@ class DraggableStageList(DraggableList):
                 break
 
             # Stage number is insight but button is not
-            logger.info("Stage number is insight, swipe left a little bit to find the entrance")
+            logger.info('Stage number is insight, swipe left a little bit to find the entrance')
             self.drag_vector = (0.2, 0.4)
-            self.drag_page("left", main=main)
+            self.drag_page('left', main=main)
             self.drag_vector = DraggableList.drag_vector
         return True
 
@@ -106,9 +106,14 @@ class DraggableStageList(DraggableList):
             return
 
 
-STAGE_LIST = DraggableStageList("ForgottenHallStageList", keyword_class=ForgottenHallStage,
-                                ocr_class=ForgottenHallStageOcr, search_button=OCR_STAGE,
-                                check_row_order=False, drag_direction="right")
+STAGE_LIST = DraggableStageList(
+    'ForgottenHallStageList',
+    keyword_class=ForgottenHallStage,
+    ocr_class=ForgottenHallStageOcr,
+    search_button=OCR_STAGE,
+    check_row_order=False,
+    drag_direction='right',
+)
 
 
 class ForgottenHallUI(DungeonUI, ForgottenHallTeam):
@@ -162,13 +167,13 @@ class ForgottenHallUI(DungeonUI, ForgottenHallTeam):
         if not dungeon in [
             KEYWORDS_DUNGEON_LIST.Memory_of_Chaos,
             KEYWORDS_DUNGEON_LIST.The_Last_Vestiges_of_Towering_Citadel,
-
         ]:
             logger.error(f'DungeonList Chosen is not a forgotten hall: {dungeon}')
             return
         if dungeon == KEYWORDS_DUNGEON_LIST.Memory_of_Chaos and stage_keyword.id > 10:
-            logger.error(f'This dungeon "{dungeon}" does not have stage that greater than 10. '
-                         f'{stage_keyword.id} is chosen')
+            logger.error(
+                f'This dungeon "{dungeon}" does not have stage that greater than 10. {stage_keyword.id} is chosen'
+            )
             return
 
         if self.appear(FORGOTTEN_HALL_CHECK):
@@ -195,7 +200,7 @@ class ForgottenHallUI(DungeonUI, ForgottenHallTeam):
                 self.device.screenshot()
 
             if self.appear(FORGOTTEN_HALL_CHECK):
-                logger.info("Forgotten hall dungeon exited")
+                logger.info('Forgotten hall dungeon exited')
                 break
 
             if self.is_in_map_exit(interval=2):
@@ -244,6 +249,6 @@ class ForgottenHallUI(DungeonUI, ForgottenHallTeam):
                 self.device.screenshot()
 
             if self.match_template_color(DUNGEON_ENTER_CHECKED):
-                logger.info("Forgotten hall dungeon entered")
+                logger.info('Forgotten hall dungeon entered')
                 break
             joystick.handle_map_run_2x()

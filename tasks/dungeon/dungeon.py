@@ -33,8 +33,14 @@ class Dungeon(Combat, DungeonStamina, DungeonEvent):
     # the support. To avoid that, use support til the end in Ornament combats.
     support_once = True
 
-    def _dungeon_run(self, dungeon: DungeonList, team: int = None, wave_limit: int = 0, support_character: str = None,
-                     skip_ui_switch: bool = False):
+    def _dungeon_run(
+        self,
+        dungeon: DungeonList,
+        team: int = None,
+        wave_limit: int = 0,
+        support_character: str = None,
+        skip_ui_switch: bool = False,
+    ):
         """
         Args:
             dungeon:
@@ -70,16 +76,18 @@ class Dungeon(Combat, DungeonStamina, DungeonEvent):
         self.combat_enter_from_map()
         # Check double event remain before combat
         # Conservatively prefer the smaller result
-        if (dungeon.is_Calyx_Golden or dungeon.is_Calyx_Crimson) and \
-                self.running_double and self.config.stored.DungeonDouble.calyx > 0:
+        if (
+            (dungeon.is_Calyx_Golden or dungeon.is_Calyx_Crimson)
+            and self.running_double
+            and self.config.stored.DungeonDouble.calyx > 0
+        ):
             calyx = self.get_double_event_remain_at_combat()
             if calyx is not None and calyx < self.config.stored.DungeonDouble.calyx:
                 self.config.stored.DungeonDouble.calyx = calyx
                 wave_limit = calyx
             if calyx == 0:
                 return 0
-        if dungeon.is_Cavern_of_Corrosion and self.running_double and \
-                self.config.stored.DungeonDouble.relic > 0:
+        if dungeon.is_Cavern_of_Corrosion and self.running_double and self.config.stored.DungeonDouble.relic > 0:
             relic = self.get_double_event_remain_at_combat()
             if relic is not None and relic < self.config.stored.DungeonDouble.relic:
                 self.config.stored.DungeonDouble.relic = relic
@@ -160,7 +168,10 @@ class Dungeon(Combat, DungeonStamina, DungeonEvent):
                         self.achieved_weekly_quest = True
             # Ornament_Extraction
             if dungeon.is_Ornament_Extraction:
-                if KEYWORDS_BATTLE_PASS_QUEST.Complete_Divergent_Universe_or_Currency_Wars_1_times in self.weekly_quests:
+                if (
+                    KEYWORDS_BATTLE_PASS_QUEST.Complete_Divergent_Universe_or_Currency_Wars_1_times
+                    in self.weekly_quests
+                ):
                     logger.info('Achieved weekly quest Complete_Divergent_Universe_or_Currency_Wars_1_times')
                     # No need to add since it's 0/1
                     self.achieved_weekly_quest = True
@@ -184,8 +195,7 @@ class Dungeon(Combat, DungeonStamina, DungeonEvent):
 
         return count
 
-    def dungeon_run(
-            self, dungeon: DungeonList, team: int = None, wave_limit: int = 0, support_character: str = None):
+    def dungeon_run(self, dungeon: DungeonList, team: int = None, wave_limit: int = 0, support_character: str = None):
         """
         Run dungeon, and handle daily support
 
@@ -205,29 +215,37 @@ class Dungeon(Combat, DungeonStamina, DungeonEvent):
         require = self.require_compulsory_support()
         if require and self.support_once:
             logger.info('Run once with support')
-            count = self._dungeon_run(dungeon=dungeon, team=team, wave_limit=1,
-                                      support_character=self.config.DungeonSupport_Character)
+            count = self._dungeon_run(
+                dungeon=dungeon, team=team, wave_limit=1, support_character=self.config.DungeonSupport_Character
+            )
             logger.info('Run the rest waves without compulsory support')
             if wave_limit >= 2 or wave_limit == 0:
                 # Already at page_name with DUNGEON_COMBAT_INTERACT
                 if wave_limit >= 2:
                     wave_limit -= 1
-                count += self._dungeon_run(dungeon=dungeon, team=team, wave_limit=wave_limit,
-                                           support_character=support_character, skip_ui_switch=True)
+                count += self._dungeon_run(
+                    dungeon=dungeon,
+                    team=team,
+                    wave_limit=wave_limit,
+                    support_character=support_character,
+                    skip_ui_switch=True,
+                )
             self.combat_exit()
             return count
 
         elif require and not self.support_once:
             # Run with support all the way
-            count = self._dungeon_run(dungeon=dungeon, team=team, wave_limit=0,
-                                      support_character=self.config.DungeonSupport_Character)
+            count = self._dungeon_run(
+                dungeon=dungeon, team=team, wave_limit=0, support_character=self.config.DungeonSupport_Character
+            )
             self.combat_exit()
             return count
 
         else:
             # Normal run
-            count = self._dungeon_run(dungeon=dungeon, team=team, wave_limit=wave_limit,
-                                      support_character=support_character)
+            count = self._dungeon_run(
+                dungeon=dungeon, team=team, wave_limit=wave_limit, support_character=support_character
+            )
             self.combat_exit()
             return count
 
@@ -238,10 +256,12 @@ class Dungeon(Combat, DungeonStamina, DungeonEvent):
             out: page_guide, Survival_Index
         """
         # Update double event records
-        if (self.config.stored.DungeonDouble.is_expired()
-                or self.config.stored.DungeonDouble.calyx > 0
-                or self.config.stored.DungeonDouble.relic > 0
-                or self.config.stored.DungeonDouble.rogue > 0):
+        if (
+            self.config.stored.DungeonDouble.is_expired()
+            or self.config.stored.DungeonDouble.calyx > 0
+            or self.config.stored.DungeonDouble.relic > 0
+            or self.config.stored.DungeonDouble.rogue > 0
+        ):
             update = self.config.stored.DungeonDouble.time
             if update <= now() <= update + timedelta(seconds=5):
                 logger.info('Dungeon double just updated, skip')
@@ -328,8 +348,7 @@ class Dungeon(Combat, DungeonStamina, DungeonEvent):
             if self.config.cross_get('Rogue.RogueWorld.UseStamina'):
                 logger.info('Going to use stamina in rogue')
                 do_rogue = True
-            elif self.config.cross_get('Rogue.RogueWorld.DoubleEvent') \
-                    and self.config.stored.DungeonDouble.rogue > 0:
+            elif self.config.cross_get('Rogue.RogueWorld.DoubleEvent') and self.config.stored.DungeonDouble.rogue > 0:
                 logger.info('Going to use stamina in double rogue event')
                 do_rogue = True
         final = DungeonList.find(self.config.Dungeon_Name)
@@ -349,9 +368,11 @@ class Dungeon(Combat, DungeonStamina, DungeonEvent):
             # Store immersifiers
             logger.info('Prioritize stamina for simulated universe, skip dungeon')
             amount = 0
-            if not self.config.cross_get('Rogue.RogueWorld.UseStamina') \
-                    and self.config.cross_get('Rogue.RogueWorld.DoubleEvent') \
-                    and self.config.stored.DungeonDouble.rogue > 0:
+            if (
+                not self.config.cross_get('Rogue.RogueWorld.UseStamina')
+                and self.config.cross_get('Rogue.RogueWorld.DoubleEvent')
+                and self.config.stored.DungeonDouble.rogue > 0
+            ):
                 amount = self.config.stored.DungeonDouble.rogue
             try:
                 stored = self.immersifier_store(max_store=amount)
@@ -409,8 +430,7 @@ class Dungeon(Combat, DungeonStamina, DungeonEvent):
         require = False
 
         if not self.config.stored.DailyActivity.is_full():
-            if KEYWORDS_DAILY_QUEST.Obtain_victory_in_combat_with_Support_Characters_1_times \
-                    in self.daily_quests:
+            if KEYWORDS_DAILY_QUEST.Obtain_victory_in_combat_with_Support_Characters_1_times in self.daily_quests:
                 require = True
 
         logger.attr('called_daily_support', self.called_daily_support)
@@ -428,7 +448,10 @@ class Dungeon(Combat, DungeonStamina, DungeonEvent):
     def check_stamina_quest(self, stamina_used: int):
         logger.info(f'Used {stamina_used} stamina')
 
-        if KEYWORDS_BATTLE_PASS_QUEST.Consume_a_total_of_1_Trailblaze_Power_1400_Trailblazer_Power_max in self.weekly_quests:
+        if (
+            KEYWORDS_BATTLE_PASS_QUEST.Consume_a_total_of_1_Trailblaze_Power_1400_Trailblazer_Power_max
+            in self.weekly_quests
+        ):
             logger.info(f'Done Consume_a_total_of_1_Trailblaze_Power_1400_Trailblazer_Power_max stamina {stamina_used}')
             self.config.stored.BattlePassQuestTrailblazePower.add(stamina_used)
             if self.config.stored.BattlePassQuestTrailblazePower.is_full():

@@ -50,11 +50,13 @@ class RedemptionCode(UI):
             out: CODE_CHECK
         """
         logger.hr('Code enter')
-        self.interval_clear([
-            page_menu.check_button,
-            CODE_ENTER,
-            CODE_CHECK,
-        ])
+        self.interval_clear(
+            [
+                page_menu.check_button,
+                CODE_ENTER,
+                CODE_CHECK,
+            ]
+        )
         for _ in self.loop():
             if self.appear(CODE_CHECK):
                 break
@@ -75,11 +77,13 @@ class RedemptionCode(UI):
             out: page_menu
         """
         logger.hr('Code exit')
-        self.interval_clear([
-            INPUT_CHECK,
-            POPUP_CONFIRM,
-            POPUP_CANCEL,
-        ])
+        self.interval_clear(
+            [
+                INPUT_CHECK,
+                POPUP_CONFIRM,
+                POPUP_CANCEL,
+            ]
+        )
         for _ in self.loop():
             if self.ui_page_appear(page_menu):
                 break
@@ -90,18 +94,14 @@ class RedemptionCode(UI):
                 continue
 
         # clear state
-        self.interval_clear([
-            page_menu.check_button
-        ])
+        self.interval_clear([page_menu.check_button])
 
     def _code_input(self, code):
         """
         Input code into game using uiautomator2
         """
         logger.info(f'Code input: {code}')
-        self.interval_clear([
-            POPUP_CONFIRM
-        ])
+        self.interval_clear([POPUP_CONFIRM])
         interval = Timer(2, count=6)
         for _ in self.loop():
             # might be both CODE_CHECK and POPUP_TITLE_TIP when POPUP_TITLE_TIP is transparent

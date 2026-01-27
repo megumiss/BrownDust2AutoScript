@@ -18,6 +18,7 @@ PATHS = [
     KEYWORDS_ROGUE_PATH.Erudition,
 ]
 
+
 class PresetFilterGenerator:
     def __init__(self, file_name: str = None):
         if file_name is None:
@@ -30,8 +31,12 @@ class PresetFilterGenerator:
         self.path_name = {}
         self.get_paths()
         self.general = ['强力', '输出', '生存', '功能']
-        self.replace = {'黄色(强力通用)': '强力', '蓝色(通用输出)': '输出', '绿色(通用生存)': '生存',
-                        '红色(通用功能)': '功能'}
+        self.replace = {
+            '黄色(强力通用)': '强力',
+            '蓝色(通用输出)': '输出',
+            '绿色(通用生存)': '生存',
+            '红色(通用功能)': '功能',
+        }
         self.content = {}
         self.length = 76
 
@@ -55,7 +60,7 @@ class PresetFilterGenerator:
         for key in self.replace.keys():
             if key in sheet_ and self.replace[key] in self.content:
                 index = sheet_.index(key)
-                sheet_ = sheet_[:index] + self.content[self.replace[key]] + sheet_[index + 1:]
+                sheet_ = sheet_[:index] + self.content[self.replace[key]] + sheet_[index + 1 :]
 
         sheet_ = list(dict.fromkeys(sheet_))
 
@@ -76,21 +81,21 @@ class PresetFilterGenerator:
         if one_line:
             ret = ' > '.join(blessing + ['random'])
             return f'{INDENTATION}"{name}": "{ret}",\n'
-        ret = f'{INDENTATION}"{name}": \"\"\"\n'
+        ret = f'{INDENTATION}"{name}": """\n'
 
         def list_to_str(l_, ind):
             return textwrap.indent(textwrap.fill(' > '.join(l_), self.length), ind)
 
         if 'reset' in blessing:
             re_index = blessing.index('reset')
-            ret += list_to_str(blessing[: re_index], INDENTATION * 2)
+            ret += list_to_str(blessing[:re_index], INDENTATION * 2)
             ret += f'\n{INDENTATION * 2}> reset >\n'
-            ret += list_to_str(blessing[re_index + 1:], INDENTATION * 2)
+            ret += list_to_str(blessing[re_index + 1 :], INDENTATION * 2)
 
         else:
             ret += list_to_str(blessing, INDENTATION * 2)
         ret = ret.replace(f' >\n{INDENTATION * 2}', f'\n{INDENTATION * 2}> ')
-        ret += f'\n{INDENTATION * 2}> random\n{INDENTATION * 2}\"\"\",\n\n'
+        ret += f'\n{INDENTATION * 2}> random\n{INDENTATION * 2}""",\n\n'
         return ret
 
     def generate(self):
@@ -105,8 +110,9 @@ class PresetFilterGenerator:
         for path in self.paths:
             path_name = self.path_name[path]
             self.content[path] = self.to_list(self.file[path_name], path_name) if self.check_sheet(path_name) else []
-            resonance[path] = self.to_list(self.file['回响'][self.file['回响']['命途'] == path_name],
-                                           '回响') if has_resonance else []
+            resonance[path] = (
+                self.to_list(self.file['回响'][self.file['回响']['命途'] == path_name], '回响') if has_resonance else []
+            )
             curio[path] = self.to_list(self.file['奇物'], '奇物', sort_name=path_name) if has_curio else []
         self.content['回响'] = resonance
         self.content['奇物'] = curio

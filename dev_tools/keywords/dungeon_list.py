@@ -53,7 +53,7 @@ class GenerateDungeonList(GenerateKeyword):
                 yield keyword
 
     def iter_dungeon(self):
-        temp_save = ""
+        temp_save = ''
         for data in self.data:
             dungeon_id = data.get('ID', 0)
             text_id = deep_get(data, keys='Name.Hash')

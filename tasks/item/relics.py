@@ -26,7 +26,7 @@ class RelicsUI(ItemUI):
                 self.device.screenshot()
 
             if self.appear(GOTO_SALVAGE):
-                logger.info("Salvage page exited")
+                logger.info('Salvage page exited')
                 break
             if self.handle_reward(interval=2):
                 continue
@@ -84,8 +84,11 @@ class RelicsUI(ItemUI):
                 break
             if self.appear_then_click(ORDER_DESCENDING, interval=2):
                 continue
-            if interval.reached() and self.appear(ORDER_ASCENDING) \
-                    and self.image_color_count(FIRST_RELIC, (233, 192, 108)):
+            if (
+                interval.reached()
+                and self.appear(ORDER_ASCENDING)
+                and self.image_color_count(FIRST_RELIC, (233, 192, 108))
+            ):
                 self.device.click(FIRST_RELIC)
                 interval.reset()
                 continue
@@ -98,7 +101,7 @@ class RelicsUI(ItemUI):
                 self.device.screenshot()
 
             if self.reward_appear():
-                logger.info("Relic salvaged")
+                logger.info('Relic salvaged')
                 break
             if self.appear_then_click(SALVAGE, interval=2):
                 continue

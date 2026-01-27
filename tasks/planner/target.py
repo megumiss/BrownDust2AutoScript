@@ -51,8 +51,8 @@ class PlannerTarget(PlannerSelect, PlannerTrace, PlannerScan):
         except ScriptError:
             logger.info(f'Invalid cone name: {self.config.PlannerTarget_Cone}')
             return False
-        character: "CharacterList | None" = character
-        cone: "Cone | None" = cone
+        character: 'CharacterList | None' = character
+        cone: 'Cone | None' = cone
         if not character and not cone:
             logger.info('Empty character and cone, no need to calculate')
             if self.config.PlannerTarget_Enable:

@@ -7,27 +7,27 @@ from module.config.utils import read_file, write_file
 
 # Converts relic stat names in game internal to SRC keyword names
 DICT_STATS_CONVERT = {
-    "HPDelta": 'HPd',
-    "AttackDelta": 'ATKd',
-    "DefenceDelta": 'DEFd',
-    "HPAddedRatio": 'HP',
-    "AttackAddedRatio": 'ATK',
-    "DefenceAddedRatio": 'DEF',
-    "CriticalChanceBase": 'CRITRate',
-    "CriticalDamageBase": 'CRITDMG',
-    "HealRatioBase": 'OutgoingHealingBoost',
-    "StatusProbabilityBase": 'EffectHitRate',
-    "StatusResistanceBase": 'EffectRES',
-    "SpeedDelta": 'SPD',
-    "PhysicalAddedRatio": 'PhysicalDMGBoost',
-    "FireAddedRatio": 'FireDMGBoost',
-    "IceAddedRatio": 'IceDMGBoost',
-    "ThunderAddedRatio": 'LightningDMGBoost',
-    "WindAddedRatio": 'WindDMGBoost',
-    "QuantumAddedRatio": 'QuantumDMGBoost',
-    "ImaginaryAddedRatio": 'ImaginaryDMGBoost',
-    "BreakDamageAddedRatioBase": 'BreakEffect',
-    "SPRatioBase": 'EnergyRegenerationRate',
+    'HPDelta': 'HPd',
+    'AttackDelta': 'ATKd',
+    'DefenceDelta': 'DEFd',
+    'HPAddedRatio': 'HP',
+    'AttackAddedRatio': 'ATK',
+    'DefenceAddedRatio': 'DEF',
+    'CriticalChanceBase': 'CRITRate',
+    'CriticalDamageBase': 'CRITDMG',
+    'HealRatioBase': 'OutgoingHealingBoost',
+    'StatusProbabilityBase': 'EffectHitRate',
+    'StatusResistanceBase': 'EffectRES',
+    'SpeedDelta': 'SPD',
+    'PhysicalAddedRatio': 'PhysicalDMGBoost',
+    'FireAddedRatio': 'FireDMGBoost',
+    'IceAddedRatio': 'IceDMGBoost',
+    'ThunderAddedRatio': 'LightningDMGBoost',
+    'WindAddedRatio': 'WindDMGBoost',
+    'QuantumAddedRatio': 'QuantumDMGBoost',
+    'ImaginaryAddedRatio': 'ImaginaryDMGBoost',
+    'BreakDamageAddedRatioBase': 'BreakEffect',
+    'SPRatioBase': 'EnergyRegenerationRate',
 }
 
 
@@ -131,7 +131,7 @@ class GenerateRelicSet(RelicBase):
         self.update_relicset_nickname()
 
     @cached_property
-    def RelicConfig(self) -> "dict[int, dict]":
+    def RelicConfig(self) -> 'dict[int, dict]':
         """
         Contains info of each part of each relic
         {
@@ -158,7 +158,7 @@ class GenerateRelicSet(RelicBase):
         return data
 
     @cached_property
-    def ItemComeFrom(self) -> "dict[int, dict]":
+    def ItemComeFrom(self) -> 'dict[int, dict]':
         """
         Contains items and the dungeon to farm this item (key "GotoParam")
         {

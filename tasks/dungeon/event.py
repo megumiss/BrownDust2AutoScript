@@ -13,14 +13,14 @@ class DoubleEventOcr(DigitCounter):
         # 71212 -> 7/21
         result = result.replace('1212', '/21')
         # # 19/212面 -> 19/21, before \1/12
-        result = result.replace('/212',  '/21')
+        result = result.replace('/212', '/21')
         # re.sub as last resort, just in case
         # x12 -> x/12 but x112 does not change
         result = re.sub(r'(?<!\d)(\d[02-9]*)12$', r'\1/12', result)
         # x112 -> x/12
         result = re.sub(r'112$', '/12', result)
         # 19/212面 -> 19/21
-        result = result.replace('/212',  '/21')
+        result = result.replace('/212', '/21')
         return result
 
 
@@ -101,17 +101,9 @@ class DungeonEvent(UI):
         Pages:
             in: COMBAT_PREPARE
         """
-        has = self.image_color_count(
-            button,
-            color=(231, 188, 103),
-            threshold=240, count=1000
-        )
+        has = self.image_color_count(button, color=(231, 188, 103), threshold=240, count=1000)
         # Anniversary 3x event
-        has |= self.image_color_count(
-            button,
-            color=(229, 62, 44),
-            threshold=221, count=50
-        )
+        has |= self.image_color_count(button, color=(229, 62, 44), threshold=221, count=50)
         logger.attr('Double event at combat', has)
         return has
 

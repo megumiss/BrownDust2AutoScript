@@ -21,8 +21,10 @@ def get_position_in_original_image(position_in_croped_image, crop_area):
         tuple: (x, y) of position in original image
     """
     return (
-        position_in_croped_image[0] + crop_area[0],
-        position_in_croped_image[1] + crop_area[1]) if position_in_croped_image else None
+        (position_in_croped_image[0] + crop_area[0], position_in_croped_image[1] + crop_area[1])
+        if position_in_croped_image
+        else None
+    )
 
 
 class SupportCharacter:
@@ -68,28 +70,29 @@ class SupportCharacter:
         """
 
         if self.name in SupportCharacter._image_cache:
-            logger.info(f"Using cached image of {self.name}")
+            logger.info(f'Using cached image of {self.name}')
             return SupportCharacter._image_cache[self.name]
 
-        image = self.load_image(f"assets/character/{self.name}.png")
+        image = self.load_image(f'assets/character/{self.name}.png')
         SupportCharacter._image_cache[self.name] = image
-        logger.info(f"Character {self.name} image cached")
+        logger.info(f'Character {self.name} image cached')
         return image
 
     def _find_character(self):
         character = np.array(self.image)
         support_list_img = self.screenshot
-        res = cv2.matchTemplate(
-            character, support_list_img, cv2.TM_CCOEFF_NORMED)
+        res = cv2.matchTemplate(character, support_list_img, cv2.TM_CCOEFF_NORMED)
 
         _, max_val, _, max_loc = cv2.minMaxLoc(res)
-        max_loc = get_position_in_original_image(
-            max_loc, SupportCharacter._crop_area)
+        max_loc = get_position_in_original_image(max_loc, SupportCharacter._crop_area)
         character_width = character.shape[1]
         character_height = character.shape[0]
 
-        return (max_loc[0], max_loc[1], max_loc[0] + character_width, max_loc[1] + character_height) \
-            if max_val >= self.similarity else None
+        return (
+            (max_loc[0], max_loc[1], max_loc[0] + character_width, max_loc[1] + character_height)
+            if max_val >= self.similarity
+            else None
+        )
 
     def selected_icon_search(self):
         """
@@ -102,7 +105,7 @@ class SupportCharacter:
 
 class NextSupportCharacter:
     def __init__(self, screenshot):
-        self.name = "NextSupportCharacter"
+        self.name = 'NextSupportCharacter'
         self.button = self.get_next_support_character_button(screenshot)
 
     def __bool__(self):
@@ -133,7 +136,7 @@ class NextSupportCharacter:
 
 
 class CombatSupport(CombatState):
-    def support_set(self, support_character_name: str = "FirstCharacter"):
+    def support_set(self, support_character_name: str = 'FirstCharacter'):
         """
         Args:
             support_character_name: Support character name
@@ -146,7 +149,7 @@ class CombatSupport(CombatState):
             mid: COMBAT_SUPPORT_LIST
             out: COMBAT_PREPARE or is_combat_executing
         """
-        logger.hr("Combat support")
+        logger.hr('Combat support')
         if isinstance(support_character_name, CharacterList):
             support_character_name = support_character_name.name
         self.interval_clear(COMBAT_TEAM_SUPPORT)
@@ -173,8 +176,7 @@ class CombatSupport(CombatState):
                 self.interval_clear(COMBAT_SUPPORT_LIST)
                 continue
             if self.appear(POPUP_CANCEL, interval=1):
-                logger.warning(
-                    "selected identical character, trying select another")
+                logger.warning('selected identical character, trying select another')
                 self._cancel_popup()
                 self._select_next_support()
                 self.interval_reset(POPUP_CANCEL)
@@ -197,11 +199,11 @@ class CombatSupport(CombatState):
                 continue
 
     def _get_character(self, support_character_name: str) -> SupportCharacter:
-        if support_character_name.startswith("Trailblazer"):
-            character = SupportCharacter(f"Stelle{support_character_name[11:]}", self.device.image)
+        if support_character_name.startswith('Trailblazer'):
+            character = SupportCharacter(f'Stelle{support_character_name[11:]}', self.device.image)
             if character:
                 return character
-            character = SupportCharacter(f"Caelum{support_character_name[11:]}", self.device.image)
+            character = SupportCharacter(f'Caelum{support_character_name[11:]}', self.device.image)
             # Should return something
             return character
         else:
@@ -209,7 +211,7 @@ class CombatSupport(CombatState):
             if character:
                 return character
             # Search skin also
-            dict_skin: "dict[str, list[str]]" = {
+            dict_skin: 'dict[str, list[str]]' = {
                 'March7thPreservation': ['March7thPreservation.2'],
                 'Firefly': ['Firefly.2'],
             }
@@ -226,8 +228,7 @@ class CombatSupport(CombatState):
         """
         v3.2, Ornament has different support scroll so OrnamentCombat._support_scroll will override this
         """
-        return AdaptiveScroll(area=COMBAT_SUPPORT_LIST_SCROLL.area,
-                              name=COMBAT_SUPPORT_LIST_SCROLL.name)
+        return AdaptiveScroll(area=COMBAT_SUPPORT_LIST_SCROLL.area, name=COMBAT_SUPPORT_LIST_SCROLL.name)
 
     def support_refresh_wait_top(self):
         """
@@ -245,7 +246,7 @@ class CombatSupport(CombatState):
             if scroll.at_top(main=self):
                 break
 
-    def _search_support(self, support_character_name: str = "JingYuan"):
+    def _search_support(self, support_character_name: str = 'JingYuan'):
         """
         Args:
             support_character_name: Support character name
@@ -257,11 +258,11 @@ class CombatSupport(CombatState):
             in: COMBAT_SUPPORT_LIST
             out: COMBAT_SUPPORT_LIST
         """
-        logger.hr("Combat support search")
+        logger.hr('Combat support search')
         # Search prioritize characters
         character = self._get_character(support_character_name)
         if character:
-            logger.info("Support found in first page")
+            logger.info('Support found in first page')
             if self._select_support(character):
                 return True
 
@@ -276,7 +277,7 @@ class CombatSupport(CombatState):
                 scroll.set_top(main=self)
         self.device.click_record_clear()
 
-        logger.info("Searching support")
+        logger.info('Searching support')
         self.interval_clear(COMBAT_SUPPORT_LIST, interval=2)
         for _ in self.loop():
             character = self._get_character(support_character_name)
@@ -300,11 +301,11 @@ class CombatSupport(CombatState):
                     scroll.next_page(main=self)
                     continue
                 else:
-                    logger.info("Support not found")
+                    logger.info('Support not found')
                     self.device.click_record_clear()
                     return False
 
-    def _search_support_with_fallback(self, support_character_name: str = "JingYuan"):
+    def _search_support_with_fallback(self, support_character_name: str = 'JingYuan'):
         """
         Args:
             support_character_name: Support character name
@@ -316,7 +317,7 @@ class CombatSupport(CombatState):
             in: COMBAT_SUPPORT_LIST
             out: COMBAT_SUPPORT_LIST
         """
-        if support_character_name == "FirstCharacter":
+        if support_character_name == 'FirstCharacter':
             # In normal dungeons first character is selected by default
             return True
         else:
@@ -338,7 +339,7 @@ class CombatSupport(CombatState):
             in: COMBAT_SUPPORT_LIST
             out: COMBAT_SUPPORT_LIST
         """
-        logger.hr("Combat support select")
+        logger.hr('Combat support select')
         logger.info(f'Select: {character}')
         skip_first_screenshot = False
         interval = Timer(2)
@@ -361,7 +362,7 @@ class CombatSupport(CombatState):
                 continue
 
     def _select_first(self):
-        logger.hr("Combat support select")
+        logger.hr('Combat support select')
         logger.info(f'Select: first')
         skip_first_screenshot = False
         interval = Timer(2)
@@ -387,7 +388,7 @@ class CombatSupport(CombatState):
             in: CANCEL_POPUP
             out: COMBAT_SUPPORT_LIST
         """
-        logger.hr("Combat support cancel popup")
+        logger.hr('Combat support cancel popup')
         skip_first_screenshot = True
 
         while 1:
@@ -398,7 +399,7 @@ class CombatSupport(CombatState):
 
             # End
             if self.appear(COMBAT_SUPPORT_LIST):
-                logger.info("Popup canceled")
+                logger.info('Popup canceled')
                 return
 
             if self.handle_popup_cancel():
@@ -410,7 +411,7 @@ class CombatSupport(CombatState):
             in: COMBAT_SUPPORT_LIST
             out: COMBAT_SUPPORT_LIST
         """
-        logger.hr("Next support select")
+        logger.hr('Next support select')
         # Wait support arrow
         # If selected identical character, popup may not disappear that fast
         timeout = Timer(1, count=3).start()
@@ -429,8 +430,7 @@ class CombatSupport(CombatState):
                 break
 
         # Select next
-        scroll = AdaptiveScroll(area=COMBAT_SUPPORT_LIST_SCROLL.area,
-                                name=COMBAT_SUPPORT_LIST_SCROLL.name)
+        scroll = AdaptiveScroll(area=COMBAT_SUPPORT_LIST_SCROLL.area, name=COMBAT_SUPPORT_LIST_SCROLL.name)
         interval = Timer(1)
         next_support = None
         while 1:
@@ -447,12 +447,12 @@ class CombatSupport(CombatState):
             if interval.reached():
                 next_support = NextSupportCharacter(self.device.image)
                 if next_support:
-                    logger.info("Next support found, clicking")
+                    logger.info('Next support found, clicking')
                     self.device.click(next_support.button)
                 elif not scroll.at_bottom(main=self):
                     scroll.next_page(main=self, page=0.4)
                 else:
-                    logger.warning("No more support")
+                    logger.warning('No more support')
                     return
 
                 interval.reset()

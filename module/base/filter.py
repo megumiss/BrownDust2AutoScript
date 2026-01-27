@@ -24,13 +24,13 @@ class Filter:
         Load a filter string, filters are connected with ">"
 
         There are also tons of unicode characters similar to ">"
-        > \u003E correct
-        ＞ \uFF1E
-        ﹥ \uFE65
+        > \u003e correct
+        ＞ \uff1e
+        ﹥ \ufe65
         › \u203a
         ˃ \u02c3
         ᐳ \u1433
-        ❯ \u276F
+        ❯ \u276f
         """
         string = str(string)
         string = re.sub(r'[ \t\r\n]', '', string)

@@ -39,14 +39,10 @@ class BattlePassTab(Switch):
 
 SWITCH_BATTLE_PASS_TAB = BattlePassTab('BattlePassTab', is_selector=True)
 SWITCH_BATTLE_PASS_TAB.add_state(
-    KEYWORDS_BATTLE_PASS_TAB.Rewards,
-    check_button=REWARDS_CHECK,
-    click_button=REWARDS_CLICK
+    KEYWORDS_BATTLE_PASS_TAB.Rewards, check_button=REWARDS_CHECK, click_button=REWARDS_CLICK
 )
 SWITCH_BATTLE_PASS_TAB.add_state(
-    KEYWORDS_BATTLE_PASS_TAB.Missions,
-    check_button=MISSIONS_CHECK,
-    click_button=MISSIONS_CLICK
+    KEYWORDS_BATTLE_PASS_TAB.Missions, check_button=MISSIONS_CHECK, click_button=MISSIONS_CLICK
 )
 
 
@@ -70,12 +66,12 @@ SWITCH_BATTLE_PASS_MISSION_TAB = BattlePassMissionTab('BattlePassMissionTab', is
 SWITCH_BATTLE_PASS_MISSION_TAB.add_state(
     KEYWORDS_BATTLE_PASS_MISSION_TAB.This_Week_Missions,
     check_button=WEEK_MISSION_CLICK,
-    click_button=WEEK_MISSION_CLICK
+    click_button=WEEK_MISSION_CLICK,
 )
 SWITCH_BATTLE_PASS_MISSION_TAB.add_state(
     KEYWORDS_BATTLE_PASS_MISSION_TAB.This_Period_Missions,
     check_button=PERIOD_MISSION_CLICK,
-    click_button=PERIOD_MISSION_CLICK
+    click_button=PERIOD_MISSION_CLICK,
 )
 
 
@@ -83,7 +79,7 @@ class BattlePassQuestOcr(Ocr):
     def after_process(self, result):
         result = super().after_process(result)
         if self.lang == 'cn':
-            result = re.sub("[jJ]", "」", result)
+            result = re.sub('[jJ]', '」', result)
         return result
 
 
@@ -209,7 +205,7 @@ class BattlePassUI(UI):
                 break
             if self.appear_then_click(EXP_CLAIM_ALL):
                 claimed = True
-                logger.info("All EXP claimed")
+                logger.info('All EXP claimed')
                 continue
 
         logger.attr('EXP claimed', claimed)
@@ -247,10 +243,10 @@ class BattlePassUI(UI):
                 self.device.screenshot()
 
             if self.appear(BATTLE_PASS_CHECK):
-                logger.info("Claiming rewards complete")
+                logger.info('Claiming rewards complete')
                 break
             if self.handle_choose_gifts():
-                logger.info("You have unclaimed gift to choose")
+                logger.info('You have unclaimed gift to choose')
                 continue
             if self.handle_reward():
                 continue
@@ -302,7 +298,7 @@ class BattlePassUI(UI):
         current_level = self._get_battle_pass_level()
         self.config.stored.BattlePassLevel.set(current_level)
         if claimed_exp and current_level > previous_level:
-            logger.info("Upgraded, go to claim rewards")
+            logger.info('Upgraded, go to claim rewards')
             self._claim_rewards()
         else:
             # Missions refreshed
@@ -320,12 +316,14 @@ class BattlePassUI(UI):
         logger.hr('Battle pass ocr single page')
         ocr = BattlePassQuestOcr(OCR_BATTLE_PASS_QUEST)
         results = ocr.matched_ocr(
-            self.device.image, keyword_classes=[BattlePassQuest, BattlePassQuestState, KeywordDigitCounter])
+            self.device.image, keyword_classes=[BattlePassQuest, BattlePassQuestState, KeywordDigitCounter]
+        )
 
         # Product DataBattlePassQuest objects
         data_quest: dict[OcrResultButton, DataBattlePassQuest] = {
             result: DataBattlePassQuest(result.matched_keyword)
-            for result in results if isinstance(result.matched_keyword, BattlePassQuest)
+            for result in results
+            if isinstance(result.matched_keyword, BattlePassQuest)
         }
         # Update quest state
         list_attr = [result for result in results if isinstance(result.matched_keyword, BattlePassQuestState)]
@@ -344,8 +342,7 @@ class BattlePassUI(UI):
             in: page_battle_pass, KEYWORDS_BATTLE_PASS_TAB.Missions, weekly or period
         """
         logger.hr('Quest recognise', level=1)
-        self.battle_pass_mission_tab_goto(
-            KEYWORDS_BATTLE_PASS_MISSION_TAB.This_Week_Missions)
+        self.battle_pass_mission_tab_goto(KEYWORDS_BATTLE_PASS_MISSION_TAB.This_Week_Missions)
 
         scroll = Scroll(MISSION_PAGE_SCROLL, color=(198, 198, 198))
         scroll.set_top(main=self)
@@ -363,22 +360,14 @@ class BattlePassUI(UI):
 
         # Convert quest keyword to stored object
         dic_quest_to_stored = {
-            KEYWORDS_BATTLE_PASS_QUEST.Complete_Divergent_Universe_or_Currency_Wars_1_times:
-                self.config.stored.BattlePassSimulatedUniverse,
-            KEYWORDS_BATTLE_PASS_QUEST.Clear_Calyx_1_times:
-                self.config.stored.BattlePassQuestCalyx,
-            KEYWORDS_BATTLE_PASS_QUEST.Complete_Echo_of_War_1_times:
-                self.config.stored.BattlePassQuestEchoOfWar,
-            KEYWORDS_BATTLE_PASS_QUEST.Use_300000_credits:
-                self.config.stored.BattlePassQuestCredits,
-            KEYWORDS_BATTLE_PASS_QUEST.Synthesize_Consumables_1_times:
-                self.config.stored.BattlePassQuestSynthesizeConsumables,
-            KEYWORDS_BATTLE_PASS_QUEST.Clear_Stagnant_Shadow_1_times:
-                self.config.stored.BattlePassQuestStagnantShadow,
-            KEYWORDS_BATTLE_PASS_QUEST.Clear_Cavern_of_Corrosion_1_times:
-                self.config.stored.BattlePassQuestCavernOfCorrosion,
-            KEYWORDS_BATTLE_PASS_QUEST.Consume_a_total_of_1_Trailblaze_Power_1400_Trailblazer_Power_max:
-                self.config.stored.BattlePassQuestTrailblazePower,
+            KEYWORDS_BATTLE_PASS_QUEST.Complete_Divergent_Universe_or_Currency_Wars_1_times: self.config.stored.BattlePassSimulatedUniverse,
+            KEYWORDS_BATTLE_PASS_QUEST.Clear_Calyx_1_times: self.config.stored.BattlePassQuestCalyx,
+            KEYWORDS_BATTLE_PASS_QUEST.Complete_Echo_of_War_1_times: self.config.stored.BattlePassQuestEchoOfWar,
+            KEYWORDS_BATTLE_PASS_QUEST.Use_300000_credits: self.config.stored.BattlePassQuestCredits,
+            KEYWORDS_BATTLE_PASS_QUEST.Synthesize_Consumables_1_times: self.config.stored.BattlePassQuestSynthesizeConsumables,
+            KEYWORDS_BATTLE_PASS_QUEST.Clear_Stagnant_Shadow_1_times: self.config.stored.BattlePassQuestStagnantShadow,
+            KEYWORDS_BATTLE_PASS_QUEST.Clear_Cavern_of_Corrosion_1_times: self.config.stored.BattlePassQuestCavernOfCorrosion,
+            KEYWORDS_BATTLE_PASS_QUEST.Consume_a_total_of_1_Trailblaze_Power_1400_Trailblazer_Power_max: self.config.stored.BattlePassQuestTrailblazePower,
         }
         with self.config.multi_set():
             # Write incomplete quests

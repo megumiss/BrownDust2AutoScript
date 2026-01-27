@@ -100,10 +100,12 @@ def write_file(file, data):
     elif file.endswith('.yaml'):
         if isinstance(data, list):
             content = yaml.safe_dump_all(
-                data, default_flow_style=False, encoding='utf-8', allow_unicode=True, sort_keys=False)
+                data, default_flow_style=False, encoding='utf-8', allow_unicode=True, sort_keys=False
+            )
         else:
             content = yaml.safe_dump(
-                data, default_flow_style=False, encoding='utf-8', allow_unicode=True, sort_keys=False)
+                data, default_flow_style=False, encoding='utf-8', allow_unicode=True, sort_keys=False
+            )
         atomic_write(file, content)
     else:
         print(f'Unsupported config file extension: {file}')
@@ -135,9 +137,9 @@ def iter_folder(folder, is_dir=False, ext=None):
 
 def alas_template():
     """
-        Returns:
-            list[str]: Name of all Alas instances, except `template`.
-        """
+    Returns:
+        list[str]: Name of all Alas instances, except `template`.
+    """
     out = []
     for file in os.listdir('./config'):
         name, extension = os.path.splitext(file)
@@ -325,7 +327,7 @@ def ensure_time(second, n=3, precision=3):
         float:
     """
     if isinstance(second, tuple):
-        multiply = 10 ** precision
+        multiply = 10**precision
         return random_normal_distribution_int(second[0] * multiply, second[1] * multiply, n) / multiply
     elif isinstance(second, str):
         if ',' in second:
@@ -351,8 +353,9 @@ def get_os_next_reset():
     """
     diff = server_time_offset()
     server_now = datetime.now() - diff
-    server_reset = (server_now.replace(day=1) + timedelta(days=32)) \
-        .replace(day=1, hour=0, minute=0, second=0, microsecond=0)
+    server_reset = (server_now.replace(day=1) + timedelta(days=32)).replace(
+        day=1, hour=0, minute=0, second=0, microsecond=0
+    )
     local_reset = server_reset + diff
     return local_reset
 
@@ -490,8 +493,7 @@ def get_nearest_weekday_date(target):
     if days_ahead <= 0:
         # Target day has already happened
         days_ahead += 7
-    server_reset = (server_now + timedelta(days=days_ahead)) \
-        .replace(hour=0, minute=0, second=0, microsecond=0)
+    server_reset = (server_now + timedelta(days=days_ahead)).replace(hour=0, minute=0, second=0, microsecond=0)
 
     local_reset = server_reset + diff
     return local_reset

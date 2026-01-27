@@ -91,12 +91,12 @@ class StaminaStatus(UI):
         )
 
     def update_stamina_status(
-            self,
-            image=None,
-            skip_first_screenshot=True,
-            expect_stamina=False,
-            expect_reserved=False,
-            expect_immersifier=False,
+        self,
+        image=None,
+        skip_first_screenshot=True,
+        expect_stamina=False,
+        expect_reserved=False,
+        expect_immersifier=False,
     ) -> DataStaminaStatus:
         """
         Update stamina status with retry

@@ -55,28 +55,32 @@ class CharacterTrial(UI):
                 info_closed = True
                 continue
             # Switch to Himeko trial
-            if self.appear(START_TRIAL) \
-                    and not self.appear(HIMEKO_CHECK) \
-                    and self.appear_then_click(HIMEKO_CLICK, interval=2):
+            if (
+                self.appear(START_TRIAL)
+                and not self.appear(HIMEKO_CHECK)
+                and self.appear_then_click(HIMEKO_CLICK, interval=2)
+            ):
                 continue
-            if self.appear(HIMEKO_CHECK) \
-                    and self.match_template_color(START_TRIAL, interval=2):
+            if self.appear(HIMEKO_CHECK) and self.match_template_color(START_TRIAL, interval=2):
                 self.device.click(START_TRIAL)
                 continue
             # Switch to regular trial
-            if self.match_template_color(REGULAR_GACHA_CHECK) \
-                    and self.match_color(CHARACTER_TRIAL, interval=2):
+            if self.match_template_color(REGULAR_GACHA_CHECK) and self.match_color(CHARACTER_TRIAL, interval=2):
                 self.device.click(CHARACTER_TRIAL)
                 in_regular_gacha = True
                 continue
             # scroll down to regular gacha
-            if not in_regular_gacha and not self.match_template_color(REGULAR_GACHA_CLICK) \
-                    and self.ui_page_appear(page_gacha, interval=2):
+            if (
+                not in_regular_gacha
+                and not self.match_template_color(REGULAR_GACHA_CLICK)
+                and self.ui_page_appear(page_gacha, interval=2)
+            ):
                 if first_gacha:
                     self.device.sleep(0.3)
                     first_gacha = False
                 p1, p2 = random_rectangle_vector_opted(
-                    (0, -120), box=REGULAR_GACHA_CLICK.search, random_range=(-5, -10, 5, 10), padding=0)
+                    (0, -120), box=REGULAR_GACHA_CLICK.search, random_range=(-5, -10, 5, 10), padding=0
+                )
                 self.device.drag(p1, p2, name=f'REGULAR_GACHA_DRAG')
                 self.interval_reset(page_gacha.check_button)
                 continue

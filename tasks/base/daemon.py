@@ -158,8 +158,8 @@ class Daemon(RouteBase, RadarMixin, DaemonBase, AimDetectorMixin):
                     continue
             # Aim click
             if self.handle_aim_click(
-                    item='item' in self.config.Daemon_AimClicker,
-                    enemy='enemy' in self.config.Daemon_AimClicker,
+                item='item' in self.config.Daemon_AimClicker,
+                enemy='enemy' in self.config.Daemon_AimClicker,
             ):
                 continue
             # Goto mission

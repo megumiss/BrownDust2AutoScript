@@ -70,7 +70,8 @@ def random_rectangle_vector(vector, box, random_range=(0, 0, 0, 0), padding=15):
 
 
 def random_rectangle_vector_opted(
-        vector, box, random_range=(0, 0, 0, 0), padding=15, whitelist_area=None, blacklist_area=None):
+    vector, box, random_range=(0, 0, 0, 0), padding=15, whitelist_area=None, blacklist_area=None
+):
     """
     Place a vector in a box randomly.
 
@@ -102,7 +103,7 @@ def random_rectangle_vector_opted(
         if not blacklist_area:
             return False
         for x in range(segment + 1):
-            point = - vector * x / segment + end
+            point = -vector * x / segment + end
             for area in blacklist_area:
                 if point_in_area(point, area, threshold=0):
                     return True
@@ -140,8 +141,10 @@ def random_line_segments(p1, p2, n, random_range=(0, 0, 0, 0)):
     Returns:
         list[tuple]: [(x0, y0), (x1, y1), (x2, y2)]
     """
-    return [tuple((((n - index) * p1 + index * p2) / n).astype(int) + random_rectangle_point(random_range))
-            for index in range(0, n + 1)]
+    return [
+        tuple((((n - index) * p1 + index * p2) / n).astype(int) + random_rectangle_point(random_range))
+        for index in range(0, n + 1)
+    ]
 
 
 def ensure_time(second, n=3, precision=3):
@@ -156,7 +159,7 @@ def ensure_time(second, n=3, precision=3):
         float:
     """
     if isinstance(second, tuple):
-        multiply = 10 ** precision
+        multiply = 10**precision
         result = random_normal_distribution_int(second[0] * multiply, second[1] * multiply, n) / multiply
         return round(result, precision)
     elif isinstance(second, str):
@@ -274,10 +277,7 @@ def area_size(area):
     Returns:
         tuple: (x, y).
     """
-    return (
-        max(area[2] - area[0], 0),
-        max(area[3] - area[1], 0)
-    )
+    return (max(area[2] - area[0], 0), max(area[3] - area[1], 0))
 
 
 def area_center(area):
@@ -305,10 +305,7 @@ def point_limit(point, area):
     Returns:
         tuple: (x, y).
     """
-    return (
-        limit_in(point[0], area[0], area[2]),
-        limit_in(point[1], area[1], area[3])
-    )
+    return (limit_in(point[0], area[0], area[2]), limit_in(point[1], area[1], area[3]))
 
 
 def point_in_area(point, area, threshold=5):
@@ -336,10 +333,12 @@ def area_in_area(area1, area2, threshold=5):
     Returns:
         bool:
     """
-    return area2[0] - threshold <= area1[0] \
-        and area2[1] - threshold <= area1[1] \
-        and area1[2] <= area2[2] + threshold \
+    return (
+        area2[0] - threshold <= area1[0]
+        and area2[1] - threshold <= area1[1]
+        and area1[2] <= area2[2] + threshold
         and area1[3] <= area2[3] + threshold
+    )
 
 
 def area_cross_area(area1, area2, threshold=5):
@@ -356,8 +355,10 @@ def area_cross_area(area1, area2, threshold=5):
     # https://www.yiiven.cn/rect-is-intersection.html
     xa1, ya1, xa2, ya2 = area1
     xb1, yb1, xb2, yb2 = area2
-    return abs(xb2 + xb1 - xa2 - xa1) <= xa2 - xa1 + xb2 - xb1 + threshold * 2 \
+    return (
+        abs(xb2 + xb1 - xa2 - xa1) <= xa2 - xa1 + xb2 - xb1 + threshold * 2
         and abs(yb2 + yb1 - ya2 - ya1) <= ya2 - ya1 + yb2 - yb1 + threshold * 2
+    )
 
 
 def float2str(n, decimal=3):
@@ -369,7 +370,7 @@ def float2str(n, decimal=3):
     Returns:
         str:
     """
-    return str(round(n, decimal)).ljust(decimal + 2, "0")
+    return str(round(n, decimal)).ljust(decimal + 2, '0')
 
 
 def point2str(x, y, length=4):
@@ -445,7 +446,7 @@ def name2col(col_str):
     col_str = col_str.strip('-').upper()
 
     for char in reversed(col_str):
-        col += (ord(char) - 64) * (26 ** expn)
+        col += (ord(char) - 64) * (26**expn)
         expn += 1
 
     if col_neg:
@@ -715,7 +716,7 @@ def image_paste(image, background, origin):
     """
     x, y = origin
     w, h = image_size(image)
-    background[y:y + h, x:x + w] = image
+    background[y : y + h, x : x + w] = image
 
 
 def rgb2gray(image):
@@ -809,6 +810,7 @@ class ImageNotSupported(Exception):
     """
     Raised if we can't perform image calculation on this image
     """
+
     pass
 
 
@@ -1214,7 +1216,7 @@ def color_bar_percentage(image, area, prev_color, reverse=False, starter=0, thre
             return prev_index / length
         # Look back 5px to get average color
         left = max(prev_index - 5, 0)
-        mask = np.where(bar[:, left:prev_index + 1] > 255 - threshold)
-        prev_color = np.mean(image[:, left:prev_index + 1][mask], axis=0)
+        mask = np.where(bar[:, left : prev_index + 1] > 255 - threshold)
+        prev_color = np.mean(image[:, left : prev_index + 1][mask], axis=0)
 
-    return 0.
+    return 0.0

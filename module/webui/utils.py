@@ -20,8 +20,8 @@ from module.logger import logger
 from module.webui.setting import State
 
 RE_DATETIME = (
-    r"\d{4}\-(0\d|1[0-2])\-([0-2]\d|[3][0-1]) "
-    r"([0-1]\d|[2][0-3]):([0-5]\d):([0-5]\d)"
+    r'\d{4}\-(0\d|1[0-2])\-([0-2]\d|[3][0-1]) '
+    r'([0-1]\d|[2][0-3]):([0-5]\d):([0-5]\d)'
 )
 
 
@@ -31,7 +31,7 @@ TRACEBACK_CODE_FORMAT = """\
 </code>
 """
 
-LOG_CODE_FORMAT = "{code}"
+LOG_CODE_FORMAT = '{code}'
 
 DARK_TERMINAL_THEME = TerminalTheme(
     (30, 30, 30),  # Background
@@ -93,9 +93,7 @@ class QueueHandler:
 
 
 class Task:
-    def __init__(
-        self, g: Generator, delay: float, next_run: float = None, name: str = None
-    ) -> None:
+    def __init__(self, g: Generator, delay: float, next_run: float = None, name: str = None) -> None:
         self.g = g
         g.send(None)
         self.delay = delay
@@ -103,7 +101,7 @@ class Task:
         self.name = name if name is not None else self.g.__name__
 
     def __str__(self) -> str:
-        return f"<{self.name} (delay={self.delay})>"
+        return f'<{self.name} (delay={self.delay})>'
 
     def __next__(self) -> None:
         return next(self.g)
@@ -144,9 +142,9 @@ class TaskHandler:
         Add a task running background.
         """
         if task in self.tasks:
-            logger.warning(f"Task {task} already in tasks list.")
+            logger.warning(f'Task {task} already in tasks list.')
             return
-        logger.info(f"Add task {task}")
+        logger.info(f'Add task {task}')
         with self._lock:
             self.tasks.append(task)
         if pending_delete:
@@ -155,11 +153,9 @@ class TaskHandler:
     def _remove_task(self, task: Task) -> None:
         if task in self.tasks:
             self.tasks.remove(task)
-            logger.info(f"Task {task} removed.")
+            logger.info(f'Task {task} removed.')
         else:
-            logger.warning(
-                f"Failed to remove task {task}. Current tasks list: {self.tasks}"
-            )
+            logger.warning(f'Failed to remove task {task}. Current tasks list: {self.tasks}')
 
     def remove_task(self, task: Task, nowait: bool = False) -> None:
         """
@@ -203,7 +199,7 @@ class TaskHandler:
         while self._alive:
             if self.tasks:
                 with self._lock:
-                    self.tasks.sort(key=operator.attrgetter("next_run"))
+                    self.tasks.sort(key=operator.attrgetter('next_run'))
                     task = self.tasks[0]
                 if task.next_run < time.time():
                     start_time = time.time()
@@ -226,7 +222,7 @@ class TaskHandler:
                     time.sleep(0.05)
             else:
                 time.sleep(0.5)
-        logger.info("End of task handler loop")
+        logger.info('End of task handler loop')
 
     def _get_thread(self) -> threading.Thread:
         thread = threading.Thread(target=self.loop, daemon=True)
@@ -236,9 +232,9 @@ class TaskHandler:
         """
         Start task handler.
         """
-        logger.info("Start task handler")
+        logger.info('Start task handler')
         if self._thread is not None and self._thread.is_alive():
-            logger.warning("Task handler already running!")
+            logger.warning('Task handler already running!')
             return
         self._thread = self._get_thread()
         self._thread.start()
@@ -248,9 +244,9 @@ class TaskHandler:
         self._alive = False
         self._thread.join(timeout=2)
         if not self._thread.is_alive():
-            logger.info("Finish task handler")
+            logger.info('Finish task handler')
         else:
-            logger.warning("Task handler does not stop within 2 seconds")
+            logger.warning('Task handler does not stop within 2 seconds')
 
 
 class WebIOTaskHandler(TaskHandler):
@@ -332,10 +328,10 @@ class Switch:
                 f = [f]
             for d in f:
                 if isinstance(d, Callable):
-                    d = {"func": d}
-                func = d["func"]
-                args = d.get("args", tuple())
-                kwargs = d.get("kwargs", dict())
+                    d = {'func': d}
+                func = d['func']
+                args = d.get('args', tuple())
+                kwargs = d.get('kwargs', dict())
                 func(*args, **kwargs)
 
     def g(self) -> Generator:
@@ -344,7 +340,7 @@ class Switch:
             name = self.name
         else:
             name = self.get_state.__name__
-        g.__name__ = f"Switch_{name}_refresh"
+        g.__name__ = f'Switch_{name}_refresh'
         return g
 
 
@@ -360,21 +356,21 @@ def get_generator(func: Callable):
 
 
 def filepath_css(filename):
-    return f"./assets/gui/css/{filename}.css"
+    return f'./assets/gui/css/{filename}.css'
 
 
 def filepath_icon(filename):
-    return f"./assets/gui/icon/{filename}.svg"
+    return f'./assets/gui/icon/{filename}.svg'
 
 
 def add_css(filepath):
-    with open(filepath, "r") as f:
-        css = f.read().replace("\n", "")
+    with open(filepath, 'r') as f:
+        css = f.read().replace('\n', '')
         run_js(f"""$('head').append('<style>{css}</style>')""")
 
 
 def _read(path):
-    with open(path, "r") as f:
+    with open(path, 'r') as f:
         return f.read()
 
 
@@ -383,19 +379,19 @@ class Icon:
     Storage html of icon.
     """
 
-    ALAS = _read(filepath_icon("alas"))
-    SETTING = _read(filepath_icon("setting"))
-    RUN = _read(filepath_icon("run"))
-    DEVELOP = _read(filepath_icon("develop"))
-    ADD = _read(filepath_icon("add"))
+    ALAS = _read(filepath_icon('alas'))
+    SETTING = _read(filepath_icon('setting'))
+    RUN = _read(filepath_icon('run'))
+    DEVELOP = _read(filepath_icon('develop'))
+    ADD = _read(filepath_icon('add'))
 
 
 str2type = {
-    "str": str,
-    "float": float,
-    "int": int,
-    "bool": bool,
-    "ignore": lambda x: x,
+    'str': str,
+    'float': float,
+    'int': int,
+    'bool': bool,
+    'ignore': lambda x: x,
 }
 
 
@@ -438,33 +434,33 @@ def to_pin_value(val):
 
 
 def login(password):
-    if get_localstorage("password") == str(password):
+    if get_localstorage('password') == str(password):
         return True
-    pwd = input(label="Please login below.", type=PASSWORD, placeholder="PASSWORD")
+    pwd = input(label='Please login below.', type=PASSWORD, placeholder='PASSWORD')
     if str(pwd) == str(password):
-        set_localstorage("password", str(pwd))
+        set_localstorage('password', str(pwd))
         return True
     else:
-        toast("Wrong password!", color="error")
+        toast('Wrong password!', color='error')
         return False
 
 
 def get_window_visibility_state():
-    ret = eval_js("document.visibilityState")
-    return False if ret == "hidden" else True
+    ret = eval_js('document.visibilityState')
+    return False if ret == 'hidden' else True
 
 
 # https://pywebio.readthedocs.io/zh_CN/latest/cookbook.html#cookie-and-localstorage-manipulation
 def set_localstorage(key, value):
-    return run_js("localStorage.setItem(key, value)", key=key, value=value)
+    return run_js('localStorage.setItem(key, value)', key=key, value=value)
 
 
 def get_localstorage(key):
-    return eval_js("localStorage.getItem(key)", key=key)
+    return eval_js('localStorage.getItem(key)', key=key)
 
 
 def re_fullmatch(pattern, string):
-    if pattern == "datetime":
+    if pattern == 'datetime':
         try:
             datetime.datetime.fromisoformat(string)
             return True
@@ -476,49 +472,37 @@ def re_fullmatch(pattern, string):
 
 def get_next_time(t: datetime.time):
     now = datetime.datetime.today().time()
-    second = (
-        (t.hour - now.hour) * 3600
-        + (t.minute - now.minute) * 60
-        + (t.second - now.second)
-    )
+    second = (t.hour - now.hour) * 3600 + (t.minute - now.minute) * 60 + (t.second - now.second)
     if second < 0:
         second += 86400
     return second
 
 
 def on_task_exception(self):
-    logger.exception("An internal error occurred in the application")
+    logger.exception('An internal error occurred in the application')
     toast_msg = (
-        "应用发生内部错误"
-        if "zh" in session_info.user_language
-        else "An internal error occurred in the application"
+        '应用发生内部错误' if 'zh' in session_info.user_language else 'An internal error occurred in the application'
     )
 
     e_type, e_value, e_tb = sys.exc_info()
     lines = traceback.format_exception(e_type, e_value, e_tb)
-    traceback_msg = "".join(lines)
+    traceback_msg = ''.join(lines)
 
-    traceback_console = Console(
-        color_system="truecolor", tab_size=2, record=True, width=90
-    )
+    traceback_console = Console(color_system='truecolor', tab_size=2, record=True, width=90)
     with traceback_console.capture():  # prevent logging to stdout again
-        traceback_console.print_exception(
-            word_wrap=True, extra_lines=1, show_locals=True
-        )
+        traceback_console.print_exception(word_wrap=True, extra_lines=1, show_locals=True)
 
-    if State.theme == "dark":
+    if State.theme == 'dark':
         theme = DARK_TERMINAL_THEME
     else:
         theme = LIGHT_TERMINAL_THEME
 
-    html = traceback_console.export_html(
-        theme=theme, code_format=TRACEBACK_CODE_FORMAT, inline_styles=True
-    )
+    html = traceback_console.export_html(theme=theme, code_format=TRACEBACK_CODE_FORMAT, inline_styles=True)
     try:
         popup(title=toast_msg, content=put_html(html), size=PopupSize.LARGE)
         run_js(
-            "console.error(traceback_msg)",
-            traceback_msg="Internal Server Error\n" + traceback_msg,
+            'console.error(traceback_msg)',
+            traceback_msg='Internal Server Error\n' + traceback_msg,
         )
     except Exception:
         pass
@@ -535,17 +519,17 @@ def raise_exception(x=3):
     if x > 0:
         raise_exception(x - 1)
     else:
-        raise Exception("quq")
+        raise Exception('quq')
 
 
 def get_alas_config_listen_path(args):
     for path, d in deep_iter(args, depth=3):
-        if d.get("display") in ["readonly", "hide"]:
+        if d.get('display') in ['readonly', 'hide']:
             continue
         yield path
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
 
     def gen(x):
         n = 0

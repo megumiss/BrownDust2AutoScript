@@ -56,6 +56,7 @@ class Resource:
     @classmethod
     def resource_show(cls):
         from module.logger import logger
+
         logger.hr('Show resource')
         for key, obj in cls.instances.items():
             if cls.is_loaded(obj):
@@ -67,6 +68,7 @@ def release_resources(next_task=''):
     # det models take 400MB
     if not next_task:
         from module.ocr.models import OCR_MODEL
+
         OCR_MODEL.resource_release()
 
     # Release assets cache
@@ -85,6 +87,7 @@ def release_resources(next_task=''):
     # cause user may change it
     if not next_task:
         from tasks.base.main_page import MainPage
+
         MainPage._lang_checked = False
 
     # Useless in most cases, but just call it

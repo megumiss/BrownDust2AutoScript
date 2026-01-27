@@ -23,9 +23,18 @@ class CombatTeam(UI):
         """
         team = 0
         for button in [
-            TEAM_1_CHECK, TEAM_2_CHECK, TEAM_3_CHECK, TEAM_4_CHECK, TEAM_5_CHECK,
-            TEAM_6_CHECK, TEAM_7_CHECK, TEAM_8_CHECK, TEAM_9_CHECK, TEAM_10_CHECK,
-            TEAM_11_CHECK, TEAM_12_CHECK,
+            TEAM_1_CHECK,
+            TEAM_2_CHECK,
+            TEAM_3_CHECK,
+            TEAM_4_CHECK,
+            TEAM_5_CHECK,
+            TEAM_6_CHECK,
+            TEAM_7_CHECK,
+            TEAM_8_CHECK,
+            TEAM_9_CHECK,
+            TEAM_10_CHECK,
+            TEAM_11_CHECK,
+            TEAM_12_CHECK,
         ]:
             button.load_search(TEAM_SEARCH.area)
             if self.match_template_luma(button, similarity=0.92):

@@ -26,6 +26,7 @@ class CombatObtain(PlannerMixin):
     Pages:
         in: COMBAT_PREPARE
     """
+
     # False to click again when combat ends
     # True to exit and reenter to get obtained items
     obtain_frequent_check = False

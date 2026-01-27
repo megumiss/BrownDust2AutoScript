@@ -8,15 +8,34 @@ from module.config.deep import deep_get
 def resort(dic: dict):
     # Poor assigment sort for 2.2
     order = [
-        1008, 1007, 1006, 1005, 1004, 1003, 1002, 1001,
-        3001, 2001, 4001,
-        5008, 5006, 5005, 5003, 5002, 5007, 5004, 5001,
+        1008,
+        1007,
+        1006,
+        1005,
+        1004,
+        1003,
+        1002,
+        1001,
+        3001,
+        2001,
+        4001,
+        5008,
+        5006,
+        5005,
+        5003,
+        5002,
+        5007,
+        5004,
+        5001,
     ]
     out = {}
     for index in order:
         value = dic.pop(index)
         out[index] = value
-    for k, v, in dic.items():
+    for (
+        k,
+        v,
+    ) in dic.items():
         out[k] = v
     return out
 
@@ -41,20 +60,14 @@ def get_assignment_entry_data():
         if deep_get(expedition, 'Duration') == 4 and deep_get(expedition, 'AvatarNum') == 2
     }
     reward_id_to_item_ids = {
-        deep_get(reward, 'RewardID'): [
-            v for k, v in reward.items()
-            if k.startswith('ItemID')
-        ]
+        deep_get(reward, 'RewardID'): [v for k, v in reward.items() if k.startswith('ItemID')]
         for reward in GenerateKeyword.read_file('./ExcelOutput/RewardData.json')
     }
     item_id_to_namehash = {
         deep_get(item, 'ID'): deep_get(item, 'ItemName.Hash')
         for item in GenerateKeyword.read_file('./ExcelOutput/ItemConfig.json')
     }
-    item_name_remap = {
-        '旅情见闻': '角色经验材料',
-        '稀薄以太': '光锥经验材料'
-    }
+    item_name_remap = {'旅情见闻': '角色经验材料', '稀薄以太': '光锥经验材料'}
     ret = dict()
     for expedition_namehash, expedition_id in expedition_namehash_to_id.items():
         reward_id = expedition_id_to_reward_id[expedition_id]
@@ -63,8 +76,7 @@ def get_assignment_entry_data():
         if len(item_names) == 1:
             item = GenerateKeyword.find_keyword(item_names[0], lang='cn')[1]
             if item in item_name_remap:
-                item_names = [GenerateKeyword.find_keyword(
-                    item_name_remap[item], lang='cn')[0]]
+                item_names = [GenerateKeyword.find_keyword(item_name_remap[item], lang='cn')[0]]
         ret[expedition_namehash] = item_names
     return ret
 
@@ -99,26 +111,20 @@ class GenerateAssignmentEntryDetailed(GenerateKeyword):
 
     def iter_keywords(self) -> Iterable[dict]:
         for assignment_id, reward_ids in get_assignment_entry_data().items():
-            yield dict(
-                text_id=assignment_id,
-                reward_ids=reward_ids
-            )
+            yield dict(text_id=assignment_id, reward_ids=reward_ids)
 
     def iter_rows(self) -> Iterable[dict]:
         for keyword in super().iter_rows():
             reward_ids = keyword.pop('reward_ids')
             for lang in UI_LANGUAGES:
                 assignment_name = keyword[lang]
-                reward_name = ' & '.join(
-                    self.find_keyword(reward_id, lang=lang)[1]
-                    for reward_id in reward_ids
+                reward_name = ' & '.join(self.find_keyword(reward_id, lang=lang)[1] for reward_id in reward_ids)
+                name_format = (
+                    '{reward_name} ({assignment_name})'
+                    if lang in {'en', 'es'}
+                    else '{reward_name}（{assignment_name}）'
                 )
-                name_format = '{reward_name} ({assignment_name})' if lang in {
-                    'en', 'es'} else '{reward_name}（{assignment_name}）'
-                keyword[lang] = name_format.format(
-                    reward_name=reward_name,
-                    assignment_name=assignment_name
-                )
+                keyword[lang] = name_format.format(reward_name=reward_name, assignment_name=assignment_name)
             yield keyword
 
 
@@ -139,7 +145,7 @@ class GenerateAssignmentEventEntry(GenerateKeyword):
             yield dict(text_id=deep_get(expedition, 'Name.Hash'))
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     from dev_tools.keywords.base import TextMap
 
     TextMap.DATA_FOLDER = '../DanhengServer-Resources'

@@ -28,15 +28,25 @@ class WeeklyDungeon(Dungeon):
     def require_compulsory_support(self) -> bool:
         return False
 
-    def _dungeon_run(self, dungeon: DungeonList, team: int = None, wave_limit: int = 0, support_character: str = None,
-                     skip_ui_switch: bool = False):
+    def _dungeon_run(
+        self,
+        dungeon: DungeonList,
+        team: int = None,
+        wave_limit: int = 0,
+        support_character: str = None,
+        skip_ui_switch: bool = False,
+    ):
         if team is None:
             team = self.config.Weekly_Team
 
         skip_ui_switch = True
         return super()._dungeon_run(
-            dungeon=dungeon, team=team, wave_limit=wave_limit,
-            support_character=support_character, skip_ui_switch=skip_ui_switch)
+            dungeon=dungeon,
+            team=team,
+            wave_limit=wave_limit,
+            support_character=support_character,
+            skip_ui_switch=skip_ui_switch,
+        )
 
     def handle_ascension_dungeon_prepare(self):
         # combat_wave_cost==30 in weekly, but no handle_ascension_dungeon_prepare required

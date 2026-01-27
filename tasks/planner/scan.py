@@ -67,13 +67,7 @@ class OcrPlannerResult(OcrWhiteLetterOnComplexBackground, OcrItemName):
         self.limited_area = OCR_RESULT.area
         self.limit_y = 720
 
-    def _match_result(
-            self,
-            result: str,
-            keyword_classes,
-            lang: str = None,
-            ignore_punctuation=True,
-            ignore_digit=True):
+    def _match_result(self, result: str, keyword_classes, lang: str = None, ignore_punctuation=True, ignore_digit=True):
         lang = self.lang
         return super()._match_result(
             result,
@@ -138,7 +132,11 @@ class PlannerScan(SynthesizeUI, PlannerMixin):
         if self.config.Emulator_PackageName in ['CN-Official', 'CN-Bilibili']:
             lang = 'cn'
         elif self.config.Emulator_PackageName in [
-            'OVERSEA-America', 'OVERSEA-Asia', 'OVERSEA-Europe', 'OVERSEA-TWHKMO']:
+            'OVERSEA-America',
+            'OVERSEA-Asia',
+            'OVERSEA-Europe',
+            'OVERSEA-TWHKMO',
+        ]:
             lang = 'en'
         else:
             lang = self.config.LANG
@@ -169,8 +167,11 @@ class PlannerScan(SynthesizeUI, PlannerMixin):
             return y - 15 <= rx <= y + 15
 
         # Split columns
-        list_item = [r for r in results
-                     if not r.ocr_text.isdigit() and ocr._match_result(r.ocr_text, keyword_classes=ITEM_CLASSES)]
+        list_item = [
+            r
+            for r in results
+            if not r.ocr_text.isdigit() and ocr._match_result(r.ocr_text, keyword_classes=ITEM_CLASSES)
+        ]
         list_number = [r for r in results if r.ocr_text.isdigit()]
         list_total = [r for r in list_number if x_match(r, x_total)]
         list_synthesize = [r for r in list_number if x_match(r, x_synthesize)]
@@ -196,12 +197,7 @@ class PlannerScan(SynthesizeUI, PlannerMixin):
                     demand = int(number.ocr_text)
                     break
             item = ocr._match_result(item.ocr_text, keyword_classes=ITEM_CLASSES)
-            row = PlannerResultRow(
-                item=item,
-                total=total,
-                synthesize=synthesize,
-                demand=demand
-            )
+            row = PlannerResultRow(item=item, total=total, synthesize=synthesize, demand=demand)
             # Validate item
             # print(row)
             if row.total <= 0:
@@ -278,7 +274,8 @@ class PlannerScan(SynthesizeUI, PlannerMixin):
                 # scroll.next_page(main=self, page=0.8)
                 vector = (0, -300)
                 p1, p2 = random_rectangle_vector_opted(
-                    vector, box=RESULT_DRAG.area, random_range=(-10, -50, 10, 50), padding=0)
+                    vector, box=RESULT_DRAG.area, random_range=(-10, -50, 10, 50), padding=0
+                )
                 self.device.drag(p1, p2, name=RESULT_DRAG.name)
 
         logger.hr('Planner Result')

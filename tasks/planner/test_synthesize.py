@@ -13,14 +13,15 @@ class TestUpdateSynthesize:
         """创建mock的item对象"""
         return Worldbreaker_Blade
 
-    def create_proxy(self, mock_item, value_green=0, value_blue=0, value_purple=0,
-                     total_green=0, total_blue=0, total_purple=0):
+    def create_proxy(
+        self, mock_item, value_green=0, value_blue=0, value_purple=0, total_green=0, total_blue=0, total_purple=0
+    ):
         """辅助方法：创建StoredPlannerProxy对象"""
         proxy = StoredPlannerProxy(
             item=mock_item,
             value=MultiValue(green=value_green, blue=value_blue, purple=value_purple),
             total=MultiValue(green=total_green, blue=total_blue, purple=total_purple),
-            synthesize=MultiValue()
+            synthesize=MultiValue(),
         )
         return proxy
 
@@ -28,9 +29,7 @@ class TestUpdateSynthesize:
         """策略1: 使用溢出的蓝合成紫 (3蓝→1紫)"""
         # 有9个溢出的蓝，需要2个紫
         proxy = self.create_proxy(
-            mock_item,
-            value_green=0, value_blue=15, value_purple=0,
-            total_green=0, total_blue=6, total_purple=2
+            mock_item, value_green=0, value_blue=15, value_purple=0, total_green=0, total_blue=6, total_purple=2
         )
 
         proxy.update_synthesize()
@@ -44,9 +43,7 @@ class TestUpdateSynthesize:
         """策略2: 从绿直接合成紫 (9绿→1紫)"""
         # 有27个溢出的绿，需要2个紫
         proxy = self.create_proxy(
-            mock_item,
-            value_green=30, value_blue=0, value_purple=0,
-            total_green=3, total_blue=0, total_purple=2
+            mock_item, value_green=30, value_blue=0, value_purple=0, total_green=3, total_blue=0, total_purple=2
         )
 
         proxy.update_synthesize()
@@ -64,9 +61,7 @@ class TestUpdateSynthesize:
         # 7个蓝需要21个绿，但只有9个绿，所以只能合成3个蓝
         # 2+3=5个蓝，可以再合成1个紫
         proxy = self.create_proxy(
-            mock_item,
-            value_green=12, value_blue=8, value_purple=0,
-            total_green=3, total_blue=3, total_purple=4
+            mock_item, value_green=12, value_blue=8, value_purple=0, total_green=3, total_blue=3, total_purple=4
         )
 
         proxy.update_synthesize()
@@ -82,9 +77,7 @@ class TestUpdateSynthesize:
         """当紫够但蓝不足时: 从绿合成蓝 (3绿→1蓝)"""
         # 有9个溢出的绿，紫够了，但缺3个蓝
         proxy = self.create_proxy(
-            mock_item,
-            value_green=15, value_blue=2, value_purple=10,
-            total_green=6, total_blue=5, total_purple=5
+            mock_item, value_green=15, value_blue=2, value_purple=10, total_green=6, total_blue=5, total_purple=5
         )
 
         proxy.update_synthesize()
@@ -97,9 +90,7 @@ class TestUpdateSynthesize:
     def test_no_overflow_no_synthesis(self, mock_item):
         """没有溢出材料时，不进行合成"""
         proxy = self.create_proxy(
-            mock_item,
-            value_green=5, value_blue=3, value_purple=2,
-            total_green=10, total_blue=5, total_purple=3
+            mock_item, value_green=5, value_blue=3, value_purple=2, total_green=10, total_blue=5, total_purple=3
         )
 
         proxy.update_synthesize()
@@ -113,9 +104,7 @@ class TestUpdateSynthesize:
         """测试优先使用蓝而不是绿"""
         # 有6个溢出的蓝和18个溢出的绿，需要2个紫
         proxy = self.create_proxy(
-            mock_item,
-            value_green=20, value_blue=10, value_purple=0,
-            total_green=2, total_blue=4, total_purple=2
+            mock_item, value_green=20, value_blue=10, value_purple=0, total_green=2, total_blue=4, total_purple=2
         )
 
         proxy.update_synthesize()
@@ -129,9 +118,7 @@ class TestUpdateSynthesize:
         """测试精确数量的合成"""
         # 正好9个绿，需要1个紫
         proxy = self.create_proxy(
-            mock_item,
-            value_green=12, value_blue=0, value_purple=0,
-            total_green=3, total_blue=0, total_purple=1
+            mock_item, value_green=12, value_blue=0, value_purple=0, total_green=3, total_blue=0, total_purple=1
         )
 
         proxy.update_synthesize()
@@ -144,9 +131,7 @@ class TestUpdateSynthesize:
         """测试绿材料不足9个时无法合成紫"""
         # 只有8个溢出的绿，需要1个紫
         proxy = self.create_proxy(
-            mock_item,
-            value_green=10, value_blue=0, value_purple=0,
-            total_green=2, total_blue=0, total_purple=1
+            mock_item, value_green=10, value_blue=0, value_purple=0, total_green=2, total_blue=0, total_purple=1
         )
 
         proxy.update_synthesize()
@@ -159,9 +144,7 @@ class TestUpdateSynthesize:
     def test_all_materials_overflow(self, mock_item):
         """测试所有材料都溢出时不需要合成"""
         proxy = self.create_proxy(
-            mock_item,
-            value_green=20, value_blue=10, value_purple=5,
-            total_green=10, total_blue=5, total_purple=3
+            mock_item, value_green=20, value_blue=10, value_purple=5, total_green=10, total_blue=5, total_purple=3
         )
 
         proxy.update_synthesize()
@@ -175,9 +158,7 @@ class TestUpdateSynthesize:
         """测试大数量的合成"""
         # 有100个溢出的绿，需要10个紫
         proxy = self.create_proxy(
-            mock_item,
-            value_green=120, value_blue=0, value_purple=0,
-            total_green=20, total_blue=0, total_purple=10
+            mock_item, value_green=120, value_blue=0, value_purple=0, total_green=20, total_blue=0, total_purple=10
         )
 
         proxy.update_synthesize()
@@ -191,9 +172,7 @@ class TestUpdateSynthesize:
         """测试多策略组合使用"""
         # 有4个溢出的蓝（可以合成1个紫）和27个溢出的绿（可以合成3个紫），需要3个紫
         proxy = self.create_proxy(
-            mock_item,
-            value_green=30, value_blue=7, value_purple=0,
-            total_green=3, total_blue=3, total_purple=3
+            mock_item, value_green=30, value_blue=7, value_purple=0, total_green=3, total_blue=3, total_purple=3
         )
 
         proxy.update_synthesize()
@@ -208,9 +187,7 @@ class TestUpdateSynthesize:
         """测试部分蓝合成的情况"""
         # 有5个溢出的蓝，需要1个紫（只用3个蓝）
         proxy = self.create_proxy(
-            mock_item,
-            value_green=0, value_blue=8, value_purple=0,
-            total_green=0, total_blue=3, total_purple=1
+            mock_item, value_green=0, value_blue=8, value_purple=0, total_green=0, total_blue=3, total_purple=1
         )
 
         proxy.update_synthesize()
@@ -224,12 +201,7 @@ class TestUpdateSynthesize:
         """测试没有group_base的item"""
         item = Broken_Teeth_of_Iron_Wolf
 
-        proxy = StoredPlannerProxy(
-            item=item,
-            value=100,
-            total=50,
-            synthesize=0
-        )
+        proxy = StoredPlannerProxy(item=item, value=100, total=50, synthesize=0)
 
         proxy.update_synthesize()
 
@@ -309,7 +281,7 @@ class TestEdgeCases:
             item=mock_item,
             value=MultiValue(green=10, blue=5, purple=2),
             total=MultiValue(green=10, blue=5, purple=2),
-            synthesize=MultiValue()
+            synthesize=MultiValue(),
         )
 
         proxy.update_synthesize()
@@ -324,7 +296,7 @@ class TestEdgeCases:
             item=mock_item,
             value=MultiValue(green=100, blue=0, purple=0),
             total=MultiValue(green=10, blue=0, purple=5),
-            synthesize=MultiValue()
+            synthesize=MultiValue(),
         )
 
         proxy.update_synthesize()
@@ -341,7 +313,7 @@ class TestEdgeCases:
             item=mock_item,
             value=MultiValue(green=8, blue=4, purple=0),
             total=MultiValue(green=2, blue=2, purple=1),
-            synthesize=MultiValue()
+            synthesize=MultiValue(),
         )
 
         proxy.update_synthesize()

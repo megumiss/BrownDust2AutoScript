@@ -52,50 +52,47 @@ class Benchmark(DaemonBase):
                 return 'Failed'
 
             cost = time.time() - start
-            logger.attr(
-                f'{str(n).rjust(2, "0")}/{self.TEST_TOTAL}',
-                f'{float2str(cost)}'
-            )
+            logger.attr(f'{str(n).rjust(2, "0")}/{self.TEST_TOTAL}', f'{float2str(cost)}')
             record.append(cost)
 
         logger.info('Benchmark tests done')
-        average = float(np.mean(np.sort(record)[:self.TEST_BEST]))
+        average = float(np.mean(np.sort(record)[: self.TEST_BEST]))
         logger.info(f'Time cost {float2str(average)} ({self.TEST_BEST} best results out of {self.TEST_TOTAL} tests)')
         return average
 
     @staticmethod
     def evaluate_screenshot(cost):
         if not isinstance(cost, (float, int)):
-            return Text(cost, style="bold bright_red")
+            return Text(cost, style='bold bright_red')
 
         if cost < 0.025:
-            return Text('Insane Fast', style="bold bright_green")
+            return Text('Insane Fast', style='bold bright_green')
         if cost < 0.100:
-            return Text('Ultra Fast', style="bold bright_green")
+            return Text('Ultra Fast', style='bold bright_green')
         if cost < 0.200:
-            return Text('Very Fast', style="bright_green")
+            return Text('Very Fast', style='bright_green')
         if cost < 0.300:
-            return Text('Fast', style="green")
+            return Text('Fast', style='green')
         if cost < 0.500:
-            return Text('Medium', style="yellow")
+            return Text('Medium', style='yellow')
         if cost < 0.750:
-            return Text('Slow', style="red")
+            return Text('Slow', style='red')
         if cost < 1.000:
-            return Text('Very Slow', style="bright_red")
-        return Text('Ultra Slow', style="bold bright_red")
+            return Text('Very Slow', style='bright_red')
+        return Text('Ultra Slow', style='bold bright_red')
 
     @staticmethod
     def evaluate_click(cost):
         if not isinstance(cost, (float, int)):
-            return Text(cost, style="bold bright_red")
+            return Text(cost, style='bold bright_red')
 
         if cost < 0.100:
-            return Text('Fast', style="bright_green")
+            return Text('Fast', style='bright_green')
         if cost < 0.200:
-            return Text('Medium', style="yellow")
+            return Text('Medium', style='yellow')
         if cost < 0.400:
-            return Text('Slow', style="red")
-        return Text('Very Slow', style="bright_red")
+            return Text('Slow', style='red')
+        return Text('Very Slow', style='bright_red')
 
     @staticmethod
     def show(test, data, evaluate_func):
@@ -116,11 +113,9 @@ class Benchmark(DaemonBase):
         # for row in table.get_string().split('\n'):
         #     logger.info(row)
         table = Table(show_lines=True)
-        table.add_column(
-            test, header_style="bright_cyan", style="cyan", no_wrap=True
-        )
-        table.add_column("Time", style="magenta")
-        table.add_column("Speed", style="green")
+        table.add_column(test, header_style='bright_cyan', style='cyan', no_wrap=True)
+        table.add_column('Time', style='magenta')
+        table.add_column('Speed', style='green')
         for row in data:
             table.add_row(
                 row[0],

@@ -13,7 +13,6 @@ from tasks.freebies.assets.assets_freebies_support_reward import (
 
 
 class SupportReward(UI):
-
     def run(self):
         """
         Run get support reward task

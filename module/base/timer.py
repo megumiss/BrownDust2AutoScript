@@ -45,7 +45,7 @@ class Timer:
         """
         self.limit = limit
         self.count = count
-        self._start = 0.
+        self._start = 0.0
         self._access = 0
 
     @classmethod
@@ -92,10 +92,10 @@ class Timer:
         if self._start > 0:
             diff = time() - self._start
             if diff < 0:
-                diff = 0.
+                diff = 0.0
             return diff
         else:
-            return 0.
+            return 0.0
 
     def current_count(self):
         """
@@ -161,7 +161,7 @@ class Timer:
         """
         Reset the timer as if it never started
         """
-        self._start = 0.
+        self._start = 0.0
         self._access = self.count
         return self
 
@@ -186,6 +186,7 @@ class Timer:
 
     def show(self):
         from module.logger import logger
+
         logger.info(str(self))
 
     def __str__(self):

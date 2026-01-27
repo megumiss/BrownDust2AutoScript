@@ -74,7 +74,7 @@ else:
 output = './screenshots/dev_screenshots'
 os.makedirs(output, exist_ok=True)
 device.disable_stuck_detection()
-device.screenshot_interval_set(0.)
+device.screenshot_interval_set(0.0)
 print('')
 print(f'截图将保存到: {output}')
 

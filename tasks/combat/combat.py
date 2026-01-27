@@ -18,8 +18,17 @@ from tasks.combat.team import CombatTeam
 from tasks.map.control.joystick import MapControlJoystick
 
 
-class Combat(CombatInteract, CombatPrepare, CombatSupport, CombatTeam, CombatSkill, CombatObtain, CombatPopup,
-             MapControlJoystick, Fuel):
+class Combat(
+    CombatInteract,
+    CombatPrepare,
+    CombatSupport,
+    CombatTeam,
+    CombatSkill,
+    CombatObtain,
+    CombatPopup,
+    MapControlJoystick,
+    Fuel,
+):
     is_doing_planner: bool = False
 
     def handle_combat_prepare(self):
@@ -81,10 +90,10 @@ class Combat(CombatInteract, CombatPrepare, CombatSupport, CombatTeam, CombatSki
                 logger.info(
                     f'Current has {current}, combat costs {cost}, '
                     f'wave={self.combat_wave_done}/{self.combat_wave_limit}, '
-                    f'able to do {self.combat_waves} waves')
+                    f'able to do {self.combat_waves} waves'
+                )
             else:
-                logger.info(f'Current has {current}, combat costs {cost}, '
-                            f'able to do {self.combat_waves} waves')
+                logger.info(f'Current has {current}, combat costs {cost}, able to do {self.combat_waves} waves')
             if self.combat_waves > 0:
                 if self.combat_waves <= 1 and total == 3:
                     # Echo of war does not have wave slider when 1/3
@@ -93,8 +102,7 @@ class Combat(CombatInteract, CombatPrepare, CombatSupport, CombatTeam, CombatSki
                     self.combat_set_wave(self.combat_waves, total)
         else:
             # Others
-            logger.info(f'Current has {current}, combat costs {cost}, '
-                        f'do {self.combat_waves} wave')
+            logger.info(f'Current has {current}, combat costs {cost}, do {self.combat_waves} wave')
 
         # Check limits
         if self.config.stored.TrailblazePower.value < cost:
@@ -178,8 +186,10 @@ class Combat(CombatInteract, CombatPrepare, CombatSupport, CombatTeam, CombatSki
                         return False
                     if self.combat_wave_limit:
                         if self.combat_wave_done >= self.combat_wave_limit:
-                            logger.info(f'Combat wave limit: {self.combat_wave_done}/{self.combat_wave_limit}, '
-                                        f'can not run again')
+                            logger.info(
+                                f'Combat wave limit: {self.combat_wave_done}/{self.combat_wave_limit}, '
+                                f'can not run again'
+                            )
                             return False
                     if not self.handle_combat_prepare():
                         return False
@@ -223,8 +233,9 @@ class Combat(CombatInteract, CombatPrepare, CombatSupport, CombatTeam, CombatSki
             if callable(expected_end) and expected_end():
                 logger.info(f'Combat execute ended at {expected_end.__name__}')
                 break
-            if (self.appear(COMBAT_AGAIN) and
-                    self.image_color_count(COMBAT_AGAIN, color=(227, 227, 228), threshold=221, count=50)):
+            if self.appear(COMBAT_AGAIN) and self.image_color_count(
+                COMBAT_AGAIN, color=(227, 227, 228), threshold=221, count=50
+            ):
                 logger.info(f'Combat execute ended at {COMBAT_AGAIN}')
                 break
             if self.is_in_main():
@@ -270,8 +281,7 @@ class Combat(CombatInteract, CombatPrepare, CombatSupport, CombatTeam, CombatSki
         # Wave limit
         if self.combat_wave_limit:
             if self.combat_wave_done >= self.combat_wave_limit:
-                logger.info(f'Combat wave limit: {self.combat_wave_done}/{self.combat_wave_limit}, '
-                            f'can not run again')
+                logger.info(f'Combat wave limit: {self.combat_wave_done}/{self.combat_wave_limit}, can not run again')
                 return False
         # Cost limit
         if self.combat_wave_cost > 0:
@@ -290,16 +300,13 @@ class Combat(CombatInteract, CombatPrepare, CombatSupport, CombatTeam, CombatSki
         if self.config.TrailblazePower_FuelOnlyPlanner and not self.is_doing_planner:
             use_fuel_ = False
         self.extract_stamina(
-            update=False,
-            use_reserved=self.config.TrailblazePower_ExtractReservedTrailblazePower,
-            use_fuel=use_fuel_
+            update=False, use_reserved=self.config.TrailblazePower_ExtractReservedTrailblazePower, use_fuel=use_fuel_
         )
         current = self.config.stored.TrailblazePower.value
         if current >= cost:
             return True
         else:
-            logger.info(
-                f'Current has {current}, combat costs {self.combat_wave_cost}, can not run again')
+            logger.info(f'Current has {current}, combat costs {self.combat_wave_cost}, can not run again')
             return False
 
     def _combat_should_reenter(self):
@@ -310,11 +317,14 @@ class Combat(CombatInteract, CombatPrepare, CombatSupport, CombatTeam, CombatSki
         # Planner
         logger.attr('obtain_frequent_check', self.obtain_frequent_check)
         if self.obtain_frequent_check:
-            if self.config.stored.TrailblazePower.value >= self.combat_wave_cost \
-                    and (self.combat_wave_limit and self.combat_wave_done < self.combat_wave_limit):
-                logger.info(f'Still having some trailblaze power '
-                            f'but wave limit not reached {self.combat_wave_done}/{self.combat_wave_limit}, '
-                            f'ignore obtain_frequent_check cause will reenter later')
+            if self.config.stored.TrailblazePower.value >= self.combat_wave_cost and (
+                self.combat_wave_limit and self.combat_wave_done < self.combat_wave_limit
+            ):
+                logger.info(
+                    f'Still having some trailblaze power '
+                    f'but wave limit not reached {self.combat_wave_done}/{self.combat_wave_limit}, '
+                    f'ignore obtain_frequent_check cause will reenter later'
+                )
                 return False
             else:
                 logger.info('Re-enter combat to check obtained items')
@@ -322,8 +332,9 @@ class Combat(CombatInteract, CombatPrepare, CombatSupport, CombatTeam, CombatSki
         # Stamina
         if self.config.stored.TrailblazePower.value < self.combat_wave_cost:
             if self.is_doing_planner:
-                logger.info('Current trailblaze power is not enough for next run, '
-                            're-enter combat to check obtained items')
+                logger.info(
+                    'Current trailblaze power is not enough for next run, re-enter combat to check obtained items'
+                )
                 return True
             else:
                 logger.info('Current trailblaze power is not enough for next run')
@@ -331,8 +342,9 @@ class Combat(CombatInteract, CombatPrepare, CombatSupport, CombatTeam, CombatSki
         # Wave limit
         if self.combat_wave_limit:
             if self.combat_wave_done < self.combat_wave_limit:
-                logger.info(f'Combat wave limit: {self.combat_wave_done}/{self.combat_wave_limit}, '
-                            f'run again with less waves')
+                logger.info(
+                    f'Combat wave limit: {self.combat_wave_done}/{self.combat_wave_limit}, run again with less waves'
+                )
                 return True
             else:
                 return False

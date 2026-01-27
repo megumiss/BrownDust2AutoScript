@@ -14,9 +14,7 @@ class MailReward(UI):
             out: MAIL_CHECK
         """
         logger.info('Mail enter')
-        self.interval_clear([
-            page_menu.check_button
-        ])
+        self.interval_clear([page_menu.check_button])
         for _ in self.loop():
             if self.match_template_luma(MAIL_CHECK):
                 break
@@ -37,9 +35,7 @@ class MailReward(UI):
             out: page_menu
         """
         logger.info('Mail exit')
-        self.interval_clear([
-            MAIL_CHECK
-        ])
+        self.interval_clear([MAIL_CHECK])
 
         for _ in self.loop():
             if self.ui_page_appear(page_menu):
@@ -56,9 +52,7 @@ class MailReward(UI):
                 continue
 
         # clear state
-        self.interval_clear([
-            page_menu.check_button
-        ])
+        self.interval_clear([page_menu.check_button])
 
     def _mail_get_claim_button(self):
         """

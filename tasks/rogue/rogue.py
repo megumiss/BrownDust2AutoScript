@@ -97,8 +97,10 @@ class Rogue(RouteLoader, RogueEntry):
         try:
             self.rogue_world_enter()
         except RogueTeamNotPrepared:
-            logger.error(f'Please prepare your team in {self.config.RogueWorld_World} '
-                         f'and start rogue task at team preparation page')
+            logger.error(
+                f'Please prepare your team in {self.config.RogueWorld_World} '
+                f'and start rogue task at team preparation page'
+            )
             raise RequestHumanTakeover
         except RogueReachedWeeklyPointLimit:
             logger.hr('Reached rogue weekly point limit')

@@ -33,10 +33,7 @@ class AssignmentSwitch(Switch):
         return 'unknown'
 
 
-ASSIGNMENT_DURATION_SWITCH = AssignmentSwitch(
-    'AssignmentDurationSwitch',
-    (160, 130, 100)
-)
+ASSIGNMENT_DURATION_SWITCH = AssignmentSwitch('AssignmentDurationSwitch', (160, 130, 100))
 ASSIGNMENT_DURATION_SWITCH.add_state('4', DURATION_4)
 ASSIGNMENT_DURATION_SWITCH.add_state('8', DURATION_8)
 ASSIGNMENT_DURATION_SWITCH.add_state('12', DURATION_12)
@@ -44,8 +41,7 @@ ASSIGNMENT_DURATION_SWITCH.add_state('20', DURATION_20)
 
 
 class AssignmentDispatch(AssignmentUI):
-
-    def dispatch(self, assignment: AssignmentEntry, duration: "int | None"):
+    def dispatch(self, assignment: AssignmentEntry, duration: 'int | None'):
         """
         Dispatch assignment.
         Should be called only when limit is checked
@@ -81,8 +77,7 @@ class AssignmentDispatch(AssignmentUI):
         """
         logger.info('Select characters')
         skip_first_screenshot = True
-        self.interval_clear(
-            (CHARACTER_LIST, CHARACTER_1_SELECTED, CHARACTER_2_SELECTED), interval=5)
+        self.interval_clear((CHARACTER_LIST, CHARACTER_1_SELECTED, CHARACTER_2_SELECTED), interval=5)
         while 1:
             if skip_first_screenshot:
                 skip_first_screenshot = False
@@ -126,8 +121,7 @@ class AssignmentDispatch(AssignmentUI):
                 # End
                 if self.appear(CONFIRM_ASSIGNMENT):
                     if self.image_color_count(CONFIRM_ASSIGNMENT.button, color=(227, 227, 227), count=1000):
-                        logger.info(
-                            'Characters are all selected (light button)')
+                        logger.info('Characters are all selected (light button)')
                         break
                 if self.appear(CHARACTER_LIST, interval=5):
                     # EMPTY_SLOT appeared above
@@ -136,8 +130,7 @@ class AssignmentDispatch(AssignmentUI):
 
     def _select_support(self):
         skip_first_screenshot = True
-        self.interval_clear(
-            (CHARACTER_SUPPORT_LIST, CHARACTER_SUPPORT_SELECTED), interval=5)
+        self.interval_clear((CHARACTER_SUPPORT_LIST, CHARACTER_SUPPORT_SELECTED), interval=5)
         while 1:
             if skip_first_screenshot:
                 skip_first_screenshot = False
@@ -160,8 +153,7 @@ class AssignmentDispatch(AssignmentUI):
 
     def _select_duration(self, duration: int):
         if duration not in {4, 8, 12, 20}:
-            logger.warning(
-                f'Duration {duration} is out of scope, reset it to 20')
+            logger.warning(f'Duration {duration} is out of scope, reset it to 20')
             duration = 20
         ASSIGNMENT_DURATION_SWITCH.set(str(duration), self)
 

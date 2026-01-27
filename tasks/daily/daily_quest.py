@@ -43,16 +43,16 @@ class DailyQuestOcr(Ocr):
     def after_process(self, result):
         result = super().after_process(result)
         if self.lang == 'cn':
-            result = result.replace("J", "」")
-            result = result.replace(";", "」")
-            result = result.replace("了", "」")
-            result = result.replace("宇审", "宇宙")
-            result = result.replace("凝带", "凝滞")
+            result = result.replace('J', '」')
+            result = result.replace(';', '」')
+            result = result.replace('了', '」')
+            result = result.replace('宇审', '宇宙')
+            result = result.replace('凝带', '凝滞')
             # 进行中」hbadarin
-            if "进行中" in result:
-                result = "进行中"
-            if "已领取" in result:
-                result = "已领取"
+            if '进行中' in result:
+                result = '进行中'
+            if '已领取' in result:
+                result = '已领取'
             # 累计消耗120点开拓
             # "力" is on the second line, det model is likely to ignore it
             result = re.sub('开拓$', '开拓力', result)
@@ -63,10 +63,10 @@ class DailyQuestOcr(Ocr):
             result = result.replace('cho/of', 'cho of')
             # Catyx(Golden).1.times
             result = result.replace('atyx', 'alyx')
-            if "progress" in result.lower():
-                result = "In Progress"
-            if "claimed" in result.lower():
-                result = "Claimed"
+            if 'progress' in result.lower():
+                result = 'In Progress'
+            if 'claimed' in result.lower():
+                result = 'Claimed'
         return result
 
 
@@ -90,7 +90,7 @@ class DailyQuestUI(DungeonUI, RouteLoader):
                 self.device.screenshot()
 
             if self.appear(template):
-                logger.info(f"Ensure position: {direction}")
+                logger.info(f'Ensure position: {direction}')
                 break
 
             # Might be a screenshot mixed with daily_training and get_reward
@@ -109,34 +109,37 @@ class DailyQuestUI(DungeonUI, RouteLoader):
         else:
             logger.warning(f'Unknown drag direction: {direction}')
             return
-        self.device.swipe_vector(swipe_vector, box=OCR_DAILY_QUEST.button,
-                                 random_range=(-10, -10, 10, 10), name='DAILY_QUEST_DRAG')
+        self.device.swipe_vector(
+            swipe_vector, box=OCR_DAILY_QUEST.button, random_range=(-10, -10, 10, 10), name='DAILY_QUEST_DRAG'
+        )
 
     def _ocr_single_page(self) -> list[OcrResultButton]:
         ocr = DailyQuestOcr(OCR_DAILY_QUEST)
         results = ocr.matched_ocr(self.device.image, [DailyQuestState, DailyQuest], direct_ocr=True)
         if len(results) < 8:
-            logger.warning(f"Recognition failed at {8 - len(results)} quests on one page")
+            logger.warning(f'Recognition failed at {8 - len(results)} quests on one page')
 
         def completed_state(state):
             return state != KEYWORDS_DAILY_QUEST_STATE.Go and state != KEYWORDS_DAILY_QUEST_STATE.In_Progress
 
-        return [quest for quest, _ in
-                split_and_pair_buttons(results, split_func=completed_state, relative_area=(0, 0, 200, 720))]
+        return [
+            quest
+            for quest, _ in split_and_pair_buttons(results, split_func=completed_state, relative_area=(0, 0, 200, 720))
+        ]
 
     def daily_quests_recognition(self) -> list[DailyQuest]:
         """
         Returns incomplete quests only
         """
-        logger.info("Recognizing daily quests")
+        logger.info('Recognizing daily quests')
         self.dungeon_tab_goto(KEYWORDS_DUNGEON_TAB.Daily_Training)
         self._ensure_position('left')
         results = self._ocr_single_page()
         self._ensure_position('right')
         results += [result for result in self._ocr_single_page() if result not in results]
         results = [result.matched_keyword for result in results]
-        logger.info("Daily quests recognition complete")
-        logger.info(f"Daily quests: {results}")
+        logger.info('Daily quests recognition complete')
+        logger.info(f'Daily quests: {results}')
         self.config.stored.DailyQuest.write_quests(results)
         return results
 
@@ -170,11 +173,11 @@ class DailyQuestUI(DungeonUI, RouteLoader):
 
     def _no_reward_to_get(self):
         return (
-                (self.appear(ACTIVE_POINTS_1_LOCKED) or self.appear(ACTIVE_POINTS_1_CHECKED))
-                and (self.appear(ACTIVE_POINTS_2_LOCKED) or self.appear(ACTIVE_POINTS_2_CHECKED))
-                and (self.appear(ACTIVE_POINTS_3_LOCKED) or self.appear(ACTIVE_POINTS_3_CHECKED))
-                and (self.appear(ACTIVE_POINTS_4_LOCKED) or self.appear(ACTIVE_POINTS_4_CHECKED))
-                and (self.appear(ACTIVE_POINTS_5_LOCKED) or self.appear(ACTIVE_POINTS_5_CHECKED))
+            (self.appear(ACTIVE_POINTS_1_LOCKED) or self.appear(ACTIVE_POINTS_1_CHECKED))
+            and (self.appear(ACTIVE_POINTS_2_LOCKED) or self.appear(ACTIVE_POINTS_2_CHECKED))
+            and (self.appear(ACTIVE_POINTS_3_LOCKED) or self.appear(ACTIVE_POINTS_3_CHECKED))
+            and (self.appear(ACTIVE_POINTS_4_LOCKED) or self.appear(ACTIVE_POINTS_4_CHECKED))
+            and (self.appear(ACTIVE_POINTS_5_LOCKED) or self.appear(ACTIVE_POINTS_5_CHECKED))
         )
 
     def _all_reward_got(self):
@@ -194,7 +197,7 @@ class DailyQuestUI(DungeonUI, RouteLoader):
                 ACTIVE_POINTS_2_UNLOCK,
                 ACTIVE_POINTS_3_UNLOCK,
                 ACTIVE_POINTS_4_UNLOCK,
-                ACTIVE_POINTS_5_UNLOCK
+                ACTIVE_POINTS_5_UNLOCK,
             ]:
                 # Black gift icon
                 if self.image_color_count(b, color=(61, 53, 53), threshold=221, count=100):
@@ -223,14 +226,14 @@ class DailyQuestUI(DungeonUI, RouteLoader):
         # Write stored
         point = 0
         for progress, button in zip(
-                [100, 200, 300, 400, 500],
-                [
-                    ACTIVE_POINTS_1_CHECKED,
-                    ACTIVE_POINTS_2_CHECKED,
-                    ACTIVE_POINTS_3_CHECKED,
-                    ACTIVE_POINTS_4_CHECKED,
-                    ACTIVE_POINTS_5_CHECKED
-                ]
+            [100, 200, 300, 400, 500],
+            [
+                ACTIVE_POINTS_1_CHECKED,
+                ACTIVE_POINTS_2_CHECKED,
+                ACTIVE_POINTS_3_CHECKED,
+                ACTIVE_POINTS_4_CHECKED,
+                ACTIVE_POINTS_5_CHECKED,
+            ],
         ):
             if self.appear(button):
                 point = progress
@@ -255,22 +258,22 @@ class DailyQuestUI(DungeonUI, RouteLoader):
         self.dungeon_tab_goto(KEYWORDS_DUNGEON_TAB.Daily_Training)
 
         # Get rewards
-        logger.info("Getting quest rewards")
+        logger.info('Getting quest rewards')
         self._get_quest_reward()
-        logger.info("Getting active point rewards")
+        logger.info('Getting active point rewards')
         self._get_active_point_reward()
 
         # Retry get reward, quests might somehow slow to appear
         for _ in range(2):
-            logger.info("Getting quest rewards")
+            logger.info('Getting quest rewards')
             quest_reward = self._get_quest_reward()
             if not quest_reward:
                 break
-            logger.info("Getting active point rewards")
+            logger.info('Getting active point rewards')
             self._get_active_point_reward()
 
         if self._all_reward_got():
-            logger.info("All daily reward got")
+            logger.info('All daily reward got')
             return True
         else:
             logger.info('Daily reward got but not yet claimed')

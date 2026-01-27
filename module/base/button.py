@@ -110,11 +110,7 @@ class Button(Resource):
             bool: True if button appears on screenshot.
         """
         color = get_color(image, self.area)
-        return color_similar(
-            color1=color,
-            color2=self.color,
-            threshold=threshold
-        )
+        return color_similar(color1=color, color2=self.color, threshold=threshold)
 
     def match_template(self, image, similarity=0.85, direct_match=False) -> bool:
         """
@@ -176,7 +172,7 @@ class Button(Resource):
         if not direct_match:
             image = crop(image, self.search, copy=False)
         res = cv2.matchTemplate(self.image, image, cv2.TM_CCOEFF_NORMED)
-        res = cv2.inRange(res, similarity, 1.)
+        res = cv2.inRange(res, similarity, 1.0)
         try:
             points = np.array(cv2.findNonZero(res))[:, 0, :]
             points += self.search[:2]
@@ -205,11 +201,7 @@ class Button(Resource):
 
         area = area_offset(self.area, offset=self._button_offset)
         color = get_color(image, area)
-        return color_similar(
-            color1=color,
-            color2=self.color,
-            threshold=threshold
-        )
+        return color_similar(color1=color, color2=self.color, threshold=threshold)
 
 
 class ButtonWrapper(Resource):
@@ -300,6 +292,7 @@ class ButtonWrapper(Resource):
             return []
 
         from module.base.utils.points import Points
+
         ps = Points(ps).group(threshold=threshold)
         area_list = [area_offset(self.area, p - self.area[:2]) for p in ps]
         button_list = [area_offset(self.button, p - self.area[:2]) for p in ps]
@@ -311,7 +304,8 @@ class ButtonWrapper(Resource):
     def match_template_color(self, image, similarity=0.85, threshold=30, direct_match=False) -> bool:
         for assets in self.buttons:
             if assets.match_template_color(
-                    image, similarity=similarity, threshold=threshold, direct_match=direct_match):
+                image, similarity=similarity, threshold=threshold, direct_match=direct_match
+            ):
                 self._matched_button = assets
                 return True
         return False

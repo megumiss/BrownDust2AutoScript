@@ -6,7 +6,14 @@ from module.base.utils import color_similarity_2d, get_color
 from module.logger import logger
 from tasks.base.ui import UI
 from tasks.forgotten_hall.assets.assets_forgotten_hall_team import *
-from tasks.forgotten_hall.assets.assets_forgotten_hall_ui import ENTER_FORGOTTEN_HALL_DUNGEON, ENTRANCE_CHECKED, SEAT_1, SEAT_2, SEAT_3, SEAT_4
+from tasks.forgotten_hall.assets.assets_forgotten_hall_ui import (
+    ENTER_FORGOTTEN_HALL_DUNGEON,
+    ENTRANCE_CHECKED,
+    SEAT_1,
+    SEAT_2,
+    SEAT_3,
+    SEAT_4,
+)
 
 
 class ForgottenHallTeam(UI):
@@ -28,7 +35,7 @@ class ForgottenHallTeam(UI):
                 self.device.screenshot()
 
             if self.team_prepared():
-                logger.info("First character is chosen")
+                logger.info('First character is chosen')
                 break
             if self.appear(ENTRANCE_CHECKED, interval=2):
                 self.device.click(CHARACTER_1)
@@ -67,10 +74,10 @@ class ForgottenHallTeam(UI):
             chosen_list = [self.is_character_chosen(c) for c in characters]
             seat_list = [not self.appear(s) for s in seats]
             if all(chosen_list):
-                logger.info("First 4 characters are chosen")
+                logger.info('First 4 characters are chosen')
                 break
             if all(seat_list):
-                logger.info("4 characters are chosen")
+                logger.info('4 characters are chosen')
                 break
             if self.appear(ENTRANCE_CHECKED, interval=2):
                 for character, chosen in zip(characters, chosen_list):
@@ -98,5 +105,5 @@ class ForgottenHallTeam(UI):
             if self.team_prepared():
                 chosen_list = [not self.appear(s) for s in seats]
                 if all(chosen_list):
-                    logger.info("Team already prepared")
+                    logger.info('Team already prepared')
                     return True

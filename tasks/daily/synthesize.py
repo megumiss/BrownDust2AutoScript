@@ -33,7 +33,8 @@ class SynthesizeUI(UI):
                 if not self.match_template_luma(click_button):
                     # swipe directly, as player might have random menu skin
                     self.device.swipe_vector(
-                        vector=(0, -200), box=MENU_SCROLL.area, random_range=(0, -20, 0, 20), padding=0)
+                        vector=(0, -200), box=MENU_SCROLL.area, random_range=(0, -20, 0, 20), padding=0
+                    )
                     self.interval_reset(page_menu, interval=3)
                     continue
 
@@ -55,7 +56,7 @@ class SynthesizeUI(UI):
             case page_menu.name:
                 check_image = MENU_CHECK
                 scroll = Scroll(MENU_SCROLL.button, color=(191, 191, 191), name=MENU_SCROLL.name)
-                scroll.edge_threshold= 0.1
+                scroll.edge_threshold = 0.1
             case page_synthesize.name:
                 check_image = SYNTHESIZE_CHECK
                 scroll = AdaptiveScroll(SYNTHESIZE_SCROLL.button, name=SYNTHESIZE_SCROLL.name)
@@ -86,8 +87,12 @@ class SynthesizeUI(UI):
                 continue
 
     # Default subpage is consumables
-    def _switch_subpage(self, skip_first_screenshot=True, subpage: ButtonWrapper = SYNTHESIZE_GOTO_CONSUMABLES,
-                        subpage_check: ButtonWrapper = SYNTHESIZE_CONSUMABLES_CHECK):
+    def _switch_subpage(
+        self,
+        skip_first_screenshot=True,
+        subpage: ButtonWrapper = SYNTHESIZE_GOTO_CONSUMABLES,
+        subpage_check: ButtonWrapper = SYNTHESIZE_CONSUMABLES_CHECK,
+    ):
         while 1:
             if skip_first_screenshot:
                 skip_first_screenshot = False
@@ -122,10 +127,14 @@ class SynthesizeUI(UI):
         else:
             return False
 
-    def _search_and_select_items(self, target_button: ButtonWrapper = None,
-                                 target_button_check: ButtonWrapper = None) -> bool:
-        candidate_items = {target_button: target_button_check} if target_button and target_button_check \
+    def _search_and_select_items(
+        self, target_button: ButtonWrapper = None, target_button_check: ButtonWrapper = None
+    ) -> bool:
+        candidate_items = (
+            {target_button: target_button_check}
+            if target_button and target_button_check
             else self.__class__.default_candidate_items
+        )
 
         # Search target button from top to bottom
         scroll = AdaptiveScroll(SYNTHESIZE_SCROLL.button, name=SYNTHESIZE_SCROLL.name)
@@ -196,8 +205,7 @@ class SynthesizeUI(UI):
                 logger.info('Click on the blank space to back to synthesize page')
                 continue
 
-    def _synthesize(self, target_button: ButtonWrapper = None,
-                    target_button_check: ButtonWrapper = None) -> bool:
+    def _synthesize(self, target_button: ButtonWrapper = None, target_button_check: ButtonWrapper = None) -> bool:
         self.ensure_scroll_top(page=page_synthesize)
         if self._search_and_select_items(target_button, target_button_check):
             self._open_synthesize_popup()
@@ -213,11 +221,12 @@ class SynthesizeConsumablesUI(SynthesizeUI):
     default_candidate_items = {
         CONSUMABLES_TRICK_SNACK: CONSUMABLES_TRICK_SNACK_CHECK,
         CONSUMABLES_COMFORT_FOOD: CONSUMABLES_COMFORT_FOOD_CHECK,
-        CONSUMABLES_SIMPLE_AED: CONSUMABLES_SIMPLE_AED_CHECK
+        CONSUMABLES_SIMPLE_AED: CONSUMABLES_SIMPLE_AED_CHECK,
     }
 
-    def synthesize_consumables(self, target_button: ButtonWrapper = None,
-                               target_button_check: ButtonWrapper = None) -> bool:
+    def synthesize_consumables(
+        self, target_button: ButtonWrapper = None, target_button_check: ButtonWrapper = None
+    ) -> bool:
         """
         Args:
             target_button(ButtonWrapper):
@@ -243,11 +252,12 @@ class SynthesizeMaterialUI(SynthesizeUI):
     default_candidate_items = {
         GLIMMERING_CORE: GLIMMERING_CORE_CHECK,
         USURPERS_SCHEME: USURPERS_SCHEME_CHECK,
-        SILVERMANE_INSIGNIA: SILVERMANE_INSIGNIA_CHECK
+        SILVERMANE_INSIGNIA: SILVERMANE_INSIGNIA_CHECK,
     }
 
-    def synthesize_material(self, target_button: ButtonWrapper = None,
-                            target_button_check: ButtonWrapper = None) -> bool:
+    def synthesize_material(
+        self, target_button: ButtonWrapper = None, target_button_check: ButtonWrapper = None
+    ) -> bool:
         """
         Args:
             target_button(ButtonWrapper):

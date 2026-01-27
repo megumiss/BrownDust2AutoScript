@@ -21,17 +21,18 @@ class DraggableList:
     - Stagnant Shadow
     - Cavern of Corrosion
     """
+
     drag_vector = (0.65, 0.85)
 
     def __init__(
-            self,
-            name,
-            keyword_class,
-            ocr_class,
-            search_button: ButtonWrapper,
-            check_row_order: bool = True,
-            active_color: tuple[int, int, int] = (190, 175, 124),
-            drag_direction: str = "down"
+        self,
+        name,
+        keyword_class,
+        ocr_class,
+        search_button: ButtonWrapper,
+        check_row_order: bool = True,
+        active_color: tuple[int, int, int] = (190, 175, 124),
+        drag_direction: str = 'down',
     ):
         """
         Args:
@@ -95,14 +96,12 @@ class DraggableList:
         """
         self.cur_buttons = self.ocr.matched_ocr(main.device.image, self.keyword_class)
         # Get indexes
-        indexes = [self.keyword2index(row.matched_keyword)
-                   for row in self.cur_buttons]
+        indexes = [self.keyword2index(row.matched_keyword) for row in self.cur_buttons]
         indexes = [index for index in indexes if index]
         # Check row order
         if self.check_row_order and len(indexes) >= 2:
             if not np.all(np.diff(indexes) > 0):
-                logger.warning(
-                    f'Rows given to {self} are not ascending sorted')
+                logger.warning(f'Rows given to {self} are not ascending sorted')
         if not indexes:
             logger.warning(f'No valid rows loaded into {self}')
             return
@@ -192,10 +191,7 @@ class DraggableList:
 
             # Wait for bottoming out
             self.wait_bottom_appear(main, skip_first_screenshot=False)
-            main.wait_until_stable(
-                self.search_button, timer=Timer(0, count=0),
-                timeout=Timer(1.5, count=5)
-            )
+            main.wait_until_stable(self.search_button, timer=Timer(0, count=0), timeout=Timer(1.5, count=5))
             skip_first_screenshot = True
             if self.cur_buttons and last_buttons == set(self.cur_buttons):
                 if bottom_check.reached():
@@ -235,8 +231,7 @@ class DraggableList:
             If success
         """
         if insight:
-            result = self.insight_row(
-                row, main=main, skip_first_screenshot=skip_first_screenshot)
+            result = self.insight_row(row, main=main, skip_first_screenshot=skip_first_screenshot)
             if not result:
                 return False
 

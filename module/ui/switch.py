@@ -40,11 +40,13 @@ class Switch:
         """
         if state == 'unknown':
             raise ScriptError(f'Cannot use "unknown" as state name')
-        self.state_list.append({
-            'state': state,
-            'check_button': check_button,
-            'click_button': click_button if click_button is not None else check_button,
-        })
+        self.state_list.append(
+            {
+                'state': state,
+                'check_button': check_button,
+                'click_button': click_button if click_button is not None else check_button,
+            }
+        )
 
     def appear(self, main):
         """
@@ -138,7 +140,6 @@ class Switch:
         swipe_timer = Timer(2, count=6)
 
         for _ in main.loop(skip_first=skip_first_screenshot):
-
             # Detect
             current = self.get(main=main)
             logger.attr(self.name, current)
@@ -160,8 +161,7 @@ class Switch:
             # Warning
             if current == 'unknown':
                 if unknown_timer.reached():
-                    logger.warning(f'Switch {self.name} has states evaluated to unknown, '
-                                   f'asset should be re-verified')
+                    logger.warning(f'Switch {self.name} has states evaluated to unknown, asset should be re-verified')
                     allow_unknown = True
                     unknown_timer.reset()
                 # If unknown_timer never reached, don't click when having an unknown state,

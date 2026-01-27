@@ -109,12 +109,14 @@ class StoredBase:
         Log self
         """
         from module.logger import logger
+
         logger.attr(self._name, self._stored)
 
 
 class StoredExpiredAt0400(StoredBase):
     def is_expired(self):
         from module.logger import logger
+
         self.show()
         expired = self.time < get_server_last_update('04:00')
         logger.attr(f'{self._name} expired', expired)
@@ -124,6 +126,7 @@ class StoredExpiredAt0400(StoredBase):
 class StoredExpiredAtMonday0400(StoredBase):
     def is_expired(self):
         from module.logger import logger
+
         self.show()
         expired = self.time < get_server_last_monday_update('04:00')
         logger.attr(f'{self._name} expired', expired)
@@ -255,9 +258,18 @@ class StoredDaily(StoredCounter, StoredExpiredAt0400):
         """
         # DailyQuest should be lazy loaded
         from tasks.daily.keywords import DailyQuest
+
         quests = []
-        for name in [self.quest1, self.quest2, self.quest3, self.quest4,
-                     self.quest5, self.quest6, self.quest7, self.quest8]:
+        for name in [
+            self.quest1,
+            self.quest2,
+            self.quest3,
+            self.quest4,
+            self.quest5,
+            self.quest6,
+            self.quest7,
+            self.quest8,
+        ]:
             if not name:
                 continue
             try:
@@ -273,6 +285,7 @@ class StoredDaily(StoredCounter, StoredExpiredAt0400):
             quests (list[DailyQuest, str]):
         """
         from tasks.daily.keywords import DailyQuest
+
         quests = [q.name if isinstance(q, DailyQuest) else q for q in quests]
         with self._config.multi_set():
             self.set(value=max(self.FIXED_TOTAL - len(quests), 0))
@@ -353,6 +366,7 @@ class StoredBattlePassWeeklyQuest(StoredCounter, StoredExpiredAtMonday0400):
         """
         # BattlePassQuest should be lazy loaded
         from tasks.battle_pass.keywords import BattlePassQuest
+
         quests = []
         for name in [self.quest1, self.quest2, self.quest3, self.quest4, self.quest5, self.quest6, self.quest7]:
             if not name:
@@ -370,6 +384,7 @@ class StoredBattlePassWeeklyQuest(StoredCounter, StoredExpiredAtMonday0400):
             quests (list[DailyQuest, str]):
         """
         from tasks.battle_pass.keywords import BattlePassQuest
+
         quests = [q.name if isinstance(q, BattlePassQuest) else q for q in quests]
         with self._config.multi_set():
             self.set(value=max(self.FIXED_TOTAL - len(quests), 0))

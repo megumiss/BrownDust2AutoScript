@@ -20,6 +20,7 @@ class PlannerResultRow(BaseModel):
     """
     A row of data from planner result page
     """
+
     item: ITEM_TYPES
     total: int
     synthesize: int
@@ -33,14 +34,15 @@ class ObtainedAmmount(BaseModel):
     """
     A row of data from DungeonObtain detection
     """
+
     item: ITEM_TYPES
     value: int
 
 
 def _fallback_to_default_validator(
-        get_default: t.Callable[[], t.Any],
-        v: t.Any,
-        next_: t.Callable[[t.Any], t.Any],
+    get_default: t.Callable[[], t.Any],
+    v: t.Any,
+    next_: t.Callable[[t.Any], t.Any],
 ) -> t.Any:
     try:
         return next_(v)
@@ -70,7 +72,7 @@ class MultiValue(BaseModelWithFallback):
     blue: int = 0
     green: int = 0
 
-    def add(self, other: "MultiValue"):
+    def add(self, other: 'MultiValue'):
         self.green += other.green
         self.blue += other.blue
         self.purple += other.purple
@@ -118,33 +120,37 @@ class StoredPlannerProxy(BaseModelWithFallback):
     def val_value(self):
         if self.item.has_group_base:
             if not isinstance(self.value, MultiValue):
-                logger.warning(f'Planner item {self.item} has_group_base '
-                               f'but given value={self.value} is not a MultiValue')
+                logger.warning(
+                    f'Planner item {self.item} has_group_base but given value={self.value} is not a MultiValue'
+                )
                 self.value = MultiValue()
             if not isinstance(self.total, MultiValue):
-                logger.warning(f'Planner item {self.item} has_group_base '
-                               f'but given total={self.total} is not a MultiValue')
+                logger.warning(
+                    f'Planner item {self.item} has_group_base but given total={self.total} is not a MultiValue'
+                )
                 self.total = MultiValue()
             if not isinstance(self.synthesize, MultiValue):
-                logger.warning(f'Planner item {self.item} has_group_base '
-                               f'but given synthesize={self.synthesize} is not a MultiValue')
+                logger.warning(
+                    f'Planner item {self.item} has_group_base '
+                    f'but given synthesize={self.synthesize} is not a MultiValue'
+                )
                 self.synthesize = MultiValue()
         else:
             if not isinstance(self.value, int):
-                logger.warning(f'Planner item {self.item} has no group base '
-                               f'but given value={self.value} is not an int')
+                logger.warning(f'Planner item {self.item} has no group base but given value={self.value} is not an int')
                 self.value = 0
             if not isinstance(self.total, int):
-                logger.warning(f'Planner item {self.item} has no group base '
-                               f'but given total={self.total} is not an int')
+                logger.warning(f'Planner item {self.item} has no group base but given total={self.total} is not an int')
                 self.total = 0
             if not isinstance(self.synthesize, int):
-                logger.warning(f'Planner item {self.item} has no group base '
-                               f'but given synthesize={self.synthesize} is not an int')
+                logger.warning(
+                    f'Planner item {self.item} has no group base but given synthesize={self.synthesize} is not an int'
+                )
                 self.synthesize = 0
             if self.synthesize != 0:
-                logger.warning(f'Planner item {self.item} has no group base '
-                               f'its synthesize={self.synthesize} should be 0')
+                logger.warning(
+                    f'Planner item {self.item} has no group base its synthesize={self.synthesize} should be 0'
+                )
                 self.synthesize = 0
         return self
 
@@ -278,7 +284,7 @@ class StoredPlannerProxy(BaseModelWithFallback):
             progress = self.progress_current / self.progress_total * 100
             return round(min(max(progress, 0), 100), 2)
         except ZeroDivisionError:
-            return 100.
+            return 100.0
 
     def is_approaching_total(self, wave_done: int = 0):
         """
@@ -305,11 +311,11 @@ class StoredPlannerProxy(BaseModelWithFallback):
         Estimate remaining days to farm
         """
         if not self.can_daily_farm():
-            return 0.
+            return 0.0
         if self.item.dungeon is None:
-            return 0.
+            return 0.0
         if self.item.is_ItemWeekly:
-            return 0.
+            return 0.0
 
         remain = self.progress_remain
         cost = self.combat_cost
@@ -339,16 +345,15 @@ class StoredPlannerProxy(BaseModelWithFallback):
         """
         if self.item.has_group_base:
             if item.group_base != self.item:
-                raise ScriptError(
-                    f'load_value_total: Trying to load {item} into {self} but they are different items')
+                raise ScriptError(f'load_value_total: Trying to load {item} into {self} but they are different items')
         else:
             if item != self.item:
-                raise ScriptError(
-                    f'load_value_total: Trying to load {item} into {self} but they are different items')
+                raise ScriptError(f'load_value_total: Trying to load {item} into {self} but they are different items')
         if self.item.has_group_base:
             if not self.item.is_rarity_purple:
                 raise ScriptError(
-                    f'load_value_total: Trying to load {item} into {self} but self is not in rarity purple')
+                    f'load_value_total: Trying to load {item} into {self} but self is not in rarity purple'
+                )
             if item.is_rarity_green:
                 if value is not None:
                     self.value.green = value
@@ -373,8 +378,7 @@ class StoredPlannerProxy(BaseModelWithFallback):
                 if synthesize is not None:
                     self.synthesize.purple = synthesize
             else:
-                raise ScriptError(
-                    f'load_value_total: Trying to load {item} in to {self} but item is in invalid rarity')
+                raise ScriptError(f'load_value_total: Trying to load {item} in to {self} but item is in invalid rarity')
         else:
             # Cannot synthesize if item doesn't have multiple rarity
             self.synthesize = 0
@@ -383,23 +387,22 @@ class StoredPlannerProxy(BaseModelWithFallback):
             if total is not None:
                 self.total = total
 
-    def add_planner_result(self, row: "StoredPlannerProxy"):
+    def add_planner_result(self, row: 'StoredPlannerProxy'):
         """
         Add data from another StoredPlannerProxy to self
         """
         item = row.item
         if self.item.has_group_base:
             if item.group_base != self.item:
-                raise ScriptError(
-                    f'load_value_total: Trying to load {item} into {self} but they are different items')
+                raise ScriptError(f'load_value_total: Trying to load {item} into {self} but they are different items')
         else:
             if item != self.item:
-                raise ScriptError(
-                    f'load_value_total: Trying to load {item} into {self} but they are different items')
+                raise ScriptError(f'load_value_total: Trying to load {item} into {self} but they are different items')
         if self.item.has_group_base:
             if not self.item.is_rarity_purple:
                 raise ScriptError(
-                    f'load_value_total: Trying to load {item} into {self} but self is not in rarity purple')
+                    f'load_value_total: Trying to load {item} into {self} but self is not in rarity purple'
+                )
             # Add `total` only
             # `synthesize` will be updated later
             # `value` remains unchanged since you still having that many items
@@ -464,7 +467,8 @@ class PlannerProgressParser:
                 try:
                     if row.item.has_group_base:
                         obj = StoredPlannerProxy(
-                            item=base, value=MultiValue(), total=MultiValue(), synthesize=MultiValue())
+                            item=base, value=MultiValue(), total=MultiValue(), synthesize=MultiValue()
+                        )
                     else:
                         obj = StoredPlannerProxy(item=base, value=0, total=0, synthesize=0)
                 except ScriptError as e:
@@ -490,8 +494,7 @@ class PlannerProgressParser:
             try:
                 obj = self.rows[base.name]
             except KeyError:
-                logger.warning(
-                    f'load_obtained_amount() drops {row} because no need to farm')
+                logger.warning(f'load_obtained_amount() drops {row} because no need to farm')
                 continue
             obj.load_item_amount(row)
             obj.update()
@@ -524,7 +527,7 @@ class PlannerProgressParser:
             self.rows[row.item.name] = row
         return self
 
-    def add_planner_result(self, planner: "PlannerProgressParser"):
+    def add_planner_result(self, planner: 'PlannerProgressParser'):
         """
         Add another planner result to self
         """
@@ -557,9 +560,9 @@ class PlannerProgressParser:
             float: Progress percentage
             float: ETA in days
         """
-        eta = 0.
-        progress_current = 0.
-        progress_total = 0.
+        eta = 0.0
+        progress_current = 0.0
+        progress_total = 0.0
         for row in self.rows.values():
             if not row.can_daily_farm():
                 continue
@@ -574,7 +577,7 @@ class PlannerProgressParser:
         try:
             progress = round(progress_current / progress_total * 100, 2)
         except ZeroDivisionError:
-            progress = 100.
+            progress = 100.0
         return progress, eta
 
     def iter_row_to_farm(self, need_farm=True) -> t.Iterable[StoredPlannerProxy]:

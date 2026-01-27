@@ -46,11 +46,7 @@ class RichRenderableHandler(RichHandler):
     def emit(self, record: logging.LogRecord) -> None:
         message = self.format(record)
         traceback = None
-        if (
-                self.rich_tracebacks
-                and record.exc_info
-                and record.exc_info != (None, None, None)
-        ):
+        if self.rich_tracebacks and record.exc_info and record.exc_info != (None, None, None):
             exc_type, exc_value, exc_traceback = record.exc_info
             assert exc_type is not None
             assert exc_value is not None
@@ -70,15 +66,12 @@ class RichRenderableHandler(RichHandler):
             if self.formatter:
                 record.message = record.getMessage()
                 formatter = self.formatter
-                if hasattr(formatter, "usesTime") and formatter.usesTime():
-                    record.asctime = formatter.formatTime(
-                        record, formatter.datefmt)
+                if hasattr(formatter, 'usesTime') and formatter.usesTime():
+                    record.asctime = formatter.formatTime(record, formatter.datefmt)
                 message = formatter.formatMessage(record)
 
         message_renderable = self.render_message(record, message)
-        log_renderable = self.render(
-            record=record, traceback=traceback, message_renderable=message_renderable
-        )
+        log_renderable = self.render(record=record, traceback=traceback, message_renderable=message_renderable)
 
         # Directly put renderable into function
         self._func(log_renderable)
@@ -114,37 +107,40 @@ class Highlighter(RegexHighlighter):
         # (r'(?P<datetime>(\d{2}|\d{4})(?:\-)?([0]{1}\d{1}|[1]{1}[0-2]{1})'
         #  r'(?:\-)?([0-2]{1}\d{1}|[3]{1}[0-1]{1})(?:\s)?([0-1]{1}\d{1}|'
         #  r'[2]{1}[0-3]{1})(?::)?([0-5]{1}\d{1})(?::)?([0-5]{1}\d{1}).\d+\b)'),
-        (r'(?P<time>([0-1]{1}\d{1}|[2]{1}[0-3]{1})(?::)?'
-         r'([0-5]{1}\d{1})(?::)?([0-5]{1}\d{1})(.\d+\b))'),
-        r"(?P<brace>[\{\[\(\)\]\}])",
-        r"\b(?P<bool_true>True)\b|\b(?P<bool_false>False)\b|\b(?P<none>None)\b",
-        r"(?P<path>(([A-Za-z]\:)|.)?\B([\/\\][\w\.\-\_\+]+)*[\/\\])(?P<filename>[\w\.\-\_\+]*)?",
+        (
+            r'(?P<time>([0-1]{1}\d{1}|[2]{1}[0-3]{1})(?::)?'
+            r'([0-5]{1}\d{1})(?::)?([0-5]{1}\d{1})(.\d+\b))'
+        ),
+        r'(?P<brace>[\{\[\(\)\]\}])',
+        r'\b(?P<bool_true>True)\b|\b(?P<bool_false>False)\b|\b(?P<none>None)\b',
+        r'(?P<path>(([A-Za-z]\:)|.)?\B([\/\\][\w\.\-\_\+]+)*[\/\\])(?P<filename>[\w\.\-\_\+]*)?',
         # r"(?<![\\\w])(?P<str>b?\'\'\'.*?(?<!\\)\'\'\'|b?\'.*?(?<!\\)\'|b?\"\"\".*?(?<!\\)\"\"\"|b?\".*?(?<!\\)\")",
     ]
 
 
-WEB_THEME = Theme({
-    "web.brace": Style(bold=True),
-    "web.bool_true": Style(color="bright_green", italic=True),
-    "web.bool_false": Style(color="bright_red", italic=True),
-    "web.none": Style(color="magenta", italic=True),
-    "web.path": Style(color="magenta"),
-    "web.filename": Style(color="bright_magenta"),
-    "web.str": Style(color="green", italic=False, bold=False),
-    "web.time": Style(color="cyan"),
-    "rule.text": Style(bold=True),
-})
+WEB_THEME = Theme(
+    {
+        'web.brace': Style(bold=True),
+        'web.bool_true': Style(color='bright_green', italic=True),
+        'web.bool_false': Style(color='bright_red', italic=True),
+        'web.none': Style(color='magenta', italic=True),
+        'web.path': Style(color='magenta'),
+        'web.filename': Style(color='bright_magenta'),
+        'web.str': Style(color='green', italic=False, bold=False),
+        'web.time': Style(color='cyan'),
+        'rule.text': Style(bold=True),
+    }
+)
 
 # Logger init
 logger_debug = False
 logger = logging.getLogger('alas')
 logger.setLevel(logging.DEBUG if logger_debug else logging.INFO)
 file_formatter = logging.Formatter(
-    fmt='%(asctime)s.%(msecs)03d | %(levelname)s | %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
-console_formatter = logging.Formatter(
-    fmt='%(asctime)s.%(msecs)03d │ %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
-web_formatter = logging.Formatter(
-    fmt='%(asctime)s.%(msecs)03d │ %(message)s', datefmt='%H:%M:%S')
+    fmt='%(asctime)s.%(msecs)03d | %(levelname)s | %(message)s', datefmt='%Y-%m-%d %H:%M:%S'
+)
+console_formatter = logging.Formatter(fmt='%(asctime)s.%(msecs)03d │ %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
+web_formatter = logging.Formatter(fmt='%(asctime)s.%(msecs)03d │ %(message)s', datefmt='%H:%M:%S')
 
 # Add console logger
 # console = logging.StreamHandler(stream=sys.stdout)
@@ -182,8 +178,7 @@ def _set_file_logger(name=pyw_name):
         file = logging.FileHandler(log_file, encoding='utf-8')
     file.setFormatter(file_formatter)
 
-    logger.handlers = [h for h in logger.handlers if not isinstance(
-        h, (logging.FileHandler, RichFileHandler))]
+    logger.handlers = [h for h in logger.handlers if not isinstance(h, (logging.FileHandler, RichFileHandler))]
     logger.addHandler(file)
     logger.log_file = log_file
 
@@ -217,8 +212,7 @@ def set_file_logger(name=pyw_name):
     )
     hdlr.setFormatter(file_formatter)
 
-    logger.handlers = [h for h in logger.handlers if not isinstance(
-        h, (logging.FileHandler, RichFileHandler))]
+    logger.handlers = [h for h in logger.handlers if not isinstance(h, (logging.FileHandler, RichFileHandler))]
     logger.addHandler(hdlr)
     logger.log_file = log_file
 
@@ -232,7 +226,7 @@ def set_func_logger(func):
         markup=False,
         safe_box=False,
         highlighter=Highlighter(),
-        theme=WEB_THEME
+        theme=WEB_THEME,
     )
     hdlr = RichRenderableHandler(
         func=func,
@@ -246,13 +240,19 @@ def set_func_logger(func):
         highlighter=Highlighter(),
     )
     hdlr.setFormatter(web_formatter)
-    logger.handlers = [h for h in logger.handlers if not isinstance(
-        h, RichRenderableHandler)]
+    logger.handlers = [h for h in logger.handlers if not isinstance(h, RichRenderableHandler)]
     logger.addHandler(hdlr)
 
 
 def _get_renderables(
-        self: Console, *objects, sep=" ", end="\n", justify=None, emoji=None, markup=None, highlight=None,
+    self: Console,
+    *objects,
+    sep=' ',
+    end='\n',
+    justify=None,
+    emoji=None,
+    markup=None,
+    highlight=None,
 ) -> List[ConsoleRenderable]:
     """
     Refer to rich.console.Console.print()
@@ -285,9 +285,8 @@ def print(*objects: ConsoleRenderable, **kwargs):
             hdlr.console.print(*objects)
 
 
-def rule(title="", *, characters="─", style="rule.line", end="\n", align="center"):
-    rule = Rule(title=title, characters=characters,
-                style=style, end=end, align=align)
+def rule(title='', *, characters='─', style='rule.line', end='\n', align='center'):
+    rule = Rule(title=title, characters=characters, style=style, end=end, align=align)
     print(rule)
 
 
@@ -300,7 +299,7 @@ def hr(title, level=3):
         logger.rule(title, characters='─')
         logger.info(title)
     if level == 3:
-        logger.info(f"[bold]<<< {title} >>>[/bold]", extra={"markup": True})
+        logger.info(f'[bold]<<< {title} >>>[/bold]', extra={'markup': True})
     if level == 0:
         logger.rule(characters='═')
         logger.rule(title, characters=' ')
@@ -314,7 +313,7 @@ def attr(name, text):
 def attr_align(name, text, front='', align=22):
     name = str(name).rjust(align)
     if front:
-        name = front + name[len(front):]
+        name = front + name[len(front) :]
     logger.info('%s: %s' % (name, str(text)))
 
 
@@ -333,7 +332,7 @@ def show():
     logger.info(r'E:/path\\to/alas/alas.exe, /root/alas/, ./relative/path/log.txt')
     local_var1 = 'This is local variable'
     # Line before exception
-    raise Exception("Exception")
+    raise Exception('Exception')
     # Line below exception
 
 

@@ -97,7 +97,6 @@ class CharacterSwitch(UI):
             KEYWORDS_CHARACTER_LIST.TrailblazerPreservation: [
                 TrailblazerPreservationMale,
                 TrailblazerPreservationFemale,
-
             ],
             KEYWORDS_CHARACTER_LIST.TrailblazerHarmony: [
                 TrailblazerHarmonyMale,

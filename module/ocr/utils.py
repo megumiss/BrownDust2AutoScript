@@ -35,8 +35,10 @@ def area_cross_area(area1, area2, thres_x=20, thres_y=20):
     # https://www.yiiven.cn/rect-is-intersection.html
     xa1, ya1, xa2, ya2 = area1
     xb1, yb1, xb2, yb2 = area2
-    return abs(xb2 + xb1 - xa2 - xa1) <= xa2 - xa1 + xb2 - xb1 + thres_x * 2 \
+    return (
+        abs(xb2 + xb1 - xa2 - xa1) <= xa2 - xa1 + xb2 - xb1 + thres_x * 2
         and abs(yb2 + yb1 - ya2 - ya1) <= ya2 - ya1 + yb2 - yb1 + thres_y * 2
+    )
 
 
 def _merge_area(area1, area2):
@@ -52,10 +54,7 @@ def _merge_boxed_result(left: BoxedResult, right: BoxedResult) -> BoxedResult:
 
 
 def merge_result_button(
-        results: list[BoxedResult],
-        left_keyword: str,
-        right_keyword: str,
-        merged_text: str
+    results: list[BoxedResult], left_keyword: str, right_keyword: str, merged_text: str
 ) -> list[BoxedResult]:
     """
     Args:
@@ -120,6 +119,7 @@ def merge_buttons(buttons: list[BoxedResult], thres_x=20, thres_y=20) -> list[Bo
 #         relative_area: tuple[int, int, int, int]
 # ) -> t.Generator["OcrResultButton", "OcrResultButton"]:
 #     pass
+
 
 def pair_buttons(group1, group2, relative_area):
     """

@@ -9,7 +9,16 @@ from tqdm import tqdm
 
 from module.base.code_generator import CodeGenerator
 from module.base.utils import (
-    SelectedGrids, area_center, area_limit, area_pad, corner2area, get_bbox, get_color, image_size, load_image)
+    SelectedGrids,
+    area_center,
+    area_limit,
+    area_pad,
+    corner2area,
+    get_bbox,
+    get_color,
+    image_size,
+    load_image,
+)
 from module.config.config_manual import ManualConfig as AzurLaneConfig
 from module.config.deep import deep_get, deep_iter, deep_set
 from module.config.server import VALID_LANG

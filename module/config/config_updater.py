@@ -39,6 +39,7 @@ def gui_lang_to_ingame_lang(lang: str) -> str:
 
 def get_generator():
     from module.base.code_generator import CodeGenerator
+
     return CodeGenerator()
 
 
@@ -66,30 +67,46 @@ class ConfigGenerator:
         option_add(keys='Emulator.PackageName.option', options=list(VALID_SERVER.keys()))
         # Insert dungeons
         from tasks.dungeon.keywords import DungeonList
+
         calyx_golden = [dungeon.name for dungeon in DungeonList.instances.values() if dungeon.is_Calyx_Golden_Memories]
         calyx_golden += [dungeon.name for dungeon in DungeonList.instances.values() if dungeon.is_Calyx_Golden_Aether]
-        calyx_golden += [dungeon.name for dungeon in DungeonList.instances.values() if
-                         dungeon.is_Calyx_Golden_Treasures]
+        calyx_golden += [
+            dungeon.name for dungeon in DungeonList.instances.values() if dungeon.is_Calyx_Golden_Treasures
+        ]
         # calyx_crimson
         from tasks.rogue.keywords import KEYWORDS_ROGUE_PATH as Path
-        order = [Path.Destruction, Path.Preservation, Path.The_Hunt, Path.Abundance,
-                 Path.Erudition, Path.Harmony, Path.Nihility, Path.Remembrance]
+
+        order = [
+            Path.Destruction,
+            Path.Preservation,
+            Path.The_Hunt,
+            Path.Abundance,
+            Path.Erudition,
+            Path.Harmony,
+            Path.Nihility,
+            Path.Remembrance,
+        ]
         calyx_crimson = []
         for path in order:
-            calyx_crimson += [dungeon.name for dungeon in DungeonList.instances.values()
-                              if dungeon.Calyx_Crimson_Path == path]
+            calyx_crimson += [
+                dungeon.name for dungeon in DungeonList.instances.values() if dungeon.Calyx_Crimson_Path == path
+            ]
         # stagnant_shadow
         from tasks.character.keywords import CombatType
+
         stagnant_shadow = []
         for type_ in CombatType.instances.values():
-            stagnant_shadow += [dungeon.name for dungeon in DungeonList.instances.values()
-                                if dungeon.Stagnant_Shadow_Combat_Type == type_]
-        cavern_of_corrosion = [dungeon.name for dungeon in DungeonList.instances.values() if
-                               dungeon.is_Cavern_of_Corrosion]
+            stagnant_shadow += [
+                dungeon.name
+                for dungeon in DungeonList.instances.values()
+                if dungeon.Stagnant_Shadow_Combat_Type == type_
+            ]
+        cavern_of_corrosion = [
+            dungeon.name for dungeon in DungeonList.instances.values() if dungeon.is_Cavern_of_Corrosion
+        ]
         ornament = [dungeon.name for dungeon in DungeonList.instances.values() if dungeon.is_Ornament_Extraction]
         option_add(
-            keys='Dungeon.Name.option',
-            options=cavern_of_corrosion + calyx_golden + calyx_crimson + stagnant_shadow
+            keys='Dungeon.Name.option', options=cavern_of_corrosion + calyx_golden + calyx_crimson + stagnant_shadow
         )
         # Double events
         option_add(keys='Dungeon.NameAtDoubleCalyx.option', options=calyx_golden + calyx_crimson)
@@ -107,31 +124,40 @@ class ConfigGenerator:
         option_add(keys='Ornament.Dungeon.option', options=ornament)
         # Insert characters
         from tasks.character.aired_version import list_support_characters
+
         unsupported_characters = []
-        characters = [character.name for character in list_support_characters()
-                      if character.name not in unsupported_characters]
+        characters = [
+            character.name for character in list_support_characters() if character.name not in unsupported_characters
+        ]
         option_add(keys='DungeonSupport.Character.option', options=characters)
         option_add(keys='PlannerTarget.Character.option', options=characters)
         # Insert cones
         from tasks.cone.aired_version import list_cones
+
         cones = [cone.name for cone in list_cones()]
         option_add(keys='PlannerTarget.Cone.option', options=cones)
         # Insert assignments
         from tasks.assignment.keywords import AssignmentEntry
+
         assignments = [entry.name for entry in AssignmentEntry.instances.values()]
         for i in range(4):
             option_add(keys=f'Assignment.Name_{i + 1}.option', options=assignments)
         # Insert planner items
         from tasks.planner.keywords.classes import ItemBase
+
         for item in ItemBase.instances.values():
             if item.is_ItemValuable:
                 continue
             base = item.group_base
-            deep_set(raw, keys=['Planner', f'Item_{base.name}'], value={
-                'stored': 'StoredPlanner',
-                'display': 'display',
-                'type': 'planner',
-            })
+            deep_set(
+                raw,
+                keys=['Planner', f'Item_{base.name}'],
+                value={
+                    'stored': 'StoredPlanner',
+                    'display': 'display',
+                    'type': 'planner',
+                },
+            )
 
         # Load
         for path, value in deep_iter(raw, depth=2):
@@ -226,11 +252,12 @@ class ConfigGenerator:
             # But allow `Interval` to be different
             old_value = old.get('value', None) if isinstance(old, dict) else old
             value = old.get('value', None) if isinstance(value, dict) else value
-            if type(value) != type(old_value) \
-                    and old_value is not None \
-                    and path[2] not in ['SuccessInterval', 'FailureInterval']:
-                print(
-                    f'`{value}` ({type(value)}) and `{".".join(path)}` ({type(old_value)}) are in different types')
+            if (
+                type(value) != type(old_value)
+                and old_value is not None
+                and path[2] not in ['SuccessInterval', 'FailureInterval']
+            ):
+                print(f'`{value}` ({type(value)}) and `{".".join(path)}` ({type(old_value)}) are in different types')
                 return False
             # Check option
             if isinstance(old, dict) and 'option' in old:
@@ -253,7 +280,7 @@ class ConfigGenerator:
                 if typ == 'state':
                     pass
                 elif typ == 'lock':
-                    deep_default(v, keys='display', value="disabled")
+                    deep_default(v, keys='display', value='disabled')
                 elif deep_get(v, keys='value') is not None:
                     deep_default(v, keys='display', value='hide')
                 for arg_k, arg_v in v.items():
@@ -304,6 +331,7 @@ class ConfigGenerator:
     @timer
     def generate_stored(self):
         import module.config.stored.classes as classes
+
         gen = get_generator()
         gen.add('from module.config.stored.classes import (')
         with gen.tab():
@@ -342,7 +370,7 @@ class ConfigGenerator:
         def deep_load(keys, default=True, words=('name', 'help')):
             for word in words:
                 k = keys + [str(word)]
-                d = ".".join(k) if default else str(word)
+                d = '.'.join(k) if default else str(word)
                 v = deep_get(old, keys=k, default=d)
                 deep_set(new, keys=k, value=v)
 
@@ -431,6 +459,7 @@ class ConfigGenerator:
         }
 
         from tasks.dungeon.keywords import DungeonList, DungeonDetailed
+
         def relicdungeon2name(dun: DungeonList):
             dungeon_id = dun.dungeon_id
             relic_list = []
@@ -448,20 +477,32 @@ class ConfigGenerator:
             else:
                 world_name = ''
             if dungeon.is_Calyx_Golden_Memories:
-                deep_set(new, keys=['Dungeon', 'Name', dungeon.name],
-                         value=i18n_memories[ingame_lang].format(dungeon=dungeon_name, world=world_name))
+                deep_set(
+                    new,
+                    keys=['Dungeon', 'Name', dungeon.name],
+                    value=i18n_memories[ingame_lang].format(dungeon=dungeon_name, world=world_name),
+                )
             if dungeon.is_Calyx_Golden_Aether:
-                deep_set(new, keys=['Dungeon', 'Name', dungeon.name],
-                         value=i18n_aether[ingame_lang].format(dungeon=dungeon_name, world=world_name))
+                deep_set(
+                    new,
+                    keys=['Dungeon', 'Name', dungeon.name],
+                    value=i18n_aether[ingame_lang].format(dungeon=dungeon_name, world=world_name),
+                )
             if dungeon.is_Calyx_Golden_Treasures:
-                deep_set(new, keys=['Dungeon', 'Name', dungeon.name],
-                         value=i18n_treasure[ingame_lang].format(dungeon=dungeon_name, world=world_name))
+                deep_set(
+                    new,
+                    keys=['Dungeon', 'Name', dungeon.name],
+                    value=i18n_treasure[ingame_lang].format(dungeon=dungeon_name, world=world_name),
+                )
             if dungeon.is_Calyx_Crimson:
                 plane = dungeon.plane.__getattribute__(ingame_lang)
                 plane = re.sub('[「」"]', '', plane)
                 path = dungeon.Calyx_Crimson_Path.__getattribute__(ingame_lang)
-                deep_set(new, keys=['Dungeon', 'Name', dungeon.name],
-                         value=i18n_crimson[ingame_lang].format(path=path, plane=plane))
+                deep_set(
+                    new,
+                    keys=['Dungeon', 'Name', dungeon.name],
+                    value=i18n_crimson[ingame_lang].format(path=path, plane=plane),
+                )
             if dungeon.is_Cavern_of_Corrosion:
                 value = relicdungeon2name(dungeon)
                 value = i18n_relic[ingame_lang].format(dungeon=dungeon_name, relic=value)
@@ -476,7 +517,10 @@ class ConfigGenerator:
                     r'|階差宇宙・'
                     r'|: Universo Diferenciado'
                     r'|Universo Diferenciado: '
-                    r')', '', value)
+                    r')',
+                    '',
+                    value,
+                )
                 deep_set(new, keys=['Ornament', 'Dungeon', dungeon.name], value=value)
 
         # Stagnant shadows with character names
@@ -513,6 +557,7 @@ class ConfigGenerator:
         }
         from tasks.character.keywords import CharacterList
         from tasks.character.aired_version import get_character_version
+
         for keys in [
             'DungeonSupport.Character.option',
             'PlannerTarget.Character.option',
@@ -533,6 +578,7 @@ class ConfigGenerator:
 
         # Cone names
         from tasks.cone.aired_version import Cone
+
         keys = 'PlannerTarget.Cone.option'
         cones = deep_get(self.argument, keys=keys)
         keys = keys.split('.')
@@ -550,6 +596,7 @@ class ConfigGenerator:
 
         # Assignments
         from tasks.assignment.keywords import AssignmentEntryDetailed
+
         for entry in AssignmentEntryDetailed.instances.values():
             entry: AssignmentEntryDetailed
             value = entry.__getattribute__(ingame_lang)
@@ -571,6 +618,7 @@ class ConfigGenerator:
                 deep_set(new, keys=['RogueWorld', 'World', dungeon.name], value=dungeon.__getattribute__(ingame_lang))
         # Planner items
         from tasks.planner.keywords.classes import ItemBase
+
         for item in ItemBase.instances.values():
             item: ItemBase = item
             name = f'Item_{item.name}'
@@ -616,7 +664,7 @@ class ConfigGenerator:
             '异': '異',
             '服務器': '伺服器',
             '文件': '檔案',
-            '自定義': '自訂'
+            '自定義': '自訂',
         }
         if lang == 'zh-TW':
             for path, value in deep_iter(new, depth=3):
@@ -658,6 +706,7 @@ class ConfigGenerator:
     @cached_property
     def stored(self):
         import module.config.stored.classes as classes
+
         data = {}
         for path, value in deep_iter(self.args, depth=3):
             if value.get('type') not in ['stored', 'planner']:
@@ -672,7 +721,7 @@ class ConfigGenerator:
                 'stored': stored,
                 'attrs': stored_class('')._attrs,
                 'order': value.get('order', 0),
-                'color': value.get('color', '#777777')
+                'color': value.get('color', '#777777'),
             }
             data[name] = row
 
@@ -807,8 +856,13 @@ class ConfigUpdater:
             typ = data['type']
             display = data.get('display')
             keepvalue = bool(data.get('keepvalue'))
-            if is_template or value is None or value == '' \
-                    or typ in type_lock or (display == 'hide' and typ not in type_stored):
+            if (
+                is_template
+                or value is None
+                or value == ''
+                or typ in type_lock
+                or (display == 'hide' and typ not in type_stored)
+            ):
                 if not keepvalue:
                     value = data['value']
             value = parse_value(value, data=data)
@@ -900,6 +954,7 @@ class ConfigUpdater:
         if key.startswith('Dungeon.Dungeon') or key.startswith('Dungeon.DungeonDaily'):
             from tasks.dungeon.keywords.dungeon import DungeonList
             from module.exception import ScriptError
+
             try:
                 dungeon = DungeonList.find(value)
             except ScriptError:

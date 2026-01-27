@@ -66,6 +66,7 @@ class ModuleBase:
         """
         logger.hr('Creating worker')
         from concurrent.futures import ThreadPoolExecutor
+
         pool = ThreadPoolExecutor(1)
         return pool
 
@@ -390,7 +391,7 @@ class ModuleBase:
         """
         image = color_similarity_2d(self.image_crop(area, copy=False), color=color)
         points = np.array(np.where(image > color_threshold)).T[:, ::-1]
-        if points.shape[0] < encourage ** 2:
+        if points.shape[0] < encourage**2:
             # Not having enough pixels to match
             return None
 
@@ -489,9 +490,6 @@ class ModuleBase:
             Image.fromarray(im, mode='RGB').save(output, format='png')
             output.seek(0)
 
-            self.device.screenshot_tracking.append({
-                'time': ti,
-                'image': output
-            })
+            self.device.screenshot_tracking.append({'time': ti, 'image': output})
 
         ModuleBase.worker.submit(image_encode, image, now)

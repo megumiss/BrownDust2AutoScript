@@ -31,12 +31,12 @@ def set_func_logger(
 class __logger(logging.Logger):
     def rule(
         self,
-        title: str = "",
+        title: str = '',
         *,
-        characters: str = "-",
-        style: str = "rule.line",
-        end: str = "\n",
-        align: str = "center",
+        characters: str = '-',
+        style: str = 'rule.line',
+        end: str = '\n',
+        align: str = 'center',
     ) -> None: ...
     def hr(
         self,
@@ -52,7 +52,7 @@ class __logger(logging.Logger):
         self,
         name,
         text,
-        front="",
+        front='',
         align: int = 22,
     ) -> None: ...
     def set_file_logger(

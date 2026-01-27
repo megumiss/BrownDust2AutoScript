@@ -56,12 +56,12 @@ class DungeonStamina(DungeonUI):
                 continue
 
     def _item_amount_set(
-            self,
-            amount: int,
-            ocr_button: ButtonWrapper,
-            minus_button=AMOUNT_MINUS,
-            plus_button=AMOUNT_PLUS,
-            skip_first_screenshot=True,
+        self,
+        amount: int,
+        ocr_button: ButtonWrapper,
+        minus_button=AMOUNT_MINUS,
+        plus_button=AMOUNT_PLUS,
+        skip_first_screenshot=True,
     ):
         logger.info(f'Item amount set to {amount}')
         ocr = Digit(ocr_button, lang=server.lang)

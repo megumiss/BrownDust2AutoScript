@@ -46,24 +46,13 @@ class SelectOcr(Ocr):
             result = result[:-1]
         return result
 
-    def _match_result(
-            self,
-            result: str,
-            keyword_classes,
-            lang: str = None,
-            ignore_punctuation=True,
-            ignore_digit=True):
-
+    def _match_result(self, result: str, keyword_classes, lang: str = None, ignore_punctuation=True, ignore_digit=True):
         if not isinstance(keyword_classes, list):
             keyword_classes = [keyword_classes]
 
         for keyword_class in keyword_classes:
             try:
-                matched = keyword_class.find_startswith(
-                    result,
-                    lang=lang,
-                    ignore_punctuation=ignore_punctuation
-                )
+                matched = keyword_class.find_startswith(result, lang=lang, ignore_punctuation=ignore_punctuation)
                 return matched
             except ScriptError:
                 continue
@@ -82,7 +71,11 @@ class PlannerSelect(PlannerUI):
         if self.config.Emulator_PackageName in ['CN-Official', 'CN-Bilibili']:
             lang = 'cn'
         elif self.config.Emulator_PackageName in [
-            'OVERSEA-America', 'OVERSEA-Asia', 'OVERSEA-Europe', 'OVERSEA-TWHKMO']:
+            'OVERSEA-America',
+            'OVERSEA-Asia',
+            'OVERSEA-Europe',
+            'OVERSEA-TWHKMO',
+        ]:
             lang = 'en'
         else:
             lang = self.config.LANG
@@ -163,8 +156,7 @@ class PlannerSelect(PlannerUI):
             if r:
                 result = r
                 break
-            p1, p2 = random_rectangle_vector_opted(
-                (0, -300), box=area, random_range=(-20, -20, 20, 20))
+            p1, p2 = random_rectangle_vector_opted((0, -300), box=area, random_range=(-20, -20, 20, 20))
             self.device.drag(p1, p2, name=f'PLANNER_SELECT_DRAG')
             self.device.screenshot()
 
@@ -207,8 +199,7 @@ class PlannerSelect(PlannerUI):
             if r:
                 result = r
                 break
-            p1, p2 = random_rectangle_vector_opted(
-                (0, -300), box=area, random_range=(-20, -20, 20, 20))
+            p1, p2 = random_rectangle_vector_opted((0, -300), box=area, random_range=(-20, -20, 20, 20))
             self.device.drag(p1, p2, name=f'PLANNER_SELECT_DRAG')
             self.device.screenshot()
 
@@ -276,7 +267,8 @@ class PlannerSelect(PlannerUI):
         # set target
         ocr = Digit(ClickButton(LEVEL_VALUE_TARGET.button), name=f'{level_button}_TARGET')
         self.ui_ensure_index(
-            level, letter=ocr, prev_button=LEVEL_MINUS, next_button=LEVEL_PLUS, skip_first_screenshot=True)
+            level, letter=ocr, prev_button=LEVEL_MINUS, next_button=LEVEL_PLUS, skip_first_screenshot=True
+        )
         return True
 
 

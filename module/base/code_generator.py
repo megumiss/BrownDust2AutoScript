@@ -212,16 +212,13 @@ class MarkdownGenerator:
 
     def generate(self) -> t.List[str]:
         import numpy as np
-        width = np.array([
-            [len(ele) for ele in row] for row in self.rows
-        ])
+
+        width = np.array([[len(ele) for ele in row] for row in self.rows])
         max_width = np.max(width, axis=0)
         dash = ['-' * width for width in max_width]
 
         rows = [
-                   self.product_line(self.rows[0], max_width),
-                   self.product_line(dash, max_width),
-               ] + [
-                   self.product_line(row, max_width) for row in self.rows[1:]
-               ]
+            self.product_line(self.rows[0], max_width),
+            self.product_line(dash, max_width),
+        ] + [self.product_line(row, max_width) for row in self.rows[1:]]
         return rows

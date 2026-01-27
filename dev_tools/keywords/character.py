@@ -162,9 +162,7 @@ class GenerateCharacterPath(GenerateKeyword):
             text_id = deep_get(row, 'BaseTypeText.Hash', '')
             if not text_id:
                 continue
-            yield {
-                'text_id': text_id
-            }
+            yield {'text_id': text_id}
 
 
 def convert_inner_character_to_keyword(name):
@@ -215,12 +213,11 @@ class GenerateCharacterHeight(GenerateKeyword):
                 dict_height[character] = height
 
         dict_height = {
-            k: v for k, v in sorted(
-                dict_height.items(), key=lambda item: (height_index.index(item[1]), item[0])
-            )
+            k: v for k, v in sorted(dict_height.items(), key=lambda item: (height_index.index(item[1]), item[0]))
         }
 
         from tasks.character.keywords.classes import CharacterList
+
         with self.gen.Dict('CHARACTER_HEIGHT'):
             for character, height in dict_height.items():
                 # print(character, height)

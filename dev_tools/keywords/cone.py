@@ -17,7 +17,7 @@ class GenerateCone(GenerateKeyword):
         # cones
         return self.read_file('./ExcelOutput/EquipmentConfig.json')
 
-    def icon_to_name(self, name: str) -> "str | int":
+    def icon_to_name(self, name: str) -> 'str | int':
         """
         Extract character name (inner name) or cone id from PoolLabelIcon
         SpriteOutput/DrawCardPic/GachaTabIcon/TabIcon_Dr_Ratio_00.png
@@ -72,6 +72,7 @@ class GenerateCone(GenerateKeyword):
             deep_set(pool, [gacha_id, gacha_type], name)
 
         from tasks.character.keywords import CharacterList
+
         # Build character -> cone
         out = {}
         for row in pool.values():

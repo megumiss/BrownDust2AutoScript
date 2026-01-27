@@ -145,8 +145,7 @@ class AssignmentClaim(AssignmentDispatch):
         Returns:
             bool: If same.
         """
-        duration_reported: timedelta = Duration(
-            OCR_ASSIGNMENT_REPORT_TIME).ocr_single_line(self.device.image)
+        duration_reported: timedelta = Duration(OCR_ASSIGNMENT_REPORT_TIME).ocr_single_line(self.device.image)
         return duration_reported.total_seconds() == duration * 3600
 
     def _scan_ongoing(self):
@@ -159,7 +158,7 @@ class AssignmentClaim(AssignmentDispatch):
         ]:
             self.goto_group(group)
             # goto_group includes load_rows, we just get remain time from cache
-            dict_remain: "dict[AssignmentEntry, str]" = ASSIGNMENT_ENTRY_LIST.ocr.dict_remain
+            dict_remain: 'dict[AssignmentEntry, str]' = ASSIGNMENT_ENTRY_LIST.ocr.dict_remain
             current = now()
             for assignment, remain in dict_remain.items():
                 remain = post.after_process(remain)

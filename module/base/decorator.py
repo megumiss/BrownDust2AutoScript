@@ -3,7 +3,7 @@ import re
 from functools import wraps
 from typing import Callable, Generic, TypeVar
 
-T = TypeVar("T")
+T = TypeVar('T')
 
 
 class Config:
@@ -18,6 +18,7 @@ class Config:
         ]
     }
     """
+
     func_list = {}
 
     @classmethod
@@ -36,6 +37,7 @@ class Config:
                 pass
         """
         from module.logger import logger
+
         options = kwargs
 
         def decorate(func):
@@ -61,9 +63,10 @@ class Config:
                     **kwargs:
                 """
                 for record in cls.func_list[name]:
-
-                    flag = [value is None or self.config.__getattribute__(key) == value
-                            for key, value in record['options'].items()]
+                    flag = [
+                        value is None or self.config.__getattribute__(key) == value
+                        for key, value in record['options'].items()
+                    ]
                     if not all(flag):
                         continue
 

@@ -72,6 +72,7 @@ class SelectedGrids:
         Returns:
             SelectedGrids:
         """
+
         def matched(obj):
             flag = True
             for k, v in kwargs.items():
@@ -271,6 +272,7 @@ class SelectedGrids:
             SelectedGrids:
         """
         import numpy as np
+
         if not self:
             return self
         location = np.array(self.location)
@@ -290,6 +292,7 @@ class SelectedGrids:
             SelectedGrids:
         """
         import numpy as np
+
         if not self:
             return self
         vector = np.subtract(self.location, center)

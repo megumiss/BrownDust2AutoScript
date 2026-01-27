@@ -13,7 +13,6 @@ class Ornament(OrnamentCombat):
     support_once = False
 
     def _dungeon_wait_until_dungeon_list_loaded(self, skip_first_screenshot=True):
-
         result = super()._dungeon_wait_until_dungeon_list_loaded(skip_first_screenshot)
 
         # Check save file before entering

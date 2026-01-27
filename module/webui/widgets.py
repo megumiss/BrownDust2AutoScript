@@ -35,10 +35,9 @@ class ScrollableCode:
     def __init__(self, keep_bottom: bool = True) -> None:
         self.keep_bottom = keep_bottom
 
-        self.id = "".join(random.choice(string.ascii_letters) for _ in range(10))
+        self.id = ''.join(random.choice(string.ascii_letters) for _ in range(10))
         self.html = (
-            """<pre id="%s" class="container-log"><code style="white-space:break-spaces;"></code></pre>"""
-            % self.id
+            """<pre id="%s" class="container-log"><code style="white-space:break-spaces;"></code></pre>""" % self.id
         )
 
     def output(self):
@@ -49,9 +48,7 @@ class ScrollableCode:
         if text:
             run_js(
                 """$("#{dom_id}>code").append(text);
-            """.format(
-                    dom_id=self.id
-                ),
+            """.format(dom_id=self.id),
                 text=str(text),
             )
             if self.keep_bottom:
@@ -60,9 +57,7 @@ class ScrollableCode:
     def scroll(self) -> None:
         run_js(
             r"""$("\#{dom_id}").animate({{scrollTop: $("\#{dom_id}").prop("scrollHeight")}}, 0);
-        """.format(
-                dom_id=self.id
-            )
+        """.format(dom_id=self.id)
         )
 
     def reset(self) -> None:
@@ -74,14 +69,14 @@ class ScrollableCode:
 
 
 class RichLog:
-    def __init__(self, scope, font_width="0.559") -> None:
+    def __init__(self, scope, font_width='0.559') -> None:
         self.scope = scope
         self.font_width = font_width
         self.console = HTMLConsole(
             force_terminal=False,
             force_interactive=False,
             width=80,
-            color_system="truecolor",
+            color_system='truecolor',
             markup=False,
             record=True,
             safe_box=False,
@@ -93,7 +88,7 @@ class RichLog:
         # self._callback_thread = None
         # self._width = 80
         self.keep_bottom = True
-        if State.theme == "dark":
+        if State.theme == 'dark':
             self.terminal_theme = DARK_TERMINAL_THEME
         else:
             self.terminal_theme = LIGHT_TERMINAL_THEME
@@ -115,9 +110,7 @@ class RichLog:
         if text:
             run_js(
                 """$("#pywebio-scope-{scope}>div").append(text);
-            """.format(
-                    scope=self.scope
-                ),
+            """.format(scope=self.scope),
                 text=str(text),
             )
             if self.keep_bottom:
@@ -129,9 +122,7 @@ class RichLog:
     def scroll(self) -> None:
         run_js(
             """$("#pywebio-scope-{scope}").scrollTop($("#pywebio-scope-{scope}").prop("scrollHeight"));
-        """.format(
-                scope=self.scope
-            )
+        """.format(scope=self.scope)
         )
 
     def set_scroll(self, b: bool) -> None:
@@ -151,9 +142,7 @@ class RichLog:
 
         ($('#pywebio-scope-{scope}').width()-16)/\
         $('#pywebio-scope-{scope}').css('font-size').slice(0, -2)/text.width*16;\
-        """.format(
-            scope=self.scope
-        )
+        """.format(scope=self.scope)
         width = eval_js(js)
         return 80 if width is None else 128 if width > 128 else int(width)
 
@@ -191,7 +180,7 @@ class RichLog:
         try:
             while True:
                 last_idx = len(pm.renderables)
-                html = "".join(map(self.render, pm.renderables[:]))
+                html = ''.join(map(self.render, pm.renderables[:]))
                 self.reset()
                 self.extend(html)
                 counter = last_idx
@@ -201,7 +190,7 @@ class RichLog:
                     if idx < last_idx:
                         last_idx -= pm.renderables_reduce_length
                     if idx != last_idx:
-                        html = "".join(map(self.render, pm.renderables[last_idx:idx]))
+                        html = ''.join(map(self.render, pm.renderables[last_idx:idx]))
                         self.extend(html)
                         counter += idx - last_idx
                         last_idx = idx
@@ -218,8 +207,8 @@ class BinarySwitchButton(Switch):
         onclick_on,
         onclick_off,
         scope,
-        color_on="success",
-        color_off="secondary",
+        color_on='success',
+        color_off='secondary',
     ):
         """
         Args:
@@ -241,16 +230,16 @@ class BinarySwitchButton(Switch):
         self.scope = scope
         status = {
             0: {
-                "func": self.update_button,
-                "args": (
+                'func': self.update_button,
+                'args': (
                     label_off,
                     onclick_off,
                     color_off,
                 ),
             },
             1: {
-                "func": self.update_button,
-                "args": (
+                'func': self.update_button,
+                'args': (
                     label_on,
                     onclick_on,
                     color_on,
@@ -272,55 +261,53 @@ def put_icon_buttons(
     buttons: List[Dict[str, str]],
     onclick: Union[List[Callable[[], None]], Callable[[], None]],
 ) -> Output:
-    value = buttons[0]["value"]
+    value = buttons[0]['value']
     return put_column(
         [
-            output(put_html(icon_html)).style(
-                "z-index: 1; margin-left: 8px;text-align: center"
-            ),
-            put_buttons(buttons, onclick).style(f"z-index: 2; --aside-{value}--;"),
+            output(put_html(icon_html)).style('z-index: 1; margin-left: 8px;text-align: center'),
+            put_buttons(buttons, onclick).style(f'z-index: 2; --aside-{value}--;'),
         ],
-        size="0",
+        size='0',
     )
 
 
 def put_none() -> Output:
-    return put_html("<div></div>")
+    return put_html('<div></div>')
 
 
 T_Output_Kwargs = Dict[str, Union[str, Dict[str, Any]]]
 
 
 def get_title_help(kwargs: T_Output_Kwargs) -> Output:
-    title: str = kwargs.get("title")
-    help_text: str = kwargs.get("help")
+    title: str = kwargs.get('title')
+    help_text: str = kwargs.get('help')
 
     if help_text:
         res = put_column(
             [
-                put_text(title).style("--arg-title--"),
-                put_text(help_text).style("--arg-help--"),
+                put_text(title).style('--arg-title--'),
+                put_text(help_text).style('--arg-help--'),
             ],
-            size="auto 1fr",
+            size='auto 1fr',
         )
     else:
-        res = put_text(title).style("--arg-title--")
+        res = put_text(title).style('--arg-title--')
 
     return res
 
 
 # args input widget
 def put_arg_input(kwargs: T_Output_Kwargs) -> Output:
-    name: str = kwargs["name"]
-    options: List = kwargs.get("options")
+    name: str = kwargs['name']
+    options: List = kwargs.get('options')
     if options is not None:
-        kwargs.setdefault("datalist", options)
+        kwargs.setdefault('datalist', options)
 
     return put_scope(
-        f"arg_container-input-{name}",
+        f'arg_container-input-{name}',
         [
             get_title_help(kwargs),
-            put_input(**kwargs).style("--input--"),
+            put_input(**kwargs).style('--input--'),
         ],
     )
 
@@ -328,90 +315,96 @@ def put_arg_input(kwargs: T_Output_Kwargs) -> Output:
 def product_stored_row(key, value):
     if key[-1].isdigit():
         # quest1, quest2, quest3
-        return [put_text(value).style("--dashboard-time--")]
+        return [put_text(value).style('--dashboard-time--')]
     else:
         # calyx, relic
         # 3 (relic)
         return [
-            put_text(value).style("--dashboard-value--"),
-            put_text(f" ({key})").style("--dashboard-time--"),
+            put_text(value).style('--dashboard-value--'),
+            put_text(f' ({key})').style('--dashboard-time--'),
         ]
 
 
 def put_arg_stored(kwargs: T_Output_Kwargs) -> Output:
-    name: str = kwargs["name"]
+    name: str = kwargs['name']
     # kwargs["disabled"] = True
 
-    values = kwargs.pop("value", {})
-    value = values.pop("value", "")
-    total = values.pop("total", "")
-    time_ = values.pop("time", "")
-    comment = values.pop("comment", "")
+    values = kwargs.pop('value', {})
+    value = values.pop('value', '')
+    total = values.pop('total', '')
+    time_ = values.pop('time', '')
+    comment = values.pop('comment', '')
 
-    if value != "" and total != "":
+    if value != '' and total != '':
         # 0 / 100
-        rows = [put_scope(f"dashboard-value-{name}", [
-            put_text(value).style("--dashboard-value--"),
-            put_text(f" / {total}").style("--dashboard-time--"),
-        ])]
-    elif value != "" and comment != "":
+        rows = [
+            put_scope(
+                f'dashboard-value-{name}',
+                [
+                    put_text(value).style('--dashboard-value--'),
+                    put_text(f' / {total}').style('--dashboard-time--'),
+                ],
+            )
+        ]
+    elif value != '' and comment != '':
         # 88% <1.2d
-        rows = [put_scope(f"dashboard-value-{name}", [
-            put_text(value).style("--dashboard-value--"),
-            put_text(f" {comment}").style("--dashboard-time--"),
-        ])]
-    elif value != "":
+        rows = [
+            put_scope(
+                f'dashboard-value-{name}',
+                [
+                    put_text(value).style('--dashboard-value--'),
+                    put_text(f' {comment}').style('--dashboard-time--'),
+                ],
+            )
+        ]
+    elif value != '':
         # 100
-        rows = [put_scope(f"dashboard-value-{name}", [
-            put_text(value).style("--dashboard-value--")
-        ])]
+        rows = [put_scope(f'dashboard-value-{name}', [put_text(value).style('--dashboard-value--')])]
     else:
         # No Data
-        rows = [put_scope(f"dashboard-value-{name}", [
-            put_text(t("Gui.Dashboard.NoData")).style("--dashboard-value--")
-        ])]
+        rows = [
+            put_scope(f'dashboard-value-{name}', [put_text(t('Gui.Dashboard.NoData')).style('--dashboard-value--')])
+        ]
     # Add other key-value in stored
     if values:
         rows += [
-            put_scope(f"dashboard-value-{name}-{key}", product_stored_row(key, value))
-            for key, value in values.items() if value != ""
+            put_scope(f'dashboard-value-{name}-{key}', product_stored_row(key, value))
+            for key, value in values.items()
+            if value != ''
         ]
     # Add time
     if time_:
-        rows.append(
-            put_text(time_).style("--dashboard-time--")
-        )
+        rows.append(put_text(time_).style('--dashboard-time--'))
     else:
         # Blank row
-        rows.append(
-            put_text(" ").style("--dashboard-time--")
-        )
+        rows.append(put_text(' ').style('--dashboard-time--'))
 
     return put_scope(
-        f"arg_container-stored-{name}",
+        f'arg_container-stored-{name}',
         [
             get_title_help(kwargs),
             put_scope(
-                f"arg_stored-stored-value-{name}",
+                f'arg_stored-stored-value-{name}',
                 rows,
-            )
-        ]
+            ),
+        ],
     )
 
-def put_arg_planner(kwargs: T_Output_Kwargs) -> Output | None:
-    name: str = kwargs["name"]
 
-    values = kwargs.pop("value", {})
+def put_arg_planner(kwargs: T_Output_Kwargs) -> Output | None:
+    name: str = kwargs['name']
+
+    values = kwargs.pop('value', {})
     try:
-        progress = float(values["progress"])
+        progress = float(values['progress'])
     except (KeyError, ValueError):
         # Hide items not needed by the planner
         return None
-    eta = values.get("eta", 0)
+    eta = values.get('eta', 0)
     if eta > 0:
-        eta = f" - {t('Gui.Dashboard.EtaDays', time=eta)}"
+        eta = f' - {t("Gui.Dashboard.EtaDays", time=eta)}'
     else:
-        eta = ""
+        eta = ''
 
     value = values.pop('value', 0)
     if isinstance(value, dict):
@@ -421,97 +414,108 @@ def put_arg_planner(kwargs: T_Output_Kwargs) -> Output | None:
         total = tuple(total.values())
 
     if progress < 100:
-        row = put_scope(f"arg_stored-stored-value-{name}", [
-            put_text(f"{progress:.2f}%{eta}").style("--dashboard-bold--"),
-            put_text(f"{value} / {total}").style("--dashboard-time--"),
-        ])
+        row = put_scope(
+            f'arg_stored-stored-value-{name}',
+            [
+                put_text(f'{progress:.2f}%{eta}').style('--dashboard-bold--'),
+                put_text(f'{value} / {total}').style('--dashboard-time--'),
+            ],
+        )
     else:
-        row = put_scope(f"arg_stored-stored-value-{name}", [
-            put_text(f"{progress:.2f}%").style("--dashboard-value--"),
-            put_text(f"{value} / {total}").style("--dashboard-time--"),
-        ])
+        row = put_scope(
+            f'arg_stored-stored-value-{name}',
+            [
+                put_text(f'{progress:.2f}%').style('--dashboard-value--'),
+                put_text(f'{value} / {total}').style('--dashboard-time--'),
+            ],
+        )
 
     return put_scope(
-        f"arg_container-planner-{name}",
+        f'arg_container-planner-{name}',
         [
             get_title_help(kwargs),
             row,
-        ]
+        ],
     )
 
 
 def put_arg_select(kwargs: T_Output_Kwargs) -> Output:
-    name: str = kwargs["name"]
-    value: str = kwargs["value"]
-    options: List[str] = kwargs["options"]
-    options_label: List[str] = kwargs.pop("options_label", [])
-    disabled: bool = kwargs.pop("disabled", False)
-    _: str = kwargs.pop("invalid_feedback", None)
+    name: str = kwargs['name']
+    value: str = kwargs['value']
+    options: List[str] = kwargs['options']
+    options_label: List[str] = kwargs.pop('options_label', [])
+    disabled: bool = kwargs.pop('disabled', False)
+    _: str = kwargs.pop('invalid_feedback', None)
 
     if disabled:
-        option = [{
-            "label": next((opt_label for opt, opt_label in zip(options, options_label) if opt == value), value),
-            "value": value,
-            "selected": True,
-        }]
+        option = [
+            {
+                'label': next((opt_label for opt, opt_label in zip(options, options_label) if opt == value), value),
+                'value': value,
+                'selected': True,
+            }
+        ]
     else:
-        option = [{
-            "label": opt_label,
-            "value": opt,
-            "select": opt == value,
-        } for opt, opt_label in zip(options, options_label)]
-    kwargs["options"] = option
+        option = [
+            {
+                'label': opt_label,
+                'value': opt,
+                'select': opt == value,
+            }
+            for opt, opt_label in zip(options, options_label)
+        ]
+    kwargs['options'] = option
 
     return put_scope(
-        f"arg_container-select-{name}",
+        f'arg_container-select-{name}',
         [
             get_title_help(kwargs),
-            put_select(**kwargs).style("--input--"),
+            put_select(**kwargs).style('--input--'),
         ],
     )
 
 
 def put_arg_state(kwargs: T_Output_Kwargs) -> Output:
-    name: str = kwargs["name"]
-    value: str = kwargs["value"]
-    options: List[str] = kwargs["options"]
-    options_label: List[str] = kwargs.pop("options_label", [])
-    _: str = kwargs.pop("invalid_feedback", None)
-    bold: bool = value in kwargs.pop("option_bold", [])
-    light: bool = value in kwargs.pop("option_light", [])
+    name: str = kwargs['name']
+    value: str = kwargs['value']
+    options: List[str] = kwargs['options']
+    options_label: List[str] = kwargs.pop('options_label', [])
+    _: str = kwargs.pop('invalid_feedback', None)
+    bold: bool = value in kwargs.pop('option_bold', [])
+    light: bool = value in kwargs.pop('option_light', [])
 
-    option = [{
-        "label": next((opt_label for opt, opt_label in zip(options, options_label) if opt == value), value),
-        "value": value,
-        "selected": True,
-    }]
+    option = [
+        {
+            'label': next((opt_label for opt, opt_label in zip(options, options_label) if opt == value), value),
+            'value': value,
+            'selected': True,
+        }
+    ]
     if bold:
-        kwargs["class"] = "form-control state state-bold"
+        kwargs['class'] = 'form-control state state-bold'
     elif light:
-        kwargs["class"] = "form-control state state-light"
+        kwargs['class'] = 'form-control state state-light'
     else:
-        kwargs["class"] = "form-control state"
-    kwargs["options"] = option
+        kwargs['class'] = 'form-control state'
+    kwargs['options'] = option
 
     return put_scope(
-        f"arg_container-select-{name}",
+        f'arg_container-select-{name}',
         [
             get_title_help(kwargs),
-            put_select(**kwargs).style("--input--"),
+            put_select(**kwargs).style('--input--'),
         ],
     )
 
 
 def put_arg_textarea(kwargs: T_Output_Kwargs) -> Output:
-    name: str = kwargs["name"]
-    mode: str = kwargs.pop("mode", None)
-    kwargs.setdefault(
-        "code", {"lineWrapping": True, "lineNumbers": False, "mode": mode}
-    )
+    name: str = kwargs['name']
+    mode: str = kwargs.pop('mode', None)
+    kwargs.setdefault('code', {'lineWrapping': True, 'lineNumbers': False, 'mode': mode})
 
     return put_scope(
         # This aims to be a typo, don't correct it, leave it as it is
-        f"arg_contianer-textarea-{name}",
+        f'arg_contianer-textarea-{name}',
         [
             get_title_help(kwargs),
             put_textarea(**kwargs),
@@ -521,78 +525,72 @@ def put_arg_textarea(kwargs: T_Output_Kwargs) -> Output:
 
 def put_arg_checkbox(kwargs: T_Output_Kwargs) -> Output:
     # Not real checkbox, use as a switch (on/off)
-    name: str = kwargs["name"]
-    value: str = kwargs["value"]
-    _: str = kwargs.pop("invalid_feedback", None)
+    name: str = kwargs['name']
+    value: str = kwargs['value']
+    _: str = kwargs.pop('invalid_feedback', None)
 
-    kwargs["options"] = [{"label": "", "value": True, "selected": value}]
+    kwargs['options'] = [{'label': '', 'value': True, 'selected': value}]
     return put_scope(
-        f"arg_container-checkbox-{name}",
+        f'arg_container-checkbox-{name}',
         [
             get_title_help(kwargs),
-            put_checkbox(**kwargs).style("text-align: center"),
+            put_checkbox(**kwargs).style('text-align: center'),
         ],
     )
 
 
 def put_arg_datetime(kwargs: T_Output_Kwargs) -> Output:
-    name: str = kwargs["name"]
+    name: str = kwargs['name']
     return put_scope(
-        f"arg_container-datetime-{name}",
+        f'arg_container-datetime-{name}',
         [
             get_title_help(kwargs),
-            put_input(**kwargs).style("--input--"),
+            put_input(**kwargs).style('--input--'),
         ],
     )
 
 
 def put_arg_storage(kwargs: T_Output_Kwargs) -> Optional[Output]:
-    name: str = kwargs["name"]
-    if kwargs["value"] == {}:
+    name: str = kwargs['name']
+    if kwargs['value'] == {}:
         return None
 
-    kwargs["value"] = json.dumps(
-        kwargs["value"], indent=2, ensure_ascii=False, sort_keys=False, default=str
-    )
-    kwargs.setdefault(
-        "code", {"lineWrapping": True, "lineNumbers": False, "mode": "json"}
-    )
+    kwargs['value'] = json.dumps(kwargs['value'], indent=2, ensure_ascii=False, sort_keys=False, default=str)
+    kwargs.setdefault('code', {'lineWrapping': True, 'lineNumbers': False, 'mode': 'json'})
 
     def clear_callback():
-        alasgui: "AlasGUI" = local.gui
-        alasgui.modified_config_queue.put(
-            {"name": ".".join(name.split("_")), "value": {}}
-        )
+        alasgui: 'AlasGUI' = local.gui
+        alasgui.modified_config_queue.put({'name': '.'.join(name.split('_')), 'value': {}})
         # https://github.com/pywebio/PyWebIO/issues/459
         # pin[name] = "{}"
 
     return put_scope(
-        f"arg_container-storage-{name}",
+        f'arg_container-storage-{name}',
         [
             put_textarea(**kwargs),
-            put_html(
-                f'<button class="btn btn-outline-warning btn-block">{t("Gui.Text.Clear")}</button>'
-            ).onclick(clear_callback),
+            put_html(f'<button class="btn btn-outline-warning btn-block">{t("Gui.Text.Clear")}</button>').onclick(
+                clear_callback
+            ),
         ],
     )
 
 
 _widget_type_to_func: Dict[str, Callable] = {
-    "input": put_arg_input,
-    "lock": put_arg_input,
-    "datetime": put_arg_input,  # TODO
-    "select": put_arg_select,
-    "textarea": put_arg_textarea,
-    "checkbox": put_arg_checkbox,
-    "storage": put_arg_storage,
-    "state": put_arg_state,
-    "stored": put_arg_stored,
-    "planner": put_arg_planner,
+    'input': put_arg_input,
+    'lock': put_arg_input,
+    'datetime': put_arg_input,  # TODO
+    'select': put_arg_select,
+    'textarea': put_arg_textarea,
+    'checkbox': put_arg_checkbox,
+    'storage': put_arg_storage,
+    'state': put_arg_state,
+    'stored': put_arg_stored,
+    'planner': put_arg_planner,
 }
 
 
 def put_output(output_kwargs: T_Output_Kwargs) -> Optional[Output]:
-    return _widget_type_to_func[output_kwargs["widget_type"]](output_kwargs)
+    return _widget_type_to_func[output_kwargs['widget_type']](output_kwargs)
 
 
 def type_to_html(type_: str) -> str:
@@ -603,30 +601,30 @@ def type_to_html(type_: str) -> str:
     Returns:
         str: Html element name
     """
-    if type_ == "checkbox":
-        return "checkbox"
-    if type_ in ["input", "lock", "datetime"]:
-        return "input"
-    if type_ in ["select", "state"]:
-        return "select"
-    if type_ in ["textarea", "storage"]:
-        return "textarea"
+    if type_ == 'checkbox':
+        return 'checkbox'
+    if type_ in ['input', 'lock', 'datetime']:
+        return 'input'
+    if type_ in ['select', 'state']:
+        return 'select'
+    if type_ in ['textarea', 'storage']:
+        return 'textarea'
     return type_
 
 
 def get_loading_style(shape: str, fill: bool) -> str:
     if fill:
-        return f"--loading-{shape}-fill--"
+        return f'--loading-{shape}-fill--'
     else:
-        return f"--loading-{shape}--"
+        return f'--loading-{shape}--'
 
 
 def put_loading_text(
     text: str,
-    shape: str = "border",
-    color: str = "dark",
+    shape: str = 'border',
+    color: str = 'dark',
     fill: bool = False,
-    size: str = "auto 2px 1fr",
+    size: str = 'auto 2px 1fr',
 ):
     loading_style = get_loading_style(shape=shape, fill=fill)
     return put_row(

@@ -11,7 +11,7 @@ if __name__ == '__main__':
     codes = self.get_redeem_codes()
     for code in codes:
         row = {
-            "expires_at": self.expires_iso,
+            'expires_at': self.expires_iso,
         }
         deep_set(data, ['codes', 'CN', code], row)
 
@@ -19,7 +19,7 @@ if __name__ == '__main__':
     codes = self.get_redeem_codes()
     for code in codes:
         row = {
-            "expires_at": self.expires_iso,
+            'expires_at': self.expires_iso,
         }
         deep_set(data, ['codes', 'OVERSEA', code], row)
 

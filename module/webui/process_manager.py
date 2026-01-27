@@ -15,9 +15,9 @@ from module.webui.submodule.utils import get_available_func
 
 
 class ProcessManager:
-    _processes: Dict[str, "ProcessManager"] = {}
+    _processes: Dict[str, 'ProcessManager'] = {}
 
-    def __init__(self, config_name: str = "alas") -> None:
+    def __init__(self, config_name: str = 'alas') -> None:
         self.config_name = config_name
         self._renderable_queue: queue.Queue[ConsoleRenderable] = State.manager.Queue()
         self.renderables: List[ConsoleRenderable] = []
@@ -44,14 +44,9 @@ class ProcessManager:
             self.start_log_queue_handler()
 
     def start_log_queue_handler(self):
-        if (
-            self.thd_log_queue_handler is not None
-            and self.thd_log_queue_handler.is_alive()
-        ):
+        if self.thd_log_queue_handler is not None and self.thd_log_queue_handler.is_alive():
             return
-        self.thd_log_queue_handler = threading.Thread(
-            target=self._thread_log_queue_handler
-        )
+        self.thd_log_queue_handler = threading.Thread(target=self._thread_log_queue_handler)
         self.thd_log_queue_handler.start()
 
     def stop(self) -> None:
@@ -64,16 +59,12 @@ class ProcessManager:
         with lock:
             if self.alive:
                 self._process.kill()
-                self.renderables.append(
-                    f"[{self.config_name}] exited. Reason: Manual stop\n"
-                )
+                self.renderables.append(f'[{self.config_name}] exited. Reason: Manual stop\n')
             if self.thd_log_queue_handler is not None:
                 self.thd_log_queue_handler.join(timeout=1)
                 if self.thd_log_queue_handler.is_alive():
-                    logger.warning(
-                        "Log queue handler thread does not stop within 1 seconds"
-                    )
-        logger.info(f"[{self.config_name}] exited")
+                    logger.warning('Log queue handler thread does not stop within 1 seconds')
+        logger.info(f'[{self.config_name}] exited')
 
     def _thread_log_queue_handler(self) -> None:
         while self.alive:
@@ -84,7 +75,7 @@ class ProcessManager:
             self.renderables.append(log)
             if len(self.renderables) > self.renderables_max_length:
                 self.renderables = self.renderables[self.renderables_reduce_length :]
-        logger.info("End of log queue handler loop")
+        logger.info('End of log queue handler loop')
 
     @property
     def alive(self) -> bool:
@@ -104,17 +95,17 @@ class ProcessManager:
             with console.capture() as capture:
                 console.print(self.renderables[-1])
             s = capture.get().strip()
-            if s.endswith("Reason: Manual stop"):
+            if s.endswith('Reason: Manual stop'):
                 return 2
-            elif s.endswith("Reason: Finish"):
+            elif s.endswith('Reason: Finish'):
                 return 2
-            elif s.endswith("Reason: Update"):
+            elif s.endswith('Reason: Update'):
                 return 4
             else:
                 return 3
 
     @classmethod
-    def get_manager(cls, config_name: str) -> "ProcessManager":
+    def get_manager(cls, config_name: str) -> 'ProcessManager':
         """
         Create a new alas if not exists.
         """
@@ -123,13 +114,9 @@ class ProcessManager:
         return cls._processes[config_name]
 
     @staticmethod
-    def run_process(
-        config_name, func: str, q: queue.Queue, e: threading.Event = None
-    ) -> None:
+    def run_process(config_name, func: str, q: queue.Queue, e: threading.Event = None) -> None:
         parser = argparse.ArgumentParser()
-        parser.add_argument(
-            "--electron", action="store_true", help="Runs by electron client."
-        )
+        parser.add_argument('--electron', action='store_true', help='Runs by electron client.')
         args, _ = parser.parse_known_args()
         State.electron = args.electron
 
@@ -137,8 +124,9 @@ class ProcessManager:
         set_file_logger(name=config_name)
         if State.electron:
             # https://github.com/LmeSzinc/AzurLaneAutoScript/issues/2051
-            logger.info("Electron detected, remove log output to stdout")
+            logger.info('Electron detected, remove log output to stdout')
             from module.logger.logger import console_hdlr
+
             logger.removeHandler(console_hdlr)
         set_func_logger(func=q.put)
 
@@ -147,7 +135,7 @@ class ProcessManager:
         AzurLaneConfig.stop_event = e
         try:
             # Run alas
-            if func == "alas":
+            if func == 'alas':
                 from module.alas import AzurLaneAutoScript
                 from src import StarRailCopilot
 
@@ -159,13 +147,13 @@ class ProcessManager:
 
                 StarRailCopilot(config_name=config_name).run(inflection.underscore(func))
             else:
-                logger.critical(f"No function matched: {func}")
-            logger.info(f"[{config_name}] exited. Reason: Finish\n")
+                logger.critical(f'No function matched: {func}')
+            logger.info(f'[{config_name}] exited. Reason: Finish\n')
         except Exception as e:
             logger.exception(e)
 
     @classmethod
-    def running_instances(cls) -> List["ProcessManager"]:
+    def running_instances(cls) -> List['ProcessManager']:
         l = []
         for process in cls._processes.values():
             if process.alive:
@@ -173,14 +161,12 @@ class ProcessManager:
         return l
 
     @staticmethod
-    def restart_processes(
-        instances: List[Union["ProcessManager", str]] = None, ev: threading.Event = None
-    ):
+    def restart_processes(instances: List[Union['ProcessManager', str]] = None, ev: threading.Event = None):
         """
         After update and reload, or failed to perform an update,
         restart all alas that running before update
         """
-        logger.hr("Restart alas")
+        logger.hr('Restart alas')
 
         # Load MOD_CONFIG_DICT
         mod_instance()
@@ -197,7 +183,7 @@ class ProcessManager:
                 _instances.add(instance)
 
         try:
-            with open("./config/reloadalas", mode="r") as f:
+            with open('./config/reloadalas', mode='r') as f:
                 for line in f.readlines():
                     line = line.strip()
                     _instances.add(ProcessManager.get_manager(line))
@@ -205,11 +191,11 @@ class ProcessManager:
             pass
 
         for process in _instances:
-            logger.info(f"Starting [{process.config_name}]")
+            logger.info(f'Starting [{process.config_name}]')
             process.start(func=get_config_mod(process.config_name), ev=ev)
 
         try:
-            os.remove("./config/reloadalas")
+            os.remove('./config/reloadalas')
         except:
             pass
-        logger.info("Start alas complete")
+        logger.info('Start alas complete')

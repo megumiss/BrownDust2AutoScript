@@ -14,7 +14,7 @@ from module.logger import logger
 
 def blessing_name(name: str) -> str:
     name = text_to_variable(name)
-    name = re.sub(r'^\d', lambda match: f"_{match.group(0)}", name)
+    name = re.sub(r'^\d', lambda match: f'_{match.group(0)}', name)
     return name
 
 
@@ -46,12 +46,12 @@ class KeywordExtract:
         self.keywords_id = []
 
     def write_keywords(
-            self,
-            keyword_class,
-            output_file: str = '',
-            text_convert=text_to_variable,
-            generator: CodeGenerator = None,
-            extra_attrs: dict[str, dict] = None
+        self,
+        keyword_class,
+        output_file: str = '',
+        text_convert=text_to_variable,
+        generator: CodeGenerator = None,
+        extra_attrs: dict[str, dict] = None,
     ):
         """
         Args:
@@ -75,7 +75,7 @@ class KeywordExtract:
             keyword_num = len(self.keywords_id)
             for attr_key, attr_value in extra_attrs.items():
                 if len(attr_value) != keyword_num:
-                    print(f"Extra attribute {attr_key} does not match the size of keywords")
+                    print(f'Extra attribute {attr_key} does not match the size of keywords')
                     return
         for index, keyword in enumerate(self.keywords_id):
             _, name = self.find_keyword(keyword, lang='en')
@@ -106,11 +106,8 @@ class KeywordExtract:
 
         """
         quest_data = read_file(os.path.join(TextMap.DATA_FOLDER, 'ExcelOutput', 'QuestData.json'))
-        quest_data = {
-            str(deep_get(data, 'QuestID')): data
-            for data in quest_data
-        }
-        quests_hash = [quest_data[str(quest_id)]["QuestTitle"]["Hash"] for quest_id in quests]
+        quest_data = {str(deep_get(data, 'QuestID')): data for data in quest_data}
+        quests_hash = [quest_data[str(quest_id)]['QuestTitle']['Hash'] for quest_id in quests]
         quest_keywords = list(dict.fromkeys([self.text_map[lang].find(quest_hash)[1] for quest_hash in quests_hash]))
         self.load_keywords(quest_keywords, lang)
 
@@ -124,40 +121,39 @@ class KeywordExtract:
         gen.CommentAutoGenerage('dev_tools.keyword_extract')
 
         old_quest = [
-            "Go_on_assignment_1_time",  # -> Dispatch_1_assignments
-            "Complete_Simulated_Universe_1_times",  # same
-            "Complete_1_stage_in_Simulated_Universe_Any_world",
+            'Go_on_assignment_1_time',  # -> Dispatch_1_assignments
+            'Complete_Simulated_Universe_1_times',  # same
+            'Complete_1_stage_in_Simulated_Universe_Any_world',
             # -> Complete_Divergent_Universe_or_Currency_Wars_1_times
-            "Complete_Calyx_Crimson_1_time",  # -> Clear_Calyx_Crimson_1_times
-            "Enter_combat_by_attacking_enemy_Weakness_and_win_3_times",
+            'Complete_Calyx_Crimson_1_time',  # -> Clear_Calyx_Crimson_1_times
+            'Enter_combat_by_attacking_enemy_Weakness_and_win_3_times',
             # -> Enter_combat_by_attacking_enemie_Weakness_and_win_1_times
-            "Use_Technique_2_times",  # -> Use_Technique_1_times
-            "Destroy_3_destructible_objects",  # -> Destroy_1_destructible_objects
-            "Obtain_victory_in_combat_with_Support_Characters_1_time",
+            'Use_Technique_2_times',  # -> Use_Technique_1_times
+            'Destroy_3_destructible_objects',  # -> Destroy_1_destructible_objects
+            'Obtain_victory_in_combat_with_Support_Characters_1_time',
             # -> Obtain_victory_in_combat_with_Support_Characters_1_times
-            "Level_up_any_character_1_time",  # -> Level_up_any_character_1_times
-            "Level_up_any_Light_Cone_1_time",  # -> Level_up_any_Light_Cone_1_times
-            "Synthesize_Consumable_1_time",  # -> Use_the_Omni_Synthesizer_1_times
-            "Synthesize_material_1_time",  # -> Use_the_Omni_Synthesizer_1_times
-            "Take_1_photo",  # -> Take_photos_1_times
-            "Level_up_any_Relic_1_time",  # -> Level_up_any_Relic_1_times
+            'Level_up_any_character_1_time',  # -> Level_up_any_character_1_times
+            'Level_up_any_Light_Cone_1_time',  # -> Level_up_any_Light_Cone_1_times
+            'Synthesize_Consumable_1_time',  # -> Use_the_Omni_Synthesizer_1_times
+            'Synthesize_material_1_time',  # -> Use_the_Omni_Synthesizer_1_times
+            'Take_1_photo',  # -> Take_photos_1_times
+            'Level_up_any_Relic_1_time',  # -> Level_up_any_Relic_1_times
         ]
 
         correct_times = {
             #    "Dispatch_1_assignments":  1,
             #    "Complete_Divergent_Universe_or_Currency_Wars_1_times": 1,
             #    "Clear_Calyx_Crimson_1_times": 1,
-            "Enter_combat_by_attacking_enemie_Weakness_and_win_1_times": 3,
-            "Use_Technique_1_times": 2,
-            "Destroy_1_destructible_objects": 3,
+            'Enter_combat_by_attacking_enemie_Weakness_and_win_1_times': 3,
+            'Use_Technique_1_times': 2,
+            'Destroy_1_destructible_objects': 3,
             #    "Obtain_victory_in_combat_with_Support_Characters_1_times": 1,
             #    "Level_up_any_character_1_times": 1,
             #    "Level_up_any_Light_Cone_1_times": 1,
             #    "Use_the_Omni_Synthesizer_1_times": 1,
             #    "Take_photos_1_times": 1,
             #    "Level_up_any_Relic_1_times": 1,
-            "Consume_1_Trailblaze_Power": 120
-
+            'Consume_1_Trailblaze_Power': 120,
         }
 
         def replace_templates_quest(text: str, correct_time=1) -> str:
@@ -177,8 +173,12 @@ class KeywordExtract:
                 gen.ObjectAttr(key='id', value=index + last_id + 1)
                 gen.ObjectAttr(key='name', value=name)
                 for lang in UI_LANGUAGES:
-                    gen.ObjectAttr(key=lang, value=replace_templates_quest(self.find_keyword(keyword, lang=lang)[1],
-                                                                           correct_times.setdefault(old_name, 1)))
+                    gen.ObjectAttr(
+                        key=lang,
+                        value=replace_templates_quest(
+                            self.find_keyword(keyword, lang=lang)[1], correct_times.setdefault(old_name, 1)
+                        ),
+                    )
                 gen.last_id = index + last_id + 1
 
         output_file = './tasks/daily/keywords/daily_quest.py'
@@ -195,23 +195,14 @@ class KeywordExtract:
     def generate_shadow_with_characters(self):
         # Damage type -> damage hash
         damage_info = dict()
-        for data in read_file(os.path.join(
-                TextMap.DATA_FOLDER, 'ExcelOutput',
-                'DamageType.json'
-        )):
+        for data in read_file(os.path.join(TextMap.DATA_FOLDER, 'ExcelOutput', 'DamageType.json')):
             type_name = deep_get(data, 'ID', 0)
             damage_info[type_name] = deep_get(data, 'DamageTypeName.Hash')
         # Character id -> character hash & damage type
         character_info = dict()
         character = []
-        character.extend(read_file(os.path.join(
-                TextMap.DATA_FOLDER, 'ExcelOutput',
-                'AvatarConfig.json'
-        )))
-        character.extend(read_file(os.path.join(
-                TextMap.DATA_FOLDER, 'ExcelOutput',
-                'AvatarConfigLD.json'
-        )))
+        character.extend(read_file(os.path.join(TextMap.DATA_FOLDER, 'ExcelOutput', 'AvatarConfig.json')))
+        character.extend(read_file(os.path.join(TextMap.DATA_FOLDER, 'ExcelOutput', 'AvatarConfigLD.json')))
 
         for data in character:
             voice = deep_get(data, 'AvatarVOTag', default='')
@@ -219,8 +210,7 @@ class KeywordExtract:
                 continue
             name_hash = deep_get(data, 'AvatarName.Hash')
             damage_type = deep_get(data, 'DamageType')
-            character_info[data['AvatarID']] = (
-                name_hash, damage_info[damage_type])
+            character_info[data['AvatarID']] = (name_hash, damage_info[damage_type])
         # Item id -> character id
         promotion_info = defaultdict(list)
 
@@ -232,14 +222,8 @@ class KeywordExtract:
             return mp
 
         promotion = []
-        promotion.extend(read_file(os.path.join(
-                TextMap.DATA_FOLDER, 'ExcelOutput',
-                'AvatarPromotionConfig.json'
-        )))
-        promotion.extend(read_file(os.path.join(
-                TextMap.DATA_FOLDER, 'ExcelOutput',
-                'AvatarPromotionConfigLD.json'
-        )))
+        promotion.extend(read_file(os.path.join(TextMap.DATA_FOLDER, 'ExcelOutput', 'AvatarPromotionConfig.json')))
+        promotion.extend(read_file(os.path.join(TextMap.DATA_FOLDER, 'ExcelOutput', 'AvatarPromotionConfigLD.json')))
         for data in merge_same(promotion, keyword='AvatarID').values():
             character_id = deep_get(data, '0.AvatarID')
             item_id = deep_get(data, '2.PromotionCostList')[-1]['ItemID']
@@ -249,10 +233,9 @@ class KeywordExtract:
                 pass
         # Shadow hash -> item id
         shadow_info = dict()
-        for data in merge_same(read_file(os.path.join(
-                TextMap.DATA_FOLDER, 'ExcelOutput',
-                'MappingInfo.json'
-        )), keyword='ID').values():
+        for data in merge_same(
+            read_file(os.path.join(TextMap.DATA_FOLDER, 'ExcelOutput', 'MappingInfo.json')), keyword='ID'
+        ).values():
             farm_type = deep_get(data, '0.FarmType')
             if farm_type != 'ELEMENT':
                 continue
@@ -264,11 +247,9 @@ class KeywordExtract:
             'cht': '晉階材料：',
             'jp': '昇格素材：',
             'en': 'Ascension: ',
-            'es': 'Ascension: '
+            'es': 'Ascension: ',
         }
-        non_character_dungeon = {
-            8901618573986260416: 'Ice'
-        }
+        non_character_dungeon = {8901618573986260416: 'Ice'}
         keyword_class = 'DungeonDetailed'
         output_file = './tasks/dungeon/keywords/dungeon_detailed.py'
         gen = CodeGenerator()
@@ -285,10 +266,7 @@ class KeywordExtract:
                 gen.ObjectAttr(key='id', value=index + 1)
                 gen.ObjectAttr(key='name', value=name)
                 for lang in UI_LANGUAGES:
-                    character_names = [
-                        replace_templates(self.find_keyword(c[0], lang)[1])
-                        for c in characters
-                    ]
+                    character_names = [replace_templates(self.find_keyword(c[0], lang)[1]) for c in characters]
                     character_names = list(dict.fromkeys(character_names))
                     character_names = ' / '.join(character_names)
                     if character_names:
@@ -311,7 +289,7 @@ class KeywordExtract:
         self.clear_keywords()
 
     def generate_forgotten_hall_stages(self):
-        keyword_class = "ForgottenHallStage"
+        keyword_class = 'ForgottenHallStage'
         output_file = './tasks/forgotten_hall/keywords/stage.py'
         gen = CodeGenerator()
         gen.Import(f"""
@@ -320,7 +298,7 @@ class KeywordExtract:
         gen.CommentAutoGenerage('dev_tools.keyword_extract')
         for stage_id in range(1, 16):
             id_str = str(stage_id).rjust(2, '0')
-            with gen.Object(key=f"Stage_{stage_id}", object_class=keyword_class):
+            with gen.Object(key=f'Stage_{stage_id}', object_class=keyword_class):
                 gen.ObjectAttr(key='id', value=stage_id)
                 gen.ObjectAttr(key='name', value=id_str)
                 for lang in UI_LANGUAGES:
@@ -332,17 +310,25 @@ class KeywordExtract:
 
     def generate_assignments(self):
         from dev_tools.keywords.assignment import GenerateAssignment
+
         GenerateAssignment()()
 
     def generate_map_planes(self):
         from dev_tools.keywords.map_world import GenerateMapWorld
+
         GenerateMapWorld()()
         from dev_tools.keywords.map_plane import GenerateMapPlane
+
         GenerateMapPlane()()
 
     def generate_character_keywords(self):
-        from dev_tools.keywords.character import (GenerateCharacterList, GenerateCharacterHeight,
-                                                  GenerateCombatType, GenerateCharacterPath)
+        from dev_tools.keywords.character import (
+            GenerateCharacterList,
+            GenerateCharacterHeight,
+            GenerateCombatType,
+            GenerateCharacterPath,
+        )
+
         GenerateCombatType()()
         GenerateCharacterPath()()
         GenerateCharacterList()()
@@ -351,9 +337,9 @@ class KeywordExtract:
     def generate_battle_pass_quests(self):
         battle_pass_quests = read_file(os.path.join(TextMap.DATA_FOLDER, 'ExcelOutput', 'BattlePassConfig.json'))
         latest_quests = list(battle_pass_quests)[-1]
-        week_quest_list = deep_get(latest_quests, "WeekQuestList")
-        week_order1 = deep_get(latest_quests, "WeekOrder1")
-        week_chain_quest_list = deep_get(latest_quests, "WeekChainQuestList")
+        week_quest_list = deep_get(latest_quests, 'WeekQuestList')
+        week_order1 = deep_get(latest_quests, 'WeekOrder1')
+        week_chain_quest_list = deep_get(latest_quests, 'WeekChainQuestList')
         quests = week_quest_list + week_order1 + week_chain_quest_list
         self.load_quests(quests)
         self.write_keywords(keyword_class='BattlePassQuest', output_file='./tasks/battle_pass/keywords/quest.py')
@@ -368,17 +354,15 @@ class KeywordExtract:
         # blessings
         blessings_info = read_file(os.path.join(TextMap.DATA_FOLDER, 'ExcelOutput', 'RogueBuff.json'))
         blessings_name_map = read_file(os.path.join(TextMap.DATA_FOLDER, 'ExcelOutput', 'RogueMazeBuff.json'))
-        blessings_name_map = {
-            deep_get(data, 'ID'): data
-            for data in blessings_name_map
-        }
-        blessings_id = [deep_get(blessing, 'MazeBuffID') for blessing in blessings_info
-                        if not deep_get(blessing, 'AeonID')][1:]
-        resonances_id = [deep_get(blessing, 'MazeBuffID') for blessing in blessings_info
-                         if deep_get(blessing, 'AeonID')]
+        blessings_name_map = {deep_get(data, 'ID'): data for data in blessings_name_map}
+        blessings_id = [
+            deep_get(blessing, 'MazeBuffID') for blessing in blessings_info if not deep_get(blessing, 'AeonID')
+        ][1:]
+        resonances_id = [
+            deep_get(blessing, 'MazeBuffID') for blessing in blessings_info if deep_get(blessing, 'AeonID')
+        ]
         blessings_info = {
-            str(deep_get(data, 'MazeBuffID')): data
-            for data in blessings_info if deep_get(data, 'MazeBuffLevel') == 1
+            str(deep_get(data, 'MazeBuffID')): data for data in blessings_info if deep_get(data, 'MazeBuffLevel') == 1
         }
 
         # ignore endless buffs
@@ -387,46 +371,58 @@ class KeywordExtract:
         blessings_id = [id_ for id_ in blessings_id if id_ not in endless_buff_ids]
 
         def get_blessing_infos(id_list, with_enhancement: bool):
-            blessings_hash = [deep_get(blessings_name_map, f"{blessing_id}.BuffName.Hash")
-                              for blessing_id in id_list]
-            blessings_path_id = {blessing_hash: int(deep_get(blessings_info, f'{blessing_id}.RogueBuffType')) - 119
-                                 # 119 is the magic number make type match with path in keyword above
-                                 for blessing_hash, blessing_id in zip(blessings_hash, id_list)}
-            blessings_category = {blessing_hash: deep_get(blessings_info, f'{blessing_id}.RogueBuffCategory')
-                                  for blessing_hash, blessing_id in zip(blessings_hash, id_list)}
-            category_map = {
-                "Common": 1,
-                "Rare": 2,
-                "Legendary": 3,
+            blessings_hash = [deep_get(blessings_name_map, f'{blessing_id}.BuffName.Hash') for blessing_id in id_list]
+            blessings_path_id = {
+                blessing_hash: int(deep_get(blessings_info, f'{blessing_id}.RogueBuffType')) - 119
+                # 119 is the magic number make type match with path in keyword above
+                for blessing_hash, blessing_id in zip(blessings_hash, id_list)
             }
-            blessings_rarity = {blessing_hash: category_map[blessing_category]
-                                for blessing_hash, blessing_category in blessings_category.items()}
-            enhancement = {blessing_hash: "" for blessing_hash in blessings_hash}
+            blessings_category = {
+                blessing_hash: deep_get(blessings_info, f'{blessing_id}.RogueBuffCategory')
+                for blessing_hash, blessing_id in zip(blessings_hash, id_list)
+            }
+            category_map = {
+                'Common': 1,
+                'Rare': 2,
+                'Legendary': 3,
+            }
+            blessings_rarity = {
+                blessing_hash: category_map[blessing_category]
+                for blessing_hash, blessing_category in blessings_category.items()
+            }
+            enhancement = {blessing_hash: '' for blessing_hash in blessings_hash}
             if with_enhancement:
-                return blessings_hash, {'path_id': blessings_path_id, 'rarity': blessings_rarity,
-                                        'enhancement': enhancement}
+                return blessings_hash, {
+                    'path_id': blessings_path_id,
+                    'rarity': blessings_rarity,
+                    'enhancement': enhancement,
+                }
             else:
                 return blessings_hash, {'path_id': blessings_path_id, 'rarity': blessings_rarity}
 
         hash_list, extra_attrs = get_blessing_infos(blessings_id, with_enhancement=True)
         self.keywords_id = hash_list
-        self.write_keywords(keyword_class='RogueBlessing', output_file='./tasks/rogue/keywords/blessing.py',
-                            text_convert=blessing_name, extra_attrs=extra_attrs)
+        self.write_keywords(
+            keyword_class='RogueBlessing',
+            output_file='./tasks/rogue/keywords/blessing.py',
+            text_convert=blessing_name,
+            extra_attrs=extra_attrs,
+        )
 
         hash_list, extra_attrs = get_blessing_infos(resonances_id, with_enhancement=False)
         self.keywords_id = hash_list
-        self.write_keywords(keyword_class='RogueResonance', output_file='./tasks/rogue/keywords/resonance.py',
-                            text_convert=blessing_name, extra_attrs=extra_attrs)
+        self.write_keywords(
+            keyword_class='RogueResonance',
+            output_file='./tasks/rogue/keywords/resonance.py',
+            text_convert=blessing_name,
+            extra_attrs=extra_attrs,
+        )
 
     def generate_rogue_events(self):
         # An event contains several options
-        event_title_file = os.path.join(
-            TextMap.DATA_FOLDER, 'ExcelOutput',
-            'RogueTalkNameConfig.json'
-        )
+        event_title_file = os.path.join(TextMap.DATA_FOLDER, 'ExcelOutput', 'RogueTalkNameConfig.json')
         event_title_ids = {
-            str(deep_get(data, 'TalkNameID')): deep_get(data, 'Name.Hash')
-            for data in read_file(event_title_file)
+            str(deep_get(data, 'TalkNameID')): deep_get(data, 'Name.Hash') for data in read_file(event_title_file)
         }
         event_title_texts = defaultdict(list)
         for title_id, title_hash in event_title_ids.items():
@@ -434,10 +430,7 @@ class KeywordExtract:
                 continue
             _, title_text = self.find_keyword(title_hash, lang='en')
             event_title_texts[text_to_variable(title_text)].append(title_id)
-        option_file = os.path.join(
-            TextMap.DATA_FOLDER, 'ExcelOutput',
-            'RogueDialogueOptionDisplay.json'
-        )
+        option_file = os.path.join(TextMap.DATA_FOLDER, 'ExcelOutput', 'RogueDialogueOptionDisplay.json')
         option_ids = {
             str(deep_get(data, 'OptionDisplayID')): deep_get(data, 'OptionTitle.Hash')
             for data in read_file(option_file)
@@ -484,10 +477,9 @@ class KeywordExtract:
                 # Some title may not has corresponding options
                 if option_id not in option_ids:
                     continue
-                group_option_ids += list(itertools.takewhile(
-                    lambda x: str(x) in option_ids,
-                    itertools.count(int(option_id))
-                ))
+                group_option_ids += list(
+                    itertools.takewhile(lambda x: str(x) in option_ids, itertools.count(int(option_id)))
+                )
             if group_option_ids:
                 title_hash = event_title_ids[group_title_ids[0]]
                 options_grouped[title_hash] = group_option_ids
@@ -518,9 +510,7 @@ class KeywordExtract:
         for i, (option_md5, option_hash) in enumerate(option_md5s.items(), start=1):
             self.load_keywords([option_hash])
             option_gen = self.write_keywords(
-                keyword_class='RogueEventOption',
-                text_convert=option_text_convert(option_md5),
-                generator=option_gen
+                keyword_class='RogueEventOption', text_convert=option_text_convert(option_md5), generator=option_gen
             )
             option_hash_to_keyword_id[option_hash] = i
         output_file = './tasks/rogue/keywords/event_option.py'
@@ -529,28 +519,25 @@ class KeywordExtract:
 
         # title hash -> option keyword id
         title_to_option_keyword_id = {
-            title_hash: sorted(
-                option_hash_to_keyword_id[x] for x in option_hashes
-            ) for title_hash, option_hashes in options_grouped.items()
+            title_hash: sorted(option_hash_to_keyword_id[x] for x in option_hashes)
+            for title_hash, option_hashes in options_grouped.items()
         }
         self.load_keywords(options_grouped.keys())
         self.write_keywords(
             keyword_class='RogueEventTitle',
             output_file='./tasks/rogue/keywords/event_title.py',
-            extra_attrs={'option_ids': title_to_option_keyword_id}
+            extra_attrs={'option_ids': title_to_option_keyword_id},
         )
         try:
             from tasks.rogue.event.event import OcrRogueEventOption
         except AttributeError as e:
             logger.error(e)
-            logger.critical(
-                f'Importing OcrRogueEventOption fails, probably due to changes in {output_file}')
+            logger.critical(f'Importing OcrRogueEventOption fails, probably due to changes in {output_file}')
         try:
             from tasks.rogue.event.preset import STRATEGIES
         except AttributeError as e:
             logger.error(e)
-            logger.critical(
-                f'Importing preset strategies fails, probably due to changes in {output_file}')
+            logger.critical(f'Importing preset strategies fails, probably due to changes in {output_file}')
 
     def iter_without_duplication(self, file: list, keys):
         visited = set()
@@ -563,53 +550,91 @@ class KeywordExtract:
             yield hash_
 
     def generate(self):
-        self.load_keywords([
-            '培养目标', '饰品提取', '拟造花萼（金）', '拟造花萼（赤）', '凝滞虚影', '侵蚀隧洞', '历战余响',
-            '货币战争', '差分宇宙', '模拟宇宙',
-            '异相仲裁', '最近更新', '忘却之庭', '虚构叙事', '末日幻影'])
+        self.load_keywords(
+            [
+                '培养目标',
+                '饰品提取',
+                '拟造花萼（金）',
+                '拟造花萼（赤）',
+                '凝滞虚影',
+                '侵蚀隧洞',
+                '历战余响',
+                '货币战争',
+                '差分宇宙',
+                '模拟宇宙',
+                '异相仲裁',
+                '最近更新',
+                '忘却之庭',
+                '虚构叙事',
+                '末日幻影',
+            ]
+        )
         self.write_keywords(keyword_class='DungeonNav', output_file='./tasks/dungeon/keywords/nav.py')
         self.load_keywords(['行动摘要', '生存索引', '每日实训', '模拟宇宙', '逐光捡金', '战术训练', '开拓历程'])
         self.write_keywords(keyword_class='DungeonTab', output_file='./tasks/dungeon/keywords/tab.py')
         self.load_keywords(['前往', '领取', '进行中', '已领取', '本日活跃度已满'])
         self.write_keywords(keyword_class='DailyQuestState', output_file='./tasks/daily/keywords/daily_quest_state.py')
         self.load_keywords(['领取', '追踪'])
-        self.write_keywords(keyword_class='BattlePassQuestState',
-                            output_file='./tasks/battle_pass/keywords/quest_state.py')
+        self.write_keywords(
+            keyword_class='BattlePassQuestState', output_file='./tasks/battle_pass/keywords/quest_state.py'
+        )
         self.generate_map_planes()
         self.generate_character_keywords()
         from dev_tools.keywords.cone import generate_cone
+
         generate_cone()
         from dev_tools.keywords.dungeon_list import GenerateDungeonList
+
         GenerateDungeonList()()
         self.load_keywords(['进入', '传送', '追踪'])
         self.write_keywords(keyword_class='DungeonEntrance', output_file='./tasks/dungeon/keywords/dungeon_entrance.py')
         self.generate_shadow_with_characters()
-        self.load_keywords(['奖励', '任务', ])
+        self.load_keywords(
+            [
+                '奖励',
+                '任务',
+            ]
+        )
         self.write_keywords(keyword_class='BattlePassTab', output_file='./tasks/battle_pass/keywords/tab.py')
         self.load_keywords(['本周任务', '本期任务'])
-        self.write_keywords(keyword_class='BattlePassMissionTab',
-                            output_file='./tasks/battle_pass/keywords/mission_tab.py')
+        self.write_keywords(
+            keyword_class='BattlePassMissionTab', output_file='./tasks/battle_pass/keywords/mission_tab.py'
+        )
         self.generate_assignments()
         self.generate_forgotten_hall_stages()
         self.generate_daily_quests()
         self.generate_battle_pass_quests()
         self.load_keywords(['养成材料', '光锥', '遗器', '其他材料', '消耗品', '任务', '贵重物', '材料置换', '随宠'])
-        self.write_keywords(keyword_class='ItemTab',
-                            text_convert=lambda name: name.replace(' ', '').replace('LightCones', 'LightCone'),
-                            output_file='./tasks/item/keywords/tab.py')
+        self.write_keywords(
+            keyword_class='ItemTab',
+            text_convert=lambda name: name.replace(' ', '').replace('LightCones', 'LightCone'),
+            output_file='./tasks/item/keywords/tab.py',
+        )
         from dev_tools.keywords.item import generate_items
+
         generate_items()
         from dev_tools.keywords.relics import generate_relics
+
         generate_relics()
         self.generate_rogue_buff()
         self.load_keywords(['已强化'])
         self.write_keywords(keyword_class='RogueEnhancement', output_file='./tasks/rogue/keywords/enhancement.py')
-        self.load_keywords(list(self.iter_without_duplication(
-            read_file(os.path.join(TextMap.DATA_FOLDER, 'ExcelOutput', 'RogueMiracleDisplay.json')),
-            'MiracleName.Hash')))
+        self.load_keywords(
+            list(
+                self.iter_without_duplication(
+                    read_file(os.path.join(TextMap.DATA_FOLDER, 'ExcelOutput', 'RogueMiracleDisplay.json')),
+                    'MiracleName.Hash',
+                )
+            )
+        )
         self.write_keywords(keyword_class='RogueCurio', output_file='./tasks/rogue/keywords/curio.py')
-        self.load_keywords(list(self.iter_without_duplication(
-            read_file(os.path.join(TextMap.DATA_FOLDER, 'ExcelOutput', 'RogueBonus.json')), 'BonusTitle.Hash')))
+        self.load_keywords(
+            list(
+                self.iter_without_duplication(
+                    read_file(os.path.join(TextMap.DATA_FOLDER, 'ExcelOutput', 'RogueBonus.json')), 'BonusTitle.Hash'
+                )
+            )
+        )
         self.write_keywords(keyword_class='RogueBonus', output_file='./tasks/rogue/keywords/bonus.py')
         self.generate_rogue_events()
 

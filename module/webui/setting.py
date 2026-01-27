@@ -7,7 +7,7 @@ if TYPE_CHECKING:
     from module.config.config_updater import ConfigUpdater
     from module.webui.config import DeployConfig
 
-T = TypeVar("T")
+T = TypeVar('T')
 
 
 class cached_class_property(Generic[T]):
@@ -58,7 +58,7 @@ class State:
     restart_event: threading.Event = None
     manager: SyncManager = None
     electron: bool = False
-    theme: str = "default"
+    theme: str = 'default'
 
     @classmethod
     def init(cls):
@@ -71,7 +71,7 @@ class State:
         cls._clearup = True
 
     @cached_class_property
-    def deploy_config(self) -> "DeployConfig":
+    def deploy_config(self) -> 'DeployConfig':
         """
         Returns:
             DeployConfig：
@@ -81,7 +81,7 @@ class State:
         return DeployConfig()
 
     @cached_class_property
-    def config_updater(self) -> "ConfigUpdater":
+    def config_updater(self) -> 'ConfigUpdater':
         """
         Returns:
             ConfigUpdater：

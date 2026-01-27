@@ -64,8 +64,10 @@ class XPath:
     # 排队中
     QUEUE_TITLE = '//*[@resource-id="com.miHoYo.cloudgames.hkrpg:id/tvEnqueueDialogTitle"]'
     # 预计等待时间
-    QUEUE_REMAIN = ('//*[@resource-id="com.miHoYo.cloudgames.hkrpg:id/llEnqueueBody"]'
-                    '//*[@resource-id="com.miHoYo.cloudgames.hkrpg:id/tvSingleValue"]')
+    QUEUE_REMAIN = (
+        '//*[@resource-id="com.miHoYo.cloudgames.hkrpg:id/llEnqueueBody"]'
+        '//*[@resource-id="com.miHoYo.cloudgames.hkrpg:id/tvSingleValue"]'
+    )
     QUEUE_REMAIN_LONG = '//*[@resource-id="com.miHoYo.cloudgames.hkrpg:id/tvQueueInfoWaitTimeDefault"]'
 
     """
@@ -79,8 +81,10 @@ class XPath:
     悬浮窗及侧边栏元素
     """
     # 悬浮窗
-    FLOAT_WINDOW = ('//*[@package="com.miHoYo.cloudgames.hkrpg" and @class="android.widget.RelativeLayout"]'
-                    '/*[@class="android.widget.LinearLayout"]')
+    FLOAT_WINDOW = (
+        '//*[@package="com.miHoYo.cloudgames.hkrpg" and @class="android.widget.RelativeLayout"]'
+        '/*[@class="android.widget.LinearLayout"]'
+    )
     # 退出按钮，返回登录页面
     FLOAT_EXIT = '//*[@resource-id="com.miHoYo.cloudgames.hkrpg:id/iv_exit"]'
     # 弹出侧边栏的 节点信息
@@ -120,9 +124,9 @@ class LoginAndroidCloud(ModuleBase):
                 logger.info('Login to cloud main page')
                 break
             if (
-                    self.appear(XPath.ACCOUNT_REGISTER)
-                    or self.appear(XPath.ACCOUNT_PASSWORD_LOGIN)
-                    or self.appear(XPath.ACCOUNT_FORGET_PASSWORD)
+                self.appear(XPath.ACCOUNT_REGISTER)
+                or self.appear(XPath.ACCOUNT_PASSWORD_LOGIN)
+                or self.appear(XPath.ACCOUNT_FORGET_PASSWORD)
             ):
                 logger.critical('Account not login, you must have login once before running')
                 raise RequestHumanTakeover
@@ -299,6 +303,7 @@ class LoginAndroidCloud(ModuleBase):
             self._cloud_setting_disable_net_state()
         # Login to game
         from tasks.login.login import Login
+
         Login(config=self.config, device=self.device).handle_app_login()
 
     def _cloud_setting_enter(self, skip_first=True):
@@ -377,8 +382,7 @@ class LoginAndroidCloud(ModuleBase):
                 area = self.xpath(XPath.SCROLL_VIEW).area
                 # An area safe to swipe
                 area = (area[0], area[1], area[0] + 25, area[3])
-                p1, p2 = random_rectangle_vector_opted(
-                    (0, -450), box=area, random_range=(-10, -30, 10, 30), padding=2)
+                p1, p2 = random_rectangle_vector_opted((0, -450), box=area, random_range=(-10, -30, 10, 30), padding=2)
                 self.device.swipe(p1, p2, name='SETTING_SCROLL')
                 continue
 

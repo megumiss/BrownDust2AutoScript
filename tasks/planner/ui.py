@@ -91,7 +91,8 @@ class PlannerUI(UI):
                 if not self.match_template_luma(MENU_GOTO_PLANNER):
                     # swipe directly, as player might have random menu skin
                     self.device.swipe_vector(
-                        vector=(0, 200), box=MENU_SCROLL.area, random_range=(0, -20, 0, 20), padding=0)
+                        vector=(0, 200), box=MENU_SCROLL.area, random_range=(0, -20, 0, 20), padding=0
+                    )
                     self.interval_reset(page_menu, interval=3)
                     continue
             # skip tons of tutorials
@@ -133,10 +134,10 @@ class PlannerUI(UI):
     @cached_property
     def planner_calculate_target(self):
         switch = SwitchTarget('CalculateTarget', is_selector=True)
-        switch.add_state(CHARACTER_MATERIAL_CHECK,
-                         check_button=CHARACTER_MATERIAL_CHECK, click_button=CHARACTER_MATERIAL_CLICK)
-        switch.add_state(CONE_MATERIAL_CHECK,
-                         check_button=CONE_MATERIAL_CHECK, click_button=CONE_MATERIAL_CLICK)
+        switch.add_state(
+            CHARACTER_MATERIAL_CHECK, check_button=CHARACTER_MATERIAL_CHECK, click_button=CHARACTER_MATERIAL_CLICK
+        )
+        switch.add_state(CONE_MATERIAL_CHECK, check_button=CONE_MATERIAL_CHECK, click_button=CONE_MATERIAL_CLICK)
         return switch
 
     @cached_property
@@ -156,22 +157,22 @@ class PlannerUI(UI):
     @cached_property
     def planner_character_type(self):
         switch = SwitchType('CharacterType', is_selector=True)
-        switch.add_state(assets_type.All_CHECK,
-                         check_button=assets_type.All_CHECK, click_button=assets_type.All_CLICK)
-        switch.add_state(combat_type.Physical,
-                         check_button=assets_type.Physical_CHECK, click_button=assets_type.Physical_CLICK)
-        switch.add_state(combat_type.Fire,
-                         check_button=assets_type.Fire_CHECK, click_button=assets_type.Fire_CLICK)
-        switch.add_state(combat_type.Ice,
-                         check_button=assets_type.Ice_CHECK, click_button=assets_type.Ice_CLICK)
-        switch.add_state(combat_type.Lightning,
-                         check_button=assets_type.Lightning_CHECK, click_button=assets_type.Lightning_CLICK)
-        switch.add_state(combat_type.Wind,
-                         check_button=assets_type.Wind_CHECK, click_button=assets_type.Wind_CLICK)
-        switch.add_state(combat_type.Quantum,
-                         check_button=assets_type.Quantum_CHECK, click_button=assets_type.Quantum_CLICK)
-        switch.add_state(combat_type.Imaginary,
-                         check_button=assets_type.Imaginary_CHECK, click_button=assets_type.Imaginary_CLICK)
+        switch.add_state(assets_type.All_CHECK, check_button=assets_type.All_CHECK, click_button=assets_type.All_CLICK)
+        switch.add_state(
+            combat_type.Physical, check_button=assets_type.Physical_CHECK, click_button=assets_type.Physical_CLICK
+        )
+        switch.add_state(combat_type.Fire, check_button=assets_type.Fire_CHECK, click_button=assets_type.Fire_CLICK)
+        switch.add_state(combat_type.Ice, check_button=assets_type.Ice_CHECK, click_button=assets_type.Ice_CLICK)
+        switch.add_state(
+            combat_type.Lightning, check_button=assets_type.Lightning_CHECK, click_button=assets_type.Lightning_CLICK
+        )
+        switch.add_state(combat_type.Wind, check_button=assets_type.Wind_CHECK, click_button=assets_type.Wind_CLICK)
+        switch.add_state(
+            combat_type.Quantum, check_button=assets_type.Quantum_CHECK, click_button=assets_type.Quantum_CLICK
+        )
+        switch.add_state(
+            combat_type.Imaginary, check_button=assets_type.Imaginary_CHECK, click_button=assets_type.Imaginary_CLICK
+        )
         return switch
 
     def is_in_planner_material(self, interval=0):
@@ -256,8 +257,7 @@ class PlannerUI(UI):
             if self.handle_planner_aside_close():
                 continue
             if self.is_in_planner_material(interval=3):
-                self.device.swipe_vector(
-                    (0, 200), box=SELECT_LIST_SWIPE_AREA.area, name='INSIGHT_CHARACTER_SWIPE')
+                self.device.swipe_vector((0, 200), box=SELECT_LIST_SWIPE_AREA.area, name='INSIGHT_CHARACTER_SWIPE')
                 continue
 
     def planner_insight_cone(self):
@@ -281,6 +281,5 @@ class PlannerUI(UI):
             if self.handle_planner_aside_close():
                 continue
             if self.is_in_planner_material(interval=3):
-                self.device.swipe_vector(
-                    (0, -200), box=SELECT_LIST_SWIPE_AREA.area, name='INSIGHT_CHARACTER_SWIPE')
+                self.device.swipe_vector((0, -200), box=SELECT_LIST_SWIPE_AREA.area, name='INSIGHT_CHARACTER_SWIPE')
                 continue

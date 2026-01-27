@@ -41,6 +41,7 @@ class AzurLaneAutoScript:
     def device(self):
         try:
             from module.device.device import Device
+
             device = Device(config=self.config)
             return device
         except RequestHumanTakeover:
@@ -54,6 +55,7 @@ class AzurLaneAutoScript:
     def checker(self):
         try:
             from module.server_checker import ServerChecker
+
             checker = ServerChecker(server=self.config.Emulator_PackageName)
             return checker
         except Exception as e:
@@ -108,8 +110,8 @@ class AzurLaneAutoScript:
                 self.save_error_log()
                 handle_notify(
                     self.config.Error_OnePushConfig,
-                    title=f"Src <{self.config_name}> crashed",
-                    content=f"<{self.config_name}> GamePageUnknownError",
+                    title=f'Src <{self.config_name}> crashed',
+                    content=f'<{self.config_name}> GamePageUnknownError',
                 )
                 exit(1)
             else:
@@ -125,8 +127,8 @@ class AzurLaneAutoScript:
             self.save_error_log()
             handle_notify(
                 self.config.Error_OnePushConfig,
-                title=f"Src <{self.config_name}> crashed",
-                content=f"<{self.config_name}> ScriptError",
+                title=f'Src <{self.config_name}> crashed',
+                content=f'<{self.config_name}> ScriptError',
             )
             exit(1)
         except RequestHumanTakeover:
@@ -134,8 +136,8 @@ class AzurLaneAutoScript:
             self.error_postprocess()
             handle_notify(
                 self.config.Error_OnePushConfig,
-                title=f"Src <{self.config_name}> crashed",
-                content=f"<{self.config_name}> RequestHumanTakeover",
+                title=f'Src <{self.config_name}> crashed',
+                content=f'<{self.config_name}> RequestHumanTakeover',
             )
             exit(1)
         except Exception as e:
@@ -144,8 +146,8 @@ class AzurLaneAutoScript:
             self.save_error_log()
             handle_notify(
                 self.config.Error_OnePushConfig,
-                title=f"Src <{self.config_name}> crashed",
-                content=f"<{self.config_name}> Exception occured",
+                title=f'Src <{self.config_name}> crashed',
+                content=f'<{self.config_name}> Exception occured',
             )
             exit(1)
 
@@ -179,8 +181,8 @@ class AzurLaneAutoScript:
                 return True
             if self.stop_event is not None:
                 if self.stop_event.is_set():
-                    logger.info("Update event detected")
-                    logger.info(f"[{self.config_name}] exited. Reason: Update")
+                    logger.info('Update event detected')
+                    logger.info(f'[{self.config_name}] exited. Reason: Update')
                     exit(0)
 
             time.sleep(5)
@@ -199,6 +201,7 @@ class AzurLaneAutoScript:
             self.config.bind(task)
 
             from module.base.resource import release_resources
+
             if self.config.task.command != 'Alas':
                 release_resources(next_task=task.command)
 
@@ -278,8 +281,8 @@ class AzurLaneAutoScript:
             # Check update event from GUI
             if self.stop_event is not None:
                 if self.stop_event.is_set():
-                    logger.info("Update event detected")
-                    logger.info(f"[{self.config_name}] exited.")
+                    logger.info('Update event detected')
+                    logger.info(f'[{self.config_name}] exited.')
                     break
             # Check game server maintenance
             self.checker.wait_until_available()
@@ -317,16 +320,19 @@ class AzurLaneAutoScript:
             failed = 0 if success else failed + 1
             deep_set(self.failure_record, keys=task, value=failed)
             if failed >= 3:
-                logger.critical(f"Task `{task}` failed 3 or more times.")
-                logger.critical("Possible reason #1: You haven't used it correctly. "
-                                "Please read the help text of the options.")
-                logger.critical("Possible reason #2: There is a problem with this task. "
-                                "Please contact developers or try to fix it yourself.")
+                logger.critical(f'Task `{task}` failed 3 or more times.')
+                logger.critical(
+                    "Possible reason #1: You haven't used it correctly. Please read the help text of the options."
+                )
+                logger.critical(
+                    'Possible reason #2: There is a problem with this task. '
+                    'Please contact developers or try to fix it yourself.'
+                )
                 logger.critical('Request human takeover')
                 handle_notify(
                     self.config.Error_OnePushConfig,
-                    title=f"Src <{self.config_name}> crashed",
-                    content=f"<{self.config_name}> RequestHumanTakeover\nTask `{task}` failed 3 or more times.",
+                    title=f'Src <{self.config_name}> crashed',
+                    content=f'<{self.config_name}> RequestHumanTakeover\nTask `{task}` failed 3 or more times.',
                 )
                 exit(1)
 

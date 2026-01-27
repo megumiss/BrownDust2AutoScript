@@ -36,15 +36,24 @@ class OrnamentCombat(Dungeon, RouteLoader):
         # Never re-enter, can only enter from Survival_Index
         return False
 
-    def _dungeon_run(self, dungeon: DungeonList, team: int = None, wave_limit: int = 0, support_character: str = None,
-                     skip_ui_switch: bool = False):
-
+    def _dungeon_run(
+        self,
+        dungeon: DungeonList,
+        team: int = None,
+        wave_limit: int = 0,
+        support_character: str = None,
+        skip_ui_switch: bool = False,
+    ):
         # Always skip_ui_switch = False
         # because you can't easily enter ornament from map, it's better enter from page_quest
         skip_ui_switch = False
         return super()._dungeon_run(
-            dungeon=dungeon, team=team, wave_limit=wave_limit,
-            support_character=support_character, skip_ui_switch=skip_ui_switch)
+            dungeon=dungeon,
+            team=team,
+            wave_limit=wave_limit,
+            support_character=support_character,
+            skip_ui_switch=skip_ui_switch,
+        )
 
     def get_double_event_remain_at_combat(self, button=OCR_DOUBLE_EVENT_REMAIN_AT_OE):
         # Different position to OCR
@@ -95,17 +104,16 @@ class OrnamentCombat(Dungeon, RouteLoader):
         """
         v3.2, Ornament has different support scroll so OrnamentCombat._support_scroll overrides
         """
-        return AdaptiveScroll(area=COMBAT_SUPPORT_LIST_SCROLL_OE.area,
-                              name=COMBAT_SUPPORT_LIST_SCROLL_OE.name)
+        return AdaptiveScroll(area=COMBAT_SUPPORT_LIST_SCROLL_OE.area, name=COMBAT_SUPPORT_LIST_SCROLL_OE.name)
 
-    def _search_support_with_fallback(self, support_character_name: str = "JingYuan"):
+    def _search_support_with_fallback(self, support_character_name: str = 'JingYuan'):
         # In Ornament Extraction, first character isn't selected by default
-        if support_character_name == "FirstCharacter":
+        if support_character_name == 'FirstCharacter':
             self._select_first()
             return True
         return super()._search_support_with_fallback(support_character_name)
 
-    def support_set(self, support_character_name: str = "FirstCharacter"):
+    def support_set(self, support_character_name: str = 'FirstCharacter'):
         """
         Args:
             support_character_name: Support character name
@@ -118,7 +126,7 @@ class OrnamentCombat(Dungeon, RouteLoader):
             mid: COMBAT_SUPPORT_LIST
             out: COMBAT_PREPARE
         """
-        logger.hr("Combat support")
+        logger.hr('Combat support')
         if isinstance(support_character_name, CharacterList):
             support_character_name = support_character_name.name
         self.interval_clear(SUPPORT_ADD)
@@ -141,8 +149,7 @@ class OrnamentCombat(Dungeon, RouteLoader):
                 self.interval_reset(SUPPORT_ADD)
                 continue
             if self.appear(POPUP_CANCEL, interval=1):
-                logger.warning(
-                    "selected identical character, trying select another")
+                logger.warning('selected identical character, trying select another')
                 self._cancel_popup()
                 self._select_next_support()
                 self.interval_reset(POPUP_CANCEL)
@@ -175,8 +182,10 @@ class OrnamentCombat(Dungeon, RouteLoader):
         Pages:
             in: COMBAT_PREPARE or COMBAT_REPEAT
         """
-        logger.info(f'Ornament_UseStamina={self.config.Ornament_UseStamina}, '
-                    f'DungeonDouble.rogue={self.config.stored.DungeonDouble.rogue}')
+        logger.info(
+            f'Ornament_UseStamina={self.config.Ornament_UseStamina}, '
+            f'DungeonDouble.rogue={self.config.stored.DungeonDouble.rogue}'
+        )
         before = self.get_equivalent_stamina()
         logger.info(f'equivalent_stamina: {before}')
 
@@ -228,9 +237,11 @@ class OrnamentCombat(Dungeon, RouteLoader):
         # fixed total at 6
         slider.set(count, 6)
         self.ui_ensure_index(
-            count, letter=WaveDigit(OCR_WAVE_COUNT_OE, lang=server.lang),
-            next_button=WAVE_PLUS_OE, prev_button=WAVE_MINUS_OE,
-            skip_first_screenshot=True
+            count,
+            letter=WaveDigit(OCR_WAVE_COUNT_OE, lang=server.lang),
+            next_button=WAVE_PLUS_OE,
+            prev_button=WAVE_MINUS_OE,
+            skip_first_screenshot=True,
         )
 
     def combat_prepare(self, team=1, support_character: str = None):
@@ -275,10 +286,10 @@ class OrnamentCombat(Dungeon, RouteLoader):
             logger.info(
                 f'Current has {current}, combat costs {cost}, '
                 f'wave={self.combat_wave_done}/{self.combat_wave_limit}, '
-                f'able to do {self.combat_waves} waves')
+                f'able to do {self.combat_waves} waves'
+            )
         else:
-            logger.info(f'Current has {current}, combat costs {cost}, '
-                        f'able to do {self.combat_waves} waves')
+            logger.info(f'Current has {current}, combat costs {cost}, able to do {self.combat_waves} waves')
         if self.combat_waves > 0:
             self.combat_set_wave(self.combat_waves, total)
         else:
@@ -337,7 +348,7 @@ class OrnamentCombat(Dungeon, RouteLoader):
         return True
 
     @cached_property
-    def all_route(self) -> "list[RogueRouteModel]":
+    def all_route(self) -> 'list[RogueRouteModel]':
         # Override to load route indexes from ornament
         routes = model_from_json(RogueRouteListModel, './route/ornament/route.json').root
         logger.attr('RouteLoaded', len(routes))

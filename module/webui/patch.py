@@ -9,6 +9,7 @@ class CachedThreadPoolExecutor:
     @cached_class_property
     def executor(cls):
         from concurrent.futures.thread import ThreadPoolExecutor
+
         pool = ThreadPoolExecutor(max_workers=5)
         logger.info('Patched ThreadPoolExecutor created')
         return pool

@@ -48,7 +48,7 @@ class Base:
 class Frame(Base):
     def __init__(self) -> None:
         super().__init__()
-        self.page = "Home"
+        self.page = 'Home'
 
     def init_aside(self, expand_menu: bool = True, name: str = None) -> None:
         """
@@ -60,12 +60,12 @@ class Frame(Base):
         self.visible = True
         self.scope_clear()
         self.task_handler.remove_pending_task()
-        clear("menu")
+        clear('menu')
         if expand_menu:
             self.expand_menu()
         if name:
-            self.active_button("aside", name)
-            set_localstorage("aside", name)
+            self.active_button('aside', name)
+            set_localstorage('aside', name)
 
     def init_menu(self, collapse_menu: bool = True, name: str = None) -> None:
         """
@@ -78,36 +78,36 @@ class Frame(Base):
         self.page = name
         self.scope_clear()
         self.task_handler.remove_pending_task()
-        clear("content")
+        clear('content')
         if collapse_menu:
             self.collapse_menu()
         if name:
-            self.active_button("menu", name)
+            self.active_button('menu', name)
 
     @staticmethod
-    @use_scope("ROOT", clear=True)
+    @use_scope('ROOT', clear=True)
     def _show() -> None:
         put_scope(
-            "header",
+            'header',
             [
-                put_html(Icon.ALAS).style("--header-icon--"),
-                put_text("SRC").style("--header-text--"),
-                put_scope("header_status"),
-                put_scope("header_title"),
+                put_html(Icon.ALAS).style('--header-icon--'),
+                put_text('SRC').style('--header-text--'),
+                put_scope('header_status'),
+                put_scope('header_title'),
             ],
         )
         put_scope(
-            "contents",
+            'contents',
             [
-                put_scope("aside"),
-                put_scope("menu"),
-                put_scope("content"),
+                put_scope('aside'),
+                put_scope('menu'),
+                put_scope('content'),
             ],
         )
 
     @staticmethod
-    @use_scope("header_title", clear=True)
-    def set_title(text=""):
+    @use_scope('header_title', clear=True)
+    def set_title(text=''):
         put_text(text)
 
     @staticmethod
@@ -141,13 +141,8 @@ class Frame(Base):
     def pin_set_invalid_mark(keys) -> None:
         if isinstance(keys, str):
             keys = [keys]
-        keys = ["_".join(key.split(".")) for key in keys]
-        js = "".join(
-            [
-                f"""$(".form-control[name='{key}']").addClass('is-invalid');"""
-                for key in keys
-            ]
-        )
+        keys = ['_'.join(key.split('.')) for key in keys]
+        js = ''.join([f"""$(".form-control[name='{key}']").addClass('is-invalid');""" for key in keys])
         if js:
             run_js(js)
         # for key in keys:
@@ -157,13 +152,8 @@ class Frame(Base):
     def pin_remove_invalid_mark(keys) -> None:
         if isinstance(keys, str):
             keys = [keys]
-        keys = ["_".join(key.split(".")) for key in keys]
-        js = "".join(
-            [
-                f"""$(".form-control[name='{key}']").removeClass('is-invalid');"""
-                for key in keys
-            ]
-        )
+        keys = ['_'.join(key.split('.')) for key in keys]
+        js = ''.join([f"""$(".form-control[name='{key}']").removeClass('is-invalid');""" for key in keys])
         if js:
             run_js(js)
         # for key in keys:
@@ -179,8 +169,8 @@ class Frame(Base):
             type_: Type in _widget_type_to_func
         """
         type_ = type_to_html(type_)
-        key = "_".join(key.split("."))
-        key = f"pywebio-scope-arg_container-{type_}-{key}"
+        key = '_'.join(key.split('.'))
+        key = f'pywebio-scope-arg_container-{type_}-{key}'
         # This aims to be a typo, don't correct it, leave it as it is
         if type_ == 'textarea':
             key = key.replace('container', 'contianer')
@@ -191,8 +181,8 @@ class Frame(Base):
     @staticmethod
     def pin_remove_hidden_arg(key, type_) -> None:
         type_ = type_to_html(type_)
-        key = "_".join(key.split("."))
-        key = f"pywebio-scope-arg_container-{type_}-{key}"
+        key = '_'.join(key.split('.'))
+        key = f'pywebio-scope-arg_container-{type_}-{key}'
         if type_ == 'textarea':
             key = key.replace('container', 'contianer')
         js = f"""$("#{key}").removeAttr('style');"""

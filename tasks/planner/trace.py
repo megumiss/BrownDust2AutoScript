@@ -69,7 +69,10 @@ class PlannerTrace(PlannerUI):
 
         # Move level operation buttons according to SKIPP_OP_AREA
         for button in [
-            LEVEL_MINUS, LEVEL_MINUS_INACTIVE, LEVEL_PLUS, LEVEL_PLUS_INACTIVE,
+            LEVEL_MINUS,
+            LEVEL_MINUS_INACTIVE,
+            LEVEL_PLUS,
+            LEVEL_PLUS_INACTIVE,
         ]:
             button.load_search(area)
         x = 0
@@ -101,7 +104,8 @@ class PlannerTrace(PlannerUI):
         # set target
         ocr = Digit(ClickButton(LEVEL_VALUE_TARGET.button), name=f'{skill_button}_TARGET')
         self.ui_ensure_index(
-            level, letter=ocr, prev_button=LEVEL_MINUS, next_button=LEVEL_PLUS, skip_first_screenshot=True)
+            level, letter=ocr, prev_button=LEVEL_MINUS, next_button=LEVEL_PLUS, skip_first_screenshot=True
+        )
         return True
 
     def planner_trace_set(self):

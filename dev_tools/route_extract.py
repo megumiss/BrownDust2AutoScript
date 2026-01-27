@@ -37,9 +37,10 @@ class RouteExtract:
         regex = re.compile(
             r'def (?P<func>[a-zA-Z0-9_]*?)\(self\):.*?'
             r'self\.map_init\((.*?)\)',
-            re.DOTALL)
+            re.DOTALL,
+        )
         file = file.replace(self.folder, '').replace('.py', '').replace('/', '_').strip('_')
-        module = f"{self.folder.strip('./').replace('/', '.')}.{file}"
+        module = f'{self.folder.strip("./").replace("/", ".")}.{file}'
 
         for result in regex.findall(content):
             func, data = result
@@ -154,6 +155,7 @@ class RouteDetect:
     @cached_property
     def detector(self):
         from tasks.rogue.route.loader import MinimapWrapper
+
         return MinimapWrapper()
 
     def get_minimap(self, route: RogueWaypointModel):
@@ -198,7 +200,7 @@ class RouteDetect:
                             plane=f'{world}_{plane}',
                             floor=floor,
                             position=position,
-                            direction=0.,
+                            direction=0.0,
                             rotation=0,
                         )
                         yield model
@@ -220,12 +222,13 @@ class RouteDetect:
             waypoint.rotation = minimap.rotation
             if prev != (0, 0) and np.linalg.norm(np.subtract(waypoint.position, prev)) > 1.5:
                 if waypoint.is_spawn:
-                    print(f'Position changed: {self.folder}/{waypoint.domain}/{waypoint.route}'
-                          f' -> {waypoint.plane}_{waypoint.floor}_{waypoint.positionXY}')
+                    print(
+                        f'Position changed: {self.folder}/{waypoint.domain}/{waypoint.route}'
+                        f' -> {waypoint.plane}_{waypoint.floor}_{waypoint.positionXY}'
+                    )
                 else:
                     name = regex_posi.sub('', waypoint.waypoint)
-                    print(f'Position changed: {waypoint.file}'
-                          f' -> {name}_{waypoint.positionXY}')
+                    print(f'Position changed: {waypoint.file} -> {name}_{waypoint.positionXY}')
 
         self.waypoints.create_index('domain', 'route')
         # Sort by distance
@@ -312,12 +315,9 @@ class RouteDetect:
             with gen.Def(name=spawn.route, args='self'):
                 table = MarkdownGenerator(['Waypoint', 'Position', 'Direction', 'Rotation'])
                 for waypoint in waypoints:
-                    table.add_row([
-                        waypoint.waypoint,
-                        f'{WaypointRepr(waypoint)},',
-                        waypoint.direction,
-                        waypoint.rotation
-                    ])
+                    table.add_row(
+                        [waypoint.waypoint, f'{WaypointRepr(waypoint)},', waypoint.direction, waypoint.rotation]
+                    )
                 gen.add('"""')
                 for row in table.generate():
                     gen.add(row)
@@ -339,8 +339,9 @@ class RouteDetect:
                 for waypoint in waypoints:
                     if waypoint.is_spawn:
                         continue
-                    if (waypoint.is_exit or waypoint.is_exit_door) \
-                            and (spawn.is_DomainCombat or spawn.is_DomainOccurrence):
+                    if (waypoint.is_exit or waypoint.is_exit_door) and (
+                        spawn.is_DomainCombat or spawn.is_DomainOccurrence
+                    ):
                         continue
                     gen.Value(key=waypoint.waypoint, value=WaypointRepr(waypoint))
 
@@ -397,10 +398,10 @@ class RouteDetect:
                 content = content.replace('tasks.map.route.base', base)
             p = '_'.join(plane.split('_', maxsplit=2)[:2])
             imp = [
-                      'from tasks.map.control.waypoint import Waypoint',
-                      f'from tasks.map.keywords.plane import {p}',
-                      f'from {base} import RouteBase',
-                  ][::-1]
+                'from tasks.map.control.waypoint import Waypoint',
+                f'from tasks.map.keywords.plane import {p}',
+                f'from {base} import RouteBase',
+            ][::-1]
             res = re.search(r'^(.*?)class Route', content, re.DOTALL)
             if res:
                 head = res.group(1)
@@ -408,8 +409,8 @@ class RouteDetect:
                     if row not in head:
                         content = row + '\n' + content
             content = content.replace(
-                'from tasks.rogue.route.base import locked',
-                'from tasks.map.route.base import locked')
+                'from tasks.rogue.route.base import locked', 'from tasks.map.route.base import locked'
+            )
             # Replace or add routes
             routes.create_index('route')
             for waypoints in routes.indexes.values():
@@ -427,7 +428,8 @@ class RouteDetect:
 
             # Sort routes
             regex = re.compile(
-                r'(?=(\n    def ([a-zA-Z0-9_]+)\(.*?\n    def|\n    def ([a-zA-Z0-9_]+)\(.*?$))', re.DOTALL)
+                r'(?=(\n    def ([a-zA-Z0-9_]+)\(.*?\n    def|\n    def ([a-zA-Z0-9_]+)\(.*?$))', re.DOTALL
+            )
             funcs = regex.findall(content)
 
             known_routes = [route[0] for route in routes.indexes.keys()]

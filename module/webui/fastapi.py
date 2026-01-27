@@ -1,15 +1,20 @@
 """
 Copy from pywebio.platform.fastapi
 """
+
 import asyncio
 import os
 
 import uvicorn
-from pywebio.platform.fastapi import (STATIC_PATH, Session, cdn_validation,
-                                      get_free_port,
-                                      open_webbrowser_on_server_started,
-                                      start_remote_access_service,
-                                      webio_routes)
+from pywebio.platform.fastapi import (
+    STATIC_PATH,
+    Session,
+    cdn_validation,
+    get_free_port,
+    open_webbrowser_on_server_started,
+    start_remote_access_service,
+    webio_routes,
+)
 from starlette.applications import Starlette
 from starlette.middleware import Middleware
 from starlette.middleware.base import BaseHTTPMiddleware
@@ -20,23 +25,17 @@ from starlette.staticfiles import StaticFiles
 class HeaderMiddleware(BaseHTTPMiddleware):
     async def dispatch(self, request, call_next):
         response = await call_next(request)
-        response.headers["Cache-Control"] = "no-cache"
+        response.headers['Cache-Control'] = 'no-cache'
         return response
 
 
 def asgi_app(
-    applications,
-    cdn=True,
-    static_dir=None,
-    debug=False,
-    allowed_origins=None,
-    check_origin=None,
-    **starlette_settings
+    applications, cdn=True, static_dir=None, debug=False, allowed_origins=None, check_origin=None, **starlette_settings
 ):
-    debug = Session.debug = os.environ.get("PYWEBIO_DEBUG", debug)
-    cdn = cdn_validation(cdn, "warn")
+    debug = Session.debug = os.environ.get('PYWEBIO_DEBUG', debug)
+    cdn = cdn_validation(cdn, 'warn')
     if cdn is False:
-        cdn = "pywebio_static"
+        cdn = 'pywebio_static'
     routes = webio_routes(
         applications,
         cdn=cdn,
@@ -44,26 +43,22 @@ def asgi_app(
         check_origin=check_origin,
     )
     if static_dir:
-        routes.append(
-            Mount("/static", app=StaticFiles(directory=static_dir), name="static")
-        )
+        routes.append(Mount('/static', app=StaticFiles(directory=static_dir), name='static'))
     routes.append(
         Mount(
-            "/pywebio_static",
+            '/pywebio_static',
             app=StaticFiles(directory=STATIC_PATH),
-            name="pywebio_static",
+            name='pywebio_static',
         )
     )
     middleware = [Middleware(HeaderMiddleware)]
-    return Starlette(
-        routes=routes, middleware=middleware, debug=debug, **starlette_settings
-    )
+    return Starlette(routes=routes, middleware=middleware, debug=debug, **starlette_settings)
 
 
 def start_server(
     applications,
     port=0,
-    host="",
+    host='',
     cdn=True,
     static_dir=None,
     remote_access=False,
@@ -71,9 +66,8 @@ def start_server(
     allowed_origins=None,
     check_origin=None,
     auto_open_webbrowser=False,
-    **uvicorn_settings
+    **uvicorn_settings,
 ):
-
     app = asgi_app(
         applications,
         cdn=cdn,
@@ -84,12 +78,10 @@ def start_server(
     )
 
     if auto_open_webbrowser:
-        asyncio.get_event_loop().create_task(
-            open_webbrowser_on_server_started("localhost", port)
-        )
+        asyncio.get_event_loop().create_task(open_webbrowser_on_server_started('localhost', port))
 
     if not host:
-        host = "0.0.0.0"
+        host = '0.0.0.0'
 
     if port == 0:
         port = get_free_port()

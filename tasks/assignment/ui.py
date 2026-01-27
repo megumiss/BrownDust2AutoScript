@@ -37,8 +37,7 @@ class AssignmentOcr(Ocr):
         'cn': [
             (KEYWORDS_ASSIGNMENT_ENTRY.Winter_Soldiers, '[黑]冬的战士们'),
             (KEYWORDS_ASSIGNMENT_ENTRY.Born_to_Obey, '[牛]而服从'),
-            (KEYWORDS_ASSIGNMENT_ENTRY.Root_Out_the_Turpitude,
-             '根除恶[擎薯尊掌鞋]?'),
+            (KEYWORDS_ASSIGNMENT_ENTRY.Root_Out_the_Turpitude, '根除恶[擎薯尊掌鞋]?'),
             (KEYWORDS_ASSIGNMENT_ENTRY.Akashic_Records, '阿[未][夏复]记录'),
             (KEYWORDS_ASSIGNMENT_ENTRY.Legend_of_the_Puppet_Master, '^师传说'),
             (KEYWORDS_ASSIGNMENT_ENTRY.The_Wages_of_Humanity, '[赠]养人类'),
@@ -50,25 +49,22 @@ class AssignmentOcr(Ocr):
             # (KEYWORDS_ASSIGNMENT_EVENT_ENTRY.Food_Improvement_Plan.name,
             #  'Food\s*[I]{0}mprovement Plan'),
             # (KEYWORDS_ASSIGNMENT_EVENT_ENTRY.Car_Thief, '.*Car Thief.*'),
-        ]
+        ],
     }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         # OCR result of remain time
-        self.remain_result: "list[BoxedResult]" = []
+        self.remain_result: 'list[BoxedResult]' = []
         # Key: Assignment, value: remain time
-        self.dict_remain: "dict[AssignmentEntry, str]" = {}
+        self.dict_remain: 'dict[AssignmentEntry, str]' = {}
 
     @cached_property
     def ocr_regex(self) -> re.Pattern | None:
         rules = AssignmentOcr.OCR_REPLACE.get(self.lang)
         if rules is None:
             return None
-        return re.compile('|'.join(
-            f'(?P<{kw.name}>{pat})'
-            for kw, pat in rules
-        ))
+        return re.compile('|'.join(f'(?P<{kw.name}>{pat})' for kw, pat in rules))
 
     def filter_detected(self, result) -> bool:
         # Drop duration rows
@@ -99,8 +95,8 @@ class AssignmentOcr(Ocr):
         if matched is None:
             return result
         for keyword_class in (
-                KEYWORDS_ASSIGNMENT_ENTRY,
-                KEYWORDS_ASSIGNMENT_EVENT_ENTRY,
+            KEYWORDS_ASSIGNMENT_ENTRY,
+            KEYWORDS_ASSIGNMENT_EVENT_ENTRY,
         ):
             kw = getattr(keyword_class, matched.lastgroup, None)
             if kw is not None:
@@ -109,8 +105,7 @@ class AssignmentOcr(Ocr):
         else:
             raise ScriptError(f'No keyword found for {matched.lastgroup}')
         matched = getattr(matched, self.lang)
-        logger.attr(name=f'{self.name} after_process',
-                    text=f'{result} -> {matched}')
+        logger.attr(name=f'{self.name} after_process', text=f'{result} -> {matched}')
         return matched
 
     def matched_ocr(self, *args, **kwargs):
@@ -136,10 +131,7 @@ class AssignmentGroupSwitch(DungeonTabSwitch):
     SEARCH_BUTTON = GROUP_SEARCH
 
 
-ASSIGNMENT_GROUP_SWITCH = AssignmentGroupSwitch(
-    'AssignmentGroupSwitch',
-    is_selector=True
-)
+ASSIGNMENT_GROUP_SWITCH = AssignmentGroupSwitch('AssignmentGroupSwitch', is_selector=True)
 ASSIGNMENT_GROUP_SWITCH.add_state(
     CURRENT_EVENT_GROUP,
     check_button=SPACE_STATION_TASK_FORCE_CHECK,
@@ -148,17 +140,17 @@ ASSIGNMENT_GROUP_SWITCH.add_state(
 ASSIGNMENT_GROUP_SWITCH.add_state(
     KEYWORDS_ASSIGNMENT_GROUP.Character_Materials,
     check_button=CHARACTER_MATERIALS_CHECK,
-    click_button=CHARACTER_MATERIALS_CLICK
+    click_button=CHARACTER_MATERIALS_CLICK,
 )
 ASSIGNMENT_GROUP_SWITCH.add_state(
     KEYWORDS_ASSIGNMENT_GROUP.EXP_Materials_Credits,
     check_button=EXP_MATERIALS_CREDITS_CHECK,
-    click_button=EXP_MATERIALS_CREDITS_CLICK
+    click_button=EXP_MATERIALS_CREDITS_CLICK,
 )
 ASSIGNMENT_GROUP_SWITCH.add_state(
     KEYWORDS_ASSIGNMENT_GROUP.Synthesis_Materials,
     check_button=SYNTHESIS_MATERIALS_CHECK,
-    click_button=SYNTHESIS_MATERIALS_CLICK
+    click_button=SYNTHESIS_MATERIALS_CLICK,
 )
 ASSIGNMENT_ENTRY_LIST = DraggableList(
     'AssignmentEntryList',
@@ -166,12 +158,9 @@ ASSIGNMENT_ENTRY_LIST = DraggableList(
     ocr_class=AssignmentOcr,
     search_button=OCR_ASSIGNMENT_ENTRY_LIST,
     check_row_order=False,
-    active_color=(40, 40, 40)
+    active_color=(40, 40, 40),
 )
-ASSIGNMENT_ENTRY_LIST.known_rows = [
-    kw for kc in ASSIGNMENT_ENTRY_LIST.keyword_class
-    for kw in kc.instances.values()
-]
+ASSIGNMENT_ENTRY_LIST.known_rows = [kw for kc in ASSIGNMENT_ENTRY_LIST.keyword_class for kw in kc.instances.values()]
 
 
 class AssignmentUI(UI):
@@ -244,8 +233,9 @@ class AssignmentUI(UI):
             if timeout.reached():
                 logger.warning('Wait group loaded timeout')
                 break
-            if self.image_color_count(GROUP_SEARCH, (40, 40, 40), count=25000) and \
-                    self.image_color_count(GROUP_SEARCH, (240, 240, 240), count=8000):
+            if self.image_color_count(GROUP_SEARCH, (40, 40, 40), count=25000) and self.image_color_count(
+                GROUP_SEARCH, (240, 240, 240), count=8000
+            ):
                 logger.info('Group loaded')
                 break
 
@@ -264,8 +254,7 @@ class AssignmentUI(UI):
             if self.appear(EVENT_COMPLETED):
                 logger.info('Event completed')
                 break
-            if self.appear(ASSIGNMENT_CHECK) and \
-                    self.image_color_count(ENTRY_LOADED, (35, 35, 35), count=400):
+            if self.appear(ASSIGNMENT_CHECK) and self.image_color_count(ENTRY_LOADED, (35, 35, 35), count=400):
                 logger.info('Entry loaded')
                 break
 
@@ -288,8 +277,7 @@ class AssignmentUI(UI):
 
             ASSIGNMENT_ENTRY_LIST.load_rows(self)
             if ASSIGNMENT_ENTRY_LIST.cur_buttons and all(
-                    x.matched_keyword.group == group
-                    for x in ASSIGNMENT_ENTRY_LIST.cur_buttons
+                x.matched_keyword.group == group for x in ASSIGNMENT_ENTRY_LIST.cur_buttons
             ):
                 logger.info('Correct entry loaded')
                 break
@@ -298,10 +286,8 @@ class AssignmentUI(UI):
     def _limit_status(self) -> tuple[int, int, int]:
         self.device.screenshot()
         if isinstance(ASSIGNMENT_GROUP_SWITCH.get(self), AssignmentEventGroup):
-            ASSIGNMENT_GROUP_SWITCH.set(
-                KEYWORDS_ASSIGNMENT_GROUP.Character_Materials, self)
-        current, remain, total = DigitCounter(
-            OCR_ASSIGNMENT_LIMIT).ocr_single_line(self.device.image)
+            ASSIGNMENT_GROUP_SWITCH.set(KEYWORDS_ASSIGNMENT_GROUP.Character_Materials, self)
+        current, remain, total = DigitCounter(OCR_ASSIGNMENT_LIMIT).ocr_single_line(self.device.image)
         if total and current <= total:
             logger.attr('Assignment', f'{current}/{total}')
             self.config.stored.Assignment.set(current, total)
@@ -321,9 +307,7 @@ class AssignmentUI(UI):
                 self.device.screenshot()
 
             if timeout.reached():
-                logger.warning(
-                    'Check assignment status timeout, assume LOCKED'
-                )
+                logger.warning('Check assignment status timeout, assume LOCKED')
                 break
             if self.appear(CLAIM):
                 ret = AssignmentStatus.CLAIMABLE
@@ -357,10 +341,7 @@ class AssignmentUI(UI):
         """
         # load_rows is done in goto_group already
         # Freeze ocr results here
-        yield from [
-            button.matched_keyword
-            for button in ASSIGNMENT_ENTRY_LIST.cur_buttons
-        ]
+        yield from [button.matched_keyword for button in ASSIGNMENT_ENTRY_LIST.cur_buttons]
 
 
 if __name__ == '__main__':

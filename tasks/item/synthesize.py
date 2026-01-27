@@ -383,8 +383,10 @@ class Synthesize(CombatObtain, ItemUI, SynthesizeUI):
         if isinstance(item, str):
             item = ItemBase.find(item)
         if not isinstance(item, (ItemTrace, ItemCalyx, ItemValuable)):
-            raise ScriptError(f'synthesize_inventory_select: '
-                              f'Trying to select item {item} but it is not an ItemTrace or ItemCalyx object')
+            raise ScriptError(
+                f'synthesize_inventory_select: '
+                f'Trying to select item {item} but it is not an ItemTrace or ItemCalyx object'
+            )
 
         inv = self.synthesize_inventory
         inv.update()
@@ -460,7 +462,8 @@ class Synthesize(CombatObtain, ItemUI, SynthesizeUI):
         slider.set(value, total)
         ocr = SynthesizeItemAmount(SYNTHESIZE_AMOUNT, lang=server.lang)
         self.ui_ensure_index(
-            value, letter=ocr, next_button=SYNTHESIZE_PLUS, prev_button=SYNTHESIZE_MINUS, interval=(0.1, 0.2))
+            value, letter=ocr, next_button=SYNTHESIZE_PLUS, prev_button=SYNTHESIZE_MINUS, interval=(0.1, 0.2)
+        )
 
     def synthesize_tab_set(self, state, reset=True):
         """

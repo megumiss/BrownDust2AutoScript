@@ -44,16 +44,16 @@ class UI(MainPage):
             GameNotRunningError:
             GamePageUnknownError:
         """
-        logger.info("UI get current page")
+        logger.info('UI get current page')
 
         @run_once
         def app_check():
             if not self.device.app_is_running():
-                raise GameNotRunningError("Game not running")
+                raise GameNotRunningError('Game not running')
 
         @run_once
         def minicap_check():
-            if self.config.Emulator_ControlMethod == "uiautomator2":
+            if self.config.Emulator_ControlMethod == 'uiautomator2':
                 self.device.uninstall_minicap()
 
         @run_once
@@ -64,6 +64,7 @@ class UI(MainPage):
         def cloud_login():
             if self.config.is_cloud_game:
                 from tasks.login.login import Login
+
                 login = Login(config=self.config, device=self.device)
                 self.device.dump_hierarchy()
                 login.cloud_try_enter_game()
@@ -72,7 +73,7 @@ class UI(MainPage):
         while 1:
             if skip_first_screenshot:
                 skip_first_screenshot = False
-                if not hasattr(self.device, "image") or self.device.image is None:
+                if not hasattr(self.device, 'image') or self.device.image is None:
                     self.device.screenshot()
             else:
                 self.device.screenshot()
@@ -86,12 +87,12 @@ class UI(MainPage):
                 if page.check_button is None:
                     continue
                 if self.ui_page_appear(page=page):
-                    logger.attr("UI", page.name)
+                    logger.attr('UI', page.name)
                     self.ui_current = page
                     return page
 
             # Unknown page but able to handle
-            logger.info("Unknown ui page")
+            logger.info('Unknown ui page')
             if self.ui_additional():
                 timeout.reset()
                 continue
@@ -114,14 +115,14 @@ class UI(MainPage):
             cloud_login()
 
         # Unknown page, need manual switching
-        logger.warning("Unknown ui page")
-        logger.attr("EMULATOR__SCREENSHOT_METHOD", self.config.Emulator_ScreenshotMethod)
-        logger.attr("EMULATOR__CONTROL_METHOD", self.config.Emulator_ControlMethod)
-        logger.attr("Lang", self.config.LANG)
-        logger.warning("Starting from current page is not supported")
-        logger.warning(f"Supported page: {[str(page) for page in Page.iter_pages()]}")
+        logger.warning('Unknown ui page')
+        logger.attr('EMULATOR__SCREENSHOT_METHOD', self.config.Emulator_ScreenshotMethod)
+        logger.attr('EMULATOR__CONTROL_METHOD', self.config.Emulator_ControlMethod)
+        logger.attr('Lang', self.config.LANG)
+        logger.warning('Starting from current page is not supported')
+        logger.warning(f'Supported page: {[str(page) for page in Page.iter_pages()]}')
         logger.warning('Supported page: Any page with a "HOME" button on the upper-right')
-        logger.critical("Please switch to a supported page before starting SRC")
+        logger.critical('Please switch to a supported page before starting SRC')
         raise GamePageUnknownError
 
     def ui_goto(self, destination, skip_first_screenshot=True):
@@ -134,7 +135,7 @@ class UI(MainPage):
         Page.init_connection(destination)
         self.interval_clear(list(Page.iter_check_buttons()))
 
-        logger.hr(f"UI goto {destination}")
+        logger.hr(f'UI goto {destination}')
         while 1:
             if skip_first_screenshot:
                 skip_first_screenshot = False
@@ -189,7 +190,7 @@ class UI(MainPage):
         Returns:
             bool: If UI switched.
         """
-        logger.hr("UI ensure")
+        logger.hr('UI ensure')
         self.ui_get_current_page(skip_first_screenshot=skip_first_screenshot)
 
         self.ui_leave_special()
@@ -199,22 +200,22 @@ class UI(MainPage):
                 self.ui_get_current_page(skip_first_screenshot=skip_first_screenshot)
 
         if self.ui_current == destination:
-            logger.info("Already at %s" % destination)
+            logger.info('Already at %s' % destination)
             return False
         else:
-            logger.info("Goto %s" % destination)
+            logger.info('Goto %s' % destination)
             self.ui_goto(destination, skip_first_screenshot=True)
             return True
 
     def ui_ensure_index(
-            self,
-            index,
-            letter,
-            next_button,
-            prev_button,
-            skip_first_screenshot=False,
-            fast=True,
-            interval=(0.2, 0.3),
+        self,
+        index,
+        letter,
+        next_button,
+        prev_button,
+        skip_first_screenshot=False,
+        fast=True,
+        interval=(0.2, 0.3),
     ):
         """
         Args:
@@ -226,7 +227,7 @@ class UI(MainPage):
             fast (bool): Default true. False when index is not continuous.
             interval (tuple, int, float): Seconds between two click.
         """
-        logger.hr("UI ensure index")
+        logger.hr('UI ensure index')
         retry = Timer(1, count=2)
         while 1:
             if skip_first_screenshot:
@@ -239,7 +240,7 @@ class UI(MainPage):
             else:
                 current = letter(self.device.image)
 
-            logger.attr("Index", current)
+            logger.attr('Index', current)
             diff = index - current
             if diff == 0:
                 break
@@ -256,13 +257,13 @@ class UI(MainPage):
                 retry.reset()
 
     def ui_click(
-            self,
-            click_button,
-            check_button,
-            appear_button=None,
-            additional=None,
-            retry_wait=5,
-            skip_first_screenshot=True,
+        self,
+        click_button,
+        check_button,
+        appear_button=None,
+        additional=None,
+        retry_wait=5,
+        skip_first_screenshot=True,
     ):
         """
         Args:
@@ -370,6 +371,7 @@ class UI(MainPage):
         if self.is_in_login_confirm(interval=0):
             logger.warning('Login page appeared')
             from tasks.login.login import Login
+
             Login(self.config, device=self.device).handle_app_login()
             raise HandledError
         return False
@@ -415,11 +417,7 @@ class UI(MainPage):
         return False
 
     def _ui_button_confirm(
-            self,
-            button,
-            confirm=Timer(0.1, count=0),
-            timeout=Timer(2, count=6),
-            skip_first_screenshot=True
+        self, button, confirm=Timer(0.1, count=0), timeout=Timer(2, count=6), skip_first_screenshot=True
     ):
         confirm.reset()
         timeout.reset()

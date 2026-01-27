@@ -8,7 +8,7 @@ class Detector:
         """
         A detector to detect the circle mark of enemy and item.
         """
-        self.ui_mask = cv2.imread(os.path.join(os.path.dirname(__file__), "mask.png"), 0)
+        self.ui_mask = cv2.imread(os.path.join(os.path.dirname(__file__), 'mask.png'), 0)
 
     def update(self, frame):
         # apply a mask to every frame to block the UI from interfering detection
@@ -83,7 +83,7 @@ def generate_ui_mask():
     mask[145:435, 1153:1240] = 0
     cv2.circle(mask, (907, 614), 55, 0, -1)
     cv2.circle(mask, (1033, 542), 67, 0, -1)
-    cv2.imwrite("mask.png", mask)
+    cv2.imwrite('mask.png', mask)
 
 
 if __name__ == '__main__':
@@ -110,7 +110,7 @@ if __name__ == '__main__':
                 if items is not None:
                     self.plot_points(items)
 
-                cv2.imshow("frame", self.frame)
+                cv2.imshow('frame', self.frame)
                 if cv2.waitKey(1) == ord('q'):
                     cv2.destroyAllWindows()
                     break

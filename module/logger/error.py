@@ -16,7 +16,8 @@ def save_error_log(config, device):
         device: Device object
     """
     from module.base.utils import save_image
-    from module.handler.sensitive_info import (handle_sensitive_image, handle_sensitive_logs)
+    from module.handler.sensitive_info import handle_sensitive_image, handle_sensitive_logs
+
     if config.Error_SaveError:
         folder = f'./log/error/{int(time.time() * 1000)}'
         logger.warning(f'Saving error: {folder}')
@@ -38,7 +39,7 @@ def save_error_log(config, device):
                 line = line.strip(' \r\t\n')
                 if re.match('^═{15,}$', line):
                     start = index
-            lines = lines[start - 2:]
+            lines = lines[start - 2 :]
             lines = handle_sensitive_logs(lines)
         with open(f'{folder}/log.txt', 'w', encoding='utf-8') as f:
             f.writelines(lines)

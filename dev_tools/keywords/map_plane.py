@@ -154,8 +154,9 @@ class GenerateMapPlane(GenerateKeyword):
         text = super().convert_name(text, keyword=keyword)
         text = text.replace('_', '')
         if not text:
-            return ""
+            return ''
         from tasks.map.keywords import MapWorld
+
         world = MapWorld.find_world_id(keyword['world_id'])
         if world is None:
             if text.startswith('Domain'):

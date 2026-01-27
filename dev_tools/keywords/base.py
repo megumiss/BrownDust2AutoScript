@@ -34,7 +34,7 @@ class TextMap:
         file = os.path.join(TextMap.DATA_FOLDER, 'TextMap', f'TextMap{lang.upper()}.json')
         data = {}
         for id_, text in read_file(file).items():
-            text = text.replace('\u00A0', '')
+            text = text.replace('\u00a0', '')
             text = text.replace(r'{NICKNAME}', 'Trailblazer')
             data[int(id_)] = text
         return data
@@ -143,10 +143,7 @@ class GenerateKeyword:
         self.gen = CodeGenerator()
         self.keyword_class = self.__class__.__name__.removeprefix('Generate')
         self.keyword_index = 0
-        self.keyword_format = {
-            'id': 0,
-            'name': 'Unnamed_Keyword'
-        }
+        self.keyword_format = {'id': 0, 'name': 'Unnamed_Keyword'}
         for lang in UI_LANGUAGES:
             self.keyword_format[lang] = ''
 
@@ -167,9 +164,7 @@ class GenerateKeyword:
     def iter_keywords_from_text(self, text_list: list[str], lang: str) -> t.Iterable[dict]:
         for text in text_list:
             text_id, _ = self.find_keyword(text, lang)
-            yield {
-                'text_id': text_id
-            }
+            yield {'text_id': text_id}
 
     def convert_name(self, text: str, keyword: dict) -> str:
         return text_to_variable(replace_templates(text))

@@ -26,7 +26,7 @@ class CombatPrepare(StaminaStatus):
     combat_wave_done = 0
     # E.g. 10, 30, 40
     combat_wave_cost = 10
-    dungeon: "DungeonList | None" = None
+    dungeon: 'DungeonList | None' = None
 
     def combat_set_wave(self, count=6, total=6):
         """
@@ -60,9 +60,7 @@ class CombatPrepare(StaminaStatus):
         # use lang='cn' for better digit detection
         ocr = WaveDigit(area, lang='cn')
         self.ui_ensure_index(
-            count, letter=ocr,
-            next_button=WAVE_PLUS, prev_button=WAVE_MINUS,
-            skip_first_screenshot=True
+            count, letter=ocr, next_button=WAVE_PLUS, prev_button=WAVE_MINUS, skip_first_screenshot=True
         )
 
     def combat_has_multi_wave(self) -> bool:
@@ -179,8 +177,7 @@ class CombatPrepare(StaminaStatus):
                     return cost
             elif cost in [30, 40]:
                 if self.combat_has_multi_wave():
-                    logger.warning(f'Combat wave costs {cost} but has multiple waves, '
-                                   f'probably wave amount is preset')
+                    logger.warning(f'Combat wave costs {cost} but has multiple waves, probably wave amount is preset')
                     self.combat_set_wave(1)
                     # Don't skip_first_screenshot, combat_set_wave may not have screenshot updated
                     # skip_first_screenshot = True

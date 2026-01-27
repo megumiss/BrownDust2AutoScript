@@ -70,7 +70,7 @@ class InventoryManager:
     GRID_DELTA = (104, 124)
 
     ERROR_LINES_TOLERANCE = (-10, 10)
-    COINCIDENT_POINT_ENCOURAGE_DISTANCE = 1.
+    COINCIDENT_POINT_ENCOURAGE_DISTANCE = 1.0
 
     MAXIMUM_ITEMS = 30
 
@@ -107,7 +107,7 @@ class InventoryManager:
             return mids
 
         # print(mids)
-        encourage = self.COINCIDENT_POINT_ENCOURAGE_DISTANCE ** 2
+        encourage = self.COINCIDENT_POINT_ENCOURAGE_DISTANCE**2
 
         # Drawing lines
         def iter_lines():
@@ -139,11 +139,12 @@ class InventoryManager:
         coincident_point_range = (
             (
                 -abs(self.ERROR_LINES_TOLERANCE[0]) * mid_diff_range[1] + edge_range[0],
-                abs(self.ERROR_LINES_TOLERANCE[1]) * mid_diff_range[1] + edge_range[1]
+                abs(self.ERROR_LINES_TOLERANCE[1]) * mid_diff_range[1] + edge_range[1],
             ),
-            mid_diff_range
+            mid_diff_range,
         )
         from scipy import optimize
+
         coincident_point = optimize.brute(coincident_point_value, coincident_point_range)
         # print(coincident_point)
 
@@ -198,14 +199,10 @@ class InventoryManager:
         # print(x_list)
         # print(y_list)
         x_list = self.mid_cleanse(
-            x_list,
-            mid_diff_range=(self.GRID_DELTA[0] - 3, self.GRID_DELTA[0] + 3),
-            edge_range=(area[0], area[2])
+            x_list, mid_diff_range=(self.GRID_DELTA[0] - 3, self.GRID_DELTA[0] + 3), edge_range=(area[0], area[2])
         )
         y_list = self.mid_cleanse(
-            y_list,
-            mid_diff_range=(self.GRID_DELTA[1] - 3, self.GRID_DELTA[1] + 3),
-            edge_range=(area[1], area[3])
+            y_list, mid_diff_range=(self.GRID_DELTA[1] - 3, self.GRID_DELTA[1] + 3), edge_range=(area[1], area[3])
         )
         # print(x_list)
         # print(y_list)

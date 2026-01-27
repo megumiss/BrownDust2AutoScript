@@ -7,7 +7,7 @@ from module.config.utils import DEFAULT_TIME, LANGUAGES, filepath_i18n, read_fil
 from module.webui.fake import list_mod
 from module.webui.setting import State
 
-LANG = "zh-CN"
+LANG = 'zh-CN'
 TRANSLATE_MODE = False
 
 
@@ -19,14 +19,14 @@ def set_language(s: str, refresh=False):
             LANG = LANGUAGES[i]
             break
     else:
-        LANG = "en-US"
+        LANG = 'en-US'
 
     State.deploy_config.Language = LANG
 
     if refresh:
         from pywebio.session import run_js
 
-        run_js("location.reload();")
+        run_js('location.reload();')
 
 
 def t(s, *args, **kwargs):
@@ -48,7 +48,7 @@ def _t(s, lang=None):
     try:
         return dic_lang[lang][s]
     except KeyError:
-        print(f"Language key ({s}) not found")
+        print(f'Language key ({s}) not found')
         return s
 
 
@@ -62,14 +62,14 @@ def reload():
 
         for mod_name, dir_name in list_mod():
             for path, v in deep_iter(read_file(filepath_i18n(lang, mod_name)), depth=3):
-                dic_lang[lang][".".join(path)] = v
+                dic_lang[lang]['.'.join(path)] = v
 
         for path, v in deep_iter(read_file(filepath_i18n(lang)), depth=3):
-            dic_lang[lang][".".join(path)] = v
+            dic_lang[lang]['.'.join(path)] = v
 
-    for key in dic_lang["ja-JP"].keys():
-        if dic_lang["ja-JP"][key] == key:
-            dic_lang["ja-JP"][key] = dic_lang["en-US"][key]
+    for key in dic_lang['ja-JP'].keys():
+        if dic_lang['ja-JP'][key] == key:
+            dic_lang['ja-JP'][key] = dic_lang['en-US'][key]
 
 
 def readable_time(before: str) -> str:
@@ -77,29 +77,29 @@ def readable_time(before: str) -> str:
     Convert "2023-08-29 12:30:53" to "3 Minutes Ago"
     """
     if not before:
-        return t("Gui.Dashboard.NoData")
+        return t('Gui.Dashboard.NoData')
     try:
         ti = datetime.fromisoformat(before)
     except ValueError:
-        return t("Gui.Dashboard.TimeError")
+        return t('Gui.Dashboard.TimeError')
     if ti == DEFAULT_TIME:
-        return t("Gui.Dashboard.NoData")
+        return t('Gui.Dashboard.NoData')
 
     diff = time.time() - ti.timestamp()
     if diff < -1:
-        return t("Gui.Dashboard.TimeError")
+        return t('Gui.Dashboard.TimeError')
     elif diff < 60:
         # < 1 min
-        return t("Gui.Dashboard.JustNow")
+        return t('Gui.Dashboard.JustNow')
     elif diff < 5400:
         # < 90 min
-        return t("Gui.Dashboard.MinutesAgo", time=int(diff // 60))
+        return t('Gui.Dashboard.MinutesAgo', time=int(diff // 60))
     elif diff < 129600:
         # < 36 hours
-        return t("Gui.Dashboard.HoursAgo", time=int(diff // 3600))
+        return t('Gui.Dashboard.HoursAgo', time=int(diff // 3600))
     elif diff < 1296000:
         # < 15 days
-        return t("Gui.Dashboard.DaysAgo", time=int(diff // 86400))
+        return t('Gui.Dashboard.DaysAgo', time=int(diff // 86400))
     else:
         # >= 15 days
-        return t("Gui.Dashboard.LongTimeAgo")
+        return t('Gui.Dashboard.LongTimeAgo')

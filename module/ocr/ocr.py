@@ -126,8 +126,7 @@ class Ocr:
         # after proces
         result = self._log_change('after', self.after_process, result)
         result = self._log_change('format', self.format_result, result)
-        logger.attr(name='%s %ss' % (self.name, float2str(time.time() - start_time)),
-                    text=str(result))
+        logger.attr(name='%s %ss' % (self.name, float2str(time.time() - start_time)), text=str(result))
         return result
 
     def ocr_multi_lines(self, image_list):
@@ -140,8 +139,10 @@ class Ocr:
         # after process
         result_list = [(self.after_process(result), score) for result, score in result_list]
         result_list = [(self.format_result(result), score) for result, score in result_list]
-        logger.attr(name="%s %ss" % (self.name, float2str(time.time() - start_time)),
-                    text=str([result for result, _ in result_list]))
+        logger.attr(
+            name='%s %ss' % (self.name, float2str(time.time() - start_time)),
+            text=str([result for result, _ in result_list]),
+        )
         return result_list
 
     def filter_detected(self, result: BoxedResult) -> bool:
@@ -177,17 +178,13 @@ class Ocr:
         for result in results:
             result.ocr_text = self.after_process(result.ocr_text)
 
-        logger.attr(name='%s %ss' % (self.name, float2str(time.time() - start_time)),
-                    text=str([result.ocr_text for result in results]))
+        logger.attr(
+            name='%s %ss' % (self.name, float2str(time.time() - start_time)),
+            text=str([result.ocr_text for result in results]),
+        )
         return results
 
-    def _match_result(
-            self,
-            result: str,
-            keyword_classes,
-            lang: str = None,
-            ignore_punctuation=True,
-            ignore_digit=True):
+    def _match_result(self, result: str, keyword_classes, lang: str = None, ignore_punctuation=True, ignore_digit=True):
         """
         Args:
             result (str):
@@ -208,24 +205,14 @@ class Ocr:
         # Try in current lang
         for keyword_class in keyword_classes:
             try:
-                matched = keyword_class.find(
-                    result,
-                    lang=lang,
-                    ignore_punctuation=ignore_punctuation
-                )
+                matched = keyword_class.find(result, lang=lang, ignore_punctuation=ignore_punctuation)
                 return matched
             except ScriptError:
                 continue
 
         return None
 
-    def matched_single_line(
-            self,
-            image,
-            keyword_classes,
-            lang: str = None,
-            ignore_punctuation=True
-    ) -> Keyword:
+    def matched_single_line(self, image, keyword_classes, lang: str = None, ignore_punctuation=True) -> Keyword:
         """
         Args:
             image: Image to detect
@@ -245,16 +232,11 @@ class Ocr:
             ignore_punctuation=ignore_punctuation,
         )
 
-        logger.attr(name=f'{self.name} matched',
-                    text=result)
+        logger.attr(name=f'{self.name} matched', text=result)
         return result
 
     def matched_multi_lines(
-            self,
-            image_list,
-            keyword_classes,
-            lang: str = None,
-            ignore_punctuation=True
+        self, image_list, keyword_classes, lang: str = None, ignore_punctuation=True
     ) -> list[Keyword]:
         """
         Args:
@@ -269,25 +251,22 @@ class Ocr:
         """
         results = self.ocr_multi_lines(image_list)
 
-        results = [self._match_result(
-            result,
-            keyword_classes=keyword_classes,
-            lang=lang,
-            ignore_punctuation=ignore_punctuation,
-        ) for result in results]
+        results = [
+            self._match_result(
+                result,
+                keyword_classes=keyword_classes,
+                lang=lang,
+                ignore_punctuation=ignore_punctuation,
+            )
+            for result in results
+        ]
         results = [result for result in results if result.is_keyword_matched]
 
-        logger.attr(name=f'{self.name} matched',
-                    text=results)
+        logger.attr(name=f'{self.name} matched', text=results)
         return results
 
     def _product_button(
-            self,
-            boxed_result: BoxedResult,
-            keyword_classes,
-            lang: str = None,
-            ignore_punctuation=True,
-            ignore_digit=True
+        self, boxed_result: BoxedResult, keyword_classes, lang: str = None, ignore_punctuation=True, ignore_digit=True
     ) -> OcrResultButton:
         if not isinstance(keyword_classes, list):
             keyword_classes = [keyword_classes]
@@ -303,14 +282,13 @@ class Ocr:
         return button
 
     def matched_ocr(
-            self,
-            image,
-            keyword_classes,
-            lang=None,
-            ignore_punctuation=True,
-            direct_ocr=False,
+        self,
+        image,
+        keyword_classes,
+        lang=None,
+        ignore_punctuation=True,
+        direct_ocr=False,
     ) -> list[OcrResultButton]:
-
         """
         Args:
             image: Screenshot
@@ -324,13 +302,15 @@ class Ocr:
         """
         results = self.detect_and_ocr(image, direct_ocr=direct_ocr)
 
-        results = [self._product_button(
-            result, keyword_classes=keyword_classes, lang=lang, ignore_punctuation=ignore_punctuation
-        ) for result in results]
+        results = [
+            self._product_button(
+                result, keyword_classes=keyword_classes, lang=lang, ignore_punctuation=ignore_punctuation
+            )
+            for result in results
+        ]
         results = [result for result in results if result.is_keyword_matched]
 
-        logger.attr(name=f'{self.name} matched',
-                    text=results)
+        logger.attr(name=f'{self.name} matched', text=results)
         return results
 
 
@@ -388,17 +368,17 @@ class Duration(Ocr):
     def timedelta_regex(cls, lang):
         regex_str = {
             'cn': r'^(?P<prefix>.*?)'
-                  r'((?P<days>\d{1,2})\s*天\s*)?'
-                  r'((?P<hours>\d{1,2})\s*小时\s*)?'
-                  r'((?P<minutes>\d{1,2})\s*分钟\s*)?'
-                  r'((?P<seconds>\d{1,2})\s*秒)?'
-                  r'(?P<suffix>[^天时钟秒]*?)$',
+            r'((?P<days>\d{1,2})\s*天\s*)?'
+            r'((?P<hours>\d{1,2})\s*小时\s*)?'
+            r'((?P<minutes>\d{1,2})\s*分钟\s*)?'
+            r'((?P<seconds>\d{1,2})\s*秒)?'
+            r'(?P<suffix>[^天时钟秒]*?)$',
             'en': r'^(?P<prefix>.*?)'
-                  r'((?P<days>\d{1,2})\s*d\s*)?'
-                  r'((?P<hours>\d{1,2})\s*h\s*)?'
-                  r'((?P<minutes>\d{1,2})\s*m\s*)?'
-                  r'((?P<seconds>\d{1,2})\s*s)?'
-                  r'(?P<suffix>[^dhms]*?)$'
+            r'((?P<days>\d{1,2})\s*d\s*)?'
+            r'((?P<hours>\d{1,2})\s*h\s*)?'
+            r'((?P<minutes>\d{1,2})\s*m\s*)?'
+            r'((?P<seconds>\d{1,2})\s*s)?'
+            r'(?P<suffix>[^dhms]*?)$',
         }[lang]
         return re.compile(regex_str)
 
