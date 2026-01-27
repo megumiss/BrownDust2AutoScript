@@ -1,24 +1,24 @@
 **| English | [简体中文](README.md) | [Español](README_es.md) | [日本語](README_ja.md) |**
 
-# StarRailCopilot
+# BrownDust2AutoScript
 
 Star Rail Instant Tea, a bot for Honkai: Star Rail, based on the next generation of ALAS framework.
 
-![gui](https://raw.githubusercontent.com/wiki/LmeSzinc/StarRailCopilot/README.assets/gui_en.png)
+![gui](https://raw.githubusercontent.com/wiki/megumiss/BrownDust2AutoScript/README.assets/gui_en.png)
 
-![setting](https://raw.githubusercontent.com/wiki/LmeSzinc/StarRailCopilot/README.assets/setting_en.png)
+![setting](https://raw.githubusercontent.com/wiki/megumiss/BrownDust2AutoScript/README.assets/setting_en.png)
 
 ## Features
 
-- **Dungeons**: [Character Planner](https://github.com/LmeSzinc/StarRailCopilot/wiki/Planner_en), Dungeons, dungeons at double event, echo of war.
+- **Dungeons**: [Character Planner](https://github.com/megumiss/BrownDust2AutoScript/wiki/Planner_en), Dungeons, dungeons at double event, echo of war.
 - **Rewards**: Complete daily quests, do assignment, claim nameless horner rewards.
 - **Simulated Universe**: Farm SU, farm planers using trailbalze power.
 - **AFK Auto Farming**: Automatically launch emulators and games, do dungeons and quests at background, keep track of resources through dashboard.
-- **Cloud Gaming**: [CN only] [Run SRC on cloud HSR](https://github.com/LmeSzinc/StarRailCopilot/wiki/Cloud_cn)
+- **Cloud Gaming**: [CN only] [Run BD2AS on cloud HSR](https://github.com/megumiss/BrownDust2AutoScript/wiki/Cloud_cn)
 
-## Install [![](https://img.shields.io/github/downloads/LmeSzinc/StarRailCopilot/total?color=4e4c97)](https://github.com/LmeSzinc/StarRailCopilot/releases)
+## Install [![](https://img.shields.io/github/downloads/megumiss/BrownDust2AutoScript/total?color=4e4c97)](https://github.com/megumiss/BrownDust2AutoScript/releases)
 
-[Installation tutorial](https://github.com/LmeSzinc/StarRailCopilot/wiki/Installation_en), including easy-installer manual, use manual, manual installation tutorial.
+[Installation tutorial](https://github.com/megumiss/BrownDust2AutoScript/wiki/Installation_en), including easy-installer manual, use manual, manual installation tutorial.
 
 [Device Manual](https://github.com/LmeSzinc/AzurLaneAutoScript/wiki/Emulator_cn), supporting Windows/Mac/Linux and various running methods.
 
@@ -31,7 +31,7 @@ Star Rail Instant Tea, a bot for Honkai: Star Rail, based on the next generation
 
 Discord https://discord.gg/aJkt3mKDEr
 
-- [Minimap Tracking](https://github.com/LmeSzinc/StarRailCopilot/wiki/MinimapTracking)
+- [Minimap Tracking](https://github.com/megumiss/BrownDust2AutoScript/wiki/MinimapTracking)
 
 - Development Docs (menu is on sidebar): [Alas wiki](https://github.com/LmeSzinc/AzurLaneAutoScript/wiki/1.-Start) (in Chinese). However, there is ton of code newly written, it is recommended to read the source code and historical commits.
 
@@ -41,7 +41,7 @@ Discord https://discord.gg/aJkt3mKDEr
 
 ## About ALAS
 
-SRC is based on an Azur Lane bot [AzurLaneAutoScript](https://github.com/LmeSzinc/AzurLaneAutoScript). After 3 years of development, ALAS has reached a high degree of completion, but it has also accumulated a lot of shit code that is difficult to change. We hope that Fix these issues on a new project.
+BD2AS is based on an Azur Lane bot [AzurLaneAutoScript](https://github.com/LmeSzinc/AzurLaneAutoScript). After 3 years of development, ALAS has reached a high degree of completion, but it has also accumulated a lot of shit code that is difficult to change. We hope that Fix these issues on a new project.
 
 - Update OCR. ALAS has trained multiple models on cnocr==1.2.2, but the dependent [mxnet](https://github.com/apache/mxnet) is no longer active, machine learning is developing rapidly, and the speed of new models and the correct rate crushes the old model.
 - Converting setting files into [pydantic](https://github.com/pydantic/pydantic) models. Since the concept of task and scheduler was added, the number of user settings greatly increased. ALAS has built a code generator to implement setting read and update. pydantic will make things more elegantly.

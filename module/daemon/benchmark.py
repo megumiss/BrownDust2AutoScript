@@ -253,5 +253,5 @@ def run_benchmark(config):
 
 
 if __name__ == '__main__':
-    b = Benchmark('src', task='Benchmark')
+    b = Benchmark('bd2as', task='Benchmark')
     b.run()

@@ -1,7 +1,7 @@
 {
   "Menu": {
     "Alas": {
-      "name": "SRC",
+      "name": "BD2AS",
       "help": ""
     },
     "Daily": {
@@ -19,7 +19,7 @@
   },
   "Task": {
     "Alas": {
-      "name": "SRC設定",
+      "name": "BD2AS設定",
       "help": ""
     },
     "Restart": {
@@ -1590,7 +1590,7 @@
     },
     "DebugMode": {
       "name": "開發模式",
-      "help": "無停止條件，無異常處理，遇錯誤即停止，請依檔案回報異常：https://github.com/LmeSzinc/StarRailCopilot/wiki/RogueMap_cn"
+      "help": "無停止條件，無異常處理，遇錯誤即停止，請依檔案回報異常：https://github.com/megumiss/BrownDust2AutoScript/wiki/RogueMap_cn"
     }
   },
   "Ornament": {
@@ -1667,7 +1667,7 @@
   "PlannerScan": {
     "_info": {
       "name": "辨識角色養成規劃計算結果",
-      "help": "工具需要停止調度器再單獨運行\n使用前需要在遊戲內養成計算器中設定養成目標，併計算出結果，在計算結果頁面啟動養成規劃識別。詳細使用教程 請參閱：\nhttps://github.com/LmeSzinc/StarRailCopilot/wiki/Planner_cn"
+      "help": "工具需要停止調度器再單獨運行\n使用前需要在遊戲內養成計算器中設定養成目標，併計算出結果，在計算結果頁面啟動養成規劃識別。詳細使用教程 請參閱：\nhttps://github.com/megumiss/BrownDust2AutoScript/wiki/Planner_cn"
     },
     "ResultAdd": {
       "name": "累加多次掃描結果",

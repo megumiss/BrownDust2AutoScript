@@ -1,23 +1,23 @@
 **| [English](README_en.md) | [简体中文](README.md) | Español | [日本語](README_ja.md) |**
 
-# StarRailCopilot
+# BrownDust2AutoScript
 Star Rail Copilot, un bot para Honkai: Star Rail, basado en la siguiente generación del framework ALAS.
 
-![gui](https://raw.githubusercontent.com/wiki/LmeSzinc/StarRailCopilot/README.assets/gui_es.png)
+![gui](https://raw.githubusercontent.com/wiki/megumiss/BrownDust2AutoScript/README.assets/gui_es.png)
 
-![setting](https://raw.githubusercontent.com/wiki/LmeSzinc/StarRailCopilot/README.assets/setting_es.png)
+![setting](https://raw.githubusercontent.com/wiki/megumiss/BrownDust2AutoScript/README.assets/setting_es.png)
 
 ## Características
 
-- **Mazmorras**: [Planificador de personajes](https://github.com/LmeSzinc/StarRailCopilot/wiki/Planner_en), Mazmorras, y mazmorras en eventos de doble recompensa (materiales de XP de personaje, de conos de luz, rastros, ascensión, artefactos...), ecos de la guerra.
+- **Mazmorras**: [Planificador de personajes](https://github.com/megumiss/BrownDust2AutoScript/wiki/Planner_en), Mazmorras, y mazmorras en eventos de doble recompensa (materiales de XP de personaje, de conos de luz, rastros, ascensión, artefactos...), ecos de la guerra.
 - **Recompensas diarias**: Se completan las misiones de actividad diarias, la misión diaria, las misiones de Honor Anónimo...
 - **Universo Simulado**: Farm SU hasta alcanzar el límite de puntos semanal, farm planars usando poder trazacaminos.
 - **Farmeo automático AFK**: El bot lo hace todo de manera automática, abre los emuladores, completa las misiones y realiza las tareas diarias, realice un seguimiento de los recursos a través del panel.
-- **Juegos en la nube**: [solo CN] [Ejecute SRC en HSR en la nube](https://github.com/LmeSzinc/StarRailCopilot/wiki/Cloud_cn)
+- **Juegos en la nube**: [solo CN] [Ejecute BD2AS en HSR en la nube](https://github.com/megumiss/BrownDust2AutoScript/wiki/Cloud_cn)
 
-## Instalación [![](https://img.shields.io/github/downloads/LmeSzinc/StarRailCopilot/total?color=4e4c97)](https://github.com/LmeSzinc/StarRailCopilot/releases)
+## Instalación [![](https://img.shields.io/github/downloads/megumiss/BrownDust2AutoScript/total?color=4e4c97)](https://github.com/megumiss/BrownDust2AutoScript/releases)
 
-[Guía de Instalación](https://github.com/LmeSzinc/StarRailCopilot/wiki/Installation_en) para consultar cómo hacer la instalación automática, el manual de uso, etc.
+[Guía de Instalación](https://github.com/megumiss/BrownDust2AutoScript/wiki/Installation_en) para consultar cómo hacer la instalación automática, el manual de uso, etc.
 
 [Manual del dispositivo](https://github.com/LmeSzinc/AzurLaneAutoScript/wiki/Emulator_cn), compatible con Windows/Mac/Linux y varios métodos de ejecución.
 
@@ -29,7 +29,7 @@ Star Rail Copilot, un bot para Honkai: Star Rail, basado en la siguiente generac
 
 Discord: https://discord.gg/aJkt3mKDEr
 
-- [Seguimiento del Minimapa](https://github.com/LmeSzinc/StarRailCopilot/wiki/MinimapTracking)
+- [Seguimiento del Minimapa](https://github.com/megumiss/BrownDust2AutoScript/wiki/MinimapTracking)
 - Documentación para desarrolladores (el menú está en la barra lateral): [Wiki de ALAS](https://github.com/LmeSzinc/AzurLaneAutoScript/wiki/1.-Start) (en Chino). Sin embargo, hay un montón de código nuevo, por lo que es recomendado leer el código fuente y el historial de commits.
 - Roadmap del desarrollo: Ver issues fijados. Los pull requests son bienvenidos. Simplemente, elige la parte en la que estás interesado trabajar.
 
@@ -37,7 +37,7 @@ Discord: https://discord.gg/aJkt3mKDEr
 
 ## Acerca de ALAS
 
-SRC está basado en un bot de Azur Lane ([AzurLaneAutoScript](https://github.com/LmeSzinc/AzurLaneAutoScript)). Tras 3 años de desarrollo, se ha alcanzado un alto grado de completitud en ALAS, pero también se ha acumulado una gran cantidad de código basura que es difícil cambiar. Esperamos arreglar dichos problemas en este nuevo proyecto.
+BD2AS está basado en un bot de Azur Lane ([AzurLaneAutoScript](https://github.com/LmeSzinc/AzurLaneAutoScript)). Tras 3 años de desarrollo, se ha alcanzado un alto grado de completitud en ALAS, pero también se ha acumulado una gran cantidad de código basura que es difícil cambiar. Esperamos arreglar dichos problemas en este nuevo proyecto.
 
 - Actualizar el OCR. ALAS ha entrenado múltiples modelos en cnocr==1.2.2, pero la dependencia [mxnet](https://github.com/apache/mxnet) ya no está activa. El aprendizaje automático se está desarrollando muy rápido, y la velocidad y precisión de los nuevos modelos destroza a los antiguos.
 - Se han convertido los ficheros de configuración en modelos [pydantic](https://github.com/pydantic/pydantic). Desde que el concepto de tarea y planificador fueron añadidos, el número de ajustes de usuario se ha incrementado enormemente. ALAS ha construido un generador de código para implementar la lectura y actualización de ajustes. Pydantic permitirá hacer esto de forma más elegante.

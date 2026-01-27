@@ -115,6 +115,6 @@ class SupportReward(UI):
 
 
 if __name__ == '__main__':
-    self = SupportReward('src')
+    self = SupportReward('bd2as')
     self.device.screenshot()
     self.run()

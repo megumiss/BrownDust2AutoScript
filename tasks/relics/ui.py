@@ -252,6 +252,6 @@ class RelicsUI(ItemUI):
 
 
 if __name__ == '__main__':
-    self = RelicsUI('src')
+    self = RelicsUI('bd2as')
     self.device.screenshot()
     self.relics_goto_salvage_filter()

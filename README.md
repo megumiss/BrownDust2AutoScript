@@ -7,8 +7,8 @@
 # BrownDust2AutoScript 开发中，尚不支持任何功能，也不确定是否会一直开发下去
 
 
-棕色尘埃2 自动日常脚本，支持 PC/模拟器 客户端。基于下一代 [Alas框架](https://github.com/LmeSzinc/StarRailCopilot)  
-BrownDust2 automatic daily script, supporting PC/Emulator clients. Based on [New Alas](https://github.com/LmeSzinc/StarRailCopilot)
+棕色尘埃2 自动日常脚本，支持 PC/模拟器 客户端。基于下一代 [Alas框架](https://github.com/megumiss/BrownDust2AutoScript)  
+BrownDust2 automatic daily script, supporting PC/Emulator clients. Based on [New Alas](https://github.com/megumiss/BrownDust2AutoScript)
 
 **如果觉得有帮助，请帮我点个 ⭐ Star 支持一下！**  
 *If you find it helpful, please give it a ⭐ Star to support!*
@@ -27,21 +27,21 @@ BrownDust2 automatic daily script, supporting PC/Emulator clients. Based on [New
 ---
 
 
-![gui](https://raw.githubusercontent.com/wiki/LmeSzinc/StarRailCopilot/README.assets/gui_cn.png)
+![gui](https://raw.githubusercontent.com/wiki/megumiss/BrownDust2AutoScript/README.assets/gui_cn.png)
 
-![setting](https://raw.githubusercontent.com/wiki/LmeSzinc/StarRailCopilot/README.assets/setting_cn.png)
+![setting](https://raw.githubusercontent.com/wiki/megumiss/BrownDust2AutoScript/README.assets/setting_cn.png)
 
 ## 功能
 
-- **打本**：[角色养成规划](https://github.com/LmeSzinc/StarRailCopilot/wiki/Planner_cn)，每日副本，双倍活动副本，历战余响。
+- **打本**：[角色养成规划](https://github.com/megumiss/BrownDust2AutoScript/wiki/Planner_cn)，每日副本，双倍活动副本，历战余响。
 - **收获**：完成每日任务，收派委托，收取无名勋礼奖励。
 - **模拟宇宙**：刷模拟宇宙，使用开拓力刷内圈遗器。
 - **后台托管**：自动启动模拟器和游戏，后台托管清体力和每日，通过仪表盘了解资源情况。
-- **云游戏**：（仅国服）[在云崩坏星穹铁道上运行SRC](https://github.com/LmeSzinc/StarRailCopilot/wiki/Cloud_cn)
+- **云游戏**：（仅国服）[在云崩坏星穹铁道上运行BD2AS](https://github.com/megumiss/BrownDust2AutoScript/wiki/Cloud_cn)
 
-## 安装 [![](https://img.shields.io/github/downloads/LmeSzinc/StarRailCopilot/total?color=4e4c97)](https://github.com/LmeSzinc/StarRailCopilot/releases)
+## 安装 [![](https://img.shields.io/github/downloads/megumiss/BrownDust2AutoScript/total?color=4e4c97)](https://github.com/megumiss/BrownDust2AutoScript/releases)
 
-[中文安装教程](https://github.com/LmeSzinc/StarRailCopilot/wiki/Installation_cn)，包含自动安装教程，使用教程，手动安装教程。
+[中文安装教程](https://github.com/megumiss/BrownDust2AutoScript/wiki/Installation_cn)，包含自动安装教程，使用教程，手动安装教程。
 
 [设备支持文档](https://github.com/LmeSzinc/AzurLaneAutoScript/wiki/Emulator_cn)，支持 Windows/Mac/Linux 以及各种骚方式运行。
 
@@ -51,7 +51,7 @@ BrownDust2 automatic daily script, supporting PC/Emulator clients. Based on [New
 
 ## 开发
 
-- [小地图识别原理](https://github.com/LmeSzinc/StarRailCopilot/wiki/MinimapTracking)
+- [小地图识别原理](https://github.com/megumiss/BrownDust2AutoScript/wiki/MinimapTracking)
 - 开发文档（目录在侧边栏）：[Alas wiki](https://github.com/LmeSzinc/AzurLaneAutoScript/wiki/1.-Start)，但很多内容是新写的，建议阅读源码和历史提交。
 - 开发路线图：见置顶 issue，欢迎提交 PR，挑选你感兴趣的部分进行开发即可。
 
@@ -59,7 +59,7 @@ BrownDust2 automatic daily script, supporting PC/Emulator clients. Based on [New
 
 ## 关于 Alas
 
-SRC 基于碧蓝航线脚本 [AzurLaneAutoScript](https://github.com/LmeSzinc/AzurLaneAutoScript) 开发，Alas 经过三年的发展现在已经达到一个高完成度，但也累积了不少屎山难以改动，我们希望在新项目上解决这些问题。
+BD2AS 基于碧蓝航线脚本 [AzurLaneAutoScript](https://github.com/LmeSzinc/AzurLaneAutoScript) 开发，Alas 经过三年的发展现在已经达到一个高完成度，但也累积了不少屎山难以改动，我们希望在新项目上解决这些问题。
 
 - 更新 OCR 库。Alas 在 cnocr==1.2.2 上训练了多个模型，但依赖的 [mxnet](https://github.com/apache/mxnet) 已经不怎么活跃了，机器学习发展迅速，新模型的速度和正确率都碾压旧模型。
 - 配置文件 [pydantic](https://github.com/pydantic/pydantic) 化。自任务和调度器的概念加入后用户设置数量倍增，Alas 土制了一个代码生成器来完成配置文件的更新和访问，pydantic 将让这部分更加简洁。

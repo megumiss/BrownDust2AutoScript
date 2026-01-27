@@ -340,7 +340,7 @@ class RouteLoader(RouteLoader_, MinimapWrapper, CharacterSwitch):
 
 
 if __name__ == '__main__':
-    self = RouteLoader('src', task='Rogue')
+    self = RouteLoader('bd2as', task='Rogue')
     # self.image_file = r''
     self.device.screenshot()
     self.position_find()

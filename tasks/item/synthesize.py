@@ -682,6 +682,6 @@ class Synthesize(CombatObtain, ItemUI, SynthesizeUI):
 
 
 if __name__ == '__main__':
-    self = Synthesize('src')
+    self = Synthesize('bd2as')
     self.device.screenshot()
     self.synthesize_planner()

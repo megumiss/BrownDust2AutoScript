@@ -451,6 +451,6 @@ class DailyQuestUI(DungeonUI, RouteLoader):
 
 
 if __name__ == '__main__':
-    self = DailyQuestUI('src')
+    self = DailyQuestUI('bd2as')
     self.device.screenshot()
     self.route_run(ROUTE_DAILY.HimekoTrial__route_enemy)

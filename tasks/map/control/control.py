@@ -502,7 +502,7 @@ class MapControl(Combat, AimDetectorMixin):
 if __name__ == '__main__':
     # Control test in Himeko trial
     # Must manually enter Himeko trial first and dismiss popup
-    self = MapControl('src')
+    self = MapControl('bd2as')
     self.minimap.set_plane('Jarilo_BackwaterPass', floor='F1')
     self.device.screenshot()
     self.minimap.init_position((519, 359))

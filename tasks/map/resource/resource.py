@@ -42,8 +42,8 @@ class MapResource(ResourceConst):
     @cached_property
     def srcmap_path(self):
         # In production, srcmap must be installed
-        if self.SRCMAP:
-            return os.path.abspath(self.SRCMAP)
+        if self.BD2ASMAP:
+            return os.path.abspath(self.BD2ASMAP)
         try:
             import srcmap
         except ImportError:

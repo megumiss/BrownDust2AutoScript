@@ -42,7 +42,7 @@ export const createApp = async () => {
       },
     },
   ]);
-  tray.setToolTip('SRC');
+  tray.setToolTip('BD2AS');
   tray.setContextMenu(contextMenu);
   tray.on('click', () => {
     if (mainWindow?.isVisible()) {

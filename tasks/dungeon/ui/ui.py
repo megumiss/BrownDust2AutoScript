@@ -19,7 +19,7 @@ class DungeonUI(DungeonUINav, DungeonUIList, DungeonUIInteract, DungeonState):
 
         Examples:
             from tasks.dungeon.keywords import KEYWORDS_DUNGEON_LIST
-            self = DungeonUI('src')
+            self = DungeonUI('bd2as')
             self.device.screenshot()
             self.dungeon_tab_goto(KEYWORDS_DUNGEON_TAB.Survival_Index)
             self.dungeon_goto(KEYWORDS_DUNGEON_LIST.Calyx_Crimson_Harmony)

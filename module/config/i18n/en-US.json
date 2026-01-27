@@ -1,7 +1,7 @@
 {
   "Menu": {
     "Alas": {
-      "name": "SRC",
+      "name": "BD2AS",
       "help": ""
     },
     "Daily": {
@@ -19,7 +19,7 @@
   },
   "Task": {
     "Alas": {
-      "name": "SRC Settings",
+      "name": "BD2AS Settings",
       "help": ""
     },
     "Restart": {
@@ -1590,7 +1590,7 @@
     },
     "DebugMode": {
       "name": "Dev Mode",
-      "help": "No stop conditions, no error handling, stop when encountering an error. Please report errors according to the doc: https://github.com/LmeSzinc/StarRailCopilot/wiki/RogueMap_cn"
+      "help": "No stop conditions, no error handling, stop when encountering an error. Please report errors according to the doc: https://github.com/megumiss/BrownDust2AutoScript/wiki/RogueMap_cn"
     }
   },
   "Ornament": {
@@ -1667,7 +1667,7 @@
   "PlannerScan": {
     "_info": {
       "name": "Scan Character Planner Results",
-      "help": "Tools need to stop the scheduler and then run independently\nBefore use, set planner goal in the in-game planner, calculate the results, and start scanning from the result page. Detailed usage see: https://github.com/LmeSzinc/StarRailCopilot/wiki/Planner_en"
+      "help": "Tools need to stop the scheduler and then run independently\nBefore use, set planner goal in the in-game planner, calculate the results, and start scanning from the result page. Detailed usage see: https://github.com/megumiss/BrownDust2AutoScript/wiki/Planner_en"
     },
     "ResultAdd": {
       "name": "Accumulate multiple scan results",

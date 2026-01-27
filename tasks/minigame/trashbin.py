@@ -50,10 +50,10 @@ if __name__ == '__main__':
         python -m tasks.minigame.trashbin <instance>
     """
     parser = argparse.ArgumentParser()
-    parser.add_argument('instance', nargs='?', default='src', help='SRC instance name')
+    parser.add_argument('instance', nargs='?', default='bd2as', help='BD2AS instance name')
 
     args = parser.parse_args()
     instance = args.instance
 
-    src = TrashBin(instance)
-    src.run()
+    bd2as = TrashBin(instance)
+    bd2as.run()

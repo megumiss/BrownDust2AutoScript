@@ -211,7 +211,7 @@ class DungeonUINav(UI):
             bool: If UI switched
 
         Examples:
-            self = DungeonUINav('src')
+            self = DungeonUINav('bd2as')
             self.device.screenshot()
             self.dungeon_tab_goto(KEYWORDS_DUNGEON_TAB.Operation_Briefing)
             self.dungeon_tab_goto(KEYWORDS_DUNGEON_TAB.Daily_Training)

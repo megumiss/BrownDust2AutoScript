@@ -387,7 +387,7 @@ class ButtonWrapper(Resource):
         In ALAS:
             if self.appear(BUTTON, offset=(20, 20)):
                 pass
-        In SRC:
+        In BD2AS:
             BUTTON.set_search_offset((20, 20))
             if self.appear(BUTTON):
                 pass

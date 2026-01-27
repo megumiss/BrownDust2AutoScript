@@ -137,15 +137,15 @@ class ProcessManager:
             # Run alas
             if func == 'alas':
                 from module.alas import AzurLaneAutoScript
-                from src import StarRailCopilot
+                from bd2as import BrownDust2AutoScript
 
                 if e is not None:
                     AzurLaneAutoScript.stop_event = e
-                StarRailCopilot(config_name=config_name).loop()
+                BrownDust2AutoScript(config_name=config_name).loop()
             elif func in get_available_func():
-                from src import StarRailCopilot
+                from bd2as import BrownDust2AutoScript
 
-                StarRailCopilot(config_name=config_name).run(inflection.underscore(func))
+                BrownDust2AutoScript(config_name=config_name).run(inflection.underscore(func))
             else:
                 logger.critical(f'No function matched: {func}')
             logger.info(f'[{config_name}] exited. Reason: Finish\n')

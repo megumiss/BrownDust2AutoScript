@@ -1,7 +1,7 @@
 {
   "Menu": {
     "Alas": {
-      "name": "SRC",
+      "name": "BD2AS",
       "help": ""
     },
     "Daily": {
@@ -19,7 +19,7 @@
   },
   "Task": {
     "Alas": {
-      "name": "Ajustes de SRC",
+      "name": "Ajustes de BD2AS",
       "help": ""
     },
     "Restart": {
@@ -211,7 +211,7 @@
     },
     "OnePushConfig": {
       "name": "Configuración para notificar errores",
-      "help": "Cuando SRC no puede manejar un error, envía un mensaje automáticamente. Puedes leer más información sobre este ajuste aquí:\nhttps://github.com/LmeSzinc/AzurLaneAutoScript/wiki/Onepush-configuration-%5BEN%5D"
+      "help": "Cuando BD2AS no puede manejar un error, envía un mensaje automáticamente. Puedes leer más información sobre este ajuste aquí:\nhttps://github.com/LmeSzinc/AzurLaneAutoScript/wiki/Onepush-configuration-%5BEN%5D"
     }
   },
   "Optimization": {
@@ -1590,7 +1590,7 @@
     },
     "DebugMode": {
       "name": "Modo de desarrollo",
-      "help": "Sin condiciones de parada, sin manejo de errores, deténgase cuando encuentre un error. Informe el error de acuerdo con el documento: https://github.com/LmeSzinc/StarRailCopilot/wiki/RogueMap_cn"
+      "help": "Sin condiciones de parada, sin manejo de errores, deténgase cuando encuentre un error. Informe el error de acuerdo con el documento: https://github.com/megumiss/BrownDust2AutoScript/wiki/RogueMap_cn"
     }
   },
   "Ornament": {
@@ -1667,7 +1667,7 @@
   "PlannerScan": {
     "_info": {
       "name": "Escanear resultados del planificador de caracteres",
-      "help": "Las herramientas deben detener el programador y luego ejecutarse de forma independiente\nAntes de usarlo, establezca el objetivo del planificador en el planificador del juego, calcule los resultados y comience a escanear desde la página de resultados. Para uso detallado, consulte: https://github .com/LmeSzinc/StarRailCopilot/wiki/Planner_en"
+      "help": "Las herramientas deben detener el programador y luego ejecutarse de forma independiente\nAntes de usarlo, establezca el objetivo del planificador en el planificador del juego, calcule los resultados y comience a escanear desde la página de resultados. Para uso detallado, consulte: https://github .com/megumiss/BrownDust2AutoScript/wiki/Planner_en"
     },
     "ResultAdd": {
       "name": "Acumular múltiples resultados de escaneo",
@@ -1749,12 +1749,12 @@
       "UpToDate": "Última versión",
       "HaveUpdate": "Nueva versión disponible",
       "UpdateStart": "Empezar actualización",
-      "UpdateWait": "Esperando a que SRC complete todas las tareas",
+      "UpdateWait": "Esperando a que BD2AS complete todas las tareas",
       "UpdateRun": "Actualizando",
       "UpdateSuccess": "Actualización exitosa, reiniciando...",
       "UpdateFailed": "La actualización ha fallado. Puedes ver más detalles en ./log/*_gui.txt",
       "UpdateChecking": "Comprobando actualizaciones",
-      "UpdateCancel": "Actualización cancelada, reiniciando SRC",
+      "UpdateCancel": "Actualización cancelada, reiniciando BD2AS",
       "UpdateFinish": "Actualización exitosa, reinicia manualmente por favor",
       "Local": "Local",
       "Upstream": "Remoto",

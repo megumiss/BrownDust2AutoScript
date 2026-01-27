@@ -597,7 +597,7 @@ class LoginAndroidCloud(ModuleBase):
 
 
 if __name__ == '__main__':
-    self = LoginAndroidCloud('src')
+    self = LoginAndroidCloud('bd2as')
     self.device.app_start()
     self.device.dump_hierarchy()
     self.cloud_enter_game()

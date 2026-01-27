@@ -2,7 +2,7 @@ from module.alas import AzurLaneAutoScript
 from module.logger import logger
 
 
-class StarRailCopilot(AzurLaneAutoScript):
+class BrownDust2AutoScript(AzurLaneAutoScript):
     def restart(self):
         from tasks.login.login import Login
         Login(self.config, device=self.device).app_restart()
@@ -82,5 +82,5 @@ class StarRailCopilot(AzurLaneAutoScript):
 
 
 if __name__ == '__main__':
-    src = StarRailCopilot('src')
-    src.loop()
+    bd2as = BrownDust2AutoScript('bd2as')
+    bd2as.loop()

@@ -10,9 +10,9 @@ from tasks.map.resource.imfile import image_save
 
 class ResourceConst:
     # Absolute path to local srcmap folder
-    SRC = 'assets/srcmap'
+    BD2AS = 'assets/srcmap'
     # Absolute path to srcmap folder
-    SRCMAP = ''
+    BD2ASMAP = ''
 
     # Hard-coded coordinates under 1280x720
     MINIMAP_CENTER = (39 + 78, 48 + 78)
@@ -86,20 +86,20 @@ class ResourceConst:
 
     @cached_property
     def srcmap_path(self):
-        # In dev, SRCMAP must be set
-        if not self.SRCMAP:
-            raise ScriptError('ResourceConst.SRCMAP is not set')
-        return os.path.abspath(self.SRCMAP)
+        # In dev, BD2ASMAP must be set
+        if not self.BD2ASMAP:
+            raise ScriptError('ResourceConst.BD2ASMAP is not set')
+        return os.path.abspath(self.BD2ASMAP)
 
     @cached_property
-    def src_path(self):
-        return os.path.abspath(self.SRC)
+    def bd2as_path(self):
+        return os.path.abspath(self.BD2AS)
 
     def filepath(self, path: str) -> str:
         return os.path.normpath(os.path.join(self.srcmap_path, path))
 
     def filepath_local(self, path) -> str:
-        return os.path.normpath(os.path.join(self.src_path, path))
+        return os.path.normpath(os.path.join(self.bd2as_path, path))
 
     def load_image(self, file):
         if os.path.isabs(file):

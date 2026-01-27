@@ -467,6 +467,6 @@ class DungeonUIList(UI):
 
 
 if __name__ == '__main__':
-    self = DungeonUIList('src')
+    self = DungeonUIList('bd2as')
     self.device.screenshot()
     self.dungeon_insight(KEYWORDS_DUNGEON_LIST.Echo_of_War_Divine_Seed)

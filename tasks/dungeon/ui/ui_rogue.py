@@ -22,7 +22,7 @@ class DungeonRogueUI(DungeonUI):
             out: page_guide, Survival_Index, Simulated_Universe
 
         Examples:
-            self = DungeonUI('src')
+            self = DungeonUI('bd2as')
             self.device.screenshot()
             self.dungeon_goto_rogue()
             self._rogue_teleport()
@@ -133,6 +133,6 @@ class DungeonRogueUI(DungeonUI):
 
 
 if __name__ == '__main__':
-    self = DungeonRogueUI('src')
+    self = DungeonRogueUI('bd2as')
     self.device.screenshot()
     self.dungeon_goto_rogue()

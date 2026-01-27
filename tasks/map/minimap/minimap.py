@@ -435,12 +435,12 @@ if __name__ == '__main__':
     from tasks.base.ui import UI
 
     # Uncomment this to use local srcmap instead of the pre-built one
-    # MapResource.SRCMAP = '../srcmap/srcmap'
+    # MapResource.BD2ASMAP = '../srcmap/srcmap'
     self = Minimap()
     # Set plane, assume starting from Jarilo_AdministrativeDistrict
     self.set_plane('Jarilo_SilvermaneGuardRestrictedZone', floor='F1')
 
-    ui = UI('src')
+    ui = UI('bd2as')
     ui.device.disable_stuck_detection()
     # Set starter point. Starter point will be calculated if it's missing but may contain errors.
     # With starter point set, position is only searched around starter point and new position becomes new starter point.

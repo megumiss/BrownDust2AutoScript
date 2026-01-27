@@ -35,7 +35,7 @@ def show_function_call():
          process_manager.py L149 run_process()
                     alas.py L285 loop()
                     alas.py  L69 run()
-                     src.py  L55 rogue()
+                     bd2as.py  L55 rogue()
                    rogue.py  L36 run()
                    rogue.py  L18 rogue_once()
                    entry.py L335 rogue_world_enter()

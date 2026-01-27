@@ -5,7 +5,7 @@ from module.base.decorator import cached_property
 from module.config.deep import deep_get, deep_set
 from module.config.utils import read_file, write_file
 
-# Converts relic stat names in game internal to SRC keyword names
+# Converts relic stat names in game internal to BD2AS keyword names
 DICT_STATS_CONVERT = {
     'HPDelta': 'HPd',
     'AttackDelta': 'ATKd',

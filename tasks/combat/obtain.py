@@ -334,6 +334,6 @@ class CombatObtain(PlannerMixin):
 
 
 if __name__ == '__main__':
-    self = CombatObtain('src')
+    self = CombatObtain('bd2as')
     self.device.screenshot()
     self.obtain_get()
