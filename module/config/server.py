@@ -4,28 +4,18 @@ Use 'import module.config.server as server' to import, don't use 'from xxx impor
 """
 
 lang = 'cn'  # Setting default to cn, will avoid errors when using dev_tools
-server = 'CN-Official'
+server = 'Global'
 
-VALID_LANG = ['cn', 'en']
+VALID_LANG = ['cn']
 VALID_SERVER = {
-    'CN-Official': 'com.miHoYo.hkrpg',
-    'CN-Bilibili': 'com.miHoYo.hkrpg.bilibili',
-    'OVERSEA-America': 'com.HoYoverse.hkrpgoversea',
-    'OVERSEA-Asia': 'com.HoYoverse.hkrpgoversea',
-    'OVERSEA-Europe': 'com.HoYoverse.hkrpgoversea',
-    'OVERSEA-TWHKMO': 'com.HoYoverse.hkrpgoversea',
+    'Global': 'com.neowizgames.game.browndust2',
 }
 VALID_PACKAGE = set(list(VALID_SERVER.values()))
-VALID_CLOUD_SERVER = {
-    'CN-Official': 'com.miHoYo.cloudgames.hkrpg',
-}
+VALID_CLOUD_SERVER = {}
 VALID_CLOUD_PACKAGE = set(list(VALID_CLOUD_SERVER.values()))
 
 DICT_PACKAGE_TO_ACTIVITY = {
-    'com.miHoYo.hkrpg': 'com.mihoyo.combosdk.ComboSDKActivity',
-    'com.miHoYo.hkrpg.bilibili': 'com.mihoyo.combosdk.ComboSDKActivity',
-    'com.HoYoverse.hkrpgoversea': 'com.mihoyo.combosdk.ComboSDKActivity',
-    'com.miHoYo.cloudgames.hkrpg': 'com.mihoyo.cloudgame.ui.SplashActivity',
+    'com.neowizgames.game.browndust2': 'com.unity3d.player.UnityPlayerActivity',
 }
 
 
@@ -50,13 +40,13 @@ def to_server(package_or_server: str, before: str = '') -> str:
     Convert package/server to server.
     To unknown packages, consider they are a CN channel servers.
     """
-    if package_or_server == 'com.HoYoverse.hkrpgoversea':
+    if package_or_server == 'com.neowizgames.game.browndust2':
         # Can't distinguish different regions of oversea servers, but we try to reuse old value
-        if before in ['OVERSEA-Asia', 'OVERSEA-America', 'OVERSEA-Europe', 'OVERSEA-TWHKMO']:
+        if before in ['Global']:
             return before
         else:
             # otherwise assume it's 'OVERSEA-Asia'
-            return 'OVERSEA-Asia'
+            return 'Global'
 
     for key, value in VALID_SERVER.items():
         if value == package_or_server:
