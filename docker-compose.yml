@@ -1,0 +1,12 @@
+version: "3.7"
+services:
+    BD2AS:
+        network_mode: host
+        volumes:
+            - ".:/app/BrownDust2AutoScript:rw"
+            - "/etc/localtime:/etc/localtime:ro"
+        container_name: "bd2as"
+        image: "bd2as"
+        build:
+            context: ./deploy/docker/
+            dockerfile: ./Dockerfile
