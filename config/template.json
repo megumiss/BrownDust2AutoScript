@@ -3,11 +3,10 @@
     "Emulator": {
       "Serial": "auto",
       "GameClient": "android",
-      "PackageName": "auto",
-      "GameLanguage": "auto",
+      "PackageName": "Global",
+      "GameLanguage": "cn",
       "ScreenshotMethod": "scrcpy",
       "ControlMethod": "MaaTouch",
-      "CloudPriorQueue": false,
       "AdbRestart": false
     },
     "EmulatorInfo": {
@@ -240,11 +239,6 @@
     "ItemStorage": {
       "Credit": {},
       "StallerJade": {}
-    },
-    "CloudStorage": {
-      "CloudRemainSeasonPass": {},
-      "CloudRemainPaid": {},
-      "CloudRemainFree": {}
     }
   },
   "Freebies": {

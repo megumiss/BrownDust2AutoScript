@@ -107,26 +107,17 @@
     "GameClient": {
       "name": "Game Client",
       "help": "When using cloud, you will be automatically queued to log in. Cloud game is available in CN only",
-      "android": "Android client",
-      "cloud_android": "Cloud game android client"
+      "android": "Android client"
     },
     "PackageName": {
       "name": "Game Server",
       "help": "Can't distinguish different regions of oversea servers, please select the server manually.",
-      "auto": "Auto-detect",
-      "CN-Official": "[CN]-Official",
-      "CN-Bilibili": "[CN]-Bilibili",
-      "OVERSEA-America": "[OVERSEA]-America",
-      "OVERSEA-Asia": "[OVERSEA]-Asia",
-      "OVERSEA-Europe": "[OVERSEA]-Europe",
-      "OVERSEA-TWHKMO": "[OVERSEA]-TW,HK,MO"
+      "Global": "Global"
     },
     "GameLanguage": {
       "name": "In-game Text Language",
       "help": "Currently, only Simplified Chinese and English are supported. Please set the text language in game to one of them.",
-      "auto": "Auto-detect",
-      "cn": "简体中文",
-      "en": "English"
+      "cn": "简体中文"
     },
     "ScreenshotMethod": {
       "name": "Screenshot Method",
@@ -148,10 +139,6 @@
       "help": "Speed: MaaTouch = minitouch >>> uiautomator2 ~= ADB\nMaaTouch is recommended",
       "minitouch": "minitouch",
       "MaaTouch": "MaaTouch"
-    },
-    "CloudPriorQueue": {
-      "name": "Use paid coins to queue up quickly in cloud games",
-      "help": ""
     },
     "AdbRestart": {
       "name": "Try to restart adb when no device found",
@@ -1454,24 +1441,6 @@
     },
     "StallerJade": {
       "name": "Jade",
-      "help": ""
-    }
-  },
-  "CloudStorage": {
-    "_info": {
-      "name": "Cloud HSR",
-      "help": ""
-    },
-    "CloudRemainSeasonPass": {
-      "name": "Season Pass Remain X day(s)",
-      "help": ""
-    },
-    "CloudRemainPaid": {
-      "name": "Paid Time Remain X minute(s)",
-      "help": ""
-    },
-    "CloudRemainFree": {
-      "name": "Free Time Remain X minute(s)",
       "help": ""
     }
   },

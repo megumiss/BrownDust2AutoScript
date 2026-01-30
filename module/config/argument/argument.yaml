@@ -20,13 +20,13 @@ Emulator:
     valuetype: str
   GameClient:
     value: android
-    option: [ android, cloud_android ]
+    option: [ android ]
   PackageName:
-    value: auto
-    option: [ auto, ]
+    value: Global
+    option: [ Global ]
   GameLanguage:
-    value: auto
-    option: [ auto, cn, en ]
+    value: cn
+    option: [ cn ]
   ScreenshotMethod:
     value: auto
     option: [
@@ -45,7 +45,6 @@ Emulator:
   ControlMethod:
     value: MaaTouch
     option: [ minitouch, MaaTouch ]
-  CloudPriorQueue: false
   AdbRestart: false
 EmulatorInfo:
   Emulator:
@@ -325,16 +324,6 @@ ItemStorage:
     color: "#fc8f8b"
     display: display
 
-CloudStorage:
-  CloudRemainSeasonPass:
-    stored: StoredInt
-    display: display
-  CloudRemainPaid:
-    stored: StoredInt
-    display: display
-  CloudRemainFree:
-    stored: StoredInt
-    display: display
 
 # ==================== Rogue ====================
 

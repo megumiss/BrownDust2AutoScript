@@ -107,26 +107,17 @@
     "GameClient": {
       "name": "Cliente del juego",
       "help": "Al usar la nube, automáticamente se pondrá en cola para iniciar sesión. El juego en la nube está disponible solo en CN",
-      "android": "Cliente Android",
-      "cloud_android": "Cliente de juego en la nube para Android"
+      "android": "Cliente Android"
     },
     "PackageName": {
       "name": "Región del juego",
       "help": "No es posible detectar regiones que no sean de China, por tanto, ajústalo manualmente si se da la situación.",
-      "auto": "Detectar automaticamente",
-      "CN-Official": "[CN]-Oficial",
-      "CN-Bilibili": "[CN]-Bilibili",
-      "OVERSEA-America": "[OVERSEA]-America",
-      "OVERSEA-Asia": "[OVERSEA]-Asia",
-      "OVERSEA-Europe": "[OVERSEA]-Europa",
-      "OVERSEA-TWHKMO": "[OVERSEA]-TW,HK,MO"
+      "Global": "Global"
     },
     "GameLanguage": {
       "name": "Idioma dentro del juego",
       "help": "En la actualidad, solo funcionan el Chino simplificado y el inglés.",
-      "auto": "Detectar automaticamente",
-      "cn": "Chino simplificado",
-      "en": "Inglés"
+      "cn": "Chino simplificado"
     },
     "ScreenshotMethod": {
       "name": "Método de captura",
@@ -148,10 +139,6 @@
       "help": "Velocidad: MaaTouch = minitouch >>> uiautomator2 ~= ADB\nMaaTouch es el recomendado.",
       "minitouch": "minitouch",
       "MaaTouch": "MaaTouch"
-    },
-    "CloudPriorQueue": {
-      "name": "Utilice monedas pagadas para hacer cola rápidamente en los juegos en la nube",
-      "help": ""
     },
     "AdbRestart": {
       "name": "Intentar reiniciar el ADB cuando no se encuentre ninguno.",
@@ -1454,24 +1441,6 @@
     },
     "StallerJade": {
       "name": "Jade",
-      "help": ""
-    }
-  },
-  "CloudStorage": {
-    "_info": {
-      "name": "Nube de HSR",
-      "help": ""
-    },
-    "CloudRemainSeasonPass": {
-      "name": "Pase de Temporada Permanece X día(s)",
-      "help": ""
-    },
-    "CloudRemainPaid": {
-      "name": "Tiempo restante pagado X minuto(s)",
-      "help": ""
-    },
-    "CloudRemainFree": {
-      "name": "Tiempo libre restante X minuto(s)",
       "help": ""
     }
   },

@@ -1,7 +1,7 @@
 Deploy:
   Git:
     # URL of AzurLaneAutoScript repository
-    # [CN user] Use 'cn' to get update from git-over-cdn service
+    # [CN user] Use 'cn' to get update from https://git.megumiss.top/megumiss/BrownDust2AutoScript
     # [Other] Use 'global' to get update from https://github.com/megumiss/BrownDust2AutoScript
     Repository: {{repository}}
     # Branch of Alas

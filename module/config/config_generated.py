@@ -17,12 +17,11 @@ class GeneratedConfig:
 
     # Group `Emulator`
     Emulator_Serial = 'auto'
-    Emulator_GameClient = 'android'  # android, cloud_android
-    Emulator_PackageName = 'auto'  # auto, CN-Official, CN-Bilibili, OVERSEA-America, OVERSEA-Asia, OVERSEA-Europe, OVERSEA-TWHKMO
-    Emulator_GameLanguage = 'auto'  # auto, cn, en
+    Emulator_GameClient = 'android'  # android
+    Emulator_PackageName = 'Global'  # Global
+    Emulator_GameLanguage = 'cn'  # cn
     Emulator_ScreenshotMethod = 'auto'  # auto, ADB, ADB_nc, uiautomator2, aScreenCap, aScreenCap_nc, DroidCast, DroidCast_raw, scrcpy, nemu_ipc, ldopengl
     Emulator_ControlMethod = 'MaaTouch'  # minitouch, MaaTouch
-    Emulator_CloudPriorQueue = False
     Emulator_AdbRestart = False
 
     # Group `EmulatorInfo`
@@ -192,11 +191,6 @@ class GeneratedConfig:
     # Group `ItemStorage`
     ItemStorage_Credit = {}
     ItemStorage_StallerJade = {}
-
-    # Group `CloudStorage`
-    CloudStorage_CloudRemainSeasonPass = {}
-    CloudStorage_CloudRemainPaid = {}
-    CloudStorage_CloudRemainFree = {}
 
     # Group `RogueWorld`
     RogueWorld_World = 'Simulated_Universe_World_8'  # Simulated_Universe_World_3, Simulated_Universe_World_4, Simulated_Universe_World_5, Simulated_Universe_World_6, Simulated_Universe_World_8

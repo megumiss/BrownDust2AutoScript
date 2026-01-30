@@ -106,27 +106,18 @@
     },
     "GameClient": {
       "name": "游戏客户端",
-      "help": "选择云游戏时，将自动排队登录，云游戏目前仅有国服",
-      "android": "安卓端",
-      "cloud_android": "云游戏安卓端"
+      "help": "",
+      "android": "安卓端"
     },
     "PackageName": {
       "name": "游戏服务器",
-      "help": "无法区分国际服的不同地区，请手动选择服务器",
-      "auto": "自动检测",
-      "CN-Official": "[国服]-官服",
-      "CN-Bilibili": "[国服]-B服 ",
-      "OVERSEA-America": "[国际服]-美洲",
-      "OVERSEA-Asia": "[国际服]-亚洲",
-      "OVERSEA-Europe": "[国际服]-欧洲",
-      "OVERSEA-TWHKMO": "[国际服]-港澳台"
+      "help": "",
+      "Global": "Global"
     },
     "GameLanguage": {
       "name": "游戏内文本语言",
-      "help": "目前仅支持简体中文和英文，请将游戏内设置文本语言设置为其中的一种",
-      "auto": "自动检测",
-      "cn": "简体中文",
-      "en": "English"
+      "help": "目前仅支持简体中文",
+      "cn": "简体中文"
     },
     "ScreenshotMethod": {
       "name": "模拟器截图方案",
@@ -148,10 +139,6 @@
       "help": "速度: MaaTouch = minitouch >>> uiautomator2 ~= ADB\n建议选MaaTouch",
       "minitouch": "minitouch",
       "MaaTouch": "MaaTouch"
-    },
-    "CloudPriorQueue": {
-      "name": "在云游戏中使用星云币快速排队",
-      "help": ""
     },
     "AdbRestart": {
       "name": "在检测不到设备的时候尝试重启adb",
@@ -1454,24 +1441,6 @@
     },
     "StallerJade": {
       "name": "星琼",
-      "help": ""
-    }
-  },
-  "CloudStorage": {
-    "_info": {
-      "name": "云游戏",
-      "help": ""
-    },
-    "CloudRemainSeasonPass": {
-      "name": "畅玩卡剩余 X 天",
-      "help": ""
-    },
-    "CloudRemainPaid": {
-      "name": "星云币剩余 X 分钟",
-      "help": ""
-    },
-    "CloudRemainFree": {
-      "name": "免费时长剩余 X 分钟",
       "help": ""
     }
   },

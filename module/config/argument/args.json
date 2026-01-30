@@ -10,30 +10,21 @@
         "type": "select",
         "value": "android",
         "option": [
-          "android",
-          "cloud_android"
+          "android"
         ]
       },
       "PackageName": {
         "type": "select",
-        "value": "auto",
+        "value": "Global",
         "option": [
-          "auto",
-          "CN-Official",
-          "CN-Bilibili",
-          "OVERSEA-America",
-          "OVERSEA-Asia",
-          "OVERSEA-Europe",
-          "OVERSEA-TWHKMO"
+          "Global"
         ]
       },
       "GameLanguage": {
         "type": "select",
-        "value": "auto",
+        "value": "cn",
         "option": [
-          "auto",
-          "cn",
-          "en"
+          "cn"
         ]
       },
       "ScreenshotMethod": {
@@ -61,10 +52,6 @@
           "MaaTouch"
         ],
         "display": "hide"
-      },
-      "CloudPriorQueue": {
-        "type": "checkbox",
-        "value": false
       },
       "AdbRestart": {
         "type": "checkbox",
@@ -1926,26 +1913,6 @@
         "stored": "StoredInt",
         "order": 8,
         "color": "#fc8f8b"
-      }
-    },
-    "CloudStorage": {
-      "CloudRemainSeasonPass": {
-        "type": "stored",
-        "value": {},
-        "display": "display",
-        "stored": "StoredInt"
-      },
-      "CloudRemainPaid": {
-        "type": "stored",
-        "value": {},
-        "display": "display",
-        "stored": "StoredInt"
-      },
-      "CloudRemainFree": {
-        "type": "stored",
-        "value": {},
-        "display": "display",
-        "stored": "StoredInt"
       }
     }
   },

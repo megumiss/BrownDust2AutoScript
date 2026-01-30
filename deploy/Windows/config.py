@@ -14,7 +14,7 @@ class ExecutionError(Exception):
 
 class ConfigModel:
     # Git
-    Repository: str = 'https://github.com/LmeSzinc/AzurLaneAutoScript'
+    Repository: str = 'https://github.com/megumiss/BrownDust2AutoScript'
     Branch: str = 'master'
     GitExecutable: str = './toolkit/Git/mingw64/bin/git.exe'
     GitProxy: Optional[str] = None
@@ -38,12 +38,12 @@ class ConfigModel:
     UseOcrServer: bool = False
     StartOcrServer: bool = False
     OcrServerPort: int = 12278
-    OcrClientAddress: str = '127.0.0.1:12278'
+    OcrClientAddress: str = '127.0.0.1:12283'
 
     # Update
     EnableReload: bool = True
     CheckUpdateInterval: int = 5
-    AutoRestartTime: str = '03:50'
+    AutoRestartTime: str = '07:50'
 
     # Misc
     DiscordRichPresence: bool = False

@@ -19,8 +19,8 @@ class BrownDust2AutoScript(AzurLaneAutoScript):
         Login(self.config, device=self.device).app_stop()
 
     def goto_main(self):
-        from tasks.login.login import Login
         from tasks.base.ui import UI
+        from tasks.login.login import Login
 
         if self.device.app_is_running():
             logger.info('App is already running, goto main page')

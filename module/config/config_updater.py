@@ -64,7 +64,7 @@ class ConfigGenerator:
             deep_set(raw, keys=keys, value=options)
 
         # Insert packages
-        option_add(keys='Emulator.PackageName.option', options=list(VALID_SERVER.keys()))
+        # option_add(keys='Emulator.PackageName.option', options=list(VALID_SERVER.keys()))
         # Insert dungeons
         from tasks.dungeon.keywords import DungeonList
 
@@ -458,7 +458,7 @@ class ConfigGenerator:
             'es': 'Ornamentos: {relic} ({dungeon})',
         }
 
-        from tasks.dungeon.keywords import DungeonList, DungeonDetailed
+        from tasks.dungeon.keywords import DungeonDetailed, DungeonList
 
         def relicdungeon2name(dun: DungeonList):
             dungeon_id = dun.dungeon_id
@@ -555,8 +555,8 @@ class ConfigGenerator:
             'en': 'Trailblazer',
             'es': 'Trailblazer',
         }
-        from tasks.character.keywords import CharacterList
         from tasks.character.aired_version import get_character_version
+        from tasks.character.keywords import CharacterList
 
         for keys in [
             'DungeonSupport.Character.option',
@@ -763,8 +763,8 @@ class ConfigGenerator:
         update('template-cn', cn)
         # update('template-AidLux', aidlux)
         # update('template-AidLux-cn', aidlux, cn)
-        # update('template-docker', docker)
-        # update('template-docker-cn', docker, cn)
+        update('template-docker', docker)
+        update('template-docker-cn', docker, cn)
 
         tpl = {
             'Repository': '{{repository}}',
@@ -936,8 +936,8 @@ class ConfigUpdater:
         if deep_get(data, keys='Rogue.RogueWorld.UseImmersifier') is True:
             deep_set(data, keys='Dungeon.Scheduler.Enable', value=True)
         # Cloud settings
-        if deep_get(data, keys='Alas.Emulator.GameClient') == 'cloud_android':
-            deep_set(data, keys='Alas.Emulator.PackageName', value='CN-Official')
+        # if deep_get(data, keys='Alas.Emulator.GameClient') == 'cloud_android':
+        #     deep_set(data, keys='Alas.Emulator.PackageName', value='CN-Official')
 
         return data
 
@@ -974,9 +974,9 @@ class ConfigUpdater:
             yield 'Rogue.RogueWorld.UseImmersifier', True
         if key == 'Rogue.RogueWorld.DoubleEvent' and value is True:
             yield 'Rogue.RogueWorld.UseImmersifier', True
-        if key == 'Alas.Emulator.GameClient' and value == 'cloud_android':
-            yield 'Alas.Emulator.PackageName', 'CN-Official'
-            yield 'Alas.Optimization.WhenTaskQueueEmpty', 'close_game'
+        # if key == 'Alas.Emulator.GameClient' and value == 'cloud_android':
+        #     yield 'Alas.Emulator.PackageName', 'CN-Official'
+        #     yield 'Alas.Optimization.WhenTaskQueueEmpty', 'close_game'
         # Sync Dungeon.TrailblazePower and Ornament.TrailblazePower
         if key == 'Dungeon.TrailblazePower.ExtractReservedTrailblazePower':
             yield 'Ornament.TrailblazePower.ExtractReservedTrailblazePower', value

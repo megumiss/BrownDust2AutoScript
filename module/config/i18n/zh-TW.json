@@ -107,26 +107,17 @@
     "GameClient": {
       "name": "遊戲客戶端",
       "help": "選擇雲端遊戲時，將自動排隊登入，雲端遊戲目前僅有國服",
-      "android": "安卓端",
-      "cloud_android": "雲端遊戲安卓端"
+      "android": "安卓端"
     },
     "PackageName": {
       "name": "遊戲伺服器",
       "help": "無法區分國際服的不同地區，請手動選擇伺服器",
-      "auto": "自動檢測",
-      "CN-Official": "[國服]-官服",
-      "CN-Bilibili": "[國服]-B服 ",
-      "OVERSEA-America": "[國際服]-美洲",
-      "OVERSEA-Asia": "[國際服]-亞洲",
-      "OVERSEA-Europe": "[國際服]-歐洲",
-      "OVERSEA-TWHKMO": "[國際服]-台港澳"
+      "Global": "Global"
     },
     "GameLanguage": {
       "name": "遊戲內文本語言",
       "help": "目前僅支援簡體中文和英文，請在遊戲內設定文本語言為其中的一種",
-      "auto": "自動檢測",
-      "cn": "简体中文",
-      "en": "English"
+      "cn": "简体中文"
     },
     "ScreenshotMethod": {
       "name": "模擬器截圖方案",
@@ -148,10 +139,6 @@
       "help": "速度: MaaTouch = minitouch > Hermit >>> uiautomator2 ~= ADB\n建議選MaaTouch",
       "minitouch": "minitouch",
       "MaaTouch": "MaaTouch"
-    },
-    "CloudPriorQueue": {
-      "name": "在雲端遊戲中使用星雲幣快速排隊",
-      "help": ""
     },
     "AdbRestart": {
       "name": "在檢測不到設備的時候嘗試重啟adb",
@@ -1454,24 +1441,6 @@
     },
     "StallerJade": {
       "name": "星瓊",
-      "help": ""
-    }
-  },
-  "CloudStorage": {
-    "_info": {
-      "name": "雲遊戲",
-      "help": ""
-    },
-    "CloudRemainSeasonPass": {
-      "name": "暢玩卡剩餘 X 天",
-      "help": ""
-    },
-    "CloudRemainPaid": {
-      "name": "星雲幣剩餘 X 分鐘",
-      "help": ""
-    },
-    "CloudRemainFree": {
-      "name": "免費時間剩餘 X 分鐘",
       "help": ""
     }
   },

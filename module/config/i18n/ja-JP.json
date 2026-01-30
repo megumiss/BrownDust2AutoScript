@@ -107,26 +107,17 @@
     "GameClient": {
       "name": "Emulator.GameClient.name",
       "help": "Emulator.GameClient.help",
-      "android": "android",
-      "cloud_android": "cloud_android"
+      "android": "android"
     },
     "PackageName": {
       "name": "Emulator.PackageName.name",
       "help": "Emulator.PackageName.help",
-      "auto": "auto",
-      "CN-Official": "CN-Official",
-      "CN-Bilibili": "CN-Bilibili",
-      "OVERSEA-America": "OVERSEA-America",
-      "OVERSEA-Asia": "OVERSEA-Asia",
-      "OVERSEA-Europe": "OVERSEA-Europe",
-      "OVERSEA-TWHKMO": "OVERSEA-TWHKMO"
+      "Global": "Global"
     },
     "GameLanguage": {
       "name": "Emulator.GameLanguage.name",
       "help": "Emulator.GameLanguage.help",
-      "auto": "auto",
-      "cn": "cn",
-      "en": "en"
+      "cn": "cn"
     },
     "ScreenshotMethod": {
       "name": "Emulator.ScreenshotMethod.name",
@@ -148,10 +139,6 @@
       "help": "Emulator.ControlMethod.help",
       "minitouch": "minitouch",
       "MaaTouch": "MaaTouch"
-    },
-    "CloudPriorQueue": {
-      "name": "Emulator.CloudPriorQueue.name",
-      "help": "Emulator.CloudPriorQueue.help"
     },
     "AdbRestart": {
       "name": "Emulator.AdbRestart.name",
@@ -1455,24 +1442,6 @@
     "StallerJade": {
       "name": "ItemStorage.StallerJade.name",
       "help": "ItemStorage.StallerJade.help"
-    }
-  },
-  "CloudStorage": {
-    "_info": {
-      "name": "CloudStorage._info.name",
-      "help": "CloudStorage._info.help"
-    },
-    "CloudRemainSeasonPass": {
-      "name": "CloudStorage.CloudRemainSeasonPass.name",
-      "help": "CloudStorage.CloudRemainSeasonPass.help"
-    },
-    "CloudRemainPaid": {
-      "name": "CloudStorage.CloudRemainPaid.name",
-      "help": "CloudStorage.CloudRemainPaid.help"
-    },
-    "CloudRemainFree": {
-      "name": "CloudStorage.CloudRemainFree.name",
-      "help": "CloudStorage.CloudRemainFree.help"
     }
   },
   "RogueWorld": {

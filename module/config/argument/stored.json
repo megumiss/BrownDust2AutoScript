@@ -1050,42 +1050,6 @@
     "order": 0,
     "color": "#777777"
   },
-  "CloudRemainSeasonPass": {
-    "name": "CloudRemainSeasonPass",
-    "path": "DataUpdate.CloudStorage.CloudRemainSeasonPass",
-    "i18n": "CloudStorage.CloudRemainSeasonPass.name",
-    "stored": "StoredInt",
-    "attrs": {
-      "time": "2020-01-01 00:00:00",
-      "value": 0
-    },
-    "order": 0,
-    "color": "#777777"
-  },
-  "CloudRemainPaid": {
-    "name": "CloudRemainPaid",
-    "path": "DataUpdate.CloudStorage.CloudRemainPaid",
-    "i18n": "CloudStorage.CloudRemainPaid.name",
-    "stored": "StoredInt",
-    "attrs": {
-      "time": "2020-01-01 00:00:00",
-      "value": 0
-    },
-    "order": 0,
-    "color": "#777777"
-  },
-  "CloudRemainFree": {
-    "name": "CloudRemainFree",
-    "path": "DataUpdate.CloudStorage.CloudRemainFree",
-    "i18n": "CloudStorage.CloudRemainFree.name",
-    "stored": "StoredInt",
-    "attrs": {
-      "time": "2020-01-01 00:00:00",
-      "value": 0
-    },
-    "order": 0,
-    "color": "#777777"
-  },
   "SimulatedUniverseFarm": {
     "name": "SimulatedUniverseFarm",
     "path": "Rogue.RogueWorld.SimulatedUniverseFarm",
