@@ -5,7 +5,7 @@
       "GameClient": "android",
       "PackageName": "Global",
       "GameLanguage": "cn",
-      "ScreenshotMethod": "scrcpy",
+      "ScreenshotMethod": "DroidCast_raw",
       "ControlMethod": "MaaTouch",
       "AdbRestart": false
     },
@@ -31,7 +31,7 @@
       "Enable": true,
       "NextRun": "2020-01-01 00:00:00",
       "Command": "Restart",
-      "ServerUpdate": "04:00"
+      "ServerUpdate": "08:00"
     }
   },
   "Dungeon": {
@@ -243,7 +243,7 @@
   },
   "Freebies": {
     "Scheduler": {
-      "Enable": true,
+      "Enable": false,
       "NextRun": "2020-01-01 00:00:00",
       "Command": "Freebies",
       "ServerUpdate": "04:00"
@@ -267,7 +267,7 @@
       "Team": 1
     },
     "DungeonSupport": {
-      "Use": "do_not_use",
+      "Use": "when_daily",
       "Character": "FirstCharacter"
     }
   },

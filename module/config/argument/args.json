@@ -29,7 +29,7 @@
       },
       "ScreenshotMethod": {
         "type": "select",
-        "value": "scrcpy",
+        "value": "DroidCast_raw",
         "option": [
           "auto",
           "ADB",
@@ -158,7 +158,7 @@
       },
       "ServerUpdate": {
         "type": "input",
-        "value": "04:00",
+        "value": "08:00",
         "display": "hide"
       }
     }
@@ -1920,7 +1920,7 @@
     "Scheduler": {
       "Enable": {
         "type": "checkbox",
-        "value": true,
+        "value": false,
         "option": [
           true,
           false
@@ -2023,7 +2023,7 @@
     "DungeonSupport": {
       "Use": {
         "type": "select",
-        "value": "do_not_use",
+        "value": "when_daily",
         "option": [
           "always_use",
           "do_not_use"
