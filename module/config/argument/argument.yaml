@@ -12,7 +12,7 @@ Scheduler:
   NextRun: 2020-01-01 00:00:00
   Command: Alas
   ServerUpdate:
-    value: 04:00
+    value: 08:00
     display: hide
 Emulator:
   Serial:

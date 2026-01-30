@@ -67,7 +67,7 @@ class PopupHandler(ModuleBase):
 
     def handle_monthly_card_reward(self, interval=1) -> bool:
         """
-        Popup at 04:00 server time if you have purchased the monthly card.
+        Popup at 08:00 server time if you have purchased the monthly card.
 
         Args:
             interval:

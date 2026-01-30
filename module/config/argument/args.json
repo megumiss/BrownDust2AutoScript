@@ -187,7 +187,7 @@
       },
       "ServerUpdate": {
         "type": "input",
-        "value": "04:00",
+        "value": "08:00",
         "display": "hide"
       }
     },
@@ -1191,8 +1191,9 @@
         "type": "select",
         "value": "when_daily",
         "option": [
+          "always_use",
           "when_daily",
-          "always_use"
+          "do_not_use"
         ]
       },
       "Character": {
@@ -1380,7 +1381,7 @@
       },
       "ServerUpdate": {
         "type": "input",
-        "value": "04:00",
+        "value": "08:00",
         "display": "hide"
       }
     },
@@ -1567,13 +1568,11 @@
   "DailyQuest": {
     "Scheduler": {
       "Enable": {
-        "type": "state",
-        "value": true,
+        "type": "checkbox",
+        "value": false,
         "option": [
-          true
-        ],
-        "option_bold": [
-          true
+          true,
+          false
         ]
       },
       "NextRun": {
@@ -1588,7 +1587,7 @@
       },
       "ServerUpdate": {
         "type": "input",
-        "value": "04:00",
+        "value": "08:00",
         "display": "hide"
       }
     },
@@ -1612,13 +1611,11 @@
   "BattlePass": {
     "Scheduler": {
       "Enable": {
-        "type": "state",
-        "value": true,
+        "type": "checkbox",
+        "value": false,
         "option": [
-          true
-        ],
-        "option_bold": [
-          true
+          true,
+          false
         ]
       },
       "NextRun": {
@@ -1633,7 +1630,7 @@
       },
       "ServerUpdate": {
         "type": "input",
-        "value": "04:00",
+        "value": "08:00",
         "display": "hide"
       }
     },
@@ -1705,13 +1702,11 @@
   "Assignment": {
     "Scheduler": {
       "Enable": {
-        "type": "state",
-        "value": true,
+        "type": "checkbox",
+        "value": false,
         "option": [
-          true
-        ],
-        "option_bold": [
-          true
+          true,
+          false
         ]
       },
       "NextRun": {
@@ -1726,7 +1721,7 @@
       },
       "ServerUpdate": {
         "type": "input",
-        "value": "04:00",
+        "value": "08:00",
         "display": "hide"
       }
     },
@@ -1872,13 +1867,11 @@
   "DataUpdate": {
     "Scheduler": {
       "Enable": {
-        "type": "state",
-        "value": true,
+        "type": "checkbox",
+        "value": false,
         "option": [
-          true
-        ],
-        "option_bold": [
-          true
+          true,
+          false
         ]
       },
       "NextRun": {
@@ -1893,7 +1886,7 @@
       },
       "ServerUpdate": {
         "type": "input",
-        "value": "04:00",
+        "value": "08:00",
         "display": "hide"
       }
     },
@@ -1938,7 +1931,7 @@
       },
       "ServerUpdate": {
         "type": "input",
-        "value": "04:00",
+        "value": "08:00",
         "display": "hide"
       }
     },
@@ -1984,7 +1977,7 @@
       },
       "ServerUpdate": {
         "type": "input",
-        "value": "04:00",
+        "value": "08:00",
         "display": "hide"
       }
     },
@@ -2140,7 +2133,7 @@
       },
       "ServerUpdate": {
         "type": "input",
-        "value": "04:00",
+        "value": "08:00",
         "display": "hide"
       }
     },

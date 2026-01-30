@@ -77,19 +77,22 @@ class DungeonState(UI):
         if self.config.stored.DungeonDouble.relic > 0:
             if diff < timedelta(hours=4):
                 # 4h recover 40 stamina, run double relic at today
-                logger.info(f'Just less than 4h til the next day, '
-                            f'double relic event is not yet finished, wait until 40')
+                logger.info(
+                    f'Just less than 4h til the next day, double relic event is not yet finished, wait until 40'
+                )
                 run_double = True
                 limit = 40
         if self.config.stored.DungeonDouble.calyx > 0:
             if diff < timedelta(hours=3):
-                logger.info(f'Just less than 3h til the next day, '
-                            f'double calyx event is not yet finished, wait until 10')
+                logger.info(
+                    f'Just less than 3h til the next day, double calyx event is not yet finished, wait until 10'
+                )
                 run_double = True
                 limit = 10
             elif diff < timedelta(hours=6):
-                logger.info(f'Just less than 6h til the next day, '
-                            f'double calyx event is not yet finished, wait until 30')
+                logger.info(
+                    f'Just less than 6h til the next day, double calyx event is not yet finished, wait until 30'
+                )
                 run_double = True
                 limit = 30
 
@@ -106,7 +109,7 @@ class DungeonState(UI):
             future = update
 
         # Save stamina for the next week
-        next_monday = get_server_next_monday_update('04:00')
+        next_monday = get_server_next_monday_update('08:00')
         if next_monday - future < timedelta(hours=4):
             logger.info(f'Approaching next monday, delay to {next_monday} instead')
             future = next_monday
@@ -116,5 +119,5 @@ class DungeonState(UI):
             for task in tasks:
                 next_run = self.config.cross_get(keys=f'{task}.Scheduler.NextRun', default=DEFAULT_TIME)
                 if future > next_run:
-                    logger.info(f"Delay task `{task}` to {future}")
+                    logger.info(f'Delay task `{task}` to {future}')
                     self.config.cross_set(keys=f'{task}.Scheduler.NextRun', value=future)

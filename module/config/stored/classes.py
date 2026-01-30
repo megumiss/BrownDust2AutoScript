@@ -118,7 +118,7 @@ class StoredExpiredAt0400(StoredBase):
         from module.logger import logger
 
         self.show()
-        expired = self.time < get_server_last_update('04:00')
+        expired = self.time < get_server_last_update('08:00')
         logger.attr(f'{self._name} expired', expired)
         return expired
 
@@ -128,7 +128,7 @@ class StoredExpiredAtMonday0400(StoredBase):
         from module.logger import logger
 
         self.show()
-        expired = self.time < get_server_last_monday_update('04:00')
+        expired = self.time < get_server_last_monday_update('08:00')
         logger.attr(f'{self._name} expired', expired)
         return expired
 
@@ -232,7 +232,7 @@ class StoredSimulatedUniverseElite(StoredCounter, StoredExpiredAtMonday0400):
     # FIXED_TOTAL --- Times of boss drop chance per week. In current version of StarRail, this value is 100.
     FIXED_TOTAL = 100
 
-    # value --- Times left to farm. Resets to 100 every Monday 04:00, and decreases each time the elite boss is cleared.
+    # value --- Times left to farm. Resets to 100 every Monday 08:00, and decreases each time the elite boss is cleared.
 
 
 class StoredAssignment(StoredCounter):

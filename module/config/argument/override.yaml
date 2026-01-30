@@ -29,37 +29,6 @@ Dungeon:
       value: true
       option: [ true, ]
       option_bold: [ true, ]
-  DungeonSupport:
-    Use:
-      option: [ when_daily, always_use ]
-DailyQuest:
-  Scheduler:
-    Enable:
-      type: state
-      value: true
-      option: [ true, ]
-      option_bold: [ true, ]
-BattlePass:
-  Scheduler:
-    Enable:
-      type: state
-      value: true
-      option: [ true, ]
-      option_bold: [ true, ]
-Assignment:
-  Scheduler:
-    Enable:
-      type: state
-      value: true
-      option: [ true, ]
-      option_bold: [ true, ]
-DataUpdate:
-  Scheduler:
-    Enable:
-      type: state
-      value: true
-      option: [ true, ]
-      option_bold: [ true, ]
 
 # ==================== Weekly ====================
 

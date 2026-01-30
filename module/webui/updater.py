@@ -81,7 +81,7 @@ class Updater(DeployConfig, GitManager, PipManager):
 
         source = 'origin'
         for _ in range(3):
-            if self.execute(f'"{self.git}" fetch {source} {self.Branch}', allow_failure=True):
+            if self.execute(f'"{self.git}" fetch --depth=20 {source} {self.Branch}', allow_failure=True):
                 break
         else:
             logger.warning('Git fetch failed')

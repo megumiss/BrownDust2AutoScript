@@ -97,8 +97,8 @@ Deploy:
     # If there are updates, Alas will automatically restart and update at this time every day
     # and run all alas instances that running before restarted
     # [Disable] null
-    # [Default] 03:50
-    AutoRestartTime: 03:50
+    # [Default] 07:50
+    AutoRestartTime: 07:50
 
   Misc:
     # Enable discord rich presence

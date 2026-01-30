@@ -39,7 +39,7 @@
       "Enable": true,
       "NextRun": "2020-01-01 00:00:00",
       "Command": "Dungeon",
-      "ServerUpdate": "04:00"
+      "ServerUpdate": "08:00"
     },
     "Planner": {
       "PlannerOverall": {},
@@ -159,7 +159,7 @@
       "Enable": false,
       "NextRun": "2020-01-01 00:00:00",
       "Command": "Ornament",
-      "ServerUpdate": "04:00"
+      "ServerUpdate": "08:00"
     },
     "Ornament": {
       "Dungeon": "Divergent_Universe_Eternal_Comedy",
@@ -181,10 +181,10 @@
   },
   "DailyQuest": {
     "Scheduler": {
-      "Enable": true,
+      "Enable": false,
       "NextRun": "2020-01-01 00:00:00",
       "Command": "DailyQuest",
-      "ServerUpdate": "04:00"
+      "ServerUpdate": "08:00"
     },
     "DailyStorage": {
       "DailyActivity": {},
@@ -193,10 +193,10 @@
   },
   "BattlePass": {
     "Scheduler": {
-      "Enable": true,
+      "Enable": false,
       "NextRun": "2020-01-01 00:00:00",
       "Command": "BattlePass",
-      "ServerUpdate": "04:00"
+      "ServerUpdate": "08:00"
     },
     "BattlePassStorage": {
       "BattlePassLevel": {},
@@ -213,10 +213,10 @@
   },
   "Assignment": {
     "Scheduler": {
-      "Enable": true,
+      "Enable": false,
       "NextRun": "2020-01-01 00:00:00",
       "Command": "Assignment",
-      "ServerUpdate": "04:00"
+      "ServerUpdate": "08:00"
     },
     "Assignment": {
       "ClaimAll": true,
@@ -231,10 +231,10 @@
   },
   "DataUpdate": {
     "Scheduler": {
-      "Enable": true,
+      "Enable": false,
       "NextRun": "2020-01-01 00:00:00",
       "Command": "DataUpdate",
-      "ServerUpdate": "04:00"
+      "ServerUpdate": "08:00"
     },
     "ItemStorage": {
       "Credit": {},
@@ -246,7 +246,7 @@
       "Enable": false,
       "NextRun": "2020-01-01 00:00:00",
       "Command": "Freebies",
-      "ServerUpdate": "04:00"
+      "ServerUpdate": "08:00"
     },
     "Freebies": {
       "SupportReward": true,
@@ -260,7 +260,7 @@
       "Enable": false,
       "NextRun": "2020-01-01 00:00:00",
       "Command": "Weekly",
-      "ServerUpdate": "04:00"
+      "ServerUpdate": "08:00"
     },
     "Weekly": {
       "Name": "Echo_of_War_Rusted_Crypt_of_the_Iron_Carcass",
@@ -276,7 +276,7 @@
       "Enable": false,
       "NextRun": "2020-01-01 00:00:00",
       "Command": "Rogue",
-      "ServerUpdate": "04:00"
+      "ServerUpdate": "08:00"
     },
     "RogueWorld": {
       "World": "Simulated_Universe_World_8",

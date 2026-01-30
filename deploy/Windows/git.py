@@ -52,8 +52,7 @@ class GitManager(DeployConfig):
         return conf
 
     def git_repository_init(
-            self, repo, source='origin', branch='master',
-            proxy='', ssl_verify=True, keep_changes=False
+        self, repo, source='origin', branch='master', proxy='', ssl_verify=True, keep_changes=False
     ):
         logger.hr('Git Init', 1)
         if not self.execute(f'"{self.git}" init', allow_failure=True):
@@ -91,7 +90,7 @@ class GitManager(DeployConfig):
         Progress.GitSetRepo()
 
         logger.hr('Fetch Repository Branch', 1)
-        self.execute(f'"{self.git}" fetch {source} {branch}')
+        self.execute(f'"{self.git}" fetch --depth=20 {source} {branch}')
         Progress.GitFetch()
 
         logger.hr('Pull Repository Branch', 1)
