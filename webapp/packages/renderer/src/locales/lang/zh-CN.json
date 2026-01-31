@@ -11,7 +11,7 @@
     "installTips": "以前使用过 BD2AS？在这里导入你的设置"
   },
   "import": {
-    "title": "从已有SRC中导入用户设置",
+    "title": "从已有BD2AS中导入用户设置",
     "tips": "请将你的 BD2AS 设置文件拖拽到这里",
     "error": "导入失败，请检查文件是否正确",
     "step1": "选择旧的 BD2AS",
