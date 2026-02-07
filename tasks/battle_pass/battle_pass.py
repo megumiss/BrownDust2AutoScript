@@ -15,7 +15,6 @@ from module.ocr.utils import pair_buttons
 from module.ui.scroll import Scroll
 from module.ui.switch import Switch
 from tasks.base.assets.assets_base_page import BATTLE_PASS_CHECK, MAIN_GOTO_BATTLE_PASS
-from tasks.base.page import page_battle_pass, page_main
 from tasks.base.ui import UI
 from tasks.battle_pass.assets.assets_battle_pass import *
 from tasks.battle_pass.keywords import *

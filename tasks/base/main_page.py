@@ -5,7 +5,6 @@ from module.config.server import VALID_LANG
 from module.exception import RequestHumanTakeover, ScriptError
 from module.logger import logger
 from module.ocr.ocr import OcrWhiteLetterOnComplexBackground
-from tasks.base.assets.assets_base_main_page import OCR_MAP_NAME
 from tasks.base.page import Page, page_main
 from tasks.base.popup import PopupHandler
 from tasks.map.keywords import KEYWORDS_MAP_PLANE, MapPlane

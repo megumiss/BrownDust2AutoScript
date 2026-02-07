@@ -230,13 +230,6 @@ PAGE_ROGUE_PATH = ButtonWrapper(
         color=(122, 120, 119),
         button=(713, 87, 759, 109),
     ),
-    en=Button(
-        file='./assets/en/rogue/path/PAGE_ROGUE_PATH.png',
-        area=(606, 89, 656, 108),
-        search=(586, 69, 676, 128),
-        color=(114, 112, 112),
-        button=(606, 89, 656, 108),
-    ),
 )
 PATH_LOADED_CHECK = ButtonWrapper(
     name='PATH_LOADED_CHECK',

@@ -9,7 +9,6 @@ from module.logger import logger
 from module.ocr.ocr import Ocr
 from module.ui.draggable_list import DraggableList
 from module.ui.switch import Switch
-from tasks.base.page import page_guide
 from tasks.base.ui import UI
 from tasks.dungeon.assets.assets_dungeon_nav import *
 from tasks.dungeon.assets.assets_dungeon_tab import *

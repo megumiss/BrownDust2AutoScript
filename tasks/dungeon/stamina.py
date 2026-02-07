@@ -2,7 +2,6 @@ import module.config.server as server
 from module.base.timer import Timer
 from module.logger import logger
 from module.ocr.ocr import Digit
-from tasks.base.page import page_guide
 from tasks.combat.assets.assets_combat_stamina_status import ICON_SEARCH, IMMERSIFIER_ICON
 from tasks.dungeon.assets.assets_dungeon_stamina import *
 from tasks.dungeon.keywords import KEYWORDS_DUNGEON_TAB

@@ -2,7 +2,6 @@ from module.base.button import ClickButton
 from module.base.timer import Timer
 from module.base.utils import area_offset
 from module.logger import logger
-from tasks.base.page import page_rogue
 from tasks.map.control.waypoint import Waypoint, ensure_waypoints
 from tasks.map.route.base import RouteBase as RouteBase_
 from tasks.rogue.assets.assets_rogue_ui import BLESSING_CONFIRM

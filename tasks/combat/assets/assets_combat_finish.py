@@ -12,13 +12,6 @@ COMBAT_AGAIN = ButtonWrapper(
         color=(162, 162, 162),
         button=(709, 592, 979, 628),
     ),
-    en=Button(
-        file='./assets/en/combat/finish/COMBAT_AGAIN.png',
-        area=(809, 602, 902, 618),
-        search=(709, 592, 979, 650),
-        color=(159, 159, 159),
-        button=(709, 591, 981, 628),
-    ),
 )
 COMBAT_EXIT = ButtonWrapper(
     name='COMBAT_EXIT',
@@ -28,12 +21,5 @@ COMBAT_EXIT = ButtonWrapper(
         search=(301, 593, 568, 651),
         color=(156, 156, 156),
         button=(301, 593, 570, 628),
-    ),
-    en=Button(
-        file='./assets/en/combat/finish/COMBAT_EXIT.png',
-        area=(419, 602, 453, 618),
-        search=(301, 593, 568, 651),
-        color=(149, 149, 149),
-        button=(301, 592, 572, 628),
     ),
 )

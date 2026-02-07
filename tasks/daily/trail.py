@@ -2,7 +2,6 @@ from module.base.timer import Timer
 from module.base.utils import random_rectangle_vector_opted
 from module.logger import logger
 from tasks.base.assets.assets_base_page import CLOSE, MAP_EXIT
-from tasks.base.page import page_gacha
 from tasks.base.ui import UI
 from tasks.daily.assets.assets_daily_trial import *
 

@@ -8,7 +8,6 @@ from module.logger import logger
 from module.ocr.ocr import Ocr, OcrResultButton
 from module.ui.draggable_list import DraggableList
 from module.ui.scroll import Scroll
-from tasks.base.page import page_map, page_world
 from tasks.base.ui import UI
 from tasks.map.assets.assets_map_bigmap import *
 from tasks.map.keywords import KEYWORDS_MAP_PLANE, MapPlane

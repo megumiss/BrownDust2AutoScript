@@ -2,7 +2,6 @@ from module.base.timer import Timer
 from module.exception import GameNotRunningError
 from module.logger import logger
 from tasks.base.assets.assets_base_page import CHARACTER_CHECK, CLOSE
-from tasks.base.page import page_main
 from tasks.combat.assets.assets_combat_interact import MAP_LOADING
 from tasks.login.agreement import AgreementHandler
 from tasks.login.assets.assets_login import *

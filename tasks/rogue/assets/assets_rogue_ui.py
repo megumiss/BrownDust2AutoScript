@@ -32,13 +32,6 @@ BLESSING_LOST = ButtonWrapper(
         color=(125, 38, 32),
         button=(579, 44, 637, 72),
     ),
-    en=Button(
-        file='./assets/en/rogue/ui/BLESSING_LOST.png',
-        area=(681, 47, 744, 71),
-        search=(633, 35, 792, 124),
-        color=(130, 59, 55),
-        button=(681, 47, 744, 71),
-    ),
 )
 BLESSING_OBTAINED = ButtonWrapper(
     name='BLESSING_OBTAINED',
@@ -48,13 +41,6 @@ BLESSING_OBTAINED = ButtonWrapper(
         search=(565, 31, 652, 124),
         color=(139, 124, 92),
         button=(578, 44, 638, 72),
-    ),
-    en=Button(
-        file='./assets/en/rogue/ui/BLESSING_OBTAINED.png',
-        area=(645, 46, 779, 71),
-        search=(633, 35, 792, 124),
-        color=(129, 116, 91),
-        button=(645, 46, 779, 71),
     ),
 )
 CHECK_BLESSING = ButtonWrapper(
@@ -86,7 +72,6 @@ CURIO_FIXED = ButtonWrapper(
         color=(126, 123, 122),
         button=(558, 54, 626, 75),
     ),
-    en=None,
 )
 CURIO_OBTAINED = ButtonWrapper(
     name='CURIO_OBTAINED',
@@ -104,22 +89,6 @@ CURIO_OBTAINED = ButtonWrapper(
             search=(660, 66, 764, 137),
             color=(123, 124, 129),
             button=(680, 86, 744, 117),
-        ),
-    ],
-    en=[
-        Button(
-            file='./assets/en/rogue/ui/CURIO_OBTAINED.png',
-            area=(511, 88, 600, 116),
-            search=(491, 68, 620, 136),
-            color=(93, 95, 102),
-            button=(511, 88, 600, 116),
-        ),
-        Button(
-            file='./assets/en/rogue/ui/CURIO_OBTAINED.2.png',
-            area=(526, 46, 605, 71),
-            search=(506, 26, 625, 91),
-            color=(103, 91, 66),
-            button=(526, 46, 605, 71),
         ),
     ],
 )
@@ -161,13 +130,6 @@ PAGE_CHOOSE_BONUS_TRAILBLAZE = ButtonWrapper(
         search=(603, 550, 676, 607),
         color=(182, 181, 183),
         button=(623, 570, 656, 587),
-    ),
-    en=Button(
-        file='./assets/en/rogue/ui/PAGE_CHOOSE_BONUS_TRAILBLAZE.png',
-        area=(601, 571, 679, 586),
-        search=(581, 551, 699, 606),
-        color=(187, 186, 188),
-        button=(601, 571, 679, 586),
     ),
 )
 PAGE_CHOOSE_BUFF = ButtonWrapper(

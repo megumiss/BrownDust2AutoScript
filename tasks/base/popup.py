@@ -3,7 +3,7 @@ from typing import Callable
 from module.base.base import ModuleBase
 from module.base.utils import color_similarity_2d
 from module.logger import logger
-from tasks.base.assets.assets_base_page import BACK, CLOSE
+from tasks.base.assets.assets_base_page import BACK
 from tasks.base.assets.assets_base_popup import *
 
 

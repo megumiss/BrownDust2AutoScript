@@ -5,9 +5,7 @@ import numpy as np
 from module.base.timer import Timer
 from module.base.utils import Points, area_center
 from module.logger import logger
-from tasks.base.assets.assets_base_main_page import OCR_MAP_NAME
 from tasks.base.main_page import OcrPlaneName
-from tasks.base.page import page_rogue
 from tasks.combat.interact import CombatInteract
 from tasks.map.keywords import KEYWORDS_MAP_PLANE, MapPlane
 from tasks.rogue.assets.assets_rogue_exit import OCR_DOMAIN_EXIT

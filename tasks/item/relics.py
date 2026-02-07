@@ -1,7 +1,6 @@
 from module.base.timer import Timer
 from module.logger import logger
 from tasks.base.assets.assets_base_page import CLOSE
-from tasks.base.page import page_item
 from tasks.item.assets.assets_item_relics import *
 from tasks.item.keywords import KEYWORDS_ITEM_TAB
 from tasks.item.ui import ItemUI

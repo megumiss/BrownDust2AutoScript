@@ -2,7 +2,6 @@ from module.base.decorator import run_once
 from module.base.timer import Timer
 from module.exception import RequestHumanTakeover
 from module.logger import logger
-from tasks.base.page import page_guide
 from tasks.combat.assets.assets_combat_finish import COMBAT_AGAIN, COMBAT_EXIT
 from tasks.combat.assets.assets_combat_interact import DUNGEON_COMBAT_INTERACT
 from tasks.combat.assets.assets_combat_prepare import COMBAT_PREPARE

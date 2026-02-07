@@ -8,7 +8,6 @@ from tasks.assignment.assets.assets_assignment_ui import EVENT_COMPLETED
 from tasks.assignment.dispatch import AssignmentDispatch
 from tasks.assignment.keywords import AssignmentEntry, KEYWORDS_ASSIGNMENT_GROUP
 from tasks.assignment.ui import ASSIGNMENT_ENTRY_LIST
-from tasks.base.page import page_assignment
 
 
 class AssignmentClaim(AssignmentDispatch):

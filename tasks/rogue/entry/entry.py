@@ -9,9 +9,6 @@ from module.base.utils import color_similarity_2d
 from module.exception import RequestHumanTakeover, ScriptError
 from module.logger import logger
 from module.ocr.ocr import Ocr
-from tasks.base.assets.assets_base_main_page import ROGUE_LEAVE_FOR_NOW
-from tasks.base.assets.assets_base_page import MAP_EXIT
-from tasks.base.page import page_item, page_main, page_rogue
 from tasks.dungeon.keywords import DungeonList
 from tasks.dungeon.keywords.dungeon import Simulated_Universe_World_1
 from tasks.dungeon.ui.state import OcrSimUniPoint

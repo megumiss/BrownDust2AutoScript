@@ -8,7 +8,6 @@ from module.base.utils import SelectedGrids, color_similarity_2d, crop, image_si
 from module.exception import ScriptError
 from module.logger import logger
 from module.ocr.ocr import Digit, Ocr
-from tasks.base.page import page_menu, page_synthesize
 from tasks.combat.assets.assets_combat_obtain import ITEM_CLOSE
 from tasks.combat.obtain import CombatObtain
 from tasks.daily.synthesize import SynthesizeUI

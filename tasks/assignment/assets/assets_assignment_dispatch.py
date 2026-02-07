@@ -21,22 +21,6 @@ ASSIGNMENT_START = ButtonWrapper(
             button=(579, 373, 702, 405),
         ),
     ],
-    en=[
-        Button(
-            file='./assets/en/assignment/dispatch/ASSIGNMENT_START.png',
-            area=(693, 343, 831, 374),
-            search=(669, 297, 831, 416),
-            color=(95, 86, 67),
-            button=(693, 343, 831, 374),
-        ),
-        Button(
-            file='./assets/en/assignment/dispatch/ASSIGNMENT_START.2.png',
-            area=(676, 376, 787, 404),
-            search=(669, 297, 831, 416),
-            color=(80, 71, 56),
-            button=(676, 376, 787, 404),
-        ),
-    ],
 )
 ASSIGNMENT_STARTED_CHECK = ButtonWrapper(
     name='ASSIGNMENT_STARTED_CHECK',
@@ -106,13 +90,6 @@ CHARACTER_LIST = ButtonWrapper(
         color=(156, 154, 152),
         button=(90, 165, 170, 186),
     ),
-    en=Button(
-        file='./assets/en/assignment/dispatch/CHARACTER_LIST.png',
-        area=(91, 163, 136, 180),
-        search=(71, 143, 156, 200),
-        color=(159, 158, 155),
-        button=(91, 163, 136, 180),
-    ),
 )
 CHARACTER_SUPPORT = ButtonWrapper(
     name='CHARACTER_SUPPORT',
@@ -133,13 +110,6 @@ CHARACTER_SUPPORT_LIST = ButtonWrapper(
         color=(147, 146, 143),
         button=(91, 166, 171, 186),
     ),
-    en=Button(
-        file='./assets/en/assignment/dispatch/CHARACTER_SUPPORT_LIST.png',
-        area=(90, 167, 267, 189),
-        search=(70, 147, 287, 209),
-        color=(169, 168, 165),
-        button=(90, 167, 267, 189),
-    ),
 )
 CHARACTER_SUPPORT_SELECTED = ButtonWrapper(
     name='CHARACTER_SUPPORT_SELECTED',
@@ -159,13 +129,6 @@ CONFIRM_ASSIGNMENT = ButtonWrapper(
         search=(987, 640, 1105, 698),
         color=(148, 148, 147),
         button=(909, 651, 1184, 686),
-    ),
-    en=Button(
-        file='./assets/en/assignment/dispatch/CONFIRM_ASSIGNMENT.png',
-        area=(946, 661, 1146, 677),
-        search=(926, 641, 1166, 697),
-        color=(162, 162, 161),
-        button=(909, 652, 1182, 687),
     ),
 )
 DURATION_12 = ButtonWrapper(

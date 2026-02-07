@@ -80,13 +80,6 @@ GET_CHARACTER = ButtonWrapper(
         color=(156, 155, 154),
         button=(204, 322, 249, 338),
     ),
-    en=Button(
-        file='./assets/en/base/popup/GET_CHARACTER.png',
-        area=(205, 321, 242, 339),
-        search=(185, 301, 262, 359),
-        color=(126, 127, 127),
-        button=(205, 321, 242, 339),
-    ),
 )
 GET_LIGHT_CONE = ButtonWrapper(
     name='GET_LIGHT_CONE',
@@ -96,13 +89,6 @@ GET_LIGHT_CONE = ButtonWrapper(
         search=(185, 301, 262, 359),
         color=(130, 130, 131),
         button=(205, 321, 242, 339),
-    ),
-    en=Button(
-        file='./assets/en/base/popup/GET_LIGHT_CONE.png',
-        area=(260, 322, 306, 338),
-        search=(240, 302, 326, 358),
-        color=(147, 147, 148),
-        button=(260, 322, 306, 338),
     ),
 )
 GET_REWARD = ButtonWrapper(
@@ -202,12 +188,5 @@ POPUP_TITLE_TIP = ButtonWrapper(
         search=(594, 223, 686, 287),
         color=(138, 137, 138),
         button=(614, 243, 666, 267),
-    ),
-    en=Button(
-        file='./assets/en/base/popup/POPUP_TITLE_TIP.png',
-        area=(620, 245, 659, 272),
-        search=(600, 225, 679, 292),
-        color=(163, 162, 163),
-        button=(620, 245, 659, 272),
     ),
 )

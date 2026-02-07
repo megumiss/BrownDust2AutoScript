@@ -1,8 +1,7 @@
 from module.ocr.ocr import *
 from module.ui.scroll import AdaptiveScroll, Scroll
-from tasks.base.assets.assets_base_page import MENU_CHECK, MENU_SCROLL, SYNTHESIZE_CHECK
 from tasks.base.assets.assets_base_popup import POPUP_CONFIRM
-from tasks.base.page import Page, page_menu, page_synthesize
+from tasks.base.page import Page
 from tasks.base.ui import UI
 from tasks.daily.assets.assets_daily_synthesize_consumable import *
 from tasks.daily.assets.assets_daily_synthesize_material import *

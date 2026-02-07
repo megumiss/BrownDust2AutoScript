@@ -1,7 +1,6 @@
 from module.ocr.ocr import *
 from module.ui.scroll import AdaptiveScroll
 from tasks.base.assets.assets_base_popup import POPUP_CONFIRM
-from tasks.base.page import page_item
 from tasks.daily.assets.assets_daily_synthesize_consumable import (
     SIMPLE_PROTECTIVE_GEAR as SYNTHESIZE_SIMPLE_PROTECTIVE_GEAR,
     SIMPLE_PROTECTIVE_GEAR_CHECK as SYNTHESIZE_SIMPLE_PROTECTIVE_GEAR_CHECK,

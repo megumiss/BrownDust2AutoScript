@@ -68,97 +68,70 @@ class Page:
         self.links[destination] = button
 
 
-# Main page
-page_main = Page(MAIN_GOTO_CHARACTER)
+# 主页
+page_main = Page(MAIN_GOTO_ARCADE)
 
-# Menu, entered from phone
-page_menu = Page(MENU_CHECK)
-page_menu.link(CLOSE, destination=page_main)
-page_main.link(MAIN_GOTO_MENU, destination=page_menu)
+# 卡带
+page_card = Page(CARD_CHECK)
+page_card.link(BACK_CIRCLE, destination=page_main)
+page_main.link(MAIN_GOTO_CARD, destination=page_card)
 
-# Character
-page_character = Page(CHARACTER_CHECK)
-page_character.link(CLOSE, destination=page_main)
-page_main.link(MAIN_GOTO_CHARACTER, destination=page_character)
+# 工会
+page_guild = Page(GUILD_CHECK)
+page_guild.link(BACK, destination=page_main)
+page_main.link(MAIN_GOTO_GUILD, destination=page_guild)
 
-# Team
-page_team = Page(TEAM_CHECK)
-page_team.link(CLOSE, destination=page_main)
-page_main.link(MAIN_GOTO_TEAM, destination=page_team)
+# 一键收获
+page_business = Page(BUSINESS_CHECK)
+page_business.link(BACK, destination=page_main)
+page_main.link(MAIN_GOTO_BUSINESS, destination=page_business)
 
-# Item, storage
-page_item = Page(ITEM_CHECK)
-page_item.link(CLOSE, destination=page_main)
-page_main.link(MAIN_GOTO_ITEM, destination=page_item)
+# 抽卡
+page_draw = Page(DRAW_CHECK)
+page_draw.link(BACK, destination=page_main)
+page_main.link(MAIN_GOTO_DRAW, destination=page_draw)
 
-# Guide, which includes beginners' guide, daily missions and dungeons
-page_guide = Page(GUIDE_CHECK)
-page_guide.link(GUIDE_CLOSE, destination=page_main)
-page_main.link(MAIN_GOTO_GUIDE, destination=page_guide)
+# 队伍
+page_companion = Page(COMPANION_CHECK)
+page_companion.link(BACK, destination=page_main)
+page_main.link(MAIN_GOTO_COMPANION, destination=page_companion)
 
-# Gacha
-page_gacha = Page(GACHA_CHECK)
-page_gacha.link(CLOSE, destination=page_main)
-page_main.link(MAIN_GOTO_GACHA, destination=page_gacha)
+# 背包
+page_bag = Page(BAG_CHECK)
+page_bag.link(BACK, destination=page_main)
+page_main.link(MAIN_GOTO_BAG, destination=page_bag)
 
-# Battle Pass
-page_battle_pass = Page(BATTLE_PASS_CHECK)
-page_battle_pass.link(CLOSE, destination=page_main)
-page_main.link(MAIN_GOTO_BATTLE_PASS, destination=page_battle_pass)
-
-# Event
-page_event = Page(EVENT_CHECK)
-page_event.link(CLOSE, destination=page_main)
-page_main.link(MAIN_GOTO_EVENT, destination=page_event)
-
-# Map
-page_map = Page(MAP_CHECK)
-page_map.link(CLOSE, destination=page_main)
-page_main.link(MAIN_GOTO_MAP, destination=page_map)
-
-# page_world, subpage of map, used to choose a world/planet e.g. Herta Space Station
-page_world = Page(WORLD_CHECK)
-page_world.link(BACK, destination=page_map)
-page_map.link(MAP_GOTO_WORLD, destination=page_world)
-
-# Tutorial
-page_tutorial = Page(TUTORIAL_CHECK)
-page_tutorial.link(CLOSE, destination=page_main)
-page_main.link(MAIN_GOTO_TUTORIAL, destination=page_tutorial)
-
-# Mission
+# 任务
 page_mission = Page(MISSION_CHECK)
-page_mission.link(CLOSE, destination=page_main)
+page_mission.link(BACK, destination=page_main)
 page_main.link(MAIN_GOTO_MISSION, destination=page_mission)
 
-# Message
-page_message = Page(MESSAGE_CLOSE)
-page_message.link(MESSAGE_CLOSE, destination=page_main)
-page_main.link(MAIN_GOTO_MESSAGE, destination=page_message)
+# 成就
+page_achv = Page(ACHV_CHECK)
+page_achv.link(BACK, destination=page_main)
+page_main.link(MAIN_GOTO_ACHV, destination=page_achv)
 
-# Camera
-page_camera = Page(CAMERA_CHECK)
-page_camera.link(CLOSE, destination=page_menu)
-page_menu.link(MENU_GOTO_CAMERA, destination=page_camera)
+# 活动
+page_event = Page(EVENT_CHECK)
+page_event.link(BACK, destination=page_main)
+page_main.link(MAIN_GOTO_EVENT, destination=page_event)
 
-# Synthesize
-page_synthesize = Page(SYNTHESIZE_CHECK)
-page_synthesize.link(CLOSE, destination=page_menu)
-page_menu.link(MENU_GOTO_SYNTHESIZE, destination=page_synthesize)
+# 邮箱
+page_email = Page(EMAIL_CHECK)
+page_email.link(BACK, destination=page_main)
+page_main.link(MAIN_GOTO_EMAIL, destination=page_email)
 
-# Assignment
-page_assignment = Page(ASSIGNMENT_CHECK)
-page_assignment.link(CLOSE, destination=page_main)
-page_menu.link(MENU_GOTO_ASSIGNMENT, destination=page_assignment)
+# 快速狩猎
+page_quickhunt = Page(QUICKHUNT_CHECK)
+page_quickhunt.link(BACK, destination=page_main)
+page_main.link(MAIN_GOTO_QUICKHUNT, destination=page_quickhunt)
 
-# Forgotten Hall
-page_forgotten_hall = Page(FORGOTTEN_HALL_CHECK)
-page_forgotten_hall.link(CLOSE, destination=page_main)
+# 通行证
+page_pass = Page(PASS_CHECK)
+page_pass.link(BACK, destination=page_main)
+page_main.link(MAIN_GOTO_PASS, destination=page_pass)
 
-# Rogue, Simulated Universe
-page_rogue = Page(ROGUE_CHECK)
-page_rogue.link(CLOSE, destination=page_main)
-
-# Planner result
-page_planner = Page(PLANNER_CHECK)
-page_planner.link(CLOSE, destination=page_menu)
+# 魔兽
+page_hunter = Page(HUNTER_CHECK)
+page_hunter.link(BACK, destination=page_main)
+page_main.link(MAIN_GOTO_HUNTER, destination=page_hunter)

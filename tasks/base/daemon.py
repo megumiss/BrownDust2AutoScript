@@ -5,7 +5,6 @@ from module.logger import logger
 from tasks.base.assets.assets_base_daemon import *
 from tasks.base.assets.assets_base_popup import POPUP_CONFIRM
 from tasks.base.main_page import MainPage
-from tasks.base.page import page_main, page_rogue
 from tasks.combat.assets.assets_combat_interact import DUNGEON_COMBAT_INTERACT
 from tasks.daily.assets.assets_daily_camera import PICTURE_TAKEN
 from tasks.map.assets.assets_map_bigmap import TELEPORT_RIGHT

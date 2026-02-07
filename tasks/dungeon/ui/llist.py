@@ -14,7 +14,6 @@ from module.ocr.ocr import Ocr, OcrResultButton
 from module.ocr.utils import merge_result_button, split_and_pair_button_attr
 from module.ui.draggable_list import DraggableList
 from module.ui.switch import Switch
-from tasks.base.page import page_guide
 from tasks.base.ui import UI
 from tasks.combat.assets.assets_combat_obtain import ITEM_CLOSE
 from tasks.combat.assets.assets_combat_prepare import COMBAT_PREPARE, ENEMY_INFO_CHECK

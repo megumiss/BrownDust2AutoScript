@@ -62,11 +62,4 @@ REPORT = ButtonWrapper(
         color=(102, 90, 68),
         button=(537, 80, 742, 128),
     ),
-    en=Button(
-        file='./assets/en/assignment/claim/REPORT.png',
-        area=(393, 83, 885, 137),
-        search=(373, 63, 905, 157),
-        color=(71, 63, 49),
-        button=(393, 83, 885, 137),
-    ),
 )

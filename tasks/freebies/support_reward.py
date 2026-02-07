@@ -1,7 +1,6 @@
 from module.base.timer import Timer
 from module.logger import logger
 from tasks.base.assets.assets_base_page import CLOSE, MAIN_GOTO_MENU, MENU_CHECK
-from tasks.base.page import page_main, page_menu
 from tasks.base.ui import UI
 from tasks.freebies.assets.assets_freebies_support_reward import (
     CAN_GET_REWARD,

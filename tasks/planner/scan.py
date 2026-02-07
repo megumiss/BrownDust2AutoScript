@@ -9,7 +9,6 @@ from module.exception import GamePageUnknownError
 from module.logger import logger
 from module.ocr.ocr import Ocr, OcrWhiteLetterOnComplexBackground
 from module.ui.scroll import AdaptiveScroll
-from tasks.base.page import page_planner
 from tasks.daily.synthesize import SynthesizeUI
 from tasks.planner.assets.assets_planner_result import *
 from tasks.planner.keywords import ITEM_CLASSES

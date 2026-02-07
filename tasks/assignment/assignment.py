@@ -11,7 +11,6 @@ from tasks.assignment.keywords import (
     AssignmentEventGroup,
 )
 from tasks.assignment.ui import ASSIGNMENT_ENTRY_LIST, AssignmentStatus
-from tasks.base.page import page_assignment, page_menu
 from tasks.daily.keywords import KEYWORDS_DAILY_QUEST
 from tasks.daily.synthesize import SynthesizeUI
 

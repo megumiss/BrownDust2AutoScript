@@ -1,7 +1,6 @@
 from module.base.timer import Timer
 from module.base.utils import area_in_area, random_rectangle_vector
 from module.logger import logger
-from tasks.base.page import page_guide, page_rogue
 from tasks.dungeon.assets.assets_dungeon_nav import *
 from tasks.dungeon.assets.assets_dungeon_ui import *
 from tasks.dungeon.assets.assets_dungeon_ui_list import OCR_DUNGEON_LIST

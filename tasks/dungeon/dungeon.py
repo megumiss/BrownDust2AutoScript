@@ -7,11 +7,12 @@ from tasks.battle_pass.keywords import KEYWORDS_BATTLE_PASS_QUEST
 from tasks.combat.combat import Combat
 from tasks.daily.keywords import KEYWORDS_DAILY_QUEST
 from tasks.dungeon.event import DungeonEvent
-from tasks.dungeon.keywords import DungeonList, KEYWORDS_DUNGEON_LIST, KEYWORDS_DUNGEON_NAV, KEYWORDS_DUNGEON_TAB
+from tasks.dungeon.keywords import KEYWORDS_DUNGEON_LIST, KEYWORDS_DUNGEON_NAV, KEYWORDS_DUNGEON_TAB, DungeonList
 from tasks.dungeon.stamina import DungeonStamina, ImmersifierNotAvailable
 from tasks.freebies.code_used import CodeManager
 from tasks.item.synthesize import Synthesize
 from tasks.planner.target import PlannerTarget
+from tasks.base.page import *
 
 
 class Dungeon(Combat, DungeonStamina, DungeonEvent):
@@ -305,6 +306,35 @@ class Dungeon(Combat, DungeonStamina, DungeonEvent):
             self.config.stored.DailyQuest.write_quests(self.daily_quests)
 
     def run(self):
+        # self.ui_goto(page_main)
+        # self.device.sleep(1)
+        # self.ui_goto(page_card)
+        # self.device.sleep(1)
+        # self.ui_goto(page_guild)
+        # self.device.sleep(1)
+        # self.ui_goto(page_business)
+        # self.device.sleep(1)
+        # self.ui_goto(page_draw)
+        # self.device.sleep(1)
+        # self.ui_goto(page_companion)
+        # self.device.sleep(1)
+        # self.ui_goto(page_bag)
+        # self.device.sleep(1)
+        # self.ui_goto(page_mission)
+        # self.device.sleep(1)
+        # self.ui_goto(page_achv)
+        # self.device.sleep(1)
+        # self.ui_goto(page_event)
+        # self.device.sleep(1)
+        # self.ui_goto(page_email)
+        # self.device.sleep(1)
+        # self.ui_goto(page_quickhunt)
+        # self.device.sleep(1)
+        # self.ui_goto(page_pass)
+        # self.device.sleep(1)
+        # self.ui_goto(page_hunter)
+        # self.ui_goto(page_main)
+
         # rescan planner
         if self.config.PlannerTarget_Enable:
             main = PlannerTarget(config=self.config, device=self.device, task=self.config.task.command)

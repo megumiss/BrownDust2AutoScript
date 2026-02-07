@@ -4,11 +4,9 @@ from module.base.timer import Timer
 from module.exception import GameNotRunningError, GamePageUnknownError, HandledError
 from module.logger import logger
 from module.ocr.ocr import Ocr
-from tasks.base.assets.assets_base_main_page import ROGUE_LEAVE_FOR_NOW, ROGUE_LEAVE_FOR_NOW_OE
-from tasks.base.assets.assets_base_page import CLOSE, MAIN_GOTO_CHARACTER, MAP_EXIT, MAP_EXIT_OE
 from tasks.base.assets.assets_base_popup import POPUP_STORY_LATER
 from tasks.base.main_page import MainPage
-from tasks.base.page import Page, page_gacha, page_main
+from tasks.base.page import Page, page_main
 from tasks.combat.assets.assets_combat_finish import COMBAT_EXIT
 from tasks.combat.assets.assets_combat_interact import MAP_LOADING
 from tasks.combat.assets.assets_combat_prepare import COMBAT_PREPARE
@@ -28,8 +26,6 @@ class UI(MainPage):
             page (Page):
             interval:
         """
-        if page == page_main:
-            return self.is_in_main(interval=interval)
         return self.appear(page.check_button, interval=interval)
 
     def ui_get_current_page(self, skip_first_screenshot=True):
@@ -156,7 +152,8 @@ class UI(MainPage):
                     continue
                 if self.ui_page_appear(page, interval=5):
                     logger.info(f'Page switch: {page} -> {page.parent}')
-                    self.handle_lang_check(page)
+                    # TODO 删除？
+                    # self.handle_lang_check(page)
                     if self.ui_page_confirm(page):
                         logger.info(f'Page arrive confirm {page}')
                     button = page.links[page.parent]
@@ -311,26 +308,6 @@ class UI(MainPage):
             if additional is not None:
                 if additional():
                     continue
-
-    def is_in_main(self, interval=0):
-        self.device.stuck_record_add(MAIN_GOTO_CHARACTER)
-
-        if interval and not self.interval_is_reached(MAIN_GOTO_CHARACTER, interval=interval):
-            return False
-
-        appear = False
-        if MAIN_GOTO_CHARACTER.match_template_luma(self.device.image):
-            if self.image_color_count(MAIN_GOTO_CHARACTER, color=(235, 235, 235), threshold=234, count=400):
-                appear = True
-        if not appear:
-            if MAP_EXIT.match_template_luma(self.device.image):
-                if self.image_color_count(MAP_EXIT, color=(235, 235, 235), threshold=221, count=50):
-                    appear = True
-
-        if appear and interval:
-            self.interval_reset(MAIN_GOTO_CHARACTER, interval=interval)
-
-        return appear
 
     def is_in_login_confirm(self, interval=0):
         self.device.stuck_record_add(LOGIN_CONFIRM)

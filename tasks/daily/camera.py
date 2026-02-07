@@ -1,5 +1,4 @@
 from module.logger import logger
-from tasks.base.page import page_camera
 from tasks.base.ui import UI
 from tasks.daily.assets.assets_daily_camera import PICTURE_TAKEN, TAKE_PICTURE
 

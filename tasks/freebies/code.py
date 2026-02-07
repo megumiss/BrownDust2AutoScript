@@ -4,7 +4,6 @@ from module.logger import logger
 from module.ocr.ocr import Ocr
 from tasks.base.assets.assets_base_page import MAIN_GOTO_MENU
 from tasks.base.assets.assets_base_popup import POPUP_CANCEL, POPUP_CONFIRM, POPUP_SINGLE, POPUP_TITLE_TIP
-from tasks.base.page import page_menu
 from tasks.base.ui import UI
 from tasks.freebies.assets.assets_freebies_code import *
 from tasks.freebies.assets.assets_freebies_support_reward import MENU_TO_PROFILE

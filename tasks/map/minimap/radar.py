@@ -5,7 +5,6 @@ from module.base.decorator import cached_property
 from module.base.timer import Timer
 from module.base.utils import Points, color_similarity_2d
 from module.logger import logger
-from tasks.base.page import page_main
 from tasks.combat.assets.assets_combat_interact import DUNGEON_COMBAT_INTERACT
 from tasks.map.control.control import MapControl
 from tasks.map.control.joystick import JoystickContact
