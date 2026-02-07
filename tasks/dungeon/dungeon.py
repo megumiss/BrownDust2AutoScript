@@ -306,9 +306,9 @@ class Dungeon(Combat, DungeonStamina, DungeonEvent):
             self.config.stored.DailyQuest.write_quests(self.daily_quests)
 
     def run(self):
-        # self.ui_goto(page_main)
+        self.ui_goto_main()
         # self.device.sleep(1)
-        # self.ui_goto(page_card)
+        self.ui_goto(page_card)
         # self.device.sleep(1)
         # self.ui_goto(page_guild)
         # self.device.sleep(1)
