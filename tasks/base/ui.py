@@ -12,7 +12,6 @@ from tasks.combat.assets.assets_combat_interact import MAP_LOADING
 from tasks.combat.assets.assets_combat_prepare import COMBAT_PREPARE
 from tasks.daily.assets.assets_daily_trial import INFO_CLOSE, START_TRIAL
 from tasks.login.assets.assets_login import LOGIN_CONFIRM
-from tasks.login.assets.assets_login_popup import CLAIM_CHARACTER
 from tasks.ornament.assets.assets_ornament_ui import DU_OE_SELECT_CHECK
 
 
@@ -190,11 +189,11 @@ class UI(MainPage):
         logger.hr('UI ensure')
         self.ui_get_current_page(skip_first_screenshot=skip_first_screenshot)
 
-        self.ui_leave_special()
+        # self.ui_leave_special()
 
-        if acquire_lang_checked:
-            if self.acquire_lang_checked():
-                self.ui_get_current_page(skip_first_screenshot=skip_first_screenshot)
+        # if acquire_lang_checked:
+        #     if self.acquire_lang_checked():
+        #         self.ui_get_current_page(skip_first_screenshot=skip_first_screenshot)
 
         if self.ui_current == destination:
             logger.info('Already at %s' % destination)
@@ -322,25 +321,6 @@ class UI(MainPage):
 
         return appear
 
-    def is_in_map_exit(self, interval=0):
-        self.device.stuck_record_add(MAP_EXIT)
-
-        if interval and not self.interval_is_reached(MAP_EXIT, interval=interval):
-            return False
-
-        appear = False
-        if MAP_EXIT.match_template_luma(self.device.image):
-            if self.image_color_count(MAP_EXIT, color=(235, 235, 235), threshold=221, count=50):
-                appear = True
-        if MAP_EXIT_OE.match_template_luma(self.device.image):
-            if self.image_color_count(MAP_EXIT_OE, color=(235, 235, 235), threshold=221, count=50):
-                appear = True
-
-        if appear and interval:
-            self.interval_reset(MAP_EXIT, interval=interval)
-
-        return appear
-
     def handle_login_confirm(self):
         """
         If LOGIN_CONFIRM appears, do as task `Restart` not just clicking it
@@ -382,9 +362,6 @@ class UI(MainPage):
             return True
         # Popup story that advice you watch it, but no, later
         if self.appear_then_click(POPUP_STORY_LATER, interval=5):
-            return True
-        # Get free character at login
-        if self.appear_then_click(CLAIM_CHARACTER, interval=2):
             return True
         if self.handle_get_character():
             return True

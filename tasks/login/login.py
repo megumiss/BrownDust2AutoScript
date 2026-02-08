@@ -1,7 +1,8 @@
 from module.base.timer import Timer
 from module.exception import GameNotRunningError
 from module.logger import logger
-from tasks.combat.assets.assets_combat_interact import MAP_LOADING
+from tasks.base.assets.assets_base_page import BACK_MASKED
+from tasks.base.page import page_main
 from tasks.login.agreement import AgreementHandler
 from tasks.login.assets.assets_login import *
 from tasks.login.assets.assets_login_popup import *
@@ -24,12 +25,12 @@ class Login(LoginAndroidCloud, RogueUI, AgreementHandler, UIDHandler):
         """
         logger.hr('App login')
         orientation_timer = Timer(5)
-        startup_timer = Timer(5).start()
+        startup_timer = Timer(15).start()
         app_timer = Timer(5).start()
         start_success = False
         start_timeout = Timer(30).start()
         login_success = False
-        first_map_loading = True
+        main_confirm_timer = Timer(3, count=3)
         self.device.stuck_record_clear()
 
         while 1:
@@ -55,26 +56,24 @@ class Login(LoginAndroidCloud, RogueUI, AgreementHandler, UIDHandler):
             self.device.screenshot()
 
             # End
-            # Game client requires at least 5s to start
+            # Game client requires at least 15s to start
             # The first few frames might be captured before app_stop(), ignore them
             if startup_timer.reached():
                 if self.ui_page_appear(page_main):
-                    logger.info('Login to main confirm')
-                    break
+                    if main_confirm_timer.reached():
+                        logger.info('Login to main confirm')
+                        break
+                else:
+                    main_confirm_timer.reset()
+            else:
+                main_confirm_timer.reset()
 
             # Watch resource downloading and loading
-            if self.appear(LOGIN_LOADING, interval=5):
-                logger.info('Game resources downloading or loading')
+            if self.appear(LOGIN_LOADING, interval=5) or self.appear(DOWNLOAD_CHECKING, interval=5):
+                logger.info('Game resources downloading or checking')
                 self.device.stuck_record_clear()
                 app_timer.reset()
                 orientation_timer.reset()
-            # Watch map loading
-            if first_map_loading and self.appear(MAP_LOADING, similarity=0.75):
-                logger.info('Map loading')
-                # Reset stuck record after map loading to extend wait time on slow devices
-                self.device.stuck_record_clear()
-                first_map_loading = False
-                continue
 
             # Error
             # Unable to initialize Unity Engine
@@ -89,6 +88,9 @@ class Login(LoginAndroidCloud, RogueUI, AgreementHandler, UIDHandler):
                 self.device.stuck_record_clear()
                 login_success = True
                 continue
+            # 下载
+            if self.handle_popup_download():
+                continue
             if self.handle_user_agreement():
                 continue
             # Additional
@@ -99,8 +101,6 @@ class Login(LoginAndroidCloud, RogueUI, AgreementHandler, UIDHandler):
             if self.ui_additional():
                 continue
             if self.handle_login_popup():
-                continue
-            if self.handle_blessing():
                 continue
 
         return True
@@ -125,22 +125,26 @@ class Login(LoginAndroidCloud, RogueUI, AgreementHandler, UIDHandler):
         Returns:
             bool: If clicked
         """
-        # 3.7 ADVERTISE_Cyrene popup
-        if self.match_template_luma(ADVERTISE_Cyrene, interval=2):
-            logger.info(f'{ADVERTISE_Cyrene} -> {CLOSE}')
-            self.device.click(CLOSE)
+        # 进主页的开屏弹窗
+        if self.match_template_color(EMAIL_MASKED, interval=2, similarity=0.95):
+            self.device.click(BACK_MASKED)
             return True
-        if self.match_template_luma(MAIL_Cyrene, interval=2):
-            self.device.click(MAIL_Cyrene)
+        # 新服装
+        if self.appear_then_click(POPUP_PICKUP, interval=2):
             return True
-        # 3.2 Castorice popup that advertise you go gacha, but no, close it
-        if self.handle_ui_close(ADVERTISE_Castorice, interval=2):
-            return True
-        # homecoming popup
-        if self.handle_ui_close(HOMECOMING_TITLE, interval=2):
-            return True
-        # Might enter page_character while clicking CLOSE
-        if self.handle_ui_close(CHARACTER_CHECK, interval=2):
+        # 魔兽
+        # 新皮肤
+        # 可以关闭的弹窗
+        # if self.handle_ui_close(CHARACTER_CHECK, interval=2):
+        #     return True
+        return False
+
+    def handle_popup_download(self):
+        """
+        Returns:
+            bool: If clicked
+        """
+        if self.appear(DOWNLOAD_CHECK) and self.appear_then_click(DOWNLOAD_CONFIRM, interval=2):
             return True
         return False
 

@@ -33,6 +33,16 @@ BACK_CIRCLE = ButtonWrapper(
         button=(130, 27, 144, 53),
     ),
 )
+BACK_MASKED = ButtonWrapper(
+    name='BACK_MASKED',
+    share=Button(
+        file='./assets/share/base/page/BACK_MASKED.png',
+        area=(131, 27, 143, 52),
+        search=(111, 7, 163, 72),
+        color=(17, 42, 48),
+        button=(131, 27, 143, 52),
+    ),
+)
 BAG_CHECK = ButtonWrapper(
     name='BAG_CHECK',
     share=Button(

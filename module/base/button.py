@@ -3,6 +3,7 @@ from module.base.decorator import cached_property, del_cached_property
 from module.base.resource import Resource
 from module.base.utils import *
 from module.exception import ScriptError
+from module.logger import logger
 
 
 class Button(Resource):
@@ -110,7 +111,9 @@ class Button(Resource):
             bool: True if button appears on screenshot.
         """
         color = get_color(image, self.area)
-        return color_similar(color1=color, color2=self.color, threshold=threshold)
+        diff = color_similarity(color, self.color)
+        logger.debug(f'{self} color', f'{self.color} {color} {diff:.2f} < {threshold}')
+        return diff < threshold
 
     def match_template(self, image, similarity=0.85, direct_match=False) -> bool:
         """
@@ -131,6 +134,7 @@ class Button(Resource):
         res = cv2.matchTemplate(self.image, image, cv2.TM_CCOEFF_NORMED)
         _, sim, _, point = cv2.minMaxLoc(res)
 
+        logger.debug(f'{self} sim', f'{sim:.2f} > {similarity}')
         self._button_offset = np.array(point) + self.search[:2] - self.area[:2]
         return sim > similarity
 
@@ -154,6 +158,7 @@ class Button(Resource):
         res = cv2.matchTemplate(self.image_luma, image, cv2.TM_CCOEFF_NORMED)
         _, sim, _, point = cv2.minMaxLoc(res)
 
+        logger.debug(f'{self} luma', f'{sim:.2f} > {similarity}')
         self._button_offset = np.array(point) + self.search[:2] - self.area[:2]
         return sim > similarity
 
@@ -201,7 +206,9 @@ class Button(Resource):
 
         area = area_offset(self.area, offset=self._button_offset)
         color = get_color(image, area)
-        return color_similar(color1=color, color2=self.color, threshold=threshold)
+        diff = color_similarity(color, self.color)
+        logger.debug(f'{self} color', f'{self.color} {color} {diff:.2f} < {threshold}')
+        return diff < threshold
 
 
 class ButtonWrapper(Resource):
