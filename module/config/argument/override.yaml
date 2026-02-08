@@ -22,7 +22,7 @@ Restart:
 
 # ==================== Daily ====================
 
-Dungeon:
+Reward:
   Scheduler:
     Enable:
       type: state

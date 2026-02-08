@@ -1,8 +1,8 @@
 z;
 /**
- * 'zh-CN' | 'en-US' | 'ja-JP' | 'zh-TW' | 'en-ES'
+ * 'zh-CN' | 'en-US' | 'ja-JP' | 'zh-TW'
  */
-export type LocaleType = 'zh-CN' | 'en-US' | 'ja-JP' | 'zh-TW' | 'es-ES';
+export type LocaleType = 'zh-CN' | 'en-US' | 'ja-JP' | 'zh-TW';
 
 export interface LocaleSetting {
   showPicker: boolean;

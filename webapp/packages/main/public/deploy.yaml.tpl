@@ -135,7 +135,6 @@ Deploy:
     # 'en-US' for English
     # 'ja-JP' for Japanese
     # 'zh-TW' for Chinese traditional
-    # 'es-ES' for Spanish
     Language: {{language}}
     # Theme of web ui
     # 'default' for light theme

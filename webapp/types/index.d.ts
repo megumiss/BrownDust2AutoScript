@@ -58,7 +58,7 @@ declare interface DefAlasConfig {
     Webui: {
       WebuiHost: string;
       WebuiPort: number;
-      Language: 'zh-CN' | 'en-US' | 'ja-JP' | 'zh-TW' | 'es-ES';
+      Language: 'zh-CN' | 'en-US' | 'ja-JP' | 'zh-TW';
       Theme: 'default' | 'dark';
       DpiScaling: boolean;
       Password: null | string;

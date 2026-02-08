@@ -104,7 +104,6 @@ const config = {
       '@arco-design/web-vue/es/locale/lang/en-us',
       '@arco-design/web-vue/es/locale/lang/ja-jp',
       '@arco-design/web-vue/es/locale/lang/zh-tw',
-      '@arco-design/web-vue/es/locale/lang/es-es',
     ],
   },
 };

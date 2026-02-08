@@ -11,29 +11,21 @@
     "menu": "list",
     "page": "setting",
     "tasks": [
-      "Dungeon",
-      "Ornament",
-      "DailyQuest",
-      "BattlePass",
-      "Assignment",
-      "DataUpdate",
-      "Freebies"
+      "Reward"
     ]
   },
   "Weekly": {
     "menu": "list",
     "page": "setting",
     "tasks": [
-      "Weekly",
-      "Rogue"
+      "Weekly"
     ]
   },
   "Tool": {
     "menu": "list",
     "page": "tool",
     "tasks": [
-      "Daemon",
-      "PlannerScan"
+      "Daemon"
     ]
   }
 }

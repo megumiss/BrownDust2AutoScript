@@ -9,7 +9,7 @@ import yaml
 import module.config.server as server_
 from deploy.Windows.atomic import atomic_read_text, atomic_read_bytes, atomic_write
 
-LANGUAGES = ['zh-CN', 'en-US', 'ja-JP', 'zh-TW', 'es-ES']
+LANGUAGES = ['zh-CN', 'en-US', 'ja-JP', 'zh-TW']
 SERVER_TO_TIMEZONE = {
     'CN-Official': timedelta(hours=8),
     'CN-Bilibili': timedelta(hours=8),

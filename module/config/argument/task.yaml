@@ -22,35 +22,9 @@ Daily:
   menu: 'list'
   page: 'setting'
   tasks:
-    Dungeon:
+    Reward:
       - Scheduler
-      - Planner
-      - PlannerTarget
-      - Dungeon
-      - DungeonSupport
-      - DungeonStorage
-      - TrailblazePower
-    Ornament:
-      - Scheduler
-      - Ornament
-      - DungeonSupport
-      - TrailblazePower
-    DailyQuest:
-      - Scheduler
-      - DailyStorage
-    BattlePass:
-      - Scheduler
-      - BattlePassStorage
-    Assignment:
-      - Scheduler
-      - Assignment
-    DataUpdate:
-      - Scheduler
-      - ItemStorage
-      - CloudStorage
-    Freebies:
-      - Scheduler
-      - Freebies
+      - Reward
 
 # ==================== Weekly ====================
 
@@ -61,12 +35,6 @@ Weekly:
     Weekly:
       - Scheduler
       - Weekly
-      - DungeonSupport
-    Rogue:
-      - Scheduler
-      - RogueWorld
-      - RogueBlessing
-      - RogueDebug
 
 # ==================== Tool ====================
 
@@ -76,5 +44,3 @@ Tool:
   tasks:
     Daemon:
       - Daemon
-    PlannerScan:
-      - PlannerScan
