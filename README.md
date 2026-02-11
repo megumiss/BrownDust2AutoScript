@@ -1,4 +1,4 @@
-**| [English](README_en.md) | 简体中文 | [Español](README_es.md) | [日本語](README_ja.md) |**
+**| [English](README_en.md) | 简体中文 | [日本語](README_ja.md) |**
 
 <div align="center">
 
@@ -31,13 +31,25 @@ BrownDust2 automatic daily script, supporting PC/Emulator clients. Based on [New
 
 ![setting](https://raw.githubusercontent.com/wiki/megumiss/BrownDust2AutoScript/README.assets/setting_cn.png)
 
-## 功能
+### 支持语言
+- [x] 简体中文
 
-- **打本**：[角色养成规划](https://github.com/megumiss/BrownDust2AutoScript/wiki/Planner_cn)，每日副本，双倍活动副本，历战余响。
-- **收获**：完成每日任务，收派委托，收取无名勋礼奖励。
-- **模拟宇宙**：刷模拟宇宙，使用开拓力刷内圈遗器。
-- **后台托管**：自动启动模拟器和游戏，后台托管清体力和每日，通过仪表盘了解资源情况。
-- **云游戏**：（仅国服）[在云崩坏星穹铁道上运行BD2AS](https://github.com/megumiss/BrownDust2AutoScript/wiki/Cloud_cn)
+### 支持功能
+- [x] 游戏启动
+
+### 更新计划
+- [ ] 餐厅累计奖励领取
+- [ ] 工会每日奖励领取
+- [ ] 探索奖励领取
+- [ ] 每日广场奖励领取
+- [ ] 邮箱领取
+- [ ] 吸取
+- [ ] 每日免费抽卡，出货通知
+- [ ] 魔兽挑战关卡扫荡、魔兽、商店购买
+- [ ] 普通竞技场、黄金竞技场
+- [ ] 肉鸽塔扫荡
+- [ ] 跑商
+- [ ] 优惠券自动兑换
 
 ## 安装 [![](https://img.shields.io/github/downloads/megumiss/BrownDust2AutoScript/total?color=4e4c97)](https://github.com/megumiss/BrownDust2AutoScript/releases)
 

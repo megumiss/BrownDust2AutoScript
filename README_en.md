@@ -1,4 +1,4 @@
-**| English | [简体中文](README.md) | [Español](README_es.md) | [日本語](README_ja.md) |**
+**| English | [简体中文](README.md) | [日本語](README_ja.md) |**
 
 # BrownDust2AutoScript
 
