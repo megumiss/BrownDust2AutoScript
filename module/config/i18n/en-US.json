@@ -200,9 +200,9 @@
       "name": "Reward.Business.name",
       "help": "Reward.Business.help"
     },
-    "Guide": {
-      "name": "Reward.Guide.name",
-      "help": "Reward.Guide.help"
+    "Guild": {
+      "name": "Reward.Guild.name",
+      "help": "Reward.Guild.help"
     },
     "Claim": {
       "name": "Reward.Claim.name",

@@ -43,7 +43,7 @@
     },
     "Reward": {
       "Business": true,
-      "Guide": true,
+      "Guild": true,
       "Claim": true
     }
   },

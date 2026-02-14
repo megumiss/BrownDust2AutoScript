@@ -200,9 +200,9 @@
       "name": "餐厅结算",
       "help": ""
     },
-    "Guide": {
-      "name": "工会奖励",
-      "help": ""
+    "Guild": {
+      "name": "Reward.Guild.name",
+      "help": "Reward.Guild.help"
     },
     "Claim": {
       "name": "每日派遣",

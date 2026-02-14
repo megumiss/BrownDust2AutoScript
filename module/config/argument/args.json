@@ -194,9 +194,10 @@
     "Reward": {
       "Business": {
         "type": "checkbox",
-        "value": true
+        "value": true,
+        "display": "disabled"
       },
-      "Guide": {
+      "Guild": {
         "type": "checkbox",
         "value": true
       },

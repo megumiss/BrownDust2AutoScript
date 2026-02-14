@@ -42,7 +42,7 @@ class GeneratedConfig:
 
     # Group `Reward`
     Reward_Business = True
-    Reward_Guide = True
+    Reward_Guild = True
     Reward_Claim = True
 
     # Group `Weekly`
