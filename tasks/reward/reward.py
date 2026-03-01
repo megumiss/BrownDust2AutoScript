@@ -34,7 +34,7 @@ class Reward(UI):
                 self.device.click(BUSINESS_CLAIM)
                 self.device.sleep(1)
                 continue
-            if self.appear(REWARD_POPUP_CHECK) and self.appear_then_click(REWARD_POPUP_CLOSE, interval=1):
+            if self.handle_reward(1):
                 continue
             if self.match_template_color(BUSINESS_CLAIM_DONE):
                 logger.info('Business reward claimed')

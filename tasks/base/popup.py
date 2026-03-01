@@ -5,6 +5,7 @@ from module.base.utils import color_similarity_2d
 from module.logger import logger
 from tasks.base.assets.assets_base_page import BACK
 from tasks.base.assets.assets_base_popup import *
+from tasks.base.assets.assets_base_ui import REWARD_POPUP_CHECK, REWARD_POPUP_CLOSE
 
 
 class PopupHandler(ModuleBase):
@@ -26,23 +27,23 @@ class PopupHandler(ModuleBase):
             If handled.
         """
         # Same as ModuleBase.match_template()
-        self.device.stuck_record_add(GET_REWARD)
+        self.device.stuck_record_add(REWARD_POPUP_CHECK)
 
-        if interval and not self.interval_is_reached(GET_REWARD, interval=interval):
+        if interval and not self.interval_is_reached(REWARD_POPUP_CHECK, interval=interval):
             return False
 
         appear = self.reward_appear()
 
         if click_button is None:
             if appear:
-                self.device.click(GET_REWARD)
+                self.device.click(REWARD_POPUP_CLOSE)
         else:
             if appear:
-                logger.info(f'{GET_REWARD} -> {click_button}')
+                logger.info(f'{REWARD_POPUP_CHECK} -> {click_button}')
                 self.device.click(click_button)
 
         if appear and interval:
-            self.interval_reset(GET_REWARD, interval=interval)
+            self.interval_reset(REWARD_POPUP_CHECK, interval=interval)
 
         return appear
 

@@ -18,6 +18,19 @@ from tasks.ornament.assets.assets_ornament_ui import DU_OE_SELECT_CHECK
 class UI(MainPage):
     ui_current: Page
     ui_main_confirm_timer = Timer(0.2, count=0)
+    SCROLL_MAP = {
+        # ('from_page', 'to_page'): [
+        #     {
+        #         'vector': (x, y),  # Swipe vector. y>0 swipes down (scrolls up), y<0 swipes up (scrolls down).
+        #         'box': (x1, y1, x2, y2),  # Optional: Area to swipe within. Defaults to most of the screen.
+        #         'check_button': BUTTON_ASSET,  # Optional: A button to check for after swiping.
+        #         'timeout': 3,  # Optional: Timeout in seconds for the check_button to appear.
+        #     },
+        #     # ... more scroll actions in sequence
+        # ]
+        ('page_card', 'page_pvp'): [{'vector': (0, -300),'check_button': CARD_GOTO_PVP}],
+        ('page_card', 'page_gjjc'): [{'vector': (0, -300),'check_button': CARD_GOTO_PVP}, {'vector': (300, 0), 'box': (123, 159, 1175, 628)}],
+    }
 
     def ui_page_appear(self, page, interval=0):
         """
@@ -155,6 +168,57 @@ class UI(MainPage):
                     # self.handle_lang_check(page)
                     if self.ui_page_confirm(page):
                         logger.info(f'Page arrive confirm {page}')
+
+                    if page.parent:
+                        scroll_actions = self.SCROLL_MAP.get((page.name, page.parent.name))
+                        if scroll_actions:
+                            logger.info(f'Performing sequence of {len(scroll_actions)} scrolls on {page.name}')
+                            final_button_found = False
+                            for i, action in enumerate(scroll_actions):
+                                vector = action.get('vector')
+                                if not vector:
+                                    logger.warning(f"Scroll action {i + 1} is missing 'vector', skipping.")
+                                    continue
+
+                                box = action.get('box')
+                                check_button = action.get('check_button')
+                                timeout = action.get('timeout', 3)
+
+                                # Perform the swipe
+                                swipe_kwargs = {'vector': vector}
+                                if box:
+                                    swipe_kwargs['box'] = box
+                                logger.info(f'Scroll action {i + 1}: Swiping with vector {vector}')
+                                self.device.swipe_vector(**swipe_kwargs)
+
+                                # Check if the desired button appeared
+                                if check_button:
+                                    appear_timeout = Timer(timeout)
+                                    button_appeared = False
+                                    while not appear_timeout.reached():
+                                        if self.appear(check_button):
+                                            logger.info(
+                                                f"Scroll action {i + 1}: Check button '{check_button.name}' appeared."
+                                            )
+                                            button_appeared = True
+                                            break
+                                        self.device.sleep(0.5)  # Check every 0.5s
+
+                                    if not button_appeared:
+                                        logger.warning(
+                                            f"Scroll action {i + 1}: Check button '{check_button.name}' did not appear within {timeout}s."
+                                        )
+
+                                # Optimization: If the final button to click is now visible, stop scrolling
+                                final_button = page.links[page.parent]
+                                if self.appear(final_button):
+                                    logger.info('Final button to click is now visible. Stopping scroll sequence.')
+                                    final_button_found = True
+                                    break
+
+                            if not final_button_found:
+                                logger.info('Scroll sequence finished. Proceeding to click.')
+
                     button = page.links[page.parent]
                     self.device.click(button)
                     self.ui_button_interval_reset(button)
@@ -413,56 +477,3 @@ class UI(MainPage):
             button (Button):
         """
         pass
-
-    def ui_leave_special(self):
-        """
-        Leave from:
-        - Rogue domains
-        - Character trials
-
-        Returns:
-            bool: If left a special plane
-
-        Pages:
-            in: Any
-            out: page_main
-        """
-        if not self.is_in_map_exit():
-            return False
-
-        logger.info('UI leave special')
-        skip_first_screenshot = True
-        clicked = False
-        while 1:
-            if skip_first_screenshot:
-                skip_first_screenshot = False
-            else:
-                self.device.screenshot()
-
-            # End
-            if clicked:
-                if self.is_in_main():
-                    logger.info(f'Leave to {page_main}')
-                    break
-
-            if self.is_in_map_exit(interval=2):
-                self.device.click(MAP_EXIT)
-                continue
-            if self.handle_popup_confirm():
-                clicked = True
-                continue
-            if self.match_template_color(START_TRIAL, interval=2):
-                logger.info(f'{START_TRIAL} -> {CLOSE}')
-                self.device.click(CLOSE)
-                clicked = True
-                continue
-            if self.handle_ui_close(page_gacha.check_button, interval=2):
-                continue
-            if self.appear_then_click(ROGUE_LEAVE_FOR_NOW, interval=2):
-                clicked = True
-                continue
-            if self.appear_then_click(ROGUE_LEAVE_FOR_NOW_OE, interval=2):
-                clicked = True
-                continue
-            if self.handle_forgotten_hall_buff():
-                continue

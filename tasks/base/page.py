@@ -76,6 +76,10 @@ page_card = Page(CARD_CHECK)
 page_card.link(BACK_CIRCLE, destination=page_main)
 page_main.link(MAIN_GOTO_CARD, destination=page_card)
 
+# 卡带mini
+page_card_mini = Page(CARD_MINI_CHECK)
+page_main.link(MAIN_GOTO_CARD, destination=page_card_mini)
+
 # 工会
 page_guild = Page(GUILD_CHECK)
 page_guild.link(BACK, destination=page_main)
@@ -135,3 +139,13 @@ page_main.link(MAIN_GOTO_PASS, destination=page_pass)
 page_hunter = Page(HUNTER_CHECK)
 page_hunter.link(BACK, destination=page_main)
 page_main.link(MAIN_GOTO_HUNTER, destination=page_hunter)
+
+# 竞技场
+page_pvp = Page(PVP_CHECK)
+page_pvp.link(HOME, destination=page_main)
+page_card.link(CARD_GOTO_PVP, destination=page_pvp)
+
+# 黄金竞技场
+page_glod_pvp= Page(GLOD_PVP_CHECK)
+page_glod_pvp.link(HOME, destination=page_main)
+page_card.link(CARD_GOTO_GLOD_PVP, destination=page_glod_pvp)
