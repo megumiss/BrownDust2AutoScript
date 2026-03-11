@@ -4,13 +4,14 @@ from module.base.timer import Timer
 from module.exception import GameNotRunningError, GamePageUnknownError, HandledError
 from module.logger import logger
 from module.ocr.ocr import Ocr
+from tasks.base.assets.assets_base_page import CARD_GOTO_GLOD_PVP, CARD_GOTO_PVP
 from tasks.base.assets.assets_base_popup import POPUP_STORY_LATER
 from tasks.base.main_page import MainPage
 from tasks.base.page import Page, page_main
 from tasks.combat.assets.assets_combat_finish import COMBAT_EXIT
 from tasks.combat.assets.assets_combat_interact import MAP_LOADING
 from tasks.combat.assets.assets_combat_prepare import COMBAT_PREPARE
-from tasks.daily.assets.assets_daily_trial import INFO_CLOSE, START_TRIAL
+from tasks.daily.assets.assets_daily_trial import INFO_CLOSE
 from tasks.login.assets.assets_login import LOGIN_CONFIRM
 from tasks.ornament.assets.assets_ornament_ui import DU_OE_SELECT_CHECK
 
@@ -21,15 +22,19 @@ class UI(MainPage):
     SCROLL_MAP = {
         # ('from_page', 'to_page'): [
         #     {
-        #         'vector': (x, y),  # Swipe vector. y>0 swipes down (scrolls up), y<0 swipes up (scrolls down).
-        #         'box': (x1, y1, x2, y2),  # Optional: Area to swipe within. Defaults to most of the screen.
-        #         'check_button': BUTTON_ASSET,  # Optional: A button to check for after swiping.
-        #         'timeout': 3,  # Optional: Timeout in seconds for the check_button to appear.
+        #         'vector': (x, y),  # 滑动向量。y>0 向下滑动（向上滚动），y<0 向上滑动（向下滚动）。
+        #         'box': (x1, y1, x2, y2),  # 可选：滑动区域。默认为屏幕大部分区域。
+        #         'check_button': BUTTON_ASSET,  # 可选：滑动后检查是否出现的按钮。
+        #         'timeout': 3,  # 可选：等待check_button出现的超时时间（秒）。
+        #         'reverse_swipe_count': 0,  # 可选：在执行滑动前，先反方向滑动的次数。用于重置列表位置。
         #     },
-        #     # ... more scroll actions in sequence
+        #     # ... 按顺序执行更多滑动动作
         # ]
-        ('page_card', 'page_pvp'): [{'vector': (0, -300),'check_button': CARD_GOTO_PVP}],
-        ('page_card', 'page_gjjc'): [{'vector': (0, -300),'check_button': CARD_GOTO_PVP}, {'vector': (300, 0), 'box': (123, 159, 1175, 628)}],
+        ('page_card', 'page_pvp'): [{'vector': (0, -300), 'check_button': CARD_GOTO_PVP}],
+        ('page_card', 'page_glod_pvp'): [
+            {'vector': (0, -300), 'check_button': CARD_GOTO_PVP},
+            {'vector': (300, 0), 'box': (123, 159, 1175, 628), 'check_button': CARD_GOTO_GLOD_PVP},
+        ],
     }
 
     def ui_page_appear(self, page, interval=0):
@@ -183,6 +188,33 @@ class UI(MainPage):
                                 box = action.get('box')
                                 check_button = action.get('check_button')
                                 timeout = action.get('timeout', 3)
+                                reverse_swipe_count = action.get('reverse_swipe_count', 0)
+
+                                # Reverse swipes (Reset position)
+                                # 先反向滑动以重置列表位置（例如：先滑到最顶/最左）
+                                if reverse_swipe_count > 0:
+                                    reverse_vector = (-vector[0], -vector[1])
+                                    logger.info(
+                                        f'Scroll action {i + 1}: Reverse swiping {reverse_swipe_count} times with vector {reverse_vector}'
+                                    )
+                                    reverse_kwargs = {'vector': reverse_vector}
+                                    if box:
+                                        reverse_kwargs['box'] = box
+                                    for _ in range(reverse_swipe_count):
+                                        self.device.swipe_vector(**reverse_kwargs)
+                                        # Optimization: Check if final button appeared during reset
+                                        self.device.sleep(0.3)
+                                        self.device.screenshot()
+                                        # 优化：在重置位置的过程中也检查目标按钮，如果出现在视野中则直接停止
+                                        final_button = page.links[page.parent]
+                                        if self.appear(final_button):
+                                            logger.info(
+                                                'Final button to click is now visible during reverse swipe. Stopping scroll sequence.'
+                                            )
+                                            final_button_found = True
+                                            break
+                                    if final_button_found:
+                                        break
 
                                 # Perform the swipe
                                 swipe_kwargs = {'vector': vector}
@@ -190,19 +222,24 @@ class UI(MainPage):
                                     swipe_kwargs['box'] = box
                                 logger.info(f'Scroll action {i + 1}: Swiping with vector {vector}')
                                 self.device.swipe_vector(**swipe_kwargs)
+                                self.device.sleep(0.3)
+                                self.device.screenshot()
 
                                 # Check if the desired button appeared
                                 if check_button:
                                     appear_timeout = Timer(timeout)
                                     button_appeared = False
                                     while not appear_timeout.reached():
+                                        # The first check uses the screenshot taken right after the swipe.
                                         if self.appear(check_button):
                                             logger.info(
                                                 f"Scroll action {i + 1}: Check button '{check_button.name}' appeared."
                                             )
                                             button_appeared = True
                                             break
-                                        self.device.sleep(0.5)  # Check every 0.5s
+                                        # If not found, wait and take a new screenshot before next check
+                                        self.device.sleep(0.3)
+                                        self.device.screenshot()
 
                                     if not button_appeared:
                                         logger.warning(
@@ -210,6 +247,7 @@ class UI(MainPage):
                                         )
 
                                 # Optimization: If the final button to click is now visible, stop scrolling
+                                # The screenshot is already updated by previous steps.
                                 final_button = page.links[page.parent]
                                 if self.appear(final_button):
                                     logger.info('Final button to click is now visible. Stopping scroll sequence.')

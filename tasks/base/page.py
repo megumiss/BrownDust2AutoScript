@@ -146,6 +146,6 @@ page_pvp.link(HOME, destination=page_main)
 page_card.link(CARD_GOTO_PVP, destination=page_pvp)
 
 # 黄金竞技场
-page_glod_pvp= Page(GLOD_PVP_CHECK)
+page_glod_pvp = Page(GLOD_PVP_CHECK)
 page_glod_pvp.link(HOME, destination=page_main)
 page_card.link(CARD_GOTO_GLOD_PVP, destination=page_glod_pvp)

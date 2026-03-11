@@ -1,5 +1,4 @@
 from module.logger import logger
-from tasks.base.assets.assets_base_ui import REWARD_POPUP_CHECK, REWARD_POPUP_CLOSE
 from tasks.base.page import *
 from tasks.base.ui import UI
 from tasks.reward.assets.assets_reward import *
@@ -19,7 +18,7 @@ class Reward(UI):
 
     def receive_claim_reward(self):
         logger.hr('receive claim reward', 2)
-        self.ui_goto(page_jjc)
+        self.ui_goto(page_pvp)
 
         for _ in self.loop():
             if self.appear():

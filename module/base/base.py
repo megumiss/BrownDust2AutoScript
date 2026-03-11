@@ -155,12 +155,38 @@ class ModuleBase:
                 self.device.dump_hierarchy()
             yield self.device.image, self.device.hierarchy
 
-    def match_template(self, button, interval=0, similarity=0.85):
+    def _match_template_fullscreen(self, button, similarity=0.85):
+        """
+        Match template on full screenshot and keep correct button offsets.
+        Temporarily expands search to fullscreen to align offset math.
+        """
+        image = self.device.image
+        height, width = image.shape[:2]
+        full_search = (0, 0, width, height)
+
+        if isinstance(button, ButtonWrapper):
+            buttons = list(button.iter_buttons())
+        else:
+            buttons = [button]
+
+        old_search = [b.search for b in buttons]
+        for b in buttons:
+            b.search = full_search
+
+        try:
+            return button.match_template(image, similarity=similarity, direct_match=True)
+        finally:
+            for b, s in zip(buttons, old_search):
+                b.search = s
+
+    def match_template(self, button, interval=0, similarity=0.85, static=True):
         """
         Args:
             button (ButtonWrapper):
             interval (int, float): interval between two active events.
             similarity (int, float): 0 to 1.
+            static (bool): True to use the pre-defined search area,
+                False to match on full screenshot.
 
         Returns:
             bool:
@@ -178,7 +204,10 @@ class ModuleBase:
         if interval and not self.interval_is_reached(button, interval=interval):
             return False
 
-        appear = button.match_template(self.device.image, similarity=similarity)
+        if static:
+            appear = button.match_template(self.device.image, similarity=similarity)
+        else:
+            appear = self._match_template_fullscreen(button, similarity=similarity)
 
         if appear and interval:
             self.interval_reset(button, interval=interval)
@@ -281,11 +310,13 @@ class ModuleBase:
 
         return appear
 
-    def appear(self, button, interval=0, similarity=0.85):
+    def appear(self, button, interval=0, similarity=0.85, static=True):
         """
         Args:
             button (Button, ButtonWrapper, HierarchyButton, str):
             interval (int, float): interval between two active events.
+            static (bool): True to use the pre-defined search area for template match,
+                False to match on full screenshot.
 
         Returns:
             bool:
@@ -306,11 +337,11 @@ class ModuleBase:
         if isinstance(button, (HierarchyButton, str)):
             return self.xpath_appear(button, interval=interval)
         else:
-            return self.match_template(button, interval=interval, similarity=similarity)
+            return self.match_template(button, interval=interval, similarity=similarity, static=static)
 
-    def appear_then_click(self, button, interval=5, similarity=0.85):
+    def appear_then_click(self, button, interval=5, similarity=0.85, static=True):
         button = self.xpath(button)
-        appear = self.appear(button, interval=interval, similarity=similarity)
+        appear = self.appear(button, interval=interval, similarity=similarity, static=static)
         if appear:
             self.device.click(button)
         return appear
