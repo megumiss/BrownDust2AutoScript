@@ -280,10 +280,6 @@ class CombatObtain(PlannerMixin):
         self.planner.load_obtained_amount(items)
         with self.config.multi_set():
             self.planner_write()
-            # Sync to dashboard
-            for item in items:
-                if item.item.name == 'Credit':
-                    self.config.stored.Credit.value = item.value
 
         return items
 

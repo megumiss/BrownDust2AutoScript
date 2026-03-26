@@ -406,67 +406,6 @@ pre.rich-traceback-code {
     grid-auto-flow: column;
 }
 
-#pywebio-scope-dashboard {
-    display: flex;
-    align-content: space-between;
-    justify-content: flex-start;
-    flex-flow: row wrap;
-    overflow: auto;
-    margin-top: .5rem;
-}
-
-#pywebio-scope-dashboard > i {
-    flex-grow: 1;
-    align-self: flex-end;
-    width: 9.5rem;
-}
-
-[id^="pywebio-scope-dashboard-row-"] {
-    display: flex;
-    flex-grow: 1;
-    width: 9.5rem;
-}
-
-.dashboard-icon {
-    margin: .6rem .8rem 0 .6rem;
-    width: .5rem;
-    height: .5rem;
-    border-radius: 50%;
-}
-
-*[style*="--dashboard-value--"] {
-    font-size: 1rem;
-    font-weight: 500;
-    overflow-wrap: break-word;
-}
-
-*[style*="--dashboard-time--"] {
-    font-size: 0.8rem;
-    font-weight: 400;
-    overflow-wrap: break-word;
-}
-
-*[style*="--dashboard-bold--"] {
-    font-size: 1rem;
-    font-weight: bold;
-    color: #7a77bb;
-    overflow-wrap: break-word;
-}
-
-[id^="pywebio-scope-dashboard-row-"] p {
-    margin-bottom: 0;
-}
-
-[id^="pywebio-scope-dashboard-value-"] {
-    display: flex;
-    align-items: baseline;
-    height: 1.5rem;
-}
-
-[id^="pywebio-scope-arg_stored-stored-value-"] p {
-    margin-bottom: 0;
-}
-
 #pywebio-scope-log {
     line-height: 1.2;
     font-size: 0.85rem;

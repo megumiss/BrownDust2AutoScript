@@ -442,9 +442,6 @@ class DailyQuestUI(DungeonUI, RouteLoader):
             #         if self.config.stored.BattlePassQuestSynthesizeConsumables.is_full():
             #             logger.info('Achieve weekly quest BattlePassQuestSynthesizeConsumables')
             #             self.config.task_call('BattlePass')
-            # Update dashboard
-            if self.claimed_point_reward:
-                self.config.task_call('DataUpdate')
             # Delay self
             self.config.task_delay(server_update=True)
 

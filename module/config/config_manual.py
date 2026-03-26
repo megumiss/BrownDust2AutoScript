@@ -12,7 +12,7 @@ class ManualConfig:
     Restart
     > Reward > Ornament > Dungeon > Assignment
     > BattlePass > DailyQuest
-    > Freebies > DataUpdate
+    > Freebies
     > Rogue
     """
 

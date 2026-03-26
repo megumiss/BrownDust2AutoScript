@@ -66,7 +66,7 @@ class Assignment(AssignmentClaim, SynthesizeUI):
                 elif remain > len(undispatched):
                     self._dispatch_remain(duration, remain - len(undispatched))
 
-        # Refresh dashboard before return
+        # Refresh limit status before return
         _ = self._limit_status
         # Scheduler
         logger.attr('has_new_dispatch', self.has_new_dispatch)

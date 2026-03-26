@@ -503,9 +503,7 @@ class PlannerProgressParser:
     def from_config(self, data):
         self.rows = {}
         for name, row in data.items():
-            if not row:
-                continue
-            if name == 'PlannerOverall':
+            if not row or not isinstance(row, dict) or 'item' not in row:
                 continue
             try:
                 row = StoredPlannerProxy(**row)
@@ -672,15 +670,6 @@ class PlannerMixin(UI):
         if add:
             planner.add_planner_result(self.planner)
 
-        # Load from dashboard
-        try:
-            row = planner.rows['Credit']
-            value = self.config.stored.Credit.value
-            if value:
-                row.value = value
-        except KeyError:
-            pass
-
         self.planner_write(planner)
 
     @cached_property
@@ -701,8 +690,6 @@ class PlannerMixin(UI):
             planner = self.planner
 
         data = planner.to_config()
-        progress, eta = planner.get_overall()
-
         with self.config.multi_set():
             # Set value
             for key, value in data.items():
@@ -716,10 +703,6 @@ class PlannerMixin(UI):
                     remove.append(key)
             for key in remove:
                 self.config.cross_set(f'Dungeon.Planner.{key}', {})
-            # print(progress, eta)
-            # Set overall
-            self.config.stored.PlannerOverall.value = f'{progress:.2f}%'
-            self.config.stored.PlannerOverall.comment = f'<{eta:.1f}d'
 
         del_cached_property(self, 'planner')
 

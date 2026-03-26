@@ -52,18 +52,6 @@ Overview:
   Waiting:
   NoTask:
 
-Dashboard:
-  # From lang.readable_time()
-  NoData:
-  TimeError:
-  JustNow:
-  MinutesAgo:
-  HoursAgo:
-  DaysAgo:
-  LongTimeAgo:
-  # Planner
-  EtaDays:
-
 AddAlas:
   PopupTitle:
   NewName:

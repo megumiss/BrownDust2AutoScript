@@ -21,7 +21,6 @@ from module.config.stored.classes import (
     StoredImmersifier,
     StoredInt,
     StoredPlanner,
-    StoredPlannerOverall,
     StoredRelic,
     StoredResersed,
     StoredSimulatedUniverse,
